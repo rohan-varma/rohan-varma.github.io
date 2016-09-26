@@ -10,7 +10,7 @@ React is a JavaScript library for building user interfaces, and revolves around 
 in a very declarative way. It can be thought of as the "View" portion of the Model-View-Controller pattern.
 Flux is a pattern also developed by Facebook for building web interfaces - it utilizes
 the concept of unidirectional data flow, which complements React's components quite well. In this post, we'll take a quick 
-look as to how React and Flux can work together to create the components of a dynamic, responsive web application. I've learned a lot of this through the excellent [React Tutorial](https://facebook.github.io/react/docs/tutorial.html) and applied my knowledge through following along a [tutorial to create a full-stack app](https://facebook.github.io/react/docs/tutorial.html), both of which are excellent resources to check out. 
+look as to how React and Flux can work together to create the components of a dynamic, responsive web application. I've learned a lot of this through the excellent [React Tutorial](https://facebook.github.io/react/docs/tutorial.html) and applied my knowledge through following along a [tutorial to create a full-stack app](https://facebook.github.io/react/docs/tutorial.html), the latter being the inspiration for this post. 
 
 ### React Overview
 [React](https://facebook.github.io/react/) is a powerful UI library developed at Facebook that uses an innovative diff algorithm to efficiently re-render components when
