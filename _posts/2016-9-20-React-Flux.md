@@ -21,9 +21,9 @@ it needs to update, and then efficiently re-renders the component by only applyi
 
 React also has a few other notable features that make it pretty useful: 
 
-- Server-side rendering of components. Since React doesn't require the actual DOM tree as a dependency, you can render your components on the server as opposed to the client-side, and then just send the resulting HTML instead of having the client download and execute additional JavaScript. This could reduce perceived page load times. 
-- Declarative style: components and elements allow you to write your component's render() function in a declarative way. 
-- Reusability and composability: React's components naturaly lend themselves to be reusable if they are designed well (for example, ensuring each component has only a single responsibility), and are therefore easy to compose with other components to quickly build complex user interfaces. 
+- *Server-side rendering of components*: Since React doesn't require the actual DOM tree as a dependency, you can render your components on the server as opposed to the client-side, and then just send the resulting HTML instead of having the client download and execute additional JavaScript. This could reduce perceived page load times. 
+- *Declarative style*: components and elements allow you to write your component's render() function in a declarative way. 
+- *Reusability and composability*: React's components naturaly lend themselves to be reusable if they are designed well (for example, ensuring each component has only a single responsibility), and are therefore easy to compose with other components to quickly build complex user interfaces. 
 
 ### Flux Overview
 Flux is a pattern that complements React and the idea of unidirectional data flow. Its used internally at Facebook and is commonly paired with React. Its componsed of four components: Actions, Dispatcher, Store, and Controller Views, which manage the flow of data through an application and define what picks it up along the way. There's many implementations of Flux, and the one I've been using is Alt.js. 
