@@ -6,7 +6,7 @@ A few thoughts on how machine learning models can be scaled, stored, and used in
 
 
 Choosing, training, and testing the right machine learning classifier is a difficult task: you have to preprocess 
-and analyze your dataset's features, possibly extract new features, tune hyperparameters, and perform cross-validation, just to name a few tasks. 
+and analyze your dataset's features, possibly extract new features, tune hyperparameters, and perform cross-validation, just to name a few components of a typical machine learning problem. 
 After you've trained and tested a reliable classifier, it's ready to be deployed to serve new predictions at scale. 
 These machine learning systems that are trained on a massive amount of data coming from a variety of sources can be hard to maintain and scale up. This post is a few of my thoughts on deploying a machine learning architecture, specifically using Amazon Web Services. 
 
