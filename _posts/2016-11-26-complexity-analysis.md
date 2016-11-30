@@ -94,4 +94,4 @@ Therefore, our prime-number checking algorithm is actually *exponential* with re
 
 ![exponential lower bound](http://latex2png.com/output//latex_34b5487eeb2181a704cf887f921a2a27.png)
 
-If you're interested in faster prime checking algorithms, the [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) is a good place to start. 
+If you're interested in faster prime checking algorithms, the [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) is a good place to start.  
