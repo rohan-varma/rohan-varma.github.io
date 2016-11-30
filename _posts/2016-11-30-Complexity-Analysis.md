@@ -23,7 +23,7 @@ bool is_prime(int n){
 
 This algorithm runs in time *&#920;	(n)*, where n is the **numeric** value of the input, so the algorithm does run in polynomial time in *n*. However, it does *not* run in polynomial time in the **size** of the input - an important distinction, as we generally consider the size of the input (as opposed to the numeric value) when analyzing the complexity of algorithms. 
 
-Formally, the size of the input into our algorithm is defined as the number of bits required to represent the input. For example, if our input was an array with `n` 32-bit integer elements, the size of our input would be *32n*, the number of bits required to represent it - and when analyzing complexity in terms of upper/lower/tight bounds, constants are generally forgone - hence the typical *O(n log n)* runtime of sorting algorithsm such as merge sort. 
+Formally, the size of the input into our algorithm is defined as the number of bits required to represent the input. For example, if our input was an array with *n* 32-bit integer elements, the size of our input would be *32n*, the number of bits required to represent it - and when analyzing complexity in terms of upper/lower/tight bounds, constants are generally foregone - hence the typical *O(n log n)* runtime of sorting algorithms such as merge sort. 
 
 In the case of our ```is_prime``` algorithm, however, how many bits are required to represent the input? If you've played around with bits before, you may know that the answer is on the order of *log n*. Let's verify this mathematically. 
 
@@ -35,7 +35,7 @@ Since it would be reduntant to have leading zeros in our bit representation, we 
 
 We notice that the number of bits needed to represent our input will be *k + 1*, since *k* is zero-indexed. For example, the decimal number *4* in binary is represented as *100*, and we have *k = 2* if we plug in *4* to our above formula. 
 
-Now, we can obtain an upper bound for the number of bits needed to represent *n*. As mentioned all &#952; in our above formula are either *0* or *1*. Therefore, we'd have a maximum value on the right hand side when all &#952; are *1*. We have: 
+Now, we can obtain an upper bound for the number of bits needed to represent *n*. As mentioned, all &#952; in our above formula are either *0* or *1*. Therefore, we'd have a maximum value on the right hand side when all &#952; are *1*. We have: 
 
 ![n less or equal](http://latex2png.com/output//latex_ec30b43128ffebc4d2fa0b8daa9c380c.png)
 
@@ -51,7 +51,7 @@ Or, equivalently:
 
 ![last upper bound](http://latex2png.com/output//latex_4684f485a4efdd0b2add0dbeecdc4a85.png)
 
-Now that we've established an upper bound for the number of bits needed to represent *k*, we can also easily establish a lower bound. Consider the sum of our initial series when all &#952; for *i < k* are zero:
+Now that we've established an upper bound for the number of bits needed to represent *k*, we can also establish a lower bound. Consider the sum of our initial series when all &#952; for *i < k* are zero:
 
 ![lower bound](http://latex2png.com/output//latex_b9276521c53fbac25980f2564d585612.png)
 
@@ -95,4 +95,31 @@ Therefore, our prime-number checking algorithm is actually *exponential* with re
 
 ![exponential lower bound](http://latex2png.com/output//latex_34b5487eeb2181a704cf887f921a2a27.png)
 
+
 If you're interested in faster prime checking algorithms, the [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) is a good place to start.  
+
+
+Pseudo polynomial time algorithms often arise in dynamic programming solutions to NP-complete problems. One of the many variations of the subset sum problem is given a set of size *N* and a target sum *t*, check if any subset of the set sums to the target sum. A naive implementation could enumerate and then sum all possible *2^n* sets, taking time *O(n 2^n)*. However, a dynamic programming solution exists. 
+
+```cpp
+bool subset_sum(const vector<int> &s, int target){
+///top down approach: dp[i][j]=1 if there is a subset of the array indexed from 0 to j with sum i. 
+int dp[target+1][s.size()+1];
+//base case values
+for(int i = 0; i < s.size() + 1; i++){
+  dp[0][i] = 1; //zero sum can always be made with the empty set
+  }
+for(int i = 1; i < target + 1; i++){
+  dp[i][0] = 0; //non zero sum cannot be made w/null subsets
+  }
+for(int i = 1; i < target + 1; i++){
+  for(int j = 1; j < s.size() + 1; j++){
+    //for the array from 0 to j, if we know there's a sum using only j - 1 indices use that, otherwise see if we can make a sum by decrementing i by the value at the j-1th index.
+    dp[i][j] = dp[i][j-1] || ((i>=s[j-1]) ? dp[ i - s[j-1]][j-1] : 0);
+  }
+  return dp[target][s.size()];
+}
+}
+```
+
+A quick analysis of this code may give a runtime of *O(Nt)*, which appears to be polynomial. However, it is indeed pseudo-polynomial: *t* is numeric, and doesn't represent the size of the *target* variable. The complexity of this algorithm with respect to the size of the input can be described as *O(N2^s)*, where *s* is the number of bits in the target variable. Therefore, it's an exponential algorithm - and no polynomial time algorithm is known.
