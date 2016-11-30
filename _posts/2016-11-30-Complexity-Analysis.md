@@ -103,7 +103,7 @@ Pseudo polynomial time algorithms often arise in dynamic programming solutions t
 
 ```cpp
 bool subset_sum(const vector<int> &s, int target){
-///top down approach: dp[i][j]=1 if there is a subset of the array indexed from 0 to j with sum i. 
+///bottom-up approach: dp[i][j]=1 if there is a subset of the array indexed from 0 to j with sum i. 
 int dp[target+1][s.size()+1];
 //base case values
 for(int i = 0; i < s.size() + 1; i++){
