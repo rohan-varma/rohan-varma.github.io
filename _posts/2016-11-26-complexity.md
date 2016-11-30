@@ -1,41 +1,97 @@
 ---
 layout: post
-title: Understanding Convolutions with Python 
+title: Complexity Analysis: Pseudo-Polynomial Algorithms
 ---
+
+Several algorithms in Computer Science may appear to be polynomial upon first glance, but can actually be shown to run slower than polynomial time. Pseudo polynomial time algorithms fall into this category - the numeric values of the input themselves may indicate a polynomial runtime, but the size of the input actually yields an exponential time algorithm. An example of this is the solution to the subset sum problem, which is an NP-complete problem. A similar class of algorithms, quasi-polynomial algorithms, also don't run as fast as polynomial time, but aren't slow enough to be exponential. An example of this is the 3SAT problem, which is an NP-hard problem. 
+
+Confusion in the analysis of such algorithms may arise when one considers the numeric value of the input as opposed to the actual size of the input. As an example, let's consider a simple algorithm to check if a number is prime: 
+
+```cpp
+bool is_prime(int n){
+  if(n<2) return false;
+  if(n==2) return true;
+  for(int i = 3; i < sqrt(n); i++){
+    if((n % i)==0){
+      return false;
+    }
+  }
+  return true;
+}
+```
+
+This algorithm runs in time *&#920;	(n)*, where n is the **numeric** value of the input, so the algorithm does run in polynomial time in *n*. However, it does *not* run in polynomial time in the **size** of the input - an important distinction, as we generally consider the size of the input (as opposed to the numeric value) when analyzing the complexity of algorithms. 
+
+Formally, the size of the input into our algorithm is defined as the number of bits required to represent the input. For example, if our input was an array with `n` 32-bit integer elements, the size of our input would be *32n*, the number of bits required to represent it - and when analyzing complexity in terms of upper/lower/tight bounds, constants are generally forgone - hence the typical *O(n log n)* runtime of sorting algorithsm such as merge sort. 
+
+In the case of our ```is_prime``` algorithm, however, how many bits are required to represent the input? If you've played around with bits before, you may know that the answer is on the order of *log n*. Let's verify this mathematically. 
+
+First, we write n in terms of its bit representation:
+
 ![n in terms of bits](http://latex2png.com/output//latex_2fbbd9a4d623f86d1d0bb98d79bd4637.png)
 
-![theta i](http://latex2png.com/output//latex_08e54109eac8e9cfde1dcd9b217fcbf6.png)
+Since it would be reduntant to have leading zeros in our bit representation, we fix  ![theta k](http://latex2png.com/output//latex_b25b05e08da9fc184eeba4d6b22f5e49.png)  as 1 and all other &#952; as either *0* or *1*, depending on whether that particular bit is set or not. 
 
-![theta k](http://latex2png.com/output//latex_b25b05e08da9fc184eeba4d6b22f5e49.png)
+We notice that the number of bits needed to represent our input will be *k + 1*, since *k* is zero-indexed. For example, the decimal number *4* in binary is represented as *100*, and we have *k = 2* if we plug in *4* to our above formula. 
+
+Now, we can obtain an upper bound for the number of bits needed to represent *n*. As mentioned all &#952; in our above formula are either *0* or *1*. Therefore, we'd have a maximum value on the right hand side when all &#952; are *1*. We have: 
 
 ![n less or equal](http://latex2png.com/output//latex_ec30b43128ffebc4d2fa0b8daa9c380c.png)
 
+This is a geometric series with a convergent sum, so we simplify:
+
 ![next step](http://latex2png.com/output//latex_85e5985cd378888efd296f84789fb704.png)
+
+Solving for *log(n)*, we obtain:
 
 ![second last upper bound](http://latex2png.com/output//latex_dbf8cce918a64f3480483b5a83d3d00c.png)
 
+Or, equivalently:
+
 ![last upper bound](http://latex2png.com/output//latex_4684f485a4efdd0b2add0dbeecdc4a85.png)
 
+Now that we've established an upper bound for the number of bits needed to represent *k*, we can also easily establish a lower bound. Consider the sum of our initial series when all &#952; for *i < k* are zero:
+
 ![lower bound](http://latex2png.com/output//latex_b9276521c53fbac25980f2564d585612.png)
+
+Let's rewrite our upper and lower bounds in terms of *log(n) + 1*, which will prove to be convenient:
 
 ![comparison upper bound](http://latex2png.com/output//latex_9d10fa5453c35b0827f1692264d15914.png)
 
 ![comparison lower](http://latex2png.com/output//latex_d75ba7b03e9ea0411ec1796f2f1f8c7a.png)
 
+Then we can put the inequalities together:
+
 ![put together](http://latex2png.com/output//latex_d5604c76df2660fbfd7c9b648c96b3e7.png)
 
+As mentioned above, we let *s* denote the number of bits needed to represent our input. Then *s = k + 1*:
+
 ![using s](http://latex2png.com/output//latex_85661774828061a246eebe6615cce03b.png)
+
+If you're familiar with big-O/Theta/Omega notation, we can write an upper and lower bound for our number of bits using big-O and big-Omega notation: 
 
 ![big o s](http://latex2png.com/output//latex_02c30cf244355bd4b7b8a97ad20229e1.png)
 
 ![big omega](http://latex2png.com/output//latex_30b95f82c4fb7791ed0dd04d65fabaa7.png)
 
+Therefore, a tight bound for the number of bits, as expected, is:
+
 ![tight bound](http://latex2png.com/output//latex_c4c4cabdb7a39d060915bfac899c2217.png)
+
+Going back to our naive prime number checking algorithm, we initially obtained a polynomial runtime when considering the *numeric* value of our input:
 
 ![prime runtime](http://latex2png.com/output//latex_159e01b7064f73e05f6499810adf0c2a.png)
 
+However, we now have an upper bound for the number of bits: 
+
 ![s less log n](http://latex2png.com/output//latex_58f9ffe8cd88a8c3e4ff6b34c50e83e4.png)
+
+So we can solve for *n* in terms of *s* to get our algorithm's complexity with respect to the size of our input, or the number of bits needed to represent it. We obtain a lower bound for *n*:
 
 ![n in terms of s](http://latex2png.com/output//latex_960fdafc81c30bfad374ba287ad82e6d.png)
 
+Therefore, our prime-number checking algorithm is actually *exponential* with respect to the input size:
+
 ![exponential lower bound](http://latex2png.com/output//latex_34b5487eeb2181a704cf887f921a2a27.png)
+
+If you're interested in faster prime checking algorithms, the [Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) is a good place to start. 
