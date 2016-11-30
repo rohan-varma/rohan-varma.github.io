@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Complexity Analysis: Pseudo-Polynomial Algorithms
+title: How we're using Machine Learning to change the current state of disease detection
 ---
 
 Several algorithms in Computer Science may appear to be polynomial upon first glance, but can actually be shown to run slower than polynomial time. [Pseudo polynomial](https://en.wikipedia.org/wiki/Pseudo-polynomial_time) time algorithms fall into this category - the numeric values of the input themselves may indicate a polynomial runtime, but the size of the input actually yields an exponential time algorithm. An example of this is a dynamic programming solution to the [subset sum problem](https://en.wikipedia.org/wiki/Subset_sum_problem#Pseudo-polynomial_time_dynamic_programming_solution), which is an NP-complete problem. A similar class of algorithms, [quasi-polynomial algorithms](https://en.wikipedia.org/wiki/Time_complexity#Quasi-polynomial_time), also don't run as fast as polynomial time, but aren't slow enough to be exponential. An example of this is the [3SAT problem](http://www.cs.umd.edu/~gasarch/TOPICS/sat/SATtalk.pdf), which is an NP-hard problem. 
