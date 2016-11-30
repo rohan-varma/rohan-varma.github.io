@@ -72,7 +72,7 @@ If you're familiar with big-O/Theta/Omega notation, we can write an upper and lo
 
 ![big o s](http://latex2png.com/output//latex_02c30cf244355bd4b7b8a97ad20229e1.png)
 
-![big omega](http://latex2png.com/output//latex_30b95f82c4fb7791ed0dd04d65fabaa7.png)
+![big omega](http://latex2png.com/output//latex_6a7e5d6b644d3160dc0e0f6d3cb978ec.png)
 
 Therefore, a tight bound for the number of bits, as expected, is:
 
