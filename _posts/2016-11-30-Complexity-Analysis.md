@@ -67,7 +67,7 @@ Then we can put the inequalities together:
 
 As mentioned above, we let *s* denote the number of bits needed to represent our input. Then *s = k + 1*:
 
-![using s](http://latex2png.com/output//latex_85661774828061a246eebe6615cce03b.png)
+![using s](http://latex2png.com/output//latex_4ea26f0f52ccde9b90e9663ff6331224.png)
 
 If you're familiar with big-O/Theta/Omega notation, we can write an upper and lower bound for our number of bits using big-O and big-Omega notation: 
 
