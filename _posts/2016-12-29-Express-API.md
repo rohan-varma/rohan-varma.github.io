@@ -27,6 +27,11 @@ Email.find({email: "rvarm1@ucla.edu"}, (err, users) => err ? console.log(err) : 
 Email.find({}, (err, users) => err ? console.log(err) : console.log(users)); //no matching specified, so retrieve all documents.
 ```
 
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
+
 We used the latter to return all email documents, thus providing us with our mailing list. 
 
 The first step was to create a `mongoose` instance and connect it to our MongoDB database. There are several ways you can create your own MongoDB instance, a popular choice being [MongoLab](https://mlab.com/). 
