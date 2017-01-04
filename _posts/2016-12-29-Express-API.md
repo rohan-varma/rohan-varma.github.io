@@ -22,15 +22,7 @@ To take the example of creating our mailing list API endpoint, it would be usefu
 
 We defined a `getAll` function in our schema to support querying for the entire mailing list. From the MongooseJS docs, each model has `find`, `findById`, `findOne` and a few other useful functions that we can use to retrieve particular documents. We primarily used the `find` function, that has a few interesting use cases: 
 
-```
-Email.find({email: "rvarm1@ucla.edu"}, (err, users) => err ? console.log(err) : console.log(users)); //find all documents matching email of "rvarm1@ucla.edu", and pass the results to an anonymous function. 
-Email.find({}, (err, users) => err ? console.log(err) : console.log(users)); //no matching specified, so retrieve all documents.
-```
-
-```javascript
-var s = "JavaScript syntax highlighting";
-alert(s);
-```
+<script src="https://gist.github.com/rohan-varma/20889e90b5bc7f7d348d214753397a05.js"></script>
 
 We used the latter to return all email documents, thus providing us with our mailing list. 
 
