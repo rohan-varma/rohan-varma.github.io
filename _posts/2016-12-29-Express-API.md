@@ -14,7 +14,7 @@ Specifically, a few backend tasks were required, in the form of creating a funct
 - Create Mongoose Schemas for all of the above data types. 
 
 ### Tools Used
-On the backend, we decided to use MongoDB for our database, Express.js for our web framework, and Mocha/Chai for unit tests. The first order of business was to create database schemas for all of the above data types. We used `mongoose` to interact with our MongoDB database. Mongoose allows us to define object models that we can save and retrieve from our database. From the MongooseJS docs, models are compiled from their schema definitions and represent specific documents in our database. The models also handle document creation and retrieval. 
+On the backend, we decided to use MongoDB for our database, Express.js for our web framework, and Mocha/Chai for unit tests. The first order of business was to create database schemas for all of the above data types. We used `mongoose` to interact with our MongoDB database. [Mongoose](http://mongoosejs.com/index.html) allows us to define object models that we can save and retrieve from our database. From the [MongooseJS docs](http://mongoosejs.com/docs/api.html), models are compiled from their schema definitions and represent specific documents in our database. The models also handle document creation and retrieval. 
 
 To take the example of creating our mailing list API endpoint, it would be useful to have an email schema that contains both the user's email address as well as the user's name. Moreover, we'd like to be able to retrieve all emails in a single request. Here's the schema that we defined for emails: 
 
@@ -32,12 +32,12 @@ Next, we created a `mongoose` instance and connected it to MongoDB. There are se
 
 ### Defining Our API Endpoint with Express
 
-The next step was to set up the Express framework and begin to define routes and endpoints for our application. [Express](http://expressjs.com/) is a minimal web framework that is essentially composed of two things: routing and middleware functions. At a high level, routing defines endpoints for your application that can be accessed to perform certain actions (ie, GET or POST certain data). In other words, it defines the structure that is used for interaction with the backend of your web app. An Express route essentially maps a URL to a specific set of functions, called middleware functions. Middleware functions are quite powerful, and are capable of the following actions: 
+The next step was to set up the Express framework and begin to define routes and endpoints for our application. [Express](http://expressjs.com/) is a minimal web framework that is essentially composed of two things: routing and middleware functions. At a high level, [routing](https://expressjs.com/en/guide/routing.html) defines endpoints for your application that can be accessed to perform certain actions (ie, GET or POST certain data). In other words, it defines the structure that is used for interaction with the backend of your web app. An Express route essentially maps a URL to a specific set of functions, called [middleware functions](https://expressjs.com/en/guide/writing-middleware.html). Middleware functions are quite powerful, and are capable of the following actions: 
 
 - Execute any code on the server
 - Modify the request (req) and response (res) object
 - Access the next middleware function on the stack, denoted by `next()`
-- End the request/response cycle. 
+- End the API call. 
 
 For example, we can create a route for obtaining and sending data to our mailing list. To do this, we will create a router that maps the URL `/api/v1/email/:email?` to a set of functions. The last part of the URL, `:email?` is an an optional URL parameter. First, we can define middleware functions for this URL, which will also take care of the behavior of the endpoint without the optional argument: 
 
@@ -69,7 +69,7 @@ As indicated above, we can have certain requests require a valid `token` for the
 
 Next, we moved on to testing our API endpoints to make sure they work well, especially in edge cases such as malformed or unauthorized requests. At first, we manually tested our API using [Postman](https://www.getpostman.com/), which is a useful tool for quickly querying your endpoint to make sure it works correctly. However, as our API began to change and increase in size, we decided to use unit testing in order to make sure that our core functionality doesn't break as a result of an erronous commit. 
 
-Unit tests allowed us to automatically detect problems in our codebase when they happen, and we can make sure we don't push a broken build by making sure all of our tests pass during the build step. We used two JavaScript unit testing libraries: Mocha.js, which allows us to actually run unit tests, and Chai.js which contains several useful helper functions to write our testing code. Using a few more add-ons such as chai-Http (to create and send HTTP requests) and chai-should (to write clean assert statements), we can efficiently create a testing schematic for our API. 
+Unit tests allowed us to automatically detect problems in our codebase when they happen, and we can make sure we don't push a broken build by making sure all of our tests pass during the build step. We used two JavaScript unit testing libraries: [Mocha.js](https://mochajs.org/), which allows us to actually run unit tests, and [Chai.js](http://chaijs.com/) which contains several useful helper functions to write our testing code. Using a few more add-ons such as chai-Http (to create and send HTTP requests) and chai-should (to write clean assert statements), we can efficiently create a testing schematic for our API. 
 
 First, we describe a test and what it should do, and have an anonymous function running the actual test. The test, for an API, makes a request to that endpoint with some either hardcoded or generated data, and then we verify that the response object looks like it should. As an example, to test our email API endpoint, we did the following: 
 
