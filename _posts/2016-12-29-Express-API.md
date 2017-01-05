@@ -85,8 +85,6 @@ To easily run our tests, we just need to add the line ```"test": "mocha"``` to o
 
 ![chai-test](https://raw.githubusercontent.com/rohan-varma/rohan-blog/master/images/chaitest.png "unit tests")
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-
 
 
 
