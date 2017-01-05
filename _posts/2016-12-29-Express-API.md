@@ -59,7 +59,7 @@ router.use(‘/v1’, require(‘./v1’).router);
 module.exports = {router};
 ```
 
-With this setup, our application's data was organized into several different API endpoints. Next, we had to actually implement each middleware function for each of our API endpoints. To do this, we had to think about our API's design at a granular level: what fields will we require for particular requests? Which requests will need token authentication? What will the response body look like in the case of success and in the case of failure?
+With this setup, access to our application's data was organized into several different API endpoints. Next, we had to actually implement each middleware function for each of our API endpoints. To do this, we had to think about our API's design at a granular level: what fields will we require for particular requests? Which requests will need token authentication? What will the response body look like in the case of success and in the case of failure?
 
 We decided that our response objects will have two high level fields: `success`, a boolean value that indicates the status of the request, and `errors`, a string that indicates the errors (if any) that were encountered during the request (such as an invalid ID or unauthorized token). Here's an example implementation of a `get` request: 
 
