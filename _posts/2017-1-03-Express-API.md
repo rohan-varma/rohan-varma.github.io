@@ -3,7 +3,7 @@ layout: post
 title: Building and testing an API with Express, Mongo, and Chai
 ---
 
-Recently, I've been going through the Express, Mongoose, and Chai docs in order to help build out and test an API that's going to be used for ACM Hack, a committee of UCLA's CS club that focuses on teaching students new technologies and frameworks, as well as fostering/building an environment of hackers and makers at UCLA. Thus, we're completely revamping Hack for the next quarter with regular events, projects, and additional content in terms of blog posts and tutorials for our users. To do this, we needed to revamp the Hack website over this ongoing winter break. 
+Recently, I've been going through the Express, Mongoose, and Chai docs in order to help build out and test an API that's going to be used for ACM Hack, a committee of UCLA's CS club that focuses on teaching students new technologies and frameworks, as well as fostering/building an environment of hackers and makers at UCLA. Thus, we're completely revamping Hack for the next quarter with regular events, projects, and additional content in terms of blog posts and tutorials for our users. To do this, we needed to revamp the Hack website. 
 
 Specifically, a few backend tasks were required, in the form of creating a functional API to support the needs of our front-end developers and users: 
 
