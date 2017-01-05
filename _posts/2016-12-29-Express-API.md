@@ -83,7 +83,7 @@ Here's an example of a single test case:
 
 To easily run our tests, we just need to add the line ```"test": "mocha"``` to our `package.json` file. Then, the unit tests can be run with a single command line argument: `npm test`. Chai and Mocha allow the developer to create and define tests so that the end result of running the tests is descriptive of what tests were run, and how they should behave: 
 
-[chai-test](https://raw.githubusercontent.com/rohan-varma/rohan-blog/master/images/chaitest.png)
+![chai-test](https://raw.githubusercontent.com/rohan-varma/rohan-blog/master/images/chaitest.png "unit tests")
 
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
