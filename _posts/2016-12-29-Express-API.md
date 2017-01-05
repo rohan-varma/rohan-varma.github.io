@@ -59,5 +59,31 @@ router.use(‘/v1’, require(‘./v1’).router);
 module.exports = {router};
 ```
 
-With this setup, our application's data was organized into several different API endpoints. Next, we had to actually implement each middleware function for each of our API endpoints. To do this, we had to think about our API's design at a granular level: what fields will we require for particular requests? Which requests will need token authentication? What will the response body look like in the case of success and in the case of failure? 
+With this setup, our application's data was organized into several different API endpoints. Next, we had to actually implement each middleware function for each of our API endpoints. To do this, we had to think about our API's design at a granular level: what fields will we require for particular requests? Which requests will need token authentication? What will the response body look like in the case of success and in the case of failure? We decided that our response objects will have two high level fields: `success`, a boolean value that indicates the status of the request, and `errors`, a string that indicates the errors (if any) that were encountered during the request (such as an invalid ID or unauthorized token). Here's an example implementation of a `get` request: 
+
+<script src="https://gist.github.com/rohan-varma/7d045f555f659f92f9bf394fbf2d7247.js"></script>
+
+As indicated above, we can have certain requests require a valid `token` for the request to return successfully. Also, we pass in an anonymous function that takes in two parameters to the `getAll` function defined in our Email model. From the implementation of `getAll` in the email schema discussed previously, the function retrieves all emails and then calls a provided callback function. In this case, the function returns a response object back to the user. 
+
+### Testing the API using Mocha and Chai
+
+Next, we moved on to testing our API endpoints to make sure they work well, especially in edge cases such as malformed or unauthorized requests. At first, we manually tested our API using [Postman](https://www.getpostman.com/), which is a useful tool for quickly querying your endpoint to make sure it works correctly. However, as our API began to change and increase in size, we decided to use unit testing in order to make sure that our core functionality doesn't break as a result of an erronous commit. Unit tests allowed us to automatically detect problems in our codebase when they happen, and we can make sure we don't push a broken build by making sure all of our tests pass during the build step. We used two JavaScript unit testing libraries: Mocha.js, which allows us to actually run unit tests, and Chai.js which contains several useful helper functions to write our testing code. Using a few more add-ons such as chai-Http (to create and send HTTP requests) and chai-should (to write clean assert statements), we can efficiently create a testing schematic for our API. 
+
+First, we describe a test and what it should do, and have an anonymous function running the actual test. The test, for an API, makes a request to that endpoint with some either hardcoded or generated data, and then we verify that the response object looks like it should. As an example, to test our email API endpoint, we did the following: 
+
+- Create a valid GET request with a valid token in the body. Verify that the response object contains the relevant status fields and returns mailing list. 
+- Create an invalid GET request that is missing a valid token. Verify that the response object indicates failure and provides no emails. 
+- Create a valid POST request that has a body indicating the user's name and email address. Verify that the response object indicates that the request executed successfully. 
+- Create a valid POST request that has a body that is missing optional fields. Ensure that missing these optional fields doesn't cause the request to fail. 
+
+Here's an example of a single test case: 
+
+<script src="https://gist.github.com/rohan-varma/aaf8f1f74633334e5e6f6b95072bd07d.js"></script>
+
+To easily run our tests, we just need to add the line ```"test": "mocha"``` to our `package.json` file. Then, the unit tests can be run with a single command line argument: `npm test`. Chai and Mocha allow the developer to create and define tests so that the end result of running the tests is descriptive of what tests were run, and how they should behave: 
+
+
+```
+
+
 
