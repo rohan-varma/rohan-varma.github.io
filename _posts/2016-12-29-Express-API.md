@@ -90,3 +90,9 @@ To easily run our tests, we just need to add the line ```"test": "mocha"``` to o
 
 And that's it! We now have a well-organized, reliable, and reusable set up for creating and testing a robust API. In the coming months, we hope to expand on this and push out even more interesting features for UCLA's CS community.
 
+### Project/Code Contributors:
+
+- [Nikhil Kansal](https://github.com/nkansal96)
+- [Yvonne Chen](https://github.com/yvonneCh)
+- [Justin Liu](https://github.com/hsykwon)
+- [Akhil Nadendla](https://github.com/akhilnadendla)
