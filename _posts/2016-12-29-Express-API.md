@@ -3,7 +3,7 @@ layout: post
 title: Building and testing an API with Express, Mongo, and Chai
 ---
 
-Recently, I've been going through the Express, Mongoose, and Chai docs in order to help build out and test an API that's going to be used for ACM Hack, a committee of UCLA's CS club that focuses on teaching students new technlogies and frameworks, as well as fostering/building an environment of hackers and makers at UCLA. Thus, we're completely revamping Hack for the next quarter with regular events, projects, and additional content in terms of blog posts and tutorials for our users. To do this, we needed to revamp the Hack website over this ongoing winter break. 
+Recently, I've been going through the Express, Mongoose, and Chai docs in order to help build out and test an API that's going to be used for ACM Hack, a committee of UCLA's CS club that focuses on teaching students new technologies and frameworks, as well as fostering/building an environment of hackers and makers at UCLA. Thus, we're completely revamping Hack for the next quarter with regular events, projects, and additional content in terms of blog posts and tutorials for our users. To do this, we needed to revamp the Hack website over this ongoing winter break. 
 
 Specifically, a few backend tasks were required, in the form of creating a functional API to support the needs of our front-end developers and users: 
 
@@ -11,7 +11,7 @@ Specifically, a few backend tasks were required, in the form of creating a funct
 - Create, update, get, and delete Showcase Projects (these our projects that our hack members submit to us, and we showcase the coolest/most innovative projects)
 - Securing this API through the use of tokens, to make sure that requests cannot be spammed.
 - Create an email list API endpoint, that allows users to subscribe to our mailing list that notifies them about new events or important updates.
-- Create Mongoose Schemas for all of the above data types. 
+- Create Mongoose schemas for all of the above data types. 
 
 ### Tools Used
 On the backend, we decided to use MongoDB for our database, Express.js for our web framework, and Mocha/Chai for unit tests. The first order of business was to create database schemas for all of the above data types. We used `mongoose` to interact with our MongoDB database. [Mongoose](http://mongoosejs.com/index.html) allows us to define object models that we can save and retrieve from our database. From the [MongooseJS docs](http://mongoosejs.com/docs/api.html), models are compiled from their schema definitions and represent specific documents in our database. The models also handle document creation and retrieval. 
@@ -59,7 +59,9 @@ router.use(‘/v1’, require(‘./v1’).router);
 module.exports = {router};
 ```
 
-With this setup, our application's data was organized into several different API endpoints. Next, we had to actually implement each middleware function for each of our API endpoints. To do this, we had to think about our API's design at a granular level: what fields will we require for particular requests? Which requests will need token authentication? What will the response body look like in the case of success and in the case of failure? We decided that our response objects will have two high level fields: `success`, a boolean value that indicates the status of the request, and `errors`, a string that indicates the errors (if any) that were encountered during the request (such as an invalid ID or unauthorized token). Here's an example implementation of a `get` request: 
+With this setup, our application's data was organized into several different API endpoints. Next, we had to actually implement each middleware function for each of our API endpoints. To do this, we had to think about our API's design at a granular level: what fields will we require for particular requests? Which requests will need token authentication? What will the response body look like in the case of success and in the case of failure?
+
+We decided that our response objects will have two high level fields: `success`, a boolean value that indicates the status of the request, and `errors`, a string that indicates the errors (if any) that were encountered during the request (such as an invalid ID or unauthorized token). Here's an example implementation of a `get` request: 
 
 <script src="https://gist.github.com/rohan-varma/7d045f555f659f92f9bf394fbf2d7247.js"></script>
 
@@ -67,11 +69,11 @@ As indicated above, we can have certain requests require a valid `token` for the
 
 ### Testing the API using Mocha and Chai
 
-Next, we moved on to testing our API endpoints to make sure they work well, especially in edge cases such as malformed or unauthorized requests. At first, we manually tested our API using [Postman](https://www.getpostman.com/), which is a useful tool for quickly querying your endpoint to make sure it works correctly. However, as our API began to change and increase in size, we decided to use unit testing in order to make sure that our core functionality doesn't break as a result of an erronous commit. 
+Next, we moved on to testing our API endpoints to make sure they work well, especially in edge cases such as malformed or unauthorized requests. At first, we manually tested our API using [Postman](https://www.getpostman.com/), which is a useful tool for quickly querying your endpoint to make sure it works correctly. However, as our API and overall application began to change rapidly and increase in size, we decided to use unit testing in order to make sure that our core functionality doesn't break as a result of an erroneous commit. 
 
 Unit tests allowed us to automatically detect problems in our codebase when they happen, and we can make sure we don't push a broken build by making sure all of our tests pass during the build step. We used two JavaScript unit testing libraries: [Mocha.js](https://mochajs.org/), which allows us to actually run unit tests, and [Chai.js](http://chaijs.com/) which contains several useful helper functions to write our testing code. Using a few more add-ons such as chai-Http (to create and send HTTP requests) and chai-should (to write clean assert statements), we can efficiently create a testing schematic for our API. 
 
-First, we describe a test and what it should do, and have an anonymous function running the actual test. The test, for an API, makes a request to that endpoint with some either hardcoded or generated data, and then we verify that the response object looks like it should. As an example, to test our email API endpoint, we did the following: 
+First, we describe a test and what it should do, and have an anonymous function running the actual test. The test for an API makes a request to that endpoint with some data, and then we verify that the response object looks like it should. As an example, to test our email API endpoint, we did the following: 
 
 - Create a valid GET request with a valid token in the body. Verify that the response object contains the relevant status fields and returns mailing list. 
 - Create an invalid GET request that is missing a valid token. Verify that the response object indicates failure and provides no emails. 
