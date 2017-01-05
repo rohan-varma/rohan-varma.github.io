@@ -26,5 +26,38 @@ We defined a `getAll` function in our schema to support querying for the entire 
 
 We used the latter to return all email documents, thus providing us with our mailing list. 
 
-The first step was to create a `mongoose` instance and connect it to our MongoDB database. There are several ways you can create your own MongoDB instance, a popular choice being [MongoLab](https://mlab.com/). 
+Next, we created a `mongoose` instance and connected it to MongoDB. There are several ways to create your own MongoDB instance, a popular choice being [MongoLab](https://mlab.com). We also exported our schemas so that they can be instantiated in other areas of our application, namely, in our API where these models will be created and accessed. The following code connects the `mongoose` instance and exports the schemas: 
+
+<script src="https://gist.github.com/rohan-varma/ad8eb415c940d359e31159fc6ee4d327.js"></script>
+
+### Defining Our API Endpoint with Express
+
+The next step was to set up the Express framework and begin to define routes and endpoints for our application. [Express](http://expressjs.com/) is a minimal web framework that is essentially composed of two things: routing and middleware functions. At a high level, routing defines endpoints for your application that can be accessed to perform certain actions (ie, GET or POST certain data). In other words, it defines the structure that is used for interaction with the backend of your web app. An Express route essentially maps a URL to a specific set of functions, called middleware functions. Middleware functions are quite powerful, and are capable of the following actions: 
+
+- Execute any code on the server
+- Modify the request (req) and response (res) object
+- Access the next middleware function on the stack, denoted by `next()`
+- End the request/response cycle. 
+
+For example, we can create a route for obtaining and sending data to our mailing list. To do this, we will create a router that maps the URL `/api/v1/email/:email?` to a set of functions. The last part of the URL, `:email?` is an an optional URL parameter. First, we can define middleware functions for this URL, which will also take care of the behavior of the endpoint without the optional argument: 
+
+<script src="https://gist.github.com/rohan-varma/5ff1f324e9524332468f77ec9233a4c1.js"></script>
+
+In other files in our `api` directory of our application, we can tell Express to use certain routers for specific API endpoints. This way, routers can be composed: the `/api` endpoint can have routes for each API version, and each API version can have routes for its several endpoints that access data such as the mailing list or upcoming events:
+
+```javascript
+//require the routers implemented for each data type
+router.use(‘/event’, require(‘./event’).router);
+router.use(`/email`, require(`./email).router);
+router.use(`/showcase`, require(`./showcase).router);
+module.exports = {router};
+```
+
+```javascript
+//require routers for each version of the API implemented
+router.use(‘/v1’, require(‘./v1’).router); 
+module.exports = {router};
+```
+
+With this setup, our application's data was organized into several different API endpoints. Next, we had to actually implement each middleware function for each of our API endpoints. To do this, we had to think about our API's design at a granular level: what fields will we require for particular requests? Which requests will need token authentication? What will the response body look like in the case of success and in the case of failure? 
 
