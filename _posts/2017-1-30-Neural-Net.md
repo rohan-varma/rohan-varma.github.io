@@ -3,7 +3,7 @@ layout: post
 title: Implementing a Neural Network in Python
 ---
 
-[In progress write-up on neural networks]
+[In progress wite-up on neural networks]
 
 
 ### Defining the Learning Problem 
