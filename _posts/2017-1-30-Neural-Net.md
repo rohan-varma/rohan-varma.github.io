@@ -67,6 +67,10 @@ Now with the loss function defined, we can begin to implement the fit function f
 
 Now that we've got predictions for our labels, we want to adjust our weights so that our network does better next time we forward propagate. This is how a neural network learns: it makes a prediction, figures out how inaccurate it was, and updates the weights based off of that information. This is known as gradient descent: iteratively adjusting the weights by their gradient/partial derivative evaluated with respect to the loss function, until we reach (hopefully) a global minima. Computing the partial derivatives with respect to our loss function turns out to be an interesting math problem. 
 
+The function we're trying to differentiate is given by forward propagation as above. Using the chain rule, we can compute a sequence of derivatives that get us the partial derivatives with respect to the weights: 
+
+
+
 
 ### Fine-tuning gradient descent
 Talk about SGD, learning rate, decaying learning rate, and momentum.
