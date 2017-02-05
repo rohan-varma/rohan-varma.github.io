@@ -5,7 +5,7 @@ title: Implementing a Neural Network in Python
 
 [In progress wite-up on neural networks]
 
-
+Whats going on whats going on wahts going onnnn
 ### Defining the Learning Problem 
 
 In supervised learning problems, we're given a training dataset that contains pairs of input instances and their corresponding labels. For example, in the MNIST dataset, our input instances are images of handwritten digits, and our labels are a single digit that indicate the number written in the image. To input this training data to a computer, we need to numerically represent our data. Each image in the MNIST dataset is a 28 x 28 grayscale image, so we can represent each image as a vector $ \bar{x} \in R^{784} $. The elements in the vector x are known as features, and in this case they're values in between 0 and 255. Our labels are commonly denoted as y, and as mentioned, are in between 0 and 9.
