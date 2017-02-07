@@ -4,21 +4,19 @@ title: Implementing a Neural Network in Python
 mathjax: True
 ---
 
-[In progress wite-up on neural networks]
-
 ### Defining the Learning Problem 
 
-In supervised learning problems, we're given a training dataset that contains pairs of input instances and their corresponding labels. For example, in the MNIST dataset, our input instances are images of handwritten digits, and our labels are a single digit that indicate the number written in the image. To input this training data to a computer, we need to numerically represent our data. Each image in the MNIST dataset is a 28 x 28 grayscale image, so we can represent each image as a vector $ \bar{x} \in R^{784} $. The elements in the vector x are known as features, and in this case they're values in between 0 and 255. Our labels are commonly denoted as y, and as mentioned, are in between 0 and 9.
+In supervised learning problems, we're given a training dataset that contains pairs of input instances and their corresponding labels. For example, in the MNIST dataset, our input instances are images of handwritten digits, and our labels are a single digit that indicate the number written in the image. To input this training data to a computer, we need to numerically represent our data. Each image in the MNIST dataset is a 28 x 28 grayscale image, so we can represent each image as a vector $$ \bar{x} \in R^{784} $$. The elements in the vector x are known as features, and in this case they're values in between 0 and 255. Our labels are commonly denoted as y, and as mentioned, are in between 0 and 9.
 
-We can think of this dataset as a sample from some probability distribution over the feature/label space, known as the data generating distribution. Specifically, this distribution gives us the probability of observing any particular (x, y) pairss for all (x, y) pairs in the cartesian product $ X x Y $. Intuitively, we would expect that the pair that consists of an image of a handwritten 2 and the label 2 to have a high probablity, while a pair that consists of a handwritten 2 and the label 9 to have a low probability.
+We can think of this dataset as a sample from some probability distribution over the feature/label space, known as the data generating distribution. Specifically, this distribution gives us the probability of observing any particular (x, y) pairss for all (x, y) pairs in the cartesian product $$ X x Y $$. Intuitively, we would expect that the pair that consists of an image of a handwritten 2 and the label 2 to have a high probablity, while a pair that consists of a handwritten 2 and the label 9 to have a low probability.
 
 Unfortunately, we don't know what this data generating distribution is parametrized by, and this is where machine learning comes in: we aim to learn a function h that maps feature vectors to labels as accurately as possible. This function should generalize well: we don't just want to learn a function that produces a flawless mapping on our training set. The function needs to be able to generalize over all unseen examples in the distribution. With this, we can introduce the idea of the loss function, a function that quantifies how off our prediction is from the true value. The loss function gives us a good idea about our model's performance, so over the entire population of (feature vector, label) pairs, we'd want the expectation of the loss to be low. Therefore, we want to find h(x) that minimizes the following function:
 
-$ E[L(y, h(\bar{x}))] = \sum_{(\bar{x}, y) \in D} p(x, y)L(y, h(x)) $
+$$ E[L(y, h(\bar{x}))] = \sum_{(\bar{x}, y) \in D} p(x, y)L(y, h(x)) $$
 
 However, there's a problem here: we can't compute p(x, y), so we have to resort to approximations of the loss function based on the training data that we do have access to. To approximate our loss, it is common to sum the loss function's output across our training data, and then divide it by the number of training examples to obtain an average loss, known as the training loss: 
 
-$ \frac{1}{N} \sum_{i=1}^{N} L(y_i, h(x_i))
+$$ \frac{1}{N} \sum_{i=1}^{N} L(y_i, h(x_i)) $$
 
 There are several different loss functions that we can use in our neural network to give us an idea of how well it is doing. The function that I ended up using was the cross-entropy loss, which will be discussed a bit later. 
 
@@ -68,6 +66,27 @@ Now with the loss function defined, we can begin to implement the fit function f
 Now that we've got predictions for our labels, we want to adjust our weights so that our network does better next time we forward propagate. This is how a neural network learns: it makes a prediction, figures out how inaccurate it was, and updates the weights based off of that information. This is known as gradient descent: iteratively adjusting the weights by their gradient/partial derivative evaluated with respect to the loss function, until we reach (hopefully) a global minima. Computing the partial derivatives with respect to our loss function turns out to be an interesting math problem. 
 
 The function we're trying to differentiate is given by forward propagation as above. Using the chain rule, we can compute a sequence of derivatives that get us the partial derivatives with respect to the weights: 
+
+
+
+
+### Fine-tuning gradient descent
+Talk about SGD, learning rate, decaying learning rate, and momentum.
+
+### Preventing our network from overfitting
+Talk about L1 and L2 regularization and dropout 
+
+
+### Tuning Hyperparameters with K-Fold Cross Validation
+
+
+### 
+
+
+
+```python
+
+```
 
 
 
