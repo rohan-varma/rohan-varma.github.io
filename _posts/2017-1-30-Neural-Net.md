@@ -85,8 +85,13 @@ Using the gradient descent algorithm, we can learn a particular matrix of weight
 
 Now that we've figured out how to linearly model multilabel classification, we can create a basic neural network. Consider what happens when we combine the idea of artificial neurons with our logistic classifier. Instead of computing a linear function $$ Wx + b $$ and immediately passing the result to a softmax function, we can have an intermediate step: pass the output of our linear combination to a vector of artificial neurons, that each compute a nonlinear function. Then, we can take a linear combination with a vector of weights for each of these outputs, and pass that into our softmax function. 
 
-Our previous linear function was given by: $$ \hat{y} = softmax(W_1x + b) $$
-And our new function is not too different: $$ \hat{y} = softmax(W_2(nonlin(W_1x + b_1)) + b_2) $$
+Our previous linear function was given by:
+
+$$ \hat{y} = softmax(W_1x + b) $$
+
+And our new function is not too different:
+
+$$ \hat{y} = softmax(W_2(nonlin(W_1x + b_1)) + b_2) $$
 
 
 The key differences are that we have more biases and weights, as well as a larger composition of functions. This function is harder to optimize, and introduces a few interesting ideas about learning the weights with an algorithm known as backpropagation. 
@@ -275,18 +280,18 @@ To compute the actual gradients, we use the backpropagation algorithm that calcu
 
 Our forward pass was given by: 
 ```python
-a1 = X
-z2 = w1  * a1.T
-a2 = tanh(z2)
-z3 = w2 * a1
-a3 = softmax(z3)
+ a1 = X
+ z2 = w1  * a1.T
+ a2 = tanh(z2)
+ z3 = w2 * a1
+ a3 = softmax(z3)
 ```
 Using these values, our backwards pass can be given by: 
 ```python
-s3 = a3 - y_actual
-grad_w1 = s3 * a2
-s2 = w2.T * s3 * tanh(z2, deriv=True)
-grad_w2 = s3 * a2.T
+ s3 = a3 - y_actual
+ grad_w1 = s3 * a2
+ s2 = w2.T * s3 * tanh(z2, deriv=True)
+ grad_w2 = s3 * a2.T
 ```
 
 The results of our backwards pass were used in the fit() function to update our weights. That's essentially all of the important parts of implementing a neural network, and training this vanilla neural network on MNIST with 1000 epochs gave me about 95% accuracy on test data. There's still a few more bells and whistles we can add to our network to make it generalize better to unseen data, however. These techniques reduce overfitting, and two common ones are L2-regularization and dropout. 
