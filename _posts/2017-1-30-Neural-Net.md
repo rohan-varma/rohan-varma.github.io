@@ -359,7 +359,7 @@ def compute_dropout(self, activations, p):
         return activations
 ```
 
-With these modificaitons, our neural network is less prone to overfitting and generalizes better. The full source code for the neural network can be found [here](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetwork.py, along with an [iPython notebook](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetDemo.ipynb) with a demonstration on the MNIST dataset.
+With these modificaitons, our neural network is less prone to overfitting and generalizes better. The full source code for the neural network can be found [here](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetwork.py), along with an [iPython notebook](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetDemo.ipynb) with a demonstration on the MNIST dataset.
 
 
 
