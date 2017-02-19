@@ -78,11 +78,12 @@ $$L = \begin{bmatrix}
            0.1 
          \end{bmatrix} \longrightarrow{} C(S, L) = - \sum_{i=1}^{N}L_ilog(S_i) = -log(0.7) = 0.15 $$
 
-So our cross-entropy loss makes intuitive sense: it is lower when our softmax vector has a high probability at the index of the true label, and it is higher when our probabilities indicate a wrong or uncertain choice. The average cross entropy loss is given by plugging into the average training loss function given above. A large part of training our neural network will be finding parameters that make the value of this function as small as possible, but still ensuring that our parameters generalize well to unseen data. For the linear softmax classifier, the loss is given by: 
+So our cross-entropy loss makes intuitive sense: it is lower when our softmax vector has a high probability at the index of the true label, and it is higher when our probabilities indicate a wrong or uncertain choice. The average cross entropy loss is given by plugging into the average training loss function given above. A large part of training our neural network will be finding parameters that make the value of this function as small as possible, but still ensuring that our parameters generalize well to unseen data. For the linear softmax classifier, the training loss can be written as:
+
 $$ L = - \frac{1}{N}\sum_{j} C( S(Wx_j + b), L_j)$$
          
 
-Using the gradient descent algorithm, we can learn a particular matrix of weights that performs well and produces a low loss. 
+This is the function that we seek to minimize. Using the gradient descent algorithm, we can learn a particular matrix of weights that performs well and produces a low training loss. The assumption is that a low trainin gloss will correspond to a low expected loss across all samples in the population of data, but this is a risky assumption that can lead to overfitting. Therefore, a lot of research into machine learning is directed towards figuring out how to minimize training loss while also retaining the ability to generalize.
 
 Now that we've figured out how to linearly model multilabel classification, we can create a basic neural network. Consider what happens when we combine the idea of artificial neurons with our logistic classifier. Instead of computing a linear function $$ Wx + b $$ and immediately passing the result to a softmax function, we can have an intermediate step: pass the output of our linear combination to a vector of artificial neurons, that each compute a nonlinear function. Then, we can take a linear combination with a vector of weights for each of these outputs, and pass that into our softmax function. 
 
