@@ -121,9 +121,9 @@ print w2.shape # expect 31 x 10
     (10, 31)
 
 
-An important preprocessing step is to one-hot encode all of our labels. This is a typical process in machine learning and deep learning problems that involve modeling more labels than two. We begin with a 1-dimensional vector $y$ with _m_ elements, where element $y_i \in [0...N]$ and turn it into an _N x M_ matrix _Y_. Then, the _ith_ column in _Y_ represents the _ith_ training label (this is also the element at index _i_ in $y_i$). For this column, the label is given by the element _j_ for which the value $Y[j][i] = 1$. 
+An important preprocessing step is to one-hot encode all of our labels. This is a typical process in machine learning and deep learning problems that involve modeling more labels than two. We begin with a 1-dimensional vector $$y$$ with _m_ elements, where element $$y_i \in [0...N]$$ and turn it into an _N x M_ matrix _Y_. Then, the _ith_ column in _Y_ represents the _ith_ training label (this is also the element at index _i_ in $$y_i$$). For this column, the label is given by the element _j_ for which the value $$Y[j][i] = 1$$. 
 
-In other words, we've taken a vector in which a label _j_ is given by $y[i] = j$ and changed it into the matrix where the label would be _j_ for the _ith_ training example if $Y[j][i] = 1$. From this, we can implement a one-hot encoding:
+In other words, we've taken a vector in which a label _j_ is given by $$y[i] = j$$ and changed it into the matrix where the label would be _j_ for the _ith_ training example if $$Y[j][i] = 1$$. From this, we can implement a one-hot encoding:
 
 
 
@@ -205,11 +205,11 @@ Now we're at a stage where our neural network can make predictions given trainin
 
 while not converged:
 
-  $ \delta w_i = \frac{\delta L}{\delta w_i} \forall w_i \in W$
+  $$ \delta w_i = \frac{\delta L}{\delta w_i} \forall w_i \in W$$
   
-   $w_i := w_i - \alpha*\delta w_i$
+   $$w_i := w_i - \alpha*\delta w_i$$
 
-Gradient descent seeks to find the weights that bring our cost function to a global minimum. Intuitively, this makes sense, as we'd like our cost function to be as low as possible (while still taking care not to overfit on our training data). However, the functions that quantify the loss for most machine learning algorithms tend not to have an explicit solution to $\frac{\delta L}{\delta W} = 0$, so we must use numerical optimization algorithms such as gradient descent to hopefully get to a local minimum. It turns out that we're not always gauranteed to get to a global minimum either. Gradient descent only converges to a global minimum if our cost function is **convex**, and while cost functions for algorithms such as logistic regression are convex, the cost function for our single hidden layer neural network is not. 
+Gradient descent seeks to find the weights that bring our cost function to a global minimum. Intuitively, this makes sense, as we'd like our cost function to be as low as possible (while still taking care not to overfit on our training data). However, the functions that quantify the loss for most machine learning algorithms tend not to have an explicit solution to $$\frac{\delta L}{\delta W} = 0$$, so we must use numerical optimization algorithms such as gradient descent to hopefully get to a local minimum. It turns out that we're not always gauranteed to get to a global minimum either. Gradient descent only converges to a global minimum if our cost function is **convex**, and while cost functions for algorithms such as logistic regression are convex, the cost function for our single hidden layer neural network is not. 
 
 We can still use gradient descent and get to a reasonably good set of weights, however. The art of doing this is an active area of deep learning research. Currently, a common method for implementing gradient descent for deep learning seems to be: 
 
@@ -291,12 +291,6 @@ grad_w2 = s3 * a2.T
 ```
 
 The results of our backwards pass were used in the fit() function to update our weights. That's essentially all of the important parts of implementing a neural network, and training this vanilla neural network on MNIST with 1000 epochs gave me about 95% accuracy on test data. There's still a few more bells and whistles we can add to our network to make it generalize better to unseen data, however. These techniques reduce overfitting, and two common ones are L2-regularization and dropout. 
-
-
-
-
-
-
 
 ### L2-regularization
 
