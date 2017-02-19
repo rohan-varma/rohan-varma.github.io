@@ -4,6 +4,7 @@ title: Implementing a Neural Network in Python
 mathjax: True
 ---
 
+Recently, I spent sometime writing out the code for a neural network in python from scratch, without using any machine learning libraries. It proved to be a pretty enriching experience and taught me a lot about how neural networks work, and what we can do to make them work better. I thought I'd share some of my thoughts in this post. 
 
 ### Defining the Learning Problem 
 
@@ -114,8 +115,8 @@ def init_weights(num_input_features, num_hidden_units, num_output_units):
     w2 = np.random.uniform(-1.0, 1.0, size=num_output_units*(num_hidden_units+1)).reshape(num_output_units, num_hidden_units+ 1)
     return w1, w2
 w1, w2 = init_weights(784, 30, 10)
-print w1.shape # expect 30 * 785
-print w2.shape # expect 31 x 10
+print w1.shape # expect 
+print w2.shape # expect
 ```
 
     (30, 785)
@@ -220,7 +221,7 @@ We can still use gradient descent and get to a reasonably good set of weights, h
     
    3) Use minibatch gradient descent. Instead of computing the loss and weight updates across the entire set of training examples, **randomly** chooose a subset of your training examples and use that to update your weights. While this may cause gradient descent to not work optimally at each iteration, it is much more efficient so we end up winning by a lot. We essentially approximate the gradient across the entire training set from a sample from the training set. 
     
-   4) Use the momentum method. This involves remembering the previous gradients, and factoring in the direction of those previous gradients when calculating the current update. This has proved to be pretty successful, as Geoffrey Hinton discusses in this video: https://www.youtube.com/watch?v=8yg2mRJx-z4
+   4) Use the momentum method. This involves remembering the previous gradients, and factoring in the direction of those previous gradients when calculating the current update. This has proved to be pretty successful, as Geoffrey Hinton discusses in [this video](https://www.youtube.com/watch?v=8yg2mRJx-z4).
     
 
 
@@ -273,7 +274,7 @@ def fit(self, X, y, print_progress=True):
         return self
 ```
 
-To compute the actual gradients, we use the backpropagation algorithm that calculates the gradients that we need to update our weights from the outputs of our feed forward step. Essentially, we repeatedly apply the chain rule starting from our outputs until we end up with values for $$\frac{\delta L}{\delta W_1} $$ and $$ \frac{\delta L}{\delta W_2} $$. CS 231N provides an excellent explanation of backprop: http://cs231n.github.io/optimization-2/.
+To compute the actual gradients, we use the backpropagation algorithm that calculates the gradients that we need to update our weights from the outputs of our feed forward step. Essentially, we repeatedly apply the chain rule starting from our outputs until we end up with values for $$\frac{\delta L}{\delta W_1} $$ and $$ \frac{\delta L}{\delta W_2} $$. CS 231N provides an [excellent explanation](http://cs231n.github.io/optimization-2/) of backprop.
 
 Our forward pass was given by: 
 ```python
@@ -356,7 +357,7 @@ def compute_dropout(self, activations, p):
         return activations
 ```
 
-With these modificaitons, our neural network is less prone to overfitting and generalizes better. The full source code for the neural network can be found here: https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetwork.py, along with a demonstration on the MNIST dataset: https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetDemo.ipynb. 
+With these modificaitons, our neural network is less prone to overfitting and generalizes better. The full source code for the neural network can be found [here](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetwork.py, along with an [iPython notebook](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetDemo.ipynb) with a demonstration on the MNIST dataset.
 
 
 
