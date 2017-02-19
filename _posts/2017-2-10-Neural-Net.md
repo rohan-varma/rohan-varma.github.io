@@ -31,7 +31,7 @@ In the space of neural networks, the function $$h(x)$$ we will find will consist
 
 In the special case of binary classification, we can model an artificial neuron as receiving a linear combination of our inputs $$ w^{T} \cdot x $$, and then computing a function that returns either 0 or 1, which is the predicted label of the input. 
 
-The weights are applied to the inputs, which are just the features of the training instance. Then, as a simple example of a function an artificial neuron can compute, we take the sign of the resulting number, and map that to a prediction. So the following is the neural model of learning: 
+The weights are applied to the inputs, which are just the features of the training instance. Then, as a simple example of a function an artificial neuron can compute, we take the sign of the resulting number, and map that to a prediction. So the following is the neural model of learning [2]: 
 
 ![Perceptron](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/perceptron.png)
 
@@ -45,7 +45,7 @@ If we consider our basic model of a neuron, we see that it has one vector of wei
 
 $$ a = W^{T}x + b $$
 
-For our MNIST problem, x is a vector with 784 components, W was originally a single vector with 784 values, and the bias, b, was a single number. However, if we modified W to be a matrix instead, we get multiple rows of weights, each of which can be applied to the input x via a matrix multiplication. Since we want to be able to predict 10 different labels, we can let W be a 10 x 784 matrix, and the matrix product $$Wx$$ will produce a column vector of values that represent the output of 10 separate classifiers, where the weights for each classifier is given by the rows of W. The bias term is now a 10-dimensional vector that each add a bias term to matrix product. The core idea, however, is that this matrix of weights represent different classifiers, and now we can predict more than just binary labels. An image from Stanford's CS 231n course shows this clearly:
+For our MNIST problem, x is a vector with 784 components, W was originally a single vector with 784 values, and the bias, b, was a single number. However, if we modified W to be a matrix instead, we get multiple rows of weights, each of which can be applied to the input x via a matrix multiplication. Since we want to be able to predict 10 different labels, we can let W be a 10 x 784 matrix, and the matrix product $$Wx$$ will produce a column vector of values that represent the output of 10 separate classifiers, where the weights for each classifier is given by the rows of W. The bias term is now a 10-dimensional vector that each add a bias term to matrix product. The core idea, however, is that this matrix of weights represent different classifiers, and now we can predict more than just binary labels. An image from Stanford's CS 231n course shows this clearly [3]:
 
 ![Multi-class classification](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/imagemap.jpg)
 
@@ -98,7 +98,7 @@ $$ \hat{y} = softmax(W_2(nonlin(W_1x + b_1)) + b_2) $$
 
 The key differences are that we have more biases and weights, as well as a larger composition of functions. This function is harder to optimize, and introduces a few interesting ideas about learning the weights with an algorithm known as backpropagation. 
 
-This "intermediate step" is actually known as a hidden layer, and we have complete control over it, meaning that among other things, we can vary the number of parameters or connections between weights and neurons to obtain an optimal network. It's also important to notice that we can stack an arbitrary amount of these hidden layers between the input and output of our network, and we can tune these layers individually. This lets us make our network as deep as we want it. Here's what our model looks like now: 
+This "intermediate step" is actually known as a hidden layer, and we have complete control over it, meaning that among other things, we can vary the number of parameters or connections between weights and neurons to obtain an optimal network. It's also important to notice that we can stack an arbitrary amount of these hidden layers between the input and output of our network, and we can tune these layers individually. This lets us make our network as deep as we want it. Here's what our model looks like now [4]: 
 
 ![neural network](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/neuralnet.png)
 
@@ -301,7 +301,7 @@ Using L2-regularization in neural networks is the most common way to address the
 
 Previously, our cost function was given by $$ - \sum_{i,j} L_{i,j} log(S_{i,j})$$
 
-Now, we tack on an additional regularization term: $$ 0.5 \lambda W^{2} $$. Essentially, we impose a penalty on large weight values. Large weights are indicative of overfitting, so we want to keep the weights in our model relatively small, which is more indicative of a simpler model. To see why this is, consider the classic case of overfitting, where our learning algorithm essentially memorizes the training data: 
+Now, we tack on an additional regularization term: $$ 0.5 \lambda W^{2} $$. Essentially, we impose a penalty on large weight values. Large weights are indicative of overfitting, so we want to keep the weights in our model relatively small, which is more indicative of a simpler model. To see why this is, consider the classic case of overfitting, where our learning algorithm essentially memorizes the training data [5]: 
 
 
 ![overfitting](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/overfitting.png)
@@ -320,7 +320,7 @@ With L1-regularization, we penalize weights that are non-zero, thus leading our 
 
 ### Dropout 
 
-Dropout is a recently introduced, but very effective technique for reducing overfitting in neural networks. Generally, every neuron in a particular layer is connected to all the neurons in the next layer. This is called a "fully-connected" or "Dense" layer - all activations are passed through the layer in the network. Dropout randomly drops a subset of a layer's neuron's activations, so the neurons in the next layer don't receive any activations from the dropped neurons in the previous layer. This process is random, meaning that a different set of activations is discarded across different iterations of learning. Here's a visualization of what happens when dropout is in use:
+Dropout is a recently introduced, but very effective technique for reducing overfitting in neural networks. Generally, every neuron in a particular layer is connected to all the neurons in the next layer. This is called a "fully-connected" or "Dense" layer - all activations are passed through the layer in the network. Dropout randomly drops a subset of a layer's neuron's activations, so the neurons in the next layer don't receive any activations from the dropped neurons in the previous layer. This process is random, meaning that a different set of activations is discarded across different iterations of learning. Here's a visualization of what happens when dropout is in use [6]:
 
 ![dropout](https://raw.githubusercontent.com/rohan-varma/rohan-blog/master/images/dropout.jpeg)
 
@@ -363,7 +363,10 @@ With these modificaitons, our neural network is less prone to overfitting and ge
 
 **References**
 [1] [The MNIST Database of Handwritten Digits](http://yann.lecun.com/exdb/mnist/)
-[2]
-
+[2] [Programming a Perceptron in Python](https://blog.dbrgn.ch/2013/3/26/perceptrons-in-python/) by Danilo Bargen
+[3] [Stanford CS 231N](http://cs231n.github.io/linear-classify/)
+[4] [Stanford Deep Learning Tutorial](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
+[5] [Ameet Talwalkar, UCLA CS 260](http://web.cs.ucla.edu/~ameet/teaching/winter17/cs260/lectures/lec09.pdf)
+[6] [Srivastava, Hinton, et. al, Dropout: A simple way to prevent Neural Networks from Overfitting](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
 
 
