@@ -303,7 +303,7 @@ Now, we tack on an additional regularization term: $$ 0.5 \lambda W^{2} $$. Esse
 
 The values for the degree 9 polynomial are much greater than the values for the degree 3 polynomial:
 
-![overfitting values](https://raw.githubusercontent.com/rohan-varma/rohan-blog/master/images/overfitting.png)
+![overfitting values](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/overfitting2.png)
 
 With regularization, when we minimize the cost function, we have two separate goals. Minimizing the first term picks weight values that give us the smallest training error. Minimizing the second term picks weight values that are as small as possible. The value of the hyperparameter $$\lambda$$ controls how much we penalize large weights: if $$\lambda$$ is 0, we don't regularize at all, and if $$\lambda$$ is very large, then the entropy term becomes ignored and we prioritize small weight values. 
 
