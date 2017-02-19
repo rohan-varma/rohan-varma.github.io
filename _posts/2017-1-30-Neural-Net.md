@@ -52,7 +52,7 @@ Here's an illustration of our model so far:
 
 TODO INSERT CURRENT MODEL
 
-Next, we can use our loss function discussed previously to evaluate how well our classifier is doing. Specifically, we use the cross-entropy loss, which for a single prediction/label pair, is given by $$ C(S,L) = \sum_{i}L_{i}log(S_{i})$$. 
+Next, we can use our loss function discussed previously to evaluate how well our classifier is doing. Specifically, we use the cross-entropy loss, which for a single prediction/label pair, is given by $$ C(S,L) = - \sum_{i}L_{i}log(S_{i})$$. 
 
 Here, $$L$$ is a specific one-hot encoded label vector, meaning that it is a column vector that has a 1 at the index corresponding to its label, and is zero everywhere else. $$ S $$ is a prediction vector whose elements sum to 1. As an example, we may have: 
 
@@ -64,7 +64,7 @@ $$L = \begin{bmatrix}
            0.2 \\
            0.7 \\
            0.1 
-         \end{bmatrix} \longrightarrow{} C(S, L) = \sum_{i=1}^{N}L_ilog(S_i) = -log(0.2) = 0.61 $$
+         \end{bmatrix} \longrightarrow{} C(S, L) = - \sum_{i=1}^{N}L_ilog(S_i) = -log(0.2) = 0.61 $$
          
 The contribution to the entire training data's loss by this pair was 0.61. To contrast, we can swap the first two probabilities in our softmax vector. We then end up with a lower loss: 
 
@@ -76,10 +76,10 @@ $$L = \begin{bmatrix}
            0.7 \\
            0.2 \\
            0.1 
-         \end{bmatrix} \longrightarrow{} C(S, L) = \sum_{i=1}^{N}L_ilog(S_i) = -log(0.7) = 0.15 $$
+         \end{bmatrix} \longrightarrow{} C(S, L) = - \sum_{i=1}^{N}L_ilog(S_i) = -log(0.7) = 0.15 $$
 
 So our cross-entropy loss makes intuitive sense: it is lower when our softmax vector has a high probability at the index of the true label, and it is higher when our probabilities indicate a wrong or uncertain choice. The average cross entropy loss is given by plugging into the average training loss function given above. A large part of training our neural network will be finding parameters that make the value of this function as small as possible, but still ensuring that our parameters generalize well to unseen data. For the linear softmax classifier, the loss is given by: 
-$$ L = \frac{1}{N}\sum_{j} C( S(Wx_j + b), L_j)$$
+$$ L = - \frac{1}{N}\sum_{j} C( S(Wx_j + b), L_j)$$
          
 
 Using the gradient descent algorithm, we can learn a particular matrix of weights that performs well and produces a low loss. 
