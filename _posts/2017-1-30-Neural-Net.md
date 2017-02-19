@@ -87,8 +87,13 @@ This is the function that we seek to minimize. Using the gradient descent algori
 
 Now that we've figured out how to linearly model multilabel classification, we can create a basic neural network. Consider what happens when we combine the idea of artificial neurons with our logistic classifier. Instead of computing a linear function $$ Wx + b $$ and immediately passing the result to a softmax function, we can have an intermediate step: pass the output of our linear combination to a vector of artificial neurons, that each compute a nonlinear function. Then, we can take a linear combination with a vector of weights for each of these outputs, and pass that into our softmax function. 
 
-Our previous linear function was given by: $$ \hat{y} = softmax(W_1x + b) $$
-And our new function is not too different: $$ \hat{y} = softmax(W_2(nonlin(W_1x + b_1)) + b_2) $$
+Our previous linear function was given by: 
+
+$$ \hat{y} = softmax(W_1x + b) $$
+
+And our new function is not too different: 
+
+$$ \hat{y} = softmax(W_2(nonlin(W_1x + b_1)) + b_2) $$
 
 
 The key differences are that we have more biases and weights, as well as a larger composition of functions. This function is harder to optimize, and introduces a few interesting ideas about learning the weights with an algorithm known as backpropagation. 
