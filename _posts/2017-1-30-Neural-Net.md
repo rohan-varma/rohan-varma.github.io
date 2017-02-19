@@ -47,13 +47,10 @@ $$ a = W^{T}x + b $$
 
 For our MNIST problem, x is a vector with 784 components, W was originally a single vector with 784 values, and the bias, b, was a single number. However, if we modified W to be a matrix instead, we get multiple rows of weights, each of which can be applied to the input x via a matrix multiplication. Since we want to be able to predict 10 different labels, we can let W be a 10 x 784 matrix, and the matrix product $$Wx$$ will produce a column vector of values that represent the output of 10 separate classifiers, where the weights for each classifier is given by the rows of W. The bias term is now a 10-dimensional vector that each add a bias term to matrix product. The core idea, however, is that this matrix of weights represent different classifiers, and now we can predict more than just binary labels. An image from Stanford's CS 231n course shows this clearly:
 
-TODO INSERT IMAGE MAP IMAGE
+![Multi-class classification](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/imagemap.jpg)
 
 Now that we have a vector of outputs that roughly correspond to scores for each predicted class, we'd like to figure out the most likely label. To do this, we can map our 10 dimensional vector to another 10 dimensional vector which each value is in the range (0, 1), and the sum of all values is 1. This is known as the softmax function. We can use the output of this function to represent a probability distribution: each value gives us the probability of the input x mapping to a particular label y. The softmax function's input and output are both vectors, and it can be defined as $$\frac{e^{z_i}}{\sum_{i=1}^{N} e^{z_i}}$$
 
-Here's an illustration of our model so far:
-
-TODO INSERT CURRENT MODEL
 
 Next, we can use our loss function discussed previously to evaluate how well our classifier is doing. Specifically, we use the cross-entropy loss, which for a single prediction/label pair, is given by $$ C(S,L) = - \sum_{i}L_{i}log(S_{i})$$. 
 
