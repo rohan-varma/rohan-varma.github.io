@@ -310,7 +310,9 @@ Now, when we minimize the cost function, we have two separate goals. Minimizing 
 
 Adding the L2-regularization term to the cost function does not change gradient descent very much. The derivative with respect to $$W$$ with of to the regularization term $$0.5 \lambda W^2$$ is simply $$ \lambda W$$, so we just add that term while computing the gradient. The result of adding this extra term to the gradients is that each time we update our weights, the weights undergo a linear decay. 
 
-While L2-regularization is commonly used, a few other forms of regularization exist. Another common regularization method is L1-regularization, in which we add on the L1-norm of the weights, multiplied by the regularization hyperparameter: $$\lambda ||W||$$. With L1-regularization, we penalize any weights that are non-zero, thus leading our network to learn sparse vectors of weights (vectors where many of the weight entries are zero). Therefore, our neurons will only fire when the most important features (whatever they may be) are detected in our training examples. This helps with feature selection. 
+While L2-regularization is quite popular, a few other forms of regularization are used as well. Another common method is L1-regularization, in which we add on the L1-norm of our weights, multiplied by the regularization hyperparameter: $$ \lambda W $$. 
+
+With L1-regularization, we penalize weights that are non-zero, thus leading our network to learn sparse vectors of weights (vectors where many of the weight entries are zero). Therefore, our neurons will only fire when the most important features (whatever they may be) are detected in our training examples. This helps with feature selection. 
 
 ### Dropout 
 
