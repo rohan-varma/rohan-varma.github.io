@@ -33,7 +33,7 @@ In the special case of binary classification, we can model an artificial neuron 
 
 The weights are applied to the inputs, which are just the features of the training instance. Then, as a simple example of a function an artificial neuron can compute, we take the sign of the resulting number, and map that to a prediction. So the following is the neural model of learning: 
 
- TODO: INSERT PERCEPTRON IMAGE
+[Perceptron](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/perceptron.png)
 
 There's a few evident limitations to this kind of learning - for one, it can only do binary classification. Moreover, this neuron can only linearly separate data, and therefore this model assumes that the data is indeed linearly separable. Deep neural networks are capable of learning representations that model the nonlinearity inherent in many data samples. The idea, however, is that neural networks are just made up of layers of these neurons, which by themselves, are pretty simple, but extremely powerful when they are combined. 
 
