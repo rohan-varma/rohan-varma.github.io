@@ -8,7 +8,7 @@ Recently, I spent sometime writing out the code for a neural network in python f
 
 ### Defining the Learning Problem 
 
-In supervised learning problems, we're given a training dataset that contains pairs of input instances and their corresponding labels. For example, in the MNIST dataset, our input instances are images of handwritten digits, and our labels are a single digit that indicate the number written in the image. To input this training data to a computer, we need to numerically represent our data. Each image in the MNIST dataset is a 28 x 28 grayscale image, so we can represent each image as a vector $$ \vec{x} \in R^{784} $$. The elements in the vector $$x$$ are known as features, and in this case they're values in between 0 and 255. Our labels are commonly denoted as $$y$$, and as mentioned, are in between 0 and 9. Here's an an example from the MNIST dataset:
+In supervised learning problems, we're given a training dataset that contains pairs of input instances and their corresponding labels. For example, in the MNIST dataset, our input instances are images of handwritten digits, and our labels are a single digit that indicate the number written in the image. To input this training data to a computer, we need to numerically represent our data. Each image in the MNIST dataset is a 28 x 28 grayscale image, so we can represent each image as a vector $$ \vec{x} \in R^{784} $$. The elements in the vector $$x$$ are known as features, and in this case they're values in between 0 and 255. Our labels are commonly denoted as $$y$$, and as mentioned, are in between 0 and 9. Here's an an example from the MNIST dataset [1]:
 
 ![image](https://raw.githubusercontent.com/rohan-varma/rohan-blog/master/images/mnistimg.png)
 
@@ -361,6 +361,9 @@ def compute_dropout(self, activations, p):
 
 With these modificaitons, our neural network is less prone to overfitting and generalizes better. The full source code for the neural network can be found [here](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetwork.py), along with an [iPython notebook](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetDemo.ipynb) with a demonstration on the MNIST dataset.
 
+**References**
+[1] The MNIST Database of Handwritten Digits (http://yann.lecun.com/exdb/mnist/)
+[2]
 
 
 
