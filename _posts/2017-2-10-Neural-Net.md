@@ -363,10 +363,15 @@ With these modificaitons, our neural network is less prone to overfitting and ge
 
 **References**
 [1] [The MNIST Database of Handwritten Digits](http://yann.lecun.com/exdb/mnist/)
+
 [2] [Programming a Perceptron in Python](https://blog.dbrgn.ch/2013/3/26/perceptrons-in-python/) by Danilo Bargen
+
 [3] [Stanford CS 231N](http://cs231n.github.io/linear-classify/)
+
 [4] [Stanford Deep Learning Tutorial](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
+
 [5] [Ameet Talwalkar, UCLA CS 260](http://web.cs.ucla.edu/~ameet/teaching/winter17/cs260/lectures/lec09.pdf)
+
 [6] [Srivastava, Hinton, et. al, Dropout: A simple way to prevent Neural Networks from Overfitting](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
 
 
