@@ -294,9 +294,12 @@ The results of our backwards pass were used in the fit() function to update our 
 
 ### L2-regularization
 
-Using L2-regularization in neural networks is the most common way to address the issue of overfitting. L2 regularization adds a term to the cost function which we seek to minimize. Previously, our cost function was given by  $$-\sum_{i,j} L_{i,j}log(S_{i,j})$$, and now he tack on an additional term given by $$ \frac{1}{2} \lambda W^2}} $$. 
+Using L2-regularization in neural networks is the most common way to address the issue of overfitting. L2 regularization adds a term to the cost function which we seek to minimize. 
 
-Essentially, we impose a penalty on very large weight values. Large weights are indicative of overfitting, so we want to keep the weights in our model relatively small, which is more indicative of a simpler model. To see why this is, consider the classic case of overfitting, where our learning algorithm essentially memorizes the training data:
+Previously, our cost function was given by $$ - \sum_{i,j} L_{i,j} log(S_{i,j})$$
+
+Now, we tack on an additional regularization term: $$ 0.5 \lambda W^{2} $$. Essentially, we impose a penalty on large weight values. Large weights are indicative of overfitting, so we want to keep the weights in our model relatively small, which is more indicative of a simpler model. To see why this is, consider the classic case of overfitting, where our learning algorithm essentially memorizes the training data: 
+
 
 todo: insert that image
 
@@ -305,7 +308,7 @@ The values for the degree 9 polynomial are much greater than the values for the 
 
 Now, when we minimize the cost function, we have two separate goals. Minimizing the first term picks weight values that give us the smallest training error. Minimizing the second term picks weight values that are as small as possible. The value of the hyperparameter $$\lambda$$ controls how much we penalize large weights: if $$\lambda$$ is 0, we don't regularize at all, and if $$\lambda$$ is very large, then the entropy term becomes ignored and we prioritize small weight values. 
 
-Adding the L2-regularization term to the cost function does not change gradient descent very much. The derivative with respect to $$W$$ with of to the regularization term $$\frac{1}{2}\lambda W^2$$ is simply $$ \lambda W$$, so we just add that term while computing the gradient. The result of adding this extra term to the gradients is that each time we update our weights, the weights undergo a linear decay. 
+Adding the L2-regularization term to the cost function does not change gradient descent very much. The derivative with respect to $$W$$ with of to the regularization term $$0.5 \lambda W^2$$ is simply $$ \lambda W$$, so we just add that term while computing the gradient. The result of adding this extra term to the gradients is that each time we update our weights, the weights undergo a linear decay. 
 
 While L2-regularization is commonly used, a few other forms of regularization exist. Another common regularization method is L1-regularization, in which we add on the L1-norm of the weights, multiplied by the regularization hyperparameter: $$\lambda ||W||$$. With L1-regularization, we penalize any weights that are non-zero, thus leading our network to learn sparse vectors of weights (vectors where many of the weight entries are zero). Therefore, our neurons will only fire when the most important features (whatever they may be) are detected in our training examples. This helps with feature selection. 
 
