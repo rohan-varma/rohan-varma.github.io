@@ -294,12 +294,13 @@ The results of our backwards pass were used in the fit() function to update our 
 
 ### L2-regularization
 
-Using L2-regularization in neural networks is the most common way to address the issue of overfitting. L2 regularization adds a term to the cost function which we seek to minimize. Previously, our cost function was $$ \sum_{i,j} L_{i,j}log(S_{i,j}) $$, and now we tack on an additional term given by $$ \frac{1}{2}\lambda ||W^2|| $$. Essentially, we impose a penalty on very large weight values. Large weights are indicative of overfitting, so we want to keep the weights in our model relatively small, which is more indicative of a simpler model. To see why this is, consider the classic case of overfitting, where our learning algorithm essentially memorizes the training data:
+Using L2-regularization in neural networks is the most common way to address the issue of overfitting. L2 regularization adds a term to the cost function which we seek to minimize. Previously, our cost function was given by  $$-\sum_{i,j} L_{i,j}log(S_{i,j})$$, and now he tack on an additional term given by $$ \frac{1}{2} \lambda ||W^2}} $$. 
+
+Essentially, we impose a penalty on very large weight values. Large weights are indicative of overfitting, so we want to keep the weights in our model relatively small, which is more indicative of a simpler model. To see why this is, consider the classic case of overfitting, where our learning algorithm essentially memorizes the training data:
 
 todo: insert that image
 
 The values for the degree 9 polynomial are much greater than the values for the degree 3 polynomial:
-
 
 
 Now, when we minimize the cost function, we have two separate goals. Minimizing the first term picks weight values that give us the smallest training error. Minimizing the second term picks weight values that are as small as possible. The value of the hyperparameter $$\lambda$$ controls how much we penalize large weights: if $$\lambda$$ is 0, we don't regularize at all, and if $$\lambda$$ is very large, then the entropy term becomes ignored and we prioritize small weight values. 
