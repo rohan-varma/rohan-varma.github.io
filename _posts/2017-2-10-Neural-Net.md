@@ -208,9 +208,9 @@ Now we're at a stage where our neural network can make predictions given trainin
 
 while not converged:
 
-  $$ \delta w_i = \frac{\delta L}{\delta w_i} \forall w_i \in W$$
+  $$ \delta_i = \frac{\delta L}{\delta w_i} \forall w_i \in W$$
   
-   $$w_i := w_i - \alpha*\delta w_i$$
+   $$w_i := w_i - \alpha*\delta_i$$
 
 Gradient descent seeks to find the weights that bring our cost function to a global minimum. Intuitively, this makes sense, as we'd like our cost function to be as low as possible (while still taking care not to overfit on our training data). However, the functions that quantify the loss for most machine learning algorithms tend not to have an explicit solution to $$\frac{\delta L}{\delta W} = 0$$, so we must use numerical optimization algorithms such as gradient descent to hopefully get to a local minimum. It turns out that we're not always gauranteed to get to a global minimum either. Gradient descent only converges to a global minimum if our cost function is **convex**, and while cost functions for algorithms such as logistic regression are convex, the cost function for our single hidden layer neural network is not. 
 
