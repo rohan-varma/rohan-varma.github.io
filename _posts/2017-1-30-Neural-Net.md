@@ -10,7 +10,7 @@ Recently, I spent sometime writing out the code for a neural network in python f
 
 In supervised learning problems, we're given a training dataset that contains pairs of input instances and their corresponding labels. For example, in the MNIST dataset, our input instances are images of handwritten digits, and our labels are a single digit that indicate the number written in the image. To input this training data to a computer, we need to numerically represent our data. Each image in the MNIST dataset is a 28 x 28 grayscale image, so we can represent each image as a vector $$ \vec{x} \in R^{784} $$. The elements in the vector $$x$$ are known as features, and in this case they're values in between 0 and 255. Our labels are commonly denoted as $$y$$, and as mentioned, are in between 0 and 9. Here's an an example from the MNIST dataset:
 
-TODO insert image
+![image](https://raw.githubusercontent.com/rohan-varma/rohan-blog/master/images/mnistimg.png)
 
 We can think of this dataset as a sample from some probability distribution over the feature/label space, known as the data generating distribution. Specifically, this distribution gives us the probability of observing any particular $$(x, y)$$ pairs for all $$(x, y)$$ pairs in the cartesian product $$ X \cdot Y $$. Intuitively, we would expect that the pair that consists of an image of a handwritten 2 and the label 2 to have a high probablity, while a pair that consists of a handwritten 2 and the label 9 to have a low probability.
 
@@ -95,14 +95,11 @@ The key differences are that we have more biases and weights, as well as a large
 
 This "intermediate step" is actually known as a hidden layer, and we have complete control over it, meaning that among other things, we can vary the number of parameters or connections between weights and neurons to obtain an optimal network. It's also important to notice that we can stack an arbitrary amount of these hidden layers between the input and output of our network, and we can tune these layers individually. This lets us make our network as deep as we want it. Here's what our model looks like now: 
 
-TODO INSERT BASIC NEURAL NETWORK HERE
+![neural network](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/neuralnet.png)
 
 ### Implementing the Neural Network
 
 With a bit of background out of the way, we can actually begin implementing our network. If we're going to implement a neural network with one hidden layer of arbitrary size, we need to initalize two matrices of weights: one to multiply with our inputs to feed into the hidden layer, and one to multiply with the outputs of our hidden layer, to feed into the softmax layer. Here's how we can initialize our weights:
-
-
-
 
 
 ```python
@@ -302,12 +299,13 @@ Previously, our cost function was given by $$ - \sum_{i,j} L_{i,j} log(S_{i,j})$
 Now, we tack on an additional regularization term: $$ 0.5 \lambda W^{2} $$. Essentially, we impose a penalty on large weight values. Large weights are indicative of overfitting, so we want to keep the weights in our model relatively small, which is more indicative of a simpler model. To see why this is, consider the classic case of overfitting, where our learning algorithm essentially memorizes the training data: 
 
 
-todo: insert that image
+![overfitting](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/overfitting.png)
 
 The values for the degree 9 polynomial are much greater than the values for the degree 3 polynomial:
 
+![overfitting values](https://raw.githubusercontent.com/rohan-varma/rohan-blog/master/images/overfitting.png)
 
-Now, when we minimize the cost function, we have two separate goals. Minimizing the first term picks weight values that give us the smallest training error. Minimizing the second term picks weight values that are as small as possible. The value of the hyperparameter $$\lambda$$ controls how much we penalize large weights: if $$\lambda$$ is 0, we don't regularize at all, and if $$\lambda$$ is very large, then the entropy term becomes ignored and we prioritize small weight values. 
+With regularization, when we minimize the cost function, we have two separate goals. Minimizing the first term picks weight values that give us the smallest training error. Minimizing the second term picks weight values that are as small as possible. The value of the hyperparameter $$\lambda$$ controls how much we penalize large weights: if $$\lambda$$ is 0, we don't regularize at all, and if $$\lambda$$ is very large, then the entropy term becomes ignored and we prioritize small weight values. 
 
 Adding the L2-regularization term to the cost function does not change gradient descent very much. The derivative with respect to $$W$$ with of to the regularization term $$0.5 \lambda W^2$$ is simply $$ \lambda W$$, so we just add that term while computing the gradient. The result of adding this extra term to the gradients is that each time we update our weights, the weights undergo a linear decay. 
 
@@ -319,7 +317,7 @@ With L1-regularization, we penalize weights that are non-zero, thus leading our 
 
 Dropout is a recently introduced, but very effective technique for reducing overfitting in neural networks. Generally, every neuron in a particular layer is connected to all the neurons in the next layer. This is called a "fully-connected" or "Dense" layer - all activations are passed through the layer in the network. Dropout randomly drops a subset of a layer's neuron's activations, so the neurons in the next layer don't receive any activations from the dropped neurons in the previous layer. This process is random, meaning that a different set of activations is discarded across different iterations of learning. Here's a visualization of what happens when dropout is in use:
 
-TODO insert 231n dropout image
+![dropout](https://raw.githubusercontent.com/rohan-varma/rohan-blog/master/images/dropout.jpeg)
 
 When dropout is used, each neuron is forced to learn redundant representations of its features, meaning that it is less likely to only fire when an extremely specific set of features is seen. This leads to better generalization. Alternatively, dropout can be seen as training several different neural network architectures during training (since some neurons are sampled out). When the network is tested, we don't discard any activations, so it is similar to taking an average prediction from many different (though not independent) neural network architectures. To implement dropout, we can set some of the activations computed to 0, and then pass that vector of results to the next layer. Forward propagation changes slightly:
 
