@@ -216,16 +216,16 @@ Gradient descent seeks to find the weights that bring our cost function to a glo
 
 We can still use gradient descent and get to a reasonably good set of weights, however. The art of doing this is an active area of deep learning research. Currently, a common method for implementing gradient descent for deep learning seems to be: 
 
-   1) Initializing your weights sensibly. This often means initializing them uniformly randomly with small values (usually between -1 and 1) and with low variance. 
+   1) Initializing your weights sensibly. This often means initializing them randomly with small values and low variance.
    
    2) Choosing an optimal learning rate. If the learning rate is too large, gradient descent could end up actually diverging, or skipping over the minimum entirely since it takes steps that are too large. Likewise, if the learning rate is too small, gradient descent will converge much more slowly. In general, it is advisable to start off with a small learning rate and decay it over time as your function begins to converge. 
     
    3) Use minibatch gradient descent. Instead of computing the loss and weight updates across the entire set of training examples, **randomly** chooose a subset of your training examples and use that to update your weights. While this may cause gradient descent to not work optimally at each iteration, it is much more efficient so we end up winning by a lot. We essentially approximate the gradient across the entire training set from a sample from the training set. 
     
    4) Use the momentum method. This involves remembering the previous gradients, and factoring in the direction of those previous gradients when calculating the current update. This has proved to be pretty successful, as Geoffrey Hinton discusses in [this video](https://www.youtube.com/watch?v=8yg2mRJx-z4).
+
+As a side note, the co-founder of OpenAI, Ilya Sutskever, has more about training deep neural networks with stochastic gradient descent [here](http://yyue.blogspot.com/2015/01/a-brief-overview-of-deep-learning.html)
     
-
-
 Here's an implementation of the fit() function: 
 
 
