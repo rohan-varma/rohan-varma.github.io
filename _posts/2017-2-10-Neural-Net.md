@@ -16,7 +16,7 @@ We can think of this dataset as a sample from some probability distribution over
 
 Unfortunately, we don't know what this data generating distribution is parametrized by, and this is where machine learning comes in: we aim to learn a function $$h$$ that maps feature vectors to labels as accurately as possible, and in doing so, come up with estimates for the true underlying parameters. This function should generalize well: we don't just want to learn a function that produces a flawless mapping on our training set. The function needs to be able to generalize over all unseen examples in the distribution. With this, we can introduce the idea of the loss function, a function that quantifies how off our prediction is from the true value. The loss function gives us a good idea about our model's performance, so over the entire population of (feature vector, label) pairs, we'd want the expectation of the loss to be as low as possible. Therefore, we want to find $$h(x)$$ that minimizes the following function:
 
-$$ E[L(y, h(\bar{x}))] = \sum_{(\bar{x}, y) \in D} p(x, y)L(y, h(x)) $$
+$$ E[L(y, h(x))] = \sum_{(x, y) \in D} p(x, y)L(y, h(x)) $$
 
 However, there's a problem here: we can't compute $$p(x, y)$$, so we have to resort to approximations of the loss function based on the training data that we do have access to. To approximate our loss, it is common to sum the loss function's output across our training data, and then divide it by the number of training examples to obtain an average loss, known as the training loss: 
 
@@ -98,7 +98,7 @@ $$ \hat{y} = softmax(W_2(nonlin(W_1x + b_1)) + b_2) $$
 
 The key differences are that we have more biases and weights, as well as a larger composition of functions. This function is harder to optimize, and introduces a few interesting ideas about learning the weights with an algorithm known as backpropagation. 
 
-This "intermediate step" is actually known as a hidden layer, and we have complete control over it, meaning that among other things, we can vary the number of parameters or connections between weights and neurons to obtain an optimal network. It's also important to notice that we can stack an arbitrary amount of these hidden layers between the input and output of our network, and we can tune these layers individually. This lets us make our network as deep as we want it. Here's what our model looks like now [4]: 
+This "intermediate step" is actually known as a hidden layer, and we have complete control over it, meaning that among other things, we can vary the number of parameters or connections between weights and neurons to obtain an optimal network. It's also important to notice that we can stack an arbitrary amount of these hidden layers between the input and output of our network, and we can tune these layers individually. This lets us make our network as deep as we want it. For example, here's what a neural network with two hidden layers would look like [4]: 
 
 ![neural network](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/neuralnet.png)
 
