@@ -324,7 +324,11 @@ Dropout is a recently introduced, but very effective technique for reducing over
 
 ![dropout](https://raw.githubusercontent.com/rohan-varma/rohan-blog/master/images/dropout.jpeg)
 
-When dropout is used, each neuron is forced to learn redundant representations of its features, meaning that it is less likely to only fire when an extremely specific set of features is seen. This leads to better generalization. Alternatively, dropout can be seen as training several different neural network architectures during training (since some neurons are sampled out). When the network is tested, we don't discard any activations, so it is similar to taking an average prediction from many different (though not independent) neural network architectures. To implement dropout, we can set some of the activations computed to 0, and then pass that vector of results to the next layer. Forward propagation changes slightly:
+When dropout is used, each neuron is forced to learn redundant representations of its features, meaning that it is less likely to only fire when an extremely specific set of features is seen. This leads to better generalization. Alternatively, dropout can be seen as training several different neural network architectures during training (since some neurons are sampled out). When the network is tested, we don't discard any activations, so it is similar to taking an average prediction from many different (though not independent) neural network architectures. 
+
+Dropout is very effective, often yielding better results than state-of-the-art regularization and early-stopping (stopping training when the error on validation dataset gets too high). In a [paper describing dropout](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf), researchers were able to train a 65-million parameter network on MNIST (which has 60,000 training examples) with only 0.95% error using dropout - overfitting would have been a huge issue if such a large network relied only on regularization methods. 
+
+To implement dropout, we can set some of the activations computed to 0, and then pass that vector of results to the next layer. Forward propagation changes slightly:
 
 
 
