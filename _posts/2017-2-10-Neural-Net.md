@@ -206,7 +206,7 @@ def get_cost(self, y_enc, output, w1, w2):
 
 Now we're at a stage where our neural network can make predictions given training data, compare it to the actual labels, and quantify the error across our entire training dataset. Our network is able to learn quite yet however. The actual "learning" happens with the gradient descent algorithm. Gradient descent works by computing the partial derivative of our weights with respect to the cost. The vector of these partial derivatives gives us the direction of fastest increase for our loss function (in particular, it can be shown mathematically that the gradient of a function points in the direction of fastest increase). Then, we update each of our weights by the negative value of the gradient (hence the "descent" part of gradient descent. This can be seen as taking a "step" in the direction of a minimum. The size of this step is given by a hyperparameter known as the learning rate, which turns out to be extremely important in getting gradient descent to work. In general, the gradient descent algorithm can be given as follows: 
 
-while not converged:
+_while not converged_:
 
   $$ \delta_i = \frac{\delta L}{\delta w_i} \forall w_i \in W$$
   
