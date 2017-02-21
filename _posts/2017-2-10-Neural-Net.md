@@ -357,7 +357,7 @@ In order to actually compute the dropout, we can randomly sample the activations
 
 ```python
 def compute_dropout(self, activations, p):
-        """Sets half of the activations to zero"""
+        """Sets a proportion p of the activations to zero"""
         mult = np.random.binomial(1, 1-p, size = activations.shape)
         activations*=mult
         return activations
@@ -366,6 +366,7 @@ def compute_dropout(self, activations, p):
 With these modificaitons, our neural network is less prone to overfitting and generalizes better. The full source code for the neural network can be found [here](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetwork.py), along with an [iPython notebook](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetDemo.ipynb) with a demonstration on the MNIST dataset.
 
 **References**
+
 [1] [The MNIST Database of Handwritten Digits](http://yann.lecun.com/exdb/mnist/)
 
 [2] [Programming a Perceptron in Python](https://blog.dbrgn.ch/2013/3/26/perceptrons-in-python/) by Danilo Bargen
@@ -377,5 +378,7 @@ With these modificaitons, our neural network is less prone to overfitting and ge
 [5] [Ameet Talwalkar, UCLA CS 260](http://web.cs.ucla.edu/~ameet/teaching/winter17/cs260/lectures/lec09.pdf)
 
 [6] [Srivastava, Hinton, et. al, Dropout: A simple way to prevent Neural Networks from Overfitting](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
+
+[7] [Sebastian Raschka, Python Machine Learning, Chapter 12 Neural Networks](https://github.com/rasbt/python-machine-learning-book/blob/master/code/ch12/ch12.ipynb)
 
 
