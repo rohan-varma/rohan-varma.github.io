@@ -64,9 +64,9 @@ $$L = \begin{bmatrix}
            0.2 \\
            0.7 \\
            0.1 
-         \end{bmatrix} \longrightarrow{} C(S, L) = - \sum_{i=1}^{N}L_ilog(S_i) = -log(0.2) = 0.61 $$
+         \end{bmatrix} \longrightarrow{} C(S, L) = - \sum_{i=1}^{N}L_ilog(S_i) = -log(0.2) = 0.70 $$
          
-The contribution to the entire training data's loss by this pair was 0.61. To contrast, we can swap the first two probabilities in our softmax vector. We then end up with a lower loss: 
+The contribution to the entire training data's loss by this pair was 0.70. To contrast, we can swap the first two probabilities in our softmax vector. We then end up with a lower loss: 
 
 $$L = \begin{bmatrix}
            1 \\
