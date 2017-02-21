@@ -379,6 +379,6 @@ With these modificaitons, our neural network is less prone to overfitting and ge
 
 [6] [Srivastava, Hinton, et. al, Dropout: A simple way to prevent Neural Networks from Overfitting](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
 
-[7] [Sebastian Raschka, Python Machine Learning, Chapter 12 Neural Networks](https://github.com/rasbt/python-machine-learning-book/blob/master/code/ch12/ch12.ipynb)
+[7] [Sebastian Raschka, Python Machine Learning, Chapter 12 Neural Networks](https://github.com/rasbt/python-machine-learning-book/blob/master/code/ch12/ch12.ipynb) for code samples
 
 
