@@ -216,7 +216,7 @@ Gradient descent seeks to find the weights that bring our cost function to a glo
 
 We can still use gradient descent and get to a reasonably good set of weights, however. The art of doing this is an active area of deep learning research. Currently, a common method for implementing gradient descent for deep learning seems to be: 
 
-   1) Initializing your weights sensibly. This often means initializing them randomly with small values and low variance.
+   1) Initializing your weights sensibly. This often involves some experimentation in how you initialize your weights. If your network is not very deep, initializing them randomly with small values and low variance usually works. If your network is deeper, larger values are preferred. [Xavier initialization](http://andyljones.tumblr.com/post/110998971763/an-explanation-of-xavier-initialization) is a useful algorithm that determines weight initialization with respect to the net's size.
    
    2) Choosing an optimal learning rate. If the learning rate is too large, gradient descent could end up actually diverging, or skipping over the minimum entirely since it takes steps that are too large. Likewise, if the learning rate is too small, gradient descent will converge much more slowly. In general, it is advisable to start off with a small learning rate and decay it over time as your function begins to converge. 
     
