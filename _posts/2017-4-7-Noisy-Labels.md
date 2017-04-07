@@ -1,6 +1,10 @@
+---
+layout: post
+title: Paper Analysis: Who Said What: Modeling Individual Labelers Improves Classification
+---
 
 #### Paper Analysis: Who Said What: Modeling Individual Labelers Improves Classification
-Link: https://arxiv.org/pdf/1703.08774.pdf
+Link to paper: https://arxiv.org/pdf/1703.08774.pdf
 
 ### Abstract and Intro
 
