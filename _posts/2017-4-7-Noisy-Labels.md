@@ -20,16 +20,16 @@ This paper first showed that the assumption that the training label accuracy is 
 ### Motivation
 The main motivation was to show that a neural network could "perform better than its teacher", or attain a test accuracy that is better than the actual labels for the testeing dataset. An example of this was shown with MNIST. 
 
-The researchers trained a (relatively shallow) convolutional network with 2 conv layers and a single fully connected layer followed by a 10-way softmax. it was trained with stochastic gradient descent with minibatch learning. SGD is explained further in the next section. When the researchers introduced noise into the data, such as corrupting the true label with another random label that corresponds to another class with probability $0.5$, the network still only got 2.29% error. However as the probability of corrupting the label increased to above about $0.83$ the network failed to learn and had the same error as the corruption probability. 
+The researchers trained a (relatively shallow) convolutional network with 2 conv layers and a single fully connected layer followed by a 10-way softmax. it was trained with stochastic gradient descent with minibatch learning. SGD is explained further in the next section. When the researchers introduced noise into the data, such as corrupting the true label with another random label that corresponds to another class with probability $$0.5$$, the network still only got 2.29% error. However as the probability of corrupting the label increased to above about $$0.83$$ the network failed to learn and had the same error as the corruption probability. 
 
 ### Stochastic Gradient Descent 
-As an aside, stochastic gradient descent is a method for approximated the true gradient which is computed with gradient descent. We consider the typical gradient descent algorithm that takes derivatives with respect to the parameters of a loss function $J(\theta)$ and then updates the parameters in the opposite direction: 
+As an aside, stochastic gradient descent is a method for approximated the true gradient which is computed with gradient descent. We consider the typical gradient descent algorithm that takes derivatives with respect to the parameters of a loss function $$J(\theta)$$ and then updates the parameters in the opposite direction: 
 
 $$ \delta \theta_i = \nabla_{\theta_i} J(\theta, X) $$
 $$ \theta_i += -\alpha * \delta \theta_i $$
 $$\forall i \in [1...m]$$
 
-where there are $m$ parameters that we need to learn. The above algorithm just models regular gradient descent without any techniques such as momentum or Adagrad applied. The main point is that when we compute partial derivatives, we need to use the entire training set $X$. 
+where there are $$m$$ parameters that we need to learn. The above algorithm just models regular gradient descent without any techniques such as momentum or Adagrad applied. The main point is that when we compute partial derivatives, we need to use the entire training set $$X$$. 
 
 If the training set is extremely large, this can be computationally prohibitive. The main idea behind SGD is then to use only a small portion of the training dataset to compute the updates, which are approximations of the true gradient. For example, the researchers used minibatches of 200 samples instead of the entire training set of 50,000 examples. These minibatch samples need to be drawn randomly. Even though each individual approximation may not be very accurate, in the long run we get a very good approximation of the true gradient. 
 
@@ -46,9 +46,9 @@ If the training set is extremely large, this can be computationally prohibitive.
 ![Measurement methods](http://i.imgur.com/cJDJU.png)
 
 - Let's define some terms. Consider a binary classifications system that outputs a positive or negative label. Then a true positive is outcome is when the classifier correctly predicts a positive label. A false positive is when the classifier incorrectly predicts a positive label, and similar for the true and false negatives. 
-- Accuracy, intuitively, is just the number of instances that we classified correctly over all the instances (so the instances we classified correctly and incorrectly). This means that $acc = \frac{TP + FN}{TP + FN + TN + FP}$. 
-- Recall is defined as the proportion of correct positive classifications over the total number of positives. Therefore, we have the recall $r = \frac{TP}{TP + FN}$, where the sum $TP + FN$ gives us all instances that are positive. Recall measures the proportion of actual positives that we predicted as positive. The term sensitivity is replaceable with sensitivity. 
-- Precision measures a different quantity that recall, but they are very easy to mix up (I do it all the time). Precision measures the proportion of actual positives over how many positives we predicted. This means that the precision $p = \frac{TP}{TP + FP}$. Note how this differs from recall. Recall measures how many positives we "found" out of all the positives, while precision measures the proportion of all our positive predictions that were correct. 
+- Accuracy, intuitively, is just the number of instances that we classified correctly over all the instances (so the instances we classified correctly and incorrectly). This means that $$acc = \frac{TP + FN}{TP + FN + TN + FP}$$. 
+- Recall is defined as the proportion of correct positive classifications over the total number of positives. Therefore, we have the recall $$r = \frac{TP}{TP + FN}$$, where the sum $$TP + FN$$ gives us all instances that are positive. Recall measures the proportion of actual positives that we predicted as positive. The term sensitivity is replaceable with sensitivity. 
+- Precision measures a different quantity that recall, but they are very easy to mix up (I do it all the time). Precision measures the proportion of actual positives over how many positives we predicted. This means that the precision $$p = \frac{TP}{TP + FP}$$. Note how this differs from recall. Recall measures how many positives we "found" out of all the positives, while precision measures the proportion of all our positive predictions that were correct. 
 
 
 
@@ -61,13 +61,13 @@ If the training set is extremely large, this can be computationally prohibitive.
 - The cross entropy loss function was used to quantify the loss in all the models. The main difference between the several different models that the researchers trained can be seen in the cross entropy loss function. The usual inputs into the cross-entropy loss are the predictions for a certain image along with the true label. This was replaced with, for example, the target distribution (basically probabalistic labels) and averaged predictions. 
 
 ### Modelling label noise through probabilistic methods
-- The label noise was modelled by assuming that first a true label $m$ is generated from an image $s$ with some conditional probability $p(m | s)$. Usually any form of deep neural networks (and general supervised ML) tries to learn this underlying probability distribution. Several learning algorithms such as binary logistic regression, softmax regression, and linear regression have a probabilistic interpretation of trying to model some underlying distribution. Here are a few examples: 
+- The label noise was modelled by assuming that first a true label $m$ is generated from an image $s$ with some conditional probability $$p(m | s)$$. Usually any form of deep neural networks (and general supervised ML) tries to learn this underlying probability distribution. Several learning algorithms such as binary logistic regression, softmax regression, and linear regression have a probabilistic interpretation of trying to model some underlying distribution. Here are a few examples: 
 
-    - Binary logistic regression tries to model a bernoulli distribution by conditioning the label $y_n$ on the input $x$ and the weights of the model $w$: $p(y_n = 1 | x_n; w) = h_w(x_n)$ where $h$ is our model that we learn. More generally, we have the likelihood $L = \prod h_w(x_n)^{y_n} * (1 - h_w(x_n))^{1-y_n}$. We can then maximize the likelihood (or more typically, minimize the negative log likelihood) by applying gradient descent. 
-    - Linear regression can be interpretted as the real-valued output, $y$, being a linear function of the input $x$ with Gaussin noise $n_1 \tilde{}  N(\mu, \sigma)$ added to it. Then we can write the log likelihood as $l(\theta) = \sum_i p(y_n | \theta * x, \sigma^2) = \sum_i \frac{-1}{2\sigma^2}(y_n - \theta^T x)^2 + Nlog(\sigma^2)$. 
+    - Binary logistic regression tries to model a bernoulli distribution by conditioning the label $$y_n$$ on the input $$x$$ and the weights of the model $$w$$: $$p(y_n = 1 | x_n; w) = h_w(x_n)$$ where $$h$$ is our model that we learn. More generally, we have the likelihood $$L = \prod h_w(x_n)^{y_n} * (1 - h_w(x_n))^{1-y_n}$$. We can then maximize the likelihood (or more typically, minimize the negative log likelihood) by applying gradient descent. 
+    - Linear regression can be interpretted as the real-valued output, $$y$$, being a linear function of the input $$x$$ with Gaussin noise $$n_1 \tilde{}  N(\mu, \sigma)$$ added to it. Then we can write the log likelihood as $$l(\theta) = \sum_i p(y_n | \theta * x, \sigma^2) = \sum_i \frac{-1}{2\sigma^2}(y_n - \theta^T x)^2 + Nlog(\sigma^2)$$. 
     - What these probabalistic interpretations let us do is see the assumptions our models make, which is key if we want to simulate the real world. For example, these probability distributions show us that a key assumption is that our data are independent of each other. More specifically for typical linear regression, we also assume that the noise in our model is drawn from a normal distribution with linear mean and constant variance.
 
-- This paper tries to model a similar probability distribution $p(m | s)$ but with deep neural networks. It further takes that probabilty distribution of labels and adds a corrupting probability. The ideal label was $m$ but we observe, in our training set, a noisy label $\hat{m}$ with probability $p(\hat{m} | m)$. 
+- This paper tries to model a similar probability distribution $$p(m | s)$$ but with deep neural networks. It further takes that probabilty distribution of labels and adds a corrupting probability. The ideal label was $m$ but we observe, in our training set, a noisy label $$\hat{m}$$ with probability $$p(\hat{m} | m)$$. 
 - These probabilities can be drawn from any distribution; the researchers chose an asymmetric binary one. This allows us to account for the fact that even doctors disagree on the true label, so we better model real-world scenarios. 
 
 ### Training the Model
@@ -103,14 +103,3 @@ If the training set is extremely large, this can be computationally prohibitive.
 
 ### Future Application
 - This new method of modelling noise in the training datasets is pretty cool. I think it bettter models real-world datasets, where "predictions", or diagnoses are made by experts with varying levels of experience, biases, and predispositions. For deep learning to advance in the medical field, modelling this aspect of medicine well will be essential. It also has application to other fields where noisy labels exist in any fasion. 
-
-
-
-
-
-
-
-
-```python
-
-```
