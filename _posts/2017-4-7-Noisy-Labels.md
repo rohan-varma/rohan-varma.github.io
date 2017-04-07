@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Paper Analysis: Who Said What: Modeling Individual Labelers Improves Classification
+title: Implementing
+mathjax: True
 ---
 
 #### Paper Analysis: Who Said What: Modeling Individual Labelers Improves Classification
