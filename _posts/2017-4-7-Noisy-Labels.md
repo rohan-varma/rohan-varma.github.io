@@ -61,7 +61,6 @@ If the training set is extremely large, this can be computationally prohibitive.
 - The cross entropy loss function was used to quantify the loss in all the models. The main difference between the several different models that the researchers trained can be seen in the cross entropy loss function. The usual inputs into the cross-entropy loss are the predictions for a certain image along with the true label. This was replaced with, for example, the target distribution (basically probabalistic labels) and averaged predictions. 
 
 ### Modelling label noise through probabilistic methods
-
 - The label noise was modelled by first assuming that a true label $$m$$ is generated from an image $$s$$ with some conditional probability $$p(m | s)$$. 
 
 - The label noise was modelled by assuming that first a true label $$m$$ is generated from an image $$s$$ with some conditional probability $$p(m | s)$$. Usually any form of deep neural networks (and general supervised ML) tries to learn this underlying probability distribution. Several learning algorithms such as binary logistic regression, softmax regression, and linear regression have a probabilistic interpretation of trying to model some underlying distribution. Here are a few examples: 
