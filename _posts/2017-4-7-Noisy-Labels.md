@@ -62,6 +62,8 @@ If the training set is extremely large, this can be computationally prohibitive.
 
 ### Modelling label noise through probabilistic methods
 
+- The label noise was modelled by first assuming that a true label $$m$$ is generated from an image $$s$$ with some conditional probability $$p(m | s)$$. 
+
 - The label noise was modelled by assuming that first a true label $$m$$ is generated from an image $$s$$ with some conditional probability $$p(m | s)$$. Usually any form of deep neural networks (and general supervised ML) tries to learn this underlying probability distribution. Several learning algorithms such as binary logistic regression, softmax regression, and linear regression have a probabilistic interpretation of trying to model some underlying distribution. Here are a few examples: 
 
     - Binary logistic regression tries to model a bernoulli distribution by conditioning the label $$y_n$$ on the input $$x$$ and the weights of the model $$w$$: $$p(y_n = 1 | x_n; w) = h_w(x_n)$$ where $$h$$ is our model that we learn. More generally, we have the likelihood $$L = \prod h_w(x_n)^{y_n} * (1 - h_w(x_n))^{1-y_n}$$. We can then maximize the likelihood (or more typically, minimize the negative log likelihood) by applying gradient descent. 
