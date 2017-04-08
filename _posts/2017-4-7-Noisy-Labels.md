@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Paper Analysis: Training on corrupted labels
+title: Paper Analysis - Training on corrupted labels
 mathjax: True
 ---
 
