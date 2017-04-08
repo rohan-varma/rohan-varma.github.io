@@ -25,7 +25,9 @@ The researchers trained a (relatively shallow) convolutional network with 2 conv
 As an aside, stochastic gradient descent is a method for approximated the true gradient which is computed with gradient descent. We consider the typical gradient descent algorithm that takes derivatives with respect to the parameters of a loss function $$J(\theta)$$ and then updates the parameters in the opposite direction: 
 
 $$ \delta \theta_i = \nabla_{\theta_i} J(\theta, X) $$
+
 $$ \theta_i += -\alpha * \delta \theta_i $$
+
 $$\forall i \in [1...m]$$
 
 where there are $$m$$ parameters that we need to learn. The above algorithm just models regular gradient descent without any techniques such as momentum or Adagrad applied. The main point is that when we compute partial derivatives, we need to use the entire training set $$X$$. 
@@ -69,7 +71,7 @@ If the training set is extremely large, this can be computationally prohibitive.
     - What these probabalistic interpretations let us do is see the assumptions our models make, which is key if we want to simulate the real world. For example, these probability distributions show us that a key assumption is that our data are independent of each other. More specifically for typical linear regression, we also assume that the noise in our model is drawn from a normal distribution with linear mean and constant variance.
 
 
-- This paper tries to model a similar probability distribution $$p(m \vert{} s)$$ but with deep neural networks. It further takes that probabilty distribution of labels and adds a corrupting probability. The ideal label was $m$ but we observe, in our training set, a noisy label $$\hat{m}$$ with probability $$p(\hat{m} \vert{} m)$$. 
+- This paper tries to model a similar probability distribution $$p(m \vert{} s)$$ but with deep neural networks. It further takes that probabilty distribution of labels and adds a corrupting probability. The ideal label was $$m$$ but we observe, in our training set, a noisy label $$\hat{m}$$ with probability $$p(\hat{m} \vert{} m)$$. 
 - These probabilities can be drawn from any distribution; the researchers chose an asymmetric binary one. This allows us to account for the fact that even doctors disagree on the true label, so we better model real-world scenarios. 
    
 
