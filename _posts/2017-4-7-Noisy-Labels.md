@@ -1,10 +1,9 @@
 ---
 layout: post
-title: Implementing
+title: Paper Analysis: Who Said What: Modeling Individual Labelers Improves Classification
 mathjax: True
 ---
 
-#### Paper Analysis: Who Said What: Modeling Individual Labelers Improves Classification
 Link to paper: https://arxiv.org/pdf/1703.08774.pdf
 
 ### Abstract and Intro
@@ -106,4 +105,4 @@ If the training set is extremely large, this can be computationally prohibitive.
 - The paper showed that there are more effective methods to use the noise in labels than using a probability distribution or voting method. The network in this paper seeks to model the labels given by each individual doctor, and learn how to weight them optimially. 
 
 ### Future Application
-- This new method of modelling noise in the training datasets is pretty cool. I think it bettter models real-world datasets, where "predictions", or diagnoses are made by experts with varying levels of experience, biases, and predispositions. For deep learning to advance in the medical field, modelling this aspect of medicine well will be essential. It also has application to other fields where noisy labels exist in any fasion. 
+- This new method of modelling noise in the training datasets is pretty cool. I think it bettter models real-world datasets, where "predictions", or diagnoses are made by experts with varying levels of experience, biases, and predispositions. For deep learning to advance in the medical field, modelling this aspect of medicine well will be essential. It also has application to other fields where noisy labels exist in any fasion. [Here](https://github.com/rohan-varma/paper-analysis/blob/master/tf-implementation.py) is an example tensorflow implementation of training on corrupted labels. 
