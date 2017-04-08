@@ -100,7 +100,7 @@ If the training set is extremely large, this can be computationally prohibitive.
                 - update best cv error and hyperparams if less error is found
     - Finally, train a model with the selected hyperparameters. 
 
-- As you may have noticed, this method can get expensive as the number of different hyperparameters or different values for each goes up. For $n$ different parameters with $k$ possibilies we have to consider $k^n$ different tuples.
+- As you may have noticed, this method can get expensive as the number of different hyperparameters or different values for each goes up. For $$n$$ different parameters with $$k$$ possibilies we have to consider $$k^n$$ different tuples.
 
 ### Conclusion 
 - The paper showed that there are more effective methods to use the noise in labels than using a probability distribution or voting method. The network in this paper seeks to model the labels given by each individual doctor, and learn how to weight them optimially. 
