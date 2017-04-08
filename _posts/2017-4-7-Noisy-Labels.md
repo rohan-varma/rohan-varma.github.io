@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Implementing a Neural Network in Python
+title: Paper Analysis: Training on corrupted labels
 mathjax: True
 ---
 
-Link to paper: (https://arxiv.org/pdf/1703.08774.pdf)
+[Link to paper](https://arxiv.org/pdf/1703.08774.pdf)
 
 ### Abstract and Intro
 
