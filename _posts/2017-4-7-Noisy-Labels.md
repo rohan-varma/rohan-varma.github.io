@@ -61,6 +61,16 @@ If the training set is extremely large, this can be computationally prohibitive.
 
 - The cross entropy loss function was used to quantify the loss in all the models. The main difference between the several different models that the researchers trained can be seen in the cross entropy loss function. The usual inputs into the cross-entropy loss are the predictions for a certain image along with the true label. This was replaced with, for example, the target distribution (basically probabalistic labels) and averaged predictions. 
 
+### Inception Modules in Convolutional Architectures
+
+- At each step in a convolutional neural network's architecture, you're faced with many different possible choices. If you're adding a convolutional layer, you'll have to select the stride length, the kernel size, and whether you want to pad the edges or not. Altenratively you may want to add a pooling region, whether that's max or average pooling. 
+- The idea behind the inception module is that you don't have to choose, and can instead apply all of these different options to your image/image transformation. 
+- For example, you could have a 5 x 5 convolution followed by max pooling, as well as a 3 x 3 convolution followed by a 1 x 1 convolution, and simply concenate the outputs of these operations at the end. The following image, from the Udacity Course on Deep Learning, gives a good visualization of this:  
+
+![Inception Module](https://raw.githubusercontent.com/rohan-varma/paper-analysis/master/noise-labels-paper/incmod.png)
+
+- The main idea behind inception modules is that a 5 x 5 kernel and 3 x 3 kernel followed by a 1 x 1 convolution may both be beneficial to the modelling power of your architecture, so we could just use both, and the model will often perform better than using a single convolution. [This video](https://www.youtube.com/watch?v=VxhSouuSZDY) explains the inception module in more detail. 
+
 
 ### Modelling label noise through probabilistic methods
 
