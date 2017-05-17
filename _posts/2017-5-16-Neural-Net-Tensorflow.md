@@ -35,7 +35,7 @@ Here are a few other common activation functions:
 
 ### Review: From binary to multi-class classification
 
-The most important change in moving from a binary (negative/positive) classification model to one that can classify training instances into many different classes (say, 10, for MNIST) is that our vector of weights $$w$ changes into a matrix $$W$$. 
+The most important change in moving from a binary (negative/positive) classification model to one that can classify training instances into many different classes (say, 10, for MNIST) is that our vector of weights $$w$$ changes into a matrix $$W$$. 
 
 Each row of weights we learn represents the parameters for a certain class: 
 
