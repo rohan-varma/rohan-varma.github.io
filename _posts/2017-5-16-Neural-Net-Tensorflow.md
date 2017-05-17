@@ -63,7 +63,7 @@ This “intermediate step” is actually known as a hidden layer, and we have co
 
 ![neuralnet](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/neuralnet.png)
 
-We're now ready to start implementing a basic neural network in Tensorflow. 
+We're now ready to start implementing a basic neural network in Tensorflow. First, let's start off with the standard ```import``` statements, and visualize a few examples from our training dataset.
 
 
 
@@ -105,27 +105,27 @@ show_pics(mnist, 2)
 
 
 
-![png](Neural%20Network%20Tensorflow_files/Neural%20Network%20Tensorflow_1_1.png)
+![png](https://raw.githubusercontent.com/uclaacmai/tf-workshop-series/master/week6-neural-nets/Neural%20Network%20Tensorflow_files/Neural%20Network%20Tensorflow_1_1.png)
 
 
 
-![png](Neural%20Network%20Tensorflow_files/Neural%20Network%20Tensorflow_1_2.png)
+![png](https://raw.githubusercontent.com/uclaacmai/tf-workshop-series/master/week6-neural-nets/Neural%20Network%20Tensorflow_files/Neural%20Network%20Tensorflow_1_2.png)
 
 
 
-![png](Neural%20Network%20Tensorflow_files/Neural%20Network%20Tensorflow_1_3.png)
+![png](https://raw.githubusercontent.com/uclaacmai/tf-workshop-series/master/week6-neural-nets/Neural%20Network%20Tensorflow_files/Neural%20Network%20Tensorflow_1_3.png)
 
 
 
-![png](Neural%20Network%20Tensorflow_files/Neural%20Network%20Tensorflow_1_4.png)
+![png](https://raw.githubusercontent.com/uclaacmai/tf-workshop-series/master/week6-neural-nets/Neural%20Network%20Tensorflow_files/Neural%20Network%20Tensorflow_1_4.png)
 
 
 
-![png](Neural%20Network%20Tensorflow_files/Neural%20Network%20Tensorflow_1_5.png)
+![png](https://raw.githubusercontent.com/uclaacmai/tf-workshop-series/master/week6-neural-nets/Neural%20Network%20Tensorflow_files/Neural%20Network%20Tensorflow_1_5.png)
 
 
 
-![png](Neural%20Network%20Tensorflow_files/Neural%20Network%20Tensorflow_1_6.png)
+![png](https://raw.githubusercontent.com/uclaacmai/tf-workshop-series/master/week6-neural-nets/Neural%20Network%20Tensorflow_files/Neural%20Network%20Tensorflow_1_6.png)
 
 
 As usual, we would like to define several variables to represent our weight matrices and our biases. We will also need to create placeholders to hold our actual data. Anytime we want to create variables or placeholders, we must have a sense of the **shape** of our data so that Tensorflow has no issues in carrying out the numerical computations. 
