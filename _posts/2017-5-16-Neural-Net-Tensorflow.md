@@ -8,24 +8,24 @@ This is a write-up and code tutorial that I wrote for an AI workshop given at UC
 
 ### Recap: The Learning Problem
 
-We have a large dataset of $(x, y)$ pairs where $x$ denotes a vector of features and $y$ denotes the label for that feature vector. We want to learn a function $h(x)$ that maps features to labels, with good generalization accuracy. We do this by minimizing a loss function computed on our dataset: $ \sum_{i=1}^{N} L(y_i, h(x_i)) $. There are many loss functions we can choose. We have gone over the cross-entropy loss and variants of the squared error loss functions in previous workshops, and we will once again consider those today. 
+We have a large dataset of $$(x, y)$$ pairs where $$x$$ denotes a vector of features and $$y$$ denotes the label for that feature vector. We want to learn a function $$h(x)$$ that maps features to labels, with good generalization accuracy. We do this by minimizing a loss function computed on our dataset: $$ \sum_{i=1}^{N} L(y_i, h(x_i)) $$. There are many loss functions we can choose. We have gone over the cross-entropy loss and variants of the squared error loss functions in previous workshops, and we will once again consider those today. 
 
 
 ### Review: A Single "Neuron", aka the Perceptron
 
 ![perceptron](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/perceptron.png)
 
-A single perceptron first calculates a **weighted sum** of our inputs. This means that we multiply each of our features $(x_1, x_2, ... x_n) \in x$ with an associated weight $(w_1, w_2, ... w_n)$ . We then take the sign of this linear combination, which and the sign tells us whether to classify this instance as a positive or negative example.
+A single perceptron first calculates a **weighted sum** of our inputs. This means that we multiply each of our features $$(x_1, x_2, ... x_n) \in x$$ with an associated weight $$(w_1, w_2, ... w_n)$$ . We then take the sign of this linear combination, which and the sign tells us whether to classify this instance as a positive or negative example.
 
-$h(x) = sign(w^Tx + b) $
+$$h(x) = sign(w^Tx + b) $$
 
-We then moved on to logistic regression, where we changed our sign function to instead be a sigmoid ($\sigma$) function. As a reminder, here's the sigmoid function: 
+We then moved on to logistic regression, where we changed our sign function to instead be a sigmoid ($$\sigma$$) function. As a reminder, here's the sigmoid function: 
 
 ![sigmoid](https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Logistic-curve.svg/600px-Logistic-curve.svg.png)
 
-Therefore, the function we compute for logistic regression is $h(x) = \sigma (w^Tx + b)$. 
+Therefore, the function we compute for logistic regression is $$h(x) = \sigma (w^Tx + b)$$. 
 
-The sigmoid function is commonly referred to as an "activation" function. When we say that a "neuron computes an activation function", it means that a standard linear combination is calculated ($w^Tx + b$) and then we apply a _non linear_ function to it, such as the sigmoid function. 
+The sigmoid function is commonly referred to as an "activation" function. When we say that a "neuron computes an activation function", it means that a standard linear combination is calculated ($$w^Tx + b$$) and then we apply a _non linear_ function to it, such as the sigmoid function. 
 
 Here are a few other common activation functions: 
 
@@ -35,7 +35,7 @@ Here are a few other common activation functions:
 
 ### Review: From binary to multi-class classification
 
-The most important change in moving from a binary (negative/positive) classification model to one that can classify training instances into many different classes (say, 10, for MNIST) is that our vector of weights $w$ changes into a matrix $W$. 
+The most important change in moving from a binary (negative/positive) classification model to one that can classify training instances into many different classes (say, 10, for MNIST) is that our vector of weights $$w$ changes into a matrix $$W$$. 
 
 Each row of weights we learn represents the parameters for a certain class: 
 
@@ -45,7 +45,7 @@ We also want to take our output and normalize the results so that they all sum t
 
 Here is our current model of learning, then:
 
-$h(x) = softmax(Wx + b) $. 
+$$h(x) = softmax(Wx + b) $$. 
 
 ### Building up the neural network
 
@@ -53,9 +53,9 @@ Now that we've figured out how to linearly model multi-class classification, we 
 
 The output of this "layer" of neurons can be multiplied with a matrix of weights again, and we can apply our softmax function to this result to produce our predictions. 
 
-** Original function **: $h(x) = softmax(Wx + b)$
+** Original function **: $$h(x) = softmax(Wx + b)$$
 
-** Neural Network function **: $h(x) = softmax(W_2(nonlin(W_1x + b_1)) + b_2)$
+** Neural Network function **: $$h(x) = softmax(W_2(nonlin(W_1x + b_1)) + b_2)$$
 
 The key differences are that we have more biases and weights, as well as a larger composition of functions. This function is harder to optimize, and introduces a few interesting ideas about learning the weights with an algorithm known as backpropagation.
 
@@ -153,17 +153,17 @@ y_ = tf.placeholder(tf.float32, shape = [None, 10])
 
 We will now actually create all of the variables we need, and define our neural network as a series of function computations. 
 
-In our first layer, we take our inputs that have dimension $n * 784$, and multiply them with weights that have dimension $ 784 * k $, where $k$ is the number of neurons in the hidden layer. We then add the biases to this result, which also have a dimension of $k$. 
+In our first layer, we take our inputs that have dimension $n * 784$, and multiply them with weights that have dimension $$ 784 * k $$, where $$k$$ is the number of neurons in the hidden layer. We then add the biases to this result, which also have a dimension of $$k$$. 
 
 Finally, we apply a nonlinearity to our result. There are, as discussed, several choices, three of which are tanh, sigmoid, and rectifier. We have chosen to use the rectifier (also known as relu, standing for Rectified Linear Unit), since it has been shown in both research and practice that they tend to outperform and learn faster than other activation functions. 
 
-Therefore, the "activations" of our hidden layer are given by $h_1 = relu(Wx + b)$. 
+Therefore, the "activations" of our hidden layer are given by $$h_1 = relu(Wx + b)$$. 
 
 We follow a similar procedure for our output layer. Our activations have a shape $n * k$, where $n$ is the number of training examples we input into our network and $k$ is the number of neurons in our hidden layer. 
 
-We want our final outputs to have dimension $n * 10$ (in the case of MNIST) since we have 10 classes. Therefore, it makes sense for our second matrix of weights to have dimension $k * 10$ and the bias to have dimension $10$. 
+We want our final outputs to have dimension $$n * 10$$ (in the case of MNIST) since we have 10 classes. Therefore, it makes sense for our second matrix of weights to have dimension $$k * 10$$ and the bias to have dimension $$10$$. 
 
-After taking the linear combination $W_2(h_1) + b$, we would then apply the softmax function. However, applying the softmax function and then writing out the cross-entropy loss ourself could result in numerical unstability, so we will instead use a library call that computes both the softmax outputs and the cross entropy loss. 
+After taking the linear combination $$W_2(h_1) + b$$, we would then apply the softmax function. However, applying the softmax function and then writing out the cross-entropy loss ourself could result in numerical unstability, so we will instead use a library call that computes both the softmax outputs and the cross entropy loss. 
 
 
 ```python
@@ -184,9 +184,9 @@ y = tf.matmul(h_2,W_2) + b_2
 
 ```
 
-The cross entropy loss function is a commonly used loss function. For a single prediction/label pair, it is given by $C(h(x), y) = -\sum_i y_i log(h(x_i))$.*
+The cross entropy loss function is a commonly used loss function. For a single prediction/label pair, it is given by $$C(h(x), y) = -\sum_i y_i log(h(x_i))$$.*
 
-Here, $y$ is a specific one-hot encoded label vector, meaning that it is a column vector that has a 1 at the index corresponding to its label, and is zero everywhere else. $ h(x) $ is the output of our prediction function whose elements sum to 1. As an example, we may have: 
+Here, $$y$$ is a specific one-hot encoded label vector, meaning that it is a column vector that has a 1 at the index corresponding to its label, and is zero everywhere else. $$ h(x) $$ is the output of our prediction function whose elements sum to 1. As an example, we may have: 
 
 $$y = \begin{bmatrix}
            1 \\
@@ -232,7 +232,7 @@ accuracy = tf.reduce_mean(tf.cast(correct_predictions, tf.float32)) # maps the b
 init = tf.global_variables_initializer()
 ```
 
-With all of our variables created and computation graph defined, we can now launch the graph in a session and begin training. It is important to remember that since we declared the $x$ and $y$ variables as placeholders, we will need to feed in data to run our optimizer that minimizes the cross entropy loss. 
+With all of our variables created and computation graph defined, we can now launch the graph in a session and begin training. It is important to remember that since we declared the $$x$$ and $$y$$ variables as placeholders, we will need to feed in data to run our optimizer that minimizes the cross entropy loss. 
 
 The data we will feed in (by passing into our function a dictionary *feed_dict*) will come from the MNIST dataset. To randomly sample 100 training examples, we can use a wrapper provided by Tensorflow: ```mnnist.train.next_batch(100)```. 
 
@@ -336,5 +336,5 @@ with tf.Session() as sess:
 8. L2-regularization
 
 
- *Technical note: The way this loss function is presented is such that activations corresponding to a label of zero are not penalized at all. The full form of the cross-entropy loss is given by $C(y, h(x)) = \sum_i y_i log(h(x_i)) + (1 - y_i)(log(1 - h(x_i)) $. However, the previously presented function works just as well in environments with larger amounts of data samples and training for many epochs (passes through the dataset), which is typically the case for neural networks. 
+ *Technical note: The way this loss function is presented is such that activations corresponding to a label of zero are not penalized at all. The full form of the cross-entropy loss is given by $$C(y, h(x)) = \sum_i y_i log(h(x_i)) + (1 - y_i)(log(1 - h(x_i)) $$. However, the previously presented function works just as well in environments with larger amounts of data samples and training for many epochs (passes through the dataset), which is typically the case for neural networks. 
 
