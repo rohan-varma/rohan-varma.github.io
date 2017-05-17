@@ -4,7 +4,7 @@ title: Creating Neural Networks in Tensorflow
 mathjax: True
 ---
 
-This is a write-up and code tutorial that I wrote for an AI workshop given at UCLA, at which I gave a talk on neural networks and implementing them in Tensorflow. 
+This is a write-up and code tutorial that I wrote for an AI workshop given at UCLA, at which I gave a talk on neural networks and implementing them in Tensorflow. It's part of a series on machine learning with Tensorflow, and the tutorials for the rest of them are available [here](https://github.com/uclaacmai/tf-workshop-series)
 
 ### Recap: The Learning Problem
 
