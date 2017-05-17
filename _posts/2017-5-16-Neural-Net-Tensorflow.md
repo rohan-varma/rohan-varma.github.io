@@ -4,7 +4,7 @@ title: Creating Neural Networks in Tensorflow
 mathjax: True
 ---
 
-This is a write-up and code tutorial that I wrote for an AI workshop given at UCLA, at which I gave a talk on neural networks and implementing them in Tensorflow. It's part of a series on machine learning with Tensorflow, and the tutorials for the rest of them are available [here](https://github.com/uclaacmai/tf-workshop-series)
+This is a write-up and code tutorial that I wrote for an AI workshop given at UCLA, at which I gave a talk on neural networks and implementing them in Tensorflow. It's part of a series on machine learning with Tensorflow, and the tutorials for the rest of them are available [here](https://github.com/uclaacmai/tf-workshop-series).
 
 ### Recap: The Learning Problem
 
@@ -53,9 +53,9 @@ Now that we've figured out how to linearly model multi-class classification, we 
 
 The output of this "layer" of neurons can be multiplied with a matrix of weights again, and we can apply our softmax function to this result to produce our predictions. 
 
-** Original function **: $$h(x) = softmax(Wx + b)$$
+**Original function**: $$h(x) = softmax(Wx + b)$$
 
-** Neural Network function **: $$h(x) = softmax(W_2(nonlin(W_1x + b_1)) + b_2)$$
+**Neural Network function**: $$h(x) = softmax(W_2(nonlin(W_1x + b_1)) + b_2)$$
 
 The key differences are that we have more biases and weights, as well as a larger composition of functions. This function is harder to optimize, and introduces a few interesting ideas about learning the weights with an algorithm known as backpropagation.
 
@@ -159,7 +159,7 @@ Finally, we apply a nonlinearity to our result. There are, as discussed, several
 
 Therefore, the "activations" of our hidden layer are given by $$h_1 = relu(Wx + b)$$. 
 
-We follow a similar procedure for our output layer. Our activations have a shape $n * k$, where $n$ is the number of training examples we input into our network and $k$ is the number of neurons in our hidden layer. 
+We follow a similar procedure for our output layer. Our activations have a shape $$n * k$$, where $$n$$ is the number of training examples we input into our network and $k$ is the number of neurons in our hidden layer. 
 
 We want our final outputs to have dimension $$n * 10$$ (in the case of MNIST) since we have 10 classes. Therefore, it makes sense for our second matrix of weights to have dimension $$k * 10$$ and the bias to have dimension $$10$$. 
 
