@@ -1,3 +1,8 @@
+---
+layout: post
+title: Implementing a Neural Network in Python
+mathjax: True
+---
 
 ### Recap: The Learning Problem
 
