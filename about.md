@@ -27,6 +27,11 @@ I was also previously a DevOps Director for UCLA ACM, where I was responsible fo
 
 Other than that, I am a part of the [Upsilon Pi Epsilon](http://upe.seas.ucla.edu) CS honors society and the [Regents Scholars Society](http://www.rssla.org/) at UCLA. 
 
+### Projects
+
+I occassionally work on projects mostly in the field of machine learning and deep learning to learn more about the field and how to use what I've learned in practice. Some of my more interesting projects are [Machine Learning on Movie Reviews](https://github.com/rohan-varma/word2vec), a hackathon project that dealt with [identifying similar athletes](https://github.com/rohan-varma/awesome-athletes), a [bare-bones implementation of a Neural Network](https://github.com/rohan-varma/neuralnets), and a [machine learning library](https://github.com/rohan-varma/ml-algorithms) in Python. 
+
+Additional projects are located on my [Github](https://github.com/rohan-varma).
 
 ### Reading
 I am an avid reader, of both technical and non-technical books.
