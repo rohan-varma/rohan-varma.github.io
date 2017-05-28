@@ -9,22 +9,23 @@ Hi, I'm Rohan, a computer science student at UCLA. My main interests are machine
 
 I enjoy working on machine learning and deep learning problems, whether it's learning about probabalistic models, implementing algorithms, or figuring out how to scale up a machine learning system. 
 
-I currently run [AI at UCLA](https://github.com/uclaacmai/), a committee of the umbrella organization [ACM at UCLA](http://acm.cs.ucla.edu). We teach machine learning topics through regular workshops as well as work on projects and read papers and books together. Most of our work is currently in deep learning. This past spring, we hosted a series of weekly [Tensorflow workshops](http://github.com/uclaacmai/tf-workshop-series/) that had 80+ attendees. 
+With the help of several officers, I currently run [AI at UCLA](https://github.com/uclaacmai/), a committee of the umbrella organization [ACM at UCLA](http://acm.cs.ucla.edu). We teach machine learning topics through regular workshops as well as work on projects and read papers and books together. Most of our work is currently in deep learning. This past spring, we hosted a series of weekly [Tensorflow workshops](http://github.com/uclaacmai/tf-workshop-series/) that had 80+ attendees. 
 
 ### Internships
 
-I had the awesome opportunity to work as a software engineering intern on the messaging squad at [Hudl](http://hudl.com) in the summer of 2016. Over the summer of 2017, I will be a software engineering intern at [Blend](http://blend.com) in San Francisco.
+I had the awesome opportunity to work as a software engineering intern on the messaging squad at [Hudl](http://hudl.com) in the summer of 2016. I worked mostly on the backend, and shipped several messaging services that other microservices could use. I also learned a lot about effective communication, clean code, source control, and safely deploying to production. I am especially thankful to my mentors [Andy Pryor](https://github.com/andypryor) and [Graham McCulloch](https://github.com/grahammcculloch) who taught me a lot.
+
+Over the summer of 2017, I will be a software engineering intern at [Blend](http://blend.com) in San Francisco.
 
 ### Additional Involvement
 
 From Fall 2015 to Winter 2017, I was an undergraduate researcher at [UCLA's Ozcan Research Group](http://innovate.ee.ucla.edu/), where I implemented the lab's first deep learning models that were used to automatically diagnose bloodborne and waterborne pathogen disease. The infrastructure I built for configuring and training deep model is still in use by other researchers. I also had the opportunity to show other graduate students and postdocs how deep learning could be applied to their research. My work was presented at UCLA's Annual Undergraduate Research Day, the 17th Annual UC Systemwide Bioengineering Symposium at UCSF, and at the Southern California Conferences for Undergraduate Research. A [poster](https://www.slideshare.net/slideshow/embed_code/key/aWOGsmotZPmdGg) and [abstract](https://www.slideshare.net/slideshow/embed_code/key/5pWzzCrbE4oQxI) are available. 
 
-I am also currently consultant at [Bruin Consulting](http://bruinconsulting.org). Bruin Consulting is a 501 (c) 3 organization run by UCLA Students that does management consulting for several different clients, ranging from Fortune 500 companies to hyper-growth startups. My personal goal with Bruin Consulting is to learn more about the problems that a wide range of businesses face, and understand how my skills with software engineering, data science, and project management can be used to solve real-world problems.
+I am also currently consultant at [Bruin Consulting](http://bruinconsulting.org). My personal goal with Bruin Consulting is to learn more about the problems that a wide range of businesses face, and understand how my skills with software engineering, and data science can be applied to solve some of the problems.
 
 I was also previously a DevOps Director for UCLA ACM, where I was responsible for helping build out a few tools such as the general website and hack website. Before that, I was a web developer for the Daily Bruin where I learned about front-end web development. 
 
 Other than that, I am a part of the [Upsilon Pi Epsilon](http://upe.seas.ucla.edu) CS honors society and the [Regents Scholars Society](http://www.rssla.org/) at UCLA. 
-
 
 
 ### Reading
