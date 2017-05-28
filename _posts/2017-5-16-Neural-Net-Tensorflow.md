@@ -153,7 +153,7 @@ y_ = tf.placeholder(tf.float32, shape = [None, 10])
 
 We will now actually create all of the variables we need, and define our neural network as a series of function computations. 
 
-In our first layer, we take our inputs that have dimension $n * 784$, and multiply them with weights that have dimension $$ 784 * k $$, where $$k$$ is the number of neurons in the hidden layer. We then add the biases to this result, which also have a dimension of $$k$$. 
+In our first layer, we take our inputs that have dimension $$n * 784$$, and multiply them with weights that have dimension $$ 784 * k $$, where $$k$$ is the number of neurons in the hidden layer. We then add the biases to this result, which also have a dimension of $$k$$. 
 
 Finally, we apply a nonlinearity to our result. There are, as discussed, several choices, three of which are tanh, sigmoid, and rectifier. We have chosen to use the rectifier (also known as relu, standing for Rectified Linear Unit), since it has been shown in both research and practice that they tend to outperform and learn faster than other activation functions. 
 
