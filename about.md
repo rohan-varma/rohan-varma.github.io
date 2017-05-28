@@ -9,7 +9,7 @@ Hi, I'm Rohan, a computer science student at UCLA. My main interests are machine
 
 I enjoy working on machine learning and deep learning problems, whether it's learning about probabalistic models, implementing algorithms, or figuring out how to scale up a machine learning system. 
 
-I currently run [AI at UCLA](https://github.com/uclaacmai/), a committee of the umbrella organization [ACM at UCLA](http://acm.cs.ucla.edu). We teach machine learning topics through regular workshops as well as work on projects and read papers and books together. Most of our work is currently in deep learning. This past spring, we hosted a series of weekly Tensorflow workshops that had 80+ attendees. 
+I currently run [AI at UCLA](https://github.com/uclaacmai/), a committee of the umbrella organization [ACM at UCLA](http://acm.cs.ucla.edu). We teach machine learning topics through regular workshops as well as work on projects and read papers and books together. Most of our work is currently in deep learning. This past spring, we hosted a series of weekly [Tensorflow workshops](http://github.com/uclaacmai/tf-workshop-series/) that had 80+ attendees. 
 
 ### Internships
 
