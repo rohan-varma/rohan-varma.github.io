@@ -34,7 +34,20 @@ I occassionally work on projects mostly in the field of machine learning and dee
 Additional projects are located on my [Github](https://github.com/rohan-varma).
 
 ### Reading
-I am an avid reader, of both technical and non-technical books.
+I maintain a list of my favorite reads, as well as my current reading list. 
+
+2017 Reading List
+
+Done
+- The Tipping Point by Malcolm Gladwell
+- Ego is the Enemy by Ryan Holiday
+- Elon Musk (biography)
+
+In Progress
+- The Black Swan
+
+Planned
+- Meditations by Marcus Auerelius
 
 ### Writing
 I have enjoyed writing since high school, but didn't get much of a chance to do it in college until I started to actively pursue it. I frequently write on [Quora](http://quora.com/Rohan-Varma-8), on my blog (this website!), and occassionaly on [Medium](https://medium.com/@rvarm1). Below is a list of my favorite things I've written (in no particular order).  
