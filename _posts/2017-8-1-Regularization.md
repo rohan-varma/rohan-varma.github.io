@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Language Models, Word2Vec, and Efficient Softmax Approximations
+title: Interpreting Regulariation as a Bayesian Prior
 mathjax: True
 ---
 
