@@ -180,9 +180,9 @@ As we have seen, regularization can be interpreted in several different ways, ea
 
 2) As a term added to the loss function of our model which penalizes some function of our parameters, thereby introducing a tradeoff between minimizing the original loss function and ensuring our weights do not deviate too much from what we want them to be.
 
-3) As a constraint on the model which we are trying to learn. This means we can take the original optimization problem and frame it in a constrained fashion.
+3) As a constraint on the model which we are trying to learn. This means we can take the original optimization problem and frame it in a constrained fashion, thereby ensuring that the magnitude of our weights never exceed a certain threshold (in the case of $$ L2 $$ regularization.
 
-3) As a method of reducing the function search space $$ H $$ to a new function search space $$ H' $$ that is smaller than $$ H $$. Without regularization, we may search for our optimal function $$ h $$ in a much larger space, and constraining this to a smaller subspace can lead us to select models with better generalization ability. 
+4) As a method of reducing the function search space $$ H $$ to a new function search space $$ H' $$ that is smaller than $$ H $$. Without regularization, we may search for our optimal function $$ h $$ in a much larger space, and constraining this to a smaller subspace can lead us to select models with better generalization ability. 
 
 Overall, regularization is a useful technique that is often employed to reduce the overall variance of a model, thereby improving its generalization capability. Of course, there's tradeoffs in using regularization, most notably having to tune the hyperparameter $$ \lambda $$ which can be costly in terms of computational time. Thanks for reading!
 
