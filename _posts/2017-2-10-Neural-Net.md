@@ -179,7 +179,7 @@ def forward(X, w1, w2, do_dropout = True):
         a1 = add_bias_unit(X)
         #the input of the hidden layer is obtained by applying our weights to our inputs. We essentially take a linear combination of our inputs
         z2 = w1.dot(a1.T)
-        #applies the tanh function to obtain the input mapped to a distrubution of values between 0 and 1
+        #applies the tanh function to obtain the input mapped to a distrubution of values between -1 and 1
         a2 = self.tanh(z2)
         #add a bias unit to activation of the hidden layer.
         a2 = self.add_bias_unit(a2, column=False)

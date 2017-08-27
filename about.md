@@ -5,33 +5,27 @@ permalink: /about/
 ---
 
 
-Hi, I'm Rohan, a computer science student at UCLA. My main interests are machine learning/deep learning, mathematics, running, playing chess, reading, and writing.
-
-I enjoy working on machine learning and deep learning problems, whether it's learning about probabalistic models, implementing algorithms, or figuring out how to scale up a machine learning system. 
-
-With the help of several officers, I currently run [AI at UCLA](https://github.com/uclaacmai/), a committee of the umbrella organization [ACM at UCLA](http://acm.cs.ucla.edu). We teach machine learning topics through regular workshops as well as work on projects and read papers and books together. Most of our work is currently in deep learning. This past spring, we hosted a series of weekly [Tensorflow workshops](http://github.com/uclaacmai/tf-workshop-series/) that had 80+ attendees. 
+Hi! I'm Rohan, a computer science student at UCLA. My main interests are machine learning/deep learning, mathematics, running, playing chess, reading, and writing. I'm originally from San Jose, California.
 
 ### Internships
 
-I had the awesome opportunity to work as a software engineering intern on the messaging squad at [Hudl](http://hudl.com) in the summer of 2016. I worked mostly on the backend, and shipped several messaging services that other microservices could use. I also learned a lot about effective communication, clean code, source control, and safely deploying to production. I am especially thankful to my mentors [Andy Pryor](https://github.com/andypryor) and [Graham McCulloch](https://github.com/grahammcculloch) who taught me a lot.
+I had the awesome opportunity to work as a software engineering intern on the messaging squad at [Hudl](http://hudl.com) in the summer of 2016. I worked mostly on the backend, and shipped several messaging services that other microservices could use. I am especially thankful to my mentors [Andy Pryor](https://github.com/andypryor) and [Graham McCulloch](https://github.com/grahammcculloch) who made my first industry experience an excellent one.
 
-Over the summer of 2017, I will be a software engineering intern at [Blend](http://blend.com) in San Francisco.
+This summer, I'm enjoying the opportunity of learning from some great engineers as a software engineering intern at [Blend](http://blend.com) in San Francisco.
 
-### Additional Involvement
+### Other Experiences
 
-From Fall 2015 to Winter 2017, I was an undergraduate researcher at [UCLA's Ozcan Research Group](http://innovate.ee.ucla.edu/), where I implemented the lab's first deep learning models that were used to automatically diagnose bloodborne and waterborne pathogen disease. The infrastructure I built for configuring and training deep model is still in use by other researchers. I also had the opportunity to show other graduate students and postdocs how deep learning could be applied to their research. My work was presented at UCLA's Annual Undergraduate Research Day, the 17th Annual UC Systemwide Bioengineering Symposium at UCSF, and at the Southern California Conferences for Undergraduate Research. A [poster](https://www.slideshare.net/slideshow/embed_code/key/aWOGsmotZPmdGg) and [abstract](https://www.slideshare.net/slideshow/embed_code/key/5pWzzCrbE4oQxI) are available. 
+With the help of several officers, I currently run [AI at UCLA](https://github.com/uclaacmai/), a committee of the umbrella organization [ACM at UCLA](http://acm.cs.ucla.edu). We teach machine learning topics through regular workshops as well as work on projects and read papers and books together. Most of our work is currently in deep learning. This past spring, we hosted a series of weekly [Tensorflow workshops](http://github.com/uclaacmai/tf-workshop-series/). 
 
-I am also currently consultant at [Bruin Consulting](http://bruinconsulting.org). My personal goal with Bruin Consulting is to learn more about the problems that a wide range of businesses face, and understand how my skills with software engineering, and data science can be applied to solve some of the problems.
+From Fall 2015 to Winter 2017, I was an undergraduate researcher at [UCLA's Ozcan Research Group](http://innovate.ee.ucla.edu/), where I implemented the lab's first deep learning models that were used to automatically diagnose bloodborne and waterborne pathogen disease. Our group's work was presented at UCLA's Annual Undergraduate Research Day, the 17th Annual UC Systemwide Bioengineering Symposium at UCSF, and at the Southern California Conferences for Undergraduate Research. A [poster](https://www.slideshare.net/slideshow/embed_code/key/aWOGsmotZPmdGg) and [abstract](https://www.slideshare.net/slideshow/embed_code/key/5pWzzCrbE4oQxI) are available. 
 
-I was also previously a DevOps Director for UCLA ACM, where I was responsible for helping build out a few tools such as the general website and hack website. Before that, I was a web developer for the Daily Bruin where I learned about front-end web development. 
+Other than that, I tutor lower division computer science classes as a part of [Upsilon Pi Epsilon](http://upe.seas.ucla.edu), host potential UCLA freshman as part of an outreach program by UCLA's [Regents Scholars Society](http://www.rssla.org/), and work on consulting projects as a member of [Bruin Consulting](http://bruinconsulting.org).
 
-Other than that, I am a part of the [Upsilon Pi Epsilon](http://upe.seas.ucla.edu) CS honors society and the [Regents Scholars Society](http://www.rssla.org/) at UCLA. 
-
-### Projects
+### Personal Projects
 
 I occassionally work on projects mostly in the field of machine learning and deep learning to learn more about the field and how to use what I've learned in practice. Some of my more interesting projects are [Machine Learning on Movie Reviews](https://github.com/rohan-varma/word2vec), a hackathon project that dealt with [identifying similar athletes](https://github.com/rohan-varma/awesome-athletes), a [bare-bones implementation of a Neural Network](https://github.com/rohan-varma/neuralnets), and a [machine learning library](https://github.com/rohan-varma/ml-algorithms) in Python. 
 
-Additional projects are located on my [Github](https://github.com/rohan-varma).
+Other in progress and miscellaneous projects are on my [Github](https://github.com/rohan-varma).
 
 ### Reading
 I maintain a list of my favorite reads, as well as my current reading list. 
@@ -50,7 +44,7 @@ Planned
 - Meditations by Marcus Auerelius
 
 ### Writing
-I have enjoyed writing since high school, but didn't get much of a chance to do it in college until I started to actively pursue it. I frequently write on [Quora](http://quora.com/Rohan-Varma-8), on my blog (this website!), and occassionaly on [Medium](https://medium.com/@rvarm1). Below is a list of my favorite things I've written (in no particular order).  
+I have enjoyed writing since high school, and I exercise that enjoyment on [Quora](http://quora.com/Rohan-Varma-8) and this blog. Below is a list of my favorite pieces I've written (in no particular order). 
 
 1. [Getting Started in Machine Learning](https://medium.com/techatucla/getting-started-in-machine-learning-c68bdd739c44)
 
