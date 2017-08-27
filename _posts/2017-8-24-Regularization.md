@@ -58,9 +58,11 @@ Distributing the log and dropping constants (since they don't affect the value o
 
 $$ \hat{\beta} = argmax_{\beta} \sum_{i = 1}^{N} -(y_i - x_i \beta)^2 $$
 
-Since minimizing the opposite of a function is the same as maximizing it, we can turn the above into a minimization problem: $$ \hat{\beta} = argmin_{\beta} \sum_{i = 1}^{N} (y_i - x_i \beta)^2 $$
+Since minimizing the opposite of a function is the same as maximizing it, we can turn the above into a minimization problem: 
 
-This is the familiar least squares estimator, which says that the optimal parameter is the one that minimizes the $$ L2 $$ squared norm between the predictions and actual values. We can use gradient descent with a sensible random initialization of $$ \beta $$ and be gauranteed to get to a global minimum (since the function is convex) or we can explicitly solve for $$ \beta $$ and obtain the same answer: 
+$$ \hat{\beta} = argmin_{\beta} \sum_{i = 1}^{N} (y_i - x_i \beta)^2 $$
+
+This is the familiar least squares estimator, which says that the optimal parameter is the one that minimizes the $$ L2 $$ squared norm between the predictions and actual values. We can use gradient descent with some initial setting of $$ \beta $$ and be guaranteed to get to a global minimum (since the function is convex) or we can explicitly solve for $$ \beta $$ and obtain the same answer. 
 
 
 Right now is a good time to think about the assumptions of this linear regression model. Like many models, it assumes that the data are drawn independently from the same data generating distribution. Furthermore, it assumes that this distribution is normal with a linear mean and constant variance. It also has a more implicit assumption: that the parameter $$ \beta $$ which we wish to estimate is not a random variable itself, and we will show how relaxing this assumption leads to a regularized linear model. 
@@ -73,7 +75,7 @@ To regularize a model, we take our loss function and add a regularizer to it. Re
 
 $$ \hat{\beta} = argmin_{\beta} \sum_{i = 1}^{N} (y_i - x_i \beta)^2 + \lambda \sum_{i = 1}^{j} \beta_j^2$$
 
-What's interesting about regularization is that it can be more deeply understood if we reconsider our original probabalistic model. In our original model, we conditioned our outputs on a linear function of the parameter which we wish to learn $$ \beta $$. It turns out we often want to also consider $$ \beta $$ itself as a random variable, and impose a probability distribution on it. This is known as the ** prior ** probability distribution, because we assign $$ \beta $$ some probability without having observed the associated $$ (x, y) $$ pairs. Imposing a prior would be especially useful if we had some information about the parameter before observing any of the training data (possibly from domain knowledge), but it turns out that imposing a Gaussian prior even in the absence of actual prior knowledge leads to interesting properties. In particular, we can condition $$ \beta $$ as on a Gaussian with 0 mean and constant variance: 
+What's interesting about regularization is that it can be more deeply understood if we reconsider our original probabalistic model. In our original model, we conditioned our outputs on a linear function of the parameter which we wish to learn $$ \beta $$. It turns out we often want to also consider $$ \beta $$ itself as a random variable, and impose a probability distribution on it. This is known as the **prior** probability distribution, because we assign $$ \beta $$ some probability without having observed the associated $$ (x, y) $$ pairs. Imposing a prior would be especially useful if we had some information about the parameter before observing any of the training data (possibly from domain knowledge), but it turns out that imposing a Gaussian prior even in the absence of actual prior knowledge leads to interesting properties. In particular, we can condition $$ \beta $$ as on a Gaussian with 0 mean and constant variance: 
 
 $$ \beta \tilde{} N(0, \lambda^{-1}) $$
 
@@ -87,7 +89,7 @@ $$ \hat{\beta} = argmax_{\beta} \sum_{i = 1}^{N} log N(y_i | x_i \beta, \sigma^2
 
 This is the maximum a posteriori estimate of $$ \beta $$, and it only differs from the maximum likelihood estimate in that the former takes into account previous information, or a prior distribution, on the parameter $$ \beta $$. In fact, the maximum likelihood estimate of the parameter can be seen as a special case of the maximum a posteriori estimate, where we take the prior probability distribution on the parameter to just be a constant. 
 
-Since (dropping unneeded constants) $$ N(\beta, 0, \lambda^{-1}) = exp(\frac{- \beta^{2}}{2 \lambda^{-1}}) $$, after taking the log, and minimizing the negative of the above function we obtain the familiar regularizer $$ \frac{1}{2} \lambda \beta^2 $$ and our squared loss function $$ \sum_{i = 1}^{N} (y_i - x_i \beta)^2 $$ is the same as the loss function we obtained without regularization. In this way, L2 regularization on a linear model can be thought of as imposing a Bayesian prior on the underlying parameters which we wish to estimate. 
+Since (dropping unneeded constants) $$ N(\beta, 0, \lambda^{-1}) = exp(\frac{- \beta^{2}}{2 \lambda^{-1}}) $$, after taking the log, and minimizing the negative of the above function we obtain the familiar regularizer $$ \frac{1}{2} \lambda \beta^2 $$ and our squared loss function $$ \sum_{i = 1}^{N} (y_i - x_i \beta)^2 $$ is the same as the loss function we obtained without regularization. In this way, $$ L2 $$ regularization on a linear model can be thought of as imposing a Bayesian prior on the underlying parameters which we wish to estimate. 
 
 
 
@@ -99,7 +101,7 @@ The error of a statistical model can be decomposed into three distinct sources o
 
 $$ Err(x) = bias(X)^2 + var(x) + \epsilon $$
 
-Given a constant error, this means that there will always be a tradeoff between bias and variance. Having too much bias or too much variance isn't good for a model, but for different reasons. A high bias, low variance model will likely end up being inaccurate across both the training and testing datasets (but consistently inaccurate). On the other hand, a low-bias, high-variance model will likely give good results on a training dataset, but fail to generalize as well on a testing dataset. 
+Given a constant error, this means that there will always be a tradeoff between bias and variance. Having too much bias or too much variance isn't good for a model, but for different reasons. A high bias, low variance model will likely end up being inaccurate across both the training and testing datasets, and its predictions will likely not deviate too much based on the data sample it is trained on. On the other hand, a low-bias, high-variance model will likely give good results on a training dataset, but fail to generalize as well on a testing dataset. 
 
 The Gauss-Markov theorem states that in a linear regression problem, the least squares estimator has the lowest variance out of all other unbiased estimators. However, if we consider biased estimators such as the estimator given by ridge regression, we can arrive at a lower variance, higher-bias solution. In particular, the expectation of the ridge estimator (derived [here](http://math.bu.edu/people/cgineste/classes/ma575/p/w14_1.pdf)) is given by: 
 
@@ -162,13 +164,13 @@ While techniques such as L2 regularization can be used while training a neural n
 
 Since sparsity is important in neural networks, we can introduce a constraint that can gaurantee us some degree of sparsity. Specifically, we can constrain the average activation of a particular neuron in a particular hidden layer. 
 
-In particular, the average activation of a neuron in a particular layer, weighted by the input into the neuron, can be given by summing over all of the activation - input pairs: $$ \hat{\rho} = \frac{1}{m} \sum_{i = 1}^{N} x_i a_i^2 $$. Next, we can choose a hyperparameter $$ \rho $$ for this particular neuron, which represents the average activation we want it to have - for example, if we wanted this neuron to activate sparsely, we might set $$ \rho = 0.05 $$. In order to ensure that our model learns neurons which sparsely activate, we must incorporate some function of $$\hat{rho} $$ and $$ \rho $$ into our const function. 
+In particular, the average activation of a neuron in a particular layer, weighted by the input into the neuron, can be given by summing over all of the activation - input pairs: $$ \hat{\rho} = \frac{1}{m} \sum_{i = 1}^{N} x_i a_i^2 $$. Next, we can choose a hyperparameter $$ \rho $$ for this particular neuron, which represents the average activation we want it to have - for example, if we wanted this neuron to activate sparsely, we might set $$ \rho = 0.05 $$. In order to ensure that our model learns neurons which sparsely activate, we must incorporate some function of $$\hat{\rho} $$ and $$ \rho $$ into our const function. 
 
 One way to do this is with the [KL divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence), which computes how much one probability distribution (in this case, our current average activation $$ \hat\rho $$) and another expected probability distribution ($$ \rho $$) diverge from each other. If we minimize the KL divergence for each of our neuron's activations, therefore, then our model will learn sparse activations. Much like the regularization technique discussed above, if we include the KL divergence and a corresponding hyperparameter into our cost function, we'll have introduced a constraint on our cost function that encourages our model to learn sparse activations. The cost function may be: 
 
 $$ J_{sparse} (W, b) = J(W, b) + \lambda \sum_{i = 1}^{M} KL(\rho_i || \hat{\rho_i}) $$
 
-where $$ J(W, b) $$ is a regular cost function used in neural networks, such as the cross-entropy loss. The hyperparameter $$ \lambda $$ indicates how important sparsity is to us - as $$ \lambda \rightarrow{} \infty $$, we disregard the actual loss function and only focus on learning a sparse representation, and as $$\lambda \rightarrow{} 0 $$ we disregard the importance of sparse activations and only minimize the original loss function. Additional details on this type of regularization with application to sparse autoencoders are given [here](http://ufldl.stanford.edu/wiki/index.php/Autoencoders_and_Sparsity)
+where $$ J(W, b) $$ is a regular cost function used in neural networks, such as the cross-entropy loss. The hyperparameter $$ \lambda $$ indicates how important sparsity is to us - as $$ \lambda \rightarrow{} \infty $$, we disregard the actual loss function and only focus on learning a sparse representation, and as $$\lambda \rightarrow{} 0 $$ we disregard the importance of sparse activations and only minimize the original loss function. Additional details on this type of regularization with application to sparse autoencoders are given [here](http://ufldl.stanford.edu/wiki/index.php/Autoencoders_and_Sparsity).
 
 ### Recap ###
 
