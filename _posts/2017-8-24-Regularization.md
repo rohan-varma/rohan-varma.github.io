@@ -135,7 +135,7 @@ $$ \frac{\delta L}{\delta \beta} = -2 y^TX + 2X^TX\beta $$
 
 Setting the derivative equal to zero gives us the closed form solution of $$ \beta $$ which is the least-squares estimate [2]:
 
-$$ \hat{\beta} = (X^TX)^-1 y^TX $$
+$$ \hat{\beta} = (X^TX)^{-1} y^TX $$
 
 
 As we can see, in order to actually compute this quantity the matrix $$ X^T X $$ must be invertible. The matrix $$ X^T X $$ being invertible corresponds exactly to showing that the matrix is positive definite, which means that the scalar quantity $$ z^T X^T X z > 0 $$ for any real, non-zero vectors $$ z $$. However, the best we can do is show that $$ X^T X $$ is positive semidefinite.
@@ -160,7 +160,7 @@ The only difference in this closed-form solution is the addition of the $$ \lamb
 
 ### Regularizers in neural networks
 
-While techniques such as L2 regularization can be used while training a neural network, employing techniques such as dropout, which randomly discards half of the activations at a per-layer level during training, have been shown to be much more successful. There is also a different type of regularizer that takes into account the idea that a neural network should have sparse activations for any particular input. There are several theoretical reeasons for why sparsity is important, a topic covered very well by Glorot et al. in a 2011 paper: http://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf
+While techniques such as L2 regularization can be used while training a neural network, employing techniques such as dropout, which randomly discards half of the activations at a per-layer level during training, have been shown to be much more successful. There is also a different type of regularizer that takes into account the idea that a neural network should have sparse activations for any particular input. There are several theoretical reeasons for why sparsity is important, a topic covered very well by Glorot et al. in a [2011 paper](http://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf).
 
 Since sparsity is important in neural networks, we can introduce a constraint that can gaurantee us some degree of sparsity. Specifically, we can constrain the average activation of a particular neuron in a particular hidden layer. 
 
