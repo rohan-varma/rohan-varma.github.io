@@ -6,7 +6,7 @@ mathjax: True
 
 
 
-![img](https://raw.githubusercontent.com/rohan-varma/paper-analysis/master/word2vec-papers/models.png)
+![img](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/reg.png)
 
 ### Introduction/Background
 
