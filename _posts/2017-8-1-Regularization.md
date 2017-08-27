@@ -36,7 +36,7 @@ $$ L(x,y) = \prod_{i = 1}^{n} N(y_i | x_i \beta, \sigma^2) $$
 
 As a note, writing down the likelihood this way does assume that our training data are independent and identically distributed, meaning that we are assuming that each of the training samples have the same probability distribution, and are mutually independent.
 
-If we want to find the $$\hat{\beta}$$ that maximizes the chance of us observing the training examples that we observed, then it makes sense to maximize the above likelihood. This is known as ** maximum likelihood estimation **, and is a common approach to many machine learning problems such as linear and logistic regression. 
+If we want to find the $$\hat{\beta}$$ that maximizes the chance of us observing the training examples that we observed, then it makes sense to maximize the above likelihood. This is known as **maximum likelihood estimation**, and is a common approach to many machine learning problems such as linear and logistic regression. 
 
 In other words, we want to find
 
@@ -46,7 +46,9 @@ To simplify this a little bit, we can write out the normal distribution, and als
 
 $$ \hat{\beta} = argmax_{\beta} log \prod_{i = 1}^{n} \frac{1}{\sqrt(2 \pi \sigma^2}e^-\frac{(y_i - x_i \beta)^2}{2 \sigma^2}$$
 
-Distributing the log and dropping constants (since they don't affect the value of our parameter which maximizes the expression), we obtain $$ \hat{\beta} = argmax_{\beta} \sum_{i = 1}^{N} -(y_i - x_i \beta)^2 $$
+Distributing the log and dropping constants (since they don't affect the value of our parameter which maximizes the expression), we obtain 
+
+$$ \hat{\beta} = argmax_{\beta} \sum_{i = 1}^{N} -(y_i - x_i \beta)^2 $$
 
 Since minimizing the opposite of a function is the same as maximizing it, we can turn the above into a minimization problem: $$ \hat{\beta} = argmin_{\beta} \sum_{i = 1}^{N} (y_i - x_i \beta)^2 $$
 
@@ -128,9 +130,21 @@ $$ \hat{\beta} = (X^TX)^-1 y^TX $$
 
 As we can see, in order to actually compute this quantity the matrix $$ X^T X $$ must be invertible. The matrix $$ X^T X $$ being invertible corresponds exactly to showing that the matrix is positive definite, which means that the scalar quantity $$ z^T X^T X z > 0 $$ for any real, non-zero vectors $$ z $$. However, the best we can do is show that $$ X^T X $$ is positive semidefinite.
 
-To show that $$ X^TX $$ is positive semidefinite, we must show that the quantity $$ z^T X^T X z \geq 0 $$ for any real, non-zero vectors $$ z $$. If we expand out the quantity $$ X^T X $$, we obtain $$ \sum_{i = 1}^{N} x_i x_i^T $$ and it follows that the quantity $$ z^T (\sum_{i = 1}^{N} x_i x_i^T) z = \sum_{i = 1}^{N} (x_i^Tz)^2 \geq 0$$. This means that in sitautions where this quantity is exactly $$ 0 $$, the matrix $$ X^T X $$ cannot be inverted and a closed-form least squares solution cannot be computed. 
+To show that $$ X^TX $$ is positive semidefinite, we must show that the quantity $$ z^T X^T X z \geq 0 $$ for any real, non-zero vectors $$ z $$. 
 
-On the other hand, expanding out our ridge estimate which has an extra regulariztion term $$ \lambda \sum_{i} \beta_i^2 $$, we obtain the derivative $$ \frac{\delta L}{\delta \beta} = -2 y^TX + 2X^TX\beta + 2 \lambda \beta $$ Setting this quantity equal to zero, and rewriting $$ \lambda \beta $$ as $$ \lambda I \beta $$ (using the property of multiplication with the identity matrix), we now obtain $$ \beta (X^TX + \lambda I) = y^T X $$ giving us the ridge estimate $$\beta_{ridge} = \hat{\beta} = (X^TX + \lambda I)^{-1} y^TX $$
+If we expand out the quantity $$ X^T X $$, we obtain $$ \sum_{i = 1}^{N} x_i x_i^T $$ and it follows that the quantity $$ z^T (\sum_{i = 1}^{N} x_i x_i^T) z = \sum_{i = 1}^{N} (x_i^Tz)^2 \geq 0$$. This means that in sitautions where this quantity is exactly $$ 0 $$, the matrix $$ X^T X $$ cannot be inverted and a closed-form least squares solution cannot be computed. 
+
+On the other hand, expanding out our ridge estimate which has an extra regulariztion term $$ \lambda \sum_{i} \beta_i^2 $$, we obtain the derivative 
+
+$$ \frac{\delta L}{\delta \beta} = -2 y^TX + 2X^TX\beta + 2 \lambda \beta $$ 
+
+Setting this quantity equal to zero, and rewriting $$ \lambda \beta $$ as $$ \lambda I \beta $$ (using the property of multiplication with the identity matrix), we now obtain
+
+$$ \beta (X^TX + \lambda I) = y^T X $$ 
+
+giving us the ridge estimate 
+
+$$\hat{\beta_{ridge}} = (X^TX + \lambda I)^{-1} y^TX $$
 
 The only difference in this closed-form solution is the addition of the $$ \lambda I $$ term to the quantity that gets inverted, so we are now sure that this quantity is positive definite if $$ \lambda > 0 $$. In other words, even when the matrix $$ X^T X $$ is not invertible, we can still compute a ridge estimate from our data[2]. 
 
