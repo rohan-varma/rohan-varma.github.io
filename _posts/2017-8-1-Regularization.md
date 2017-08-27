@@ -20,7 +20,9 @@ Ideally, we'd like to minimize the risk function $$ R[h(x)] = \sum_{(x, y)} L( h
 
 If we assume that our data are roughly linear, then we can write a relationship between our features and real-valued outputs: $$ y_i = x_i^T \beta + \epsilon $$ where $$ \epsilon \tilde{}  N(0, \sigma^2) $$. This essentially means that our data has a linear relationship that is corrupted by random Gaussian noise that has zero mean and constant variance. 
 
-This has the implication that $$ y_i $$ is also a Gaussian random variable, and $$ E[y_i] = E[x_i^T \beta + \epsilon] = x_i^T \beta $$ and $$ Var[y_i] = Var[x_i^T \beta + \epsilon] = \sigma^2 $$. We can now write down the probability of observing a value $$ y_i $$ given a certain set of features $$ x_i $$: $$ p(y_i | x_i) = N(y_i | x_i^T \beta, \sigma^2)$$
+This has the implication that $$ y_i $$ is also a Gaussian random variable, and $$ E[y_i] = E[x_i^T \beta + \epsilon] = x_i^T \beta $$ and $$ Var[y_i] = Var[x_i^T \beta + \epsilon] = \sigma^2 $$. 
+
+We can now write down the probability of observing a value $$ y_i $$ given a certain set of features $$ x $$: $$ p(y_i | x_i) = N(y_i | x_i^T \beta, \sigma^2)$$
 
 Next, we can write down the probability of observing the entire dataset of $$ (x, y) $$ pairs. This is known as the likelihood, and it's simply the product of observing each of the individual feature, label pairs:
 
