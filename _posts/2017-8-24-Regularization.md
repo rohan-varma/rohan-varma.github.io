@@ -20,7 +20,7 @@ Ideally, we'd like to minimize the risk function
 
 $$ R[h(x)] = \sum_{(x, y)} L( h(x), y) p(x, y) $$ 
 
-across all possible $$ (x, y)$$ pairs. However, this is impossible since we don't know the underlying probability distribution that describes our dataset, so instead we seek to approximate the risk function by minimizing a loss function acros the data that we have observed: 
+across all possible $$ (x, y)$$ pairs. However, this is impossible since we don't know the underlying probability distribution that describes our dataset, so instead we seek to approximate the risk function by minimizing a loss function across the data that we have observed: 
 
 $$ \frac{1}{N} \sum_{i = 1}^{N} L(h(x), y) $$
 
