@@ -188,4 +188,4 @@ Overall, regularization is a useful technique that is often employed to reduce t
 
 [1] Technically, we've only shown that the $$ \hat{\beta} $$ we've found is a local optimum. We actually want to verify that this is indeed a global minimum, which can be done by showing that the function we are minimizing is convex.
 
-[2] For completeness, its worth mentioning that there are other solutions if the inverse of the matrix $$ X^T X $$ does not exist. One common workaround is to use the [Moore-Penrose Psuedoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_pseudoinverse) which can be computed using the singular value decompisition of the matrix being psuedo-inverted. This is commonly used in implementations of PCA algorithms. 
+[2] For completeness, it is worth mentioning that there are other solutions if the inverse of the matrix $$ X^T X $$ does not exist. One common workaround is to use the [Moore-Penrose Psuedoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_pseudoinverse) which can be computed using the singular value decompisition of the matrix being psuedo-inverted. This is commonly used in implementations of PCA algorithms. 
