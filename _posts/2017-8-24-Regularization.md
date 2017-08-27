@@ -75,7 +75,7 @@ To regularize a model, we take our loss function and add a regularizer to it. Re
 
 $$ \hat{\beta} = argmin_{\beta} \sum_{i = 1}^{N} (y_i - x_i \beta)^2 + \lambda \sum_{i = 1}^{j} \beta_j^2$$
 
-What's interesting about regularization is that it can be more deeply understood if we reconsider our original probabalistic model. In our original model, we conditioned our outputs on a linear function of the parameter which we wish to learn $$ \beta $$. It turns out we often want to also consider $$ \beta $$ itself as a random variable, and impose a probability distribution on it. This is known as the **prior** probability distribution, because we assign $$ \beta $$ some probability without having observed the associated $$ (x, y) $$ pairs. Imposing a prior would be especially useful if we had some information about the parameter before observing any of the training data (possibly from domain knowledge), but it turns out that imposing a Gaussian prior even in the absence of actual prior knowledge leads to interesting properties. In particular, we can condition $$ \beta $$ as on a Gaussian with 0 mean and constant variance: 
+What's interesting about regularization is that it can be more deeply understood if we reconsider our original probabalistic model. In our original model, we conditioned our outputs on a linear function of the parameter which we wish to learn $$ \beta $$. It turns out we often want to also consider $$ \beta $$ itself as a random variable, and impose a probability distribution on it. This is known as the **prior** probability distribution, because we assign $$ \beta $$ some probability without having observed the associated $$ (x, y) $$ pairs. Imposing a prior would be especially useful if we had some information about the parameter before observing any of the training data (possibly from domain knowledge), but it turns out that imposing a Gaussian prior even in the absence of actual prior knowledge leads to interesting properties. In particular, we can condition $$ \beta $$ as on a Gaussian with 0 mean and constant variance [1]: 
 
 $$ \beta \tilde{} N(0, \lambda^{-1}) $$
 
@@ -133,7 +133,7 @@ To minimize, we differentiate with respect to $$ \beta $$:
 
 $$ \frac{\delta L}{\delta \beta} = -2 y^TX + 2X^TX\beta $$
 
-Setting the derivative equal to zero gives us the closed form solution of $$ \beta $$ which is the least-squares estimate[1]:
+Setting the derivative equal to zero gives us the closed form solution of $$ \beta $$ which is the least-squares estimate [2]:
 
 $$ \hat{\beta} = (X^TX)^-1 y^TX $$
 
@@ -156,7 +156,7 @@ giving us the ridge estimate
 
 $$\hat{\beta_{ridge}} = (X^TX + \lambda I)^{-1} y^TX $$
 
-The only difference in this closed-form solution is the addition of the $$ \lambda I $$ term to the quantity that gets inverted, so we are now sure that this quantity is positive definite if $$ \lambda > 0 $$. In other words, even when the matrix $$ X^T X $$ is not invertible, we can still compute a ridge estimate from our data[2]. 
+The only difference in this closed-form solution is the addition of the $$ \lambda I $$ term to the quantity that gets inverted, so we are now sure that this quantity is positive definite if $$ \lambda > 0 $$. In other words, even when the matrix $$ X^T X $$ is not invertible, we can still compute a ridge estimate from our data [3]. 
 
 ### Regularizers in neural networks
 
@@ -196,6 +196,8 @@ Overall, regularization is a useful technique that is often employed to reduce t
 3. [Explanation of MAP Estimation](https://math.stackexchange.com/questions/1582348/simple-example-of-maximum-a-posteriori/1582407)
 
 
-[1] Technically, we've only shown that the $$ \hat{\beta} $$ we've found is a local optimum. We actually want to verify that this is indeed a global minimum, which can be done by showing that the function we are minimizing is convex.
+[1] Imposing different prior distributions on the parameter leads to different types of regularization. A normal distribution with zero mean and constant variance leads to $$ L2 $$ regularization, while a Laplacean prior would lead to $$ L1 $$ regularization.
 
-[2] For completeness, it is worth mentioning that there are other solutions if the inverse of the matrix $$ X^T X $$ does not exist. One common workaround is to use the [Moore-Penrose Psuedoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_pseudoinverse) which can be computed using the singular value decompisition of the matrix being psuedo-inverted. This is commonly used in implementations of PCA algorithms. 
+[2] Technically, we've only shown that the $$ \hat{\beta} $$ we've found is a local optimum. We actually want to verify that this is indeed a global minimum, which can be done by showing that the function we are minimizing is convex.
+
+[3] For completeness, it is worth mentioning that there are other solutions if the inverse of the matrix $$ X^T X $$ does not exist. One common workaround is to use the [Moore-Penrose Psuedoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_pseudoinverse) which can be computed using the singular value decompisition of the matrix being psuedo-inverted. This is commonly used in implementations of PCA algorithms. 
