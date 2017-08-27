@@ -24,9 +24,11 @@ This has the implication that $$ y_i $$ is a Gaussian random variable, and we ca
 
 $$ E[y_i] = E[x_i^T \beta + \epsilon] = x_i^T \beta $$ 
 
-$$ Var[y_i] = Var[x_i^T \beta + \epsilon] = \sigma^2 $$. 
+$$ Var[y_i] = Var[x_i^T \beta + \epsilon] = \sigma^2 $$ 
 
-We can now write down the probability of observing a value $$ y_i $$ given a certain set of features $$ x $$: $$ p(y_i | x_i) = N(y_i | x_i^T \beta, \sigma^2)$$
+We can now write down the probability of observing a value $$ y_i $$ given a certain set of features $$ x $$: 
+
+$$ p(y_i | x_i) = N(y_i | x_i^T \beta, \sigma^2)$$
 
 Next, we can write down the probability of observing the entire dataset of $$ (x, y) $$ pairs. This is known as the likelihood, and it's simply the product of observing each of the individual feature, label pairs:
 
@@ -36,7 +38,9 @@ As a note, writing down the likelihood this way does assume that our training da
 
 If we want to find the $$\hat{\beta}$$ that maximizes the chance of us observing the training examples that we observed, then it makes sense to maximize the above likelihood. This is known as ** maximum likelihood estimation **, and is a common approach to many machine learning problems such as linear and logistic regression. 
 
-In other words, we want to find $$ \hat{\beta} = argmax_{\beta} \prod_{i = 1}^{n} N(y_i | x_i \beta, \sigma^2) $$
+In other words, we want to find
+
+$$ \hat{\beta} = argmax_{\beta} \prod_{i = 1}^{n} N(y_i | x_i \beta, \sigma^2) $$
 
 To simplify this a little bit, we can write out the normal distribution, and also take the log of the function, since the $$\hat{\beta}$$ that maximizes $$L$$ will also maximize $$log(L)$$. We end up with
 
@@ -170,4 +174,4 @@ Overall, regularization is a useful technique that is often employed to reduce t
 
 [1] Technically, we've only shown that the $$ \hat{\beta} $$ we've found is a local optimum. We actually want to verify that this is indeed a global minimum, which can be done by showing that the function we are minimizing is convex.
 
-[2] For completeness, its worth mentioning that there are other solutions if the inverse of the matrix $ X^T X $ does not exist. One common workaround is to use the [Moore-Penrose Psuedoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_pseudoinverse) which can be computed using the singular value decompisition of the matrix being psuedo-inverted. This is commonly used in implementations of PCA algorithms. 
+[2] For completeness, its worth mentioning that there are other solutions if the inverse of the matrix $$ X^T X $$ does not exist. One common workaround is to use the [Moore-Penrose Psuedoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_pseudoinverse) which can be computed using the singular value decompisition of the matrix being psuedo-inverted. This is commonly used in implementations of PCA algorithms. 
