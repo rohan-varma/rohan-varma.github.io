@@ -1,3 +1,12 @@
+---
+layout: post
+title: Language Models, Word2Vec, and Efficient Softmax Approximations
+mathjax: True
+---
+
+
+
+![img](https://raw.githubusercontent.com/rohan-varma/paper-analysis/master/word2vec-papers/models.png)
 
 ### Introduction/Background
 
