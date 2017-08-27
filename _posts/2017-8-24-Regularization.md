@@ -12,9 +12,17 @@ mathjax: True
 
 In machine learning, we often start off by writing down a probabalistic model that defines our data. We then go on to write down a likelihood or some type of loss function, which we then optimize over to get the optimal settings for the parameters that we seek to estimate. Along the way, techniques such as regularization, hyperparameter tuning, and cross-validation can be used to ensure that we don't overfit on our training dataset and our model generalizes well to unseen data. 
 
-Specifically, we have a few key functions and variables: the underlying probability distribution $$ p(x, y) $$ which generate our training examples (pairs of features and labels), a training set $$ (x, y)_{i = 1}^{D} $$ of $$ D $$ examples which we observe, and a model $$ h(x) : x \rightarrow{} y $$ which we wish to learn in order to produce a mapping from features $$ x $$ to labels (or real values) $$ y $$. This function $$ h $$ is selected from a larger function space $$ H $$. For example, if we are in the context of linear regression models, then all functions in the function space of $$ H $$ will take on the form $$ y_i = x_{i}^T \beta $$ where a particular setting of our parameters $$ \beta $$ will result in a particular $$ h(x) $$. We also have some function $$ L(h(x), y) $$ that takes in our predictions and labels, and quantifies how accurate our model is across some data. 
+Specifically, we have a few key functions and variables: the underlying probability distribution $$ p(x, y) $$ which generate our training examples (pairs of features and labels), a training set $$ (x, y)_{i = 1}^{D} $$ of $$ D $$ examples which we observe, and a model $$ h(x) : x \rightarrow{} y $$ which we wish to learn in order to produce a mapping from $$ x $$ to $$ y $$. This function $$ h $$ is selected from a larger function space $$ H $$. 
 
-Ideally, we'd like to minimize the risk function $$ R[h(x)] = \sum_{(x, y)} L( h(x), y) p(x, y) $$ across all possible $$ (x, y)$$ pairs. However, this is impossible since we don't know the underlying probability distribution that describes our dataset, so instead we seek to approximate the risk function by minimizing $$ \frac{1}{N} \sum_{i = 1}^{N} L(h(x), y) $$, ie, our loss function across the data that we have observed. 
+For example, if we are in the context of linear regression models, then all functions in the function space of $$ H $$ will take on the form $$ y_i = x_{i}^T \beta $$ where a particular setting of our parameters $$ \beta $$ will result in a particular $$ h(x) $$. We also have some function $$ L(h(x), y) $$ that takes in our predictions and labels, and quantifies how accurate our model is across some data. 
+
+Ideally, we'd like to minimize the risk function 
+
+$$ R[h(x)] = \sum_{(x, y)} L( h(x), y) p(x, y) $$ 
+
+across all possible $$ (x, y)$$ pairs. However, this is impossible since we don't know the underlying probability distribution that describes our dataset, so instead we seek to approximate the risk function by minimizing a loss function acros the data that we have observed: 
+
+$$ \frac{1}{N} \sum_{i = 1}^{N} L(h(x), y) $$
 
 ### Linear Models
 
@@ -156,7 +164,7 @@ Since sparsity is important in neural networks, we can introduce a constraint th
 
 In particular, the average activation of a neuron in a particular layer, weighted by the input into the neuron, can be given by summing over all of the activation - input pairs: $$ \hat{\rho} = \frac{1}{m} \sum_{i = 1}^{N} x_i a_i^2 $$. Next, we can choose a hyperparameter $$ \rho $$ for this particular neuron, which represents the average activation we want it to have - for example, if we wanted this neuron to activate sparsely, we might set $$ \rho = 0.05 $$. In order to ensure that our model learns neurons which sparsely activate, we must incorporate some function of $$\hat{rho} $$ and $$ \rho $$ into our const function. 
 
-One way to do this is with the KL divergence, which computes how much one probability distribution (in this case, our current average activation $$ \hat\rho $$) and another expected probability distribution ($$ \rho $$) diverge from each other. If we minimize the KL divergence for each of our neuron's activations, therefore, then our model will learn sparse activations. Much like the regularization technique discussed above, if we include the KL divergence and a corresponding hyperparameter into our cost function, we'll have introduced a constraint on our cost function that encourages our model to learn sparse activations. The cost function may be: 
+One way to do this is with the [KL divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence), which computes how much one probability distribution (in this case, our current average activation $$ \hat\rho $$) and another expected probability distribution ($$ \rho $$) diverge from each other. If we minimize the KL divergence for each of our neuron's activations, therefore, then our model will learn sparse activations. Much like the regularization technique discussed above, if we include the KL divergence and a corresponding hyperparameter into our cost function, we'll have introduced a constraint on our cost function that encourages our model to learn sparse activations. The cost function may be: 
 
 $$ J_{sparse} (W, b) = J(W, b) + \lambda \sum_{i = 1}^{M} KL(\rho_i || \hat{\rho_i}) $$
 
