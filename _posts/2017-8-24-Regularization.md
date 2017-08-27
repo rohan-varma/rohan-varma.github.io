@@ -168,7 +168,7 @@ One way to do this is with the [KL divergence](https://en.wikipedia.org/wiki/Kul
 
 $$ J_{sparse} (W, b) = J(W, b) + \lambda \sum_{i = 1}^{M} KL(\rho_i || \hat{\rho_i}) $$
 
-where $$ J(W, b) $$ is a regular cost function used in neural networks, such as the cross-entropy loss. The hyperparameter $$ \lambda $$ indicates how important sparsity is to us - as $$ \lambda \rightarrow{} \infty $$, we disregard the actual loss function and only focus on learning a sparse representation, and as $$\lambda \rightarrow{} 0 $$ we disregard the importance of sparse activations and only minimize the original loss function. 
+where $$ J(W, b) $$ is a regular cost function used in neural networks, such as the cross-entropy loss. The hyperparameter $$ \lambda $$ indicates how important sparsity is to us - as $$ \lambda \rightarrow{} \infty $$, we disregard the actual loss function and only focus on learning a sparse representation, and as $$\lambda \rightarrow{} 0 $$ we disregard the importance of sparse activations and only minimize the original loss function. Additional details on this type of regularization with application to sparse autoencoders are given [here](http://ufldl.stanford.edu/wiki/index.php/Autoencoders_and_Sparsity)
 
 ### Recap ###
 
