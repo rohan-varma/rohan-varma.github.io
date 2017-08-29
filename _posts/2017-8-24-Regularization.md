@@ -160,7 +160,7 @@ The only difference in this closed-form solution is the addition of the $$ \lamb
 
 ### Regularizers in neural networks
 
-While techniques such as L2 regularization can be used while training a neural network, employing techniques such as dropout, which randomly discards half of the activations at a per-layer level during training, have been shown to be much more successful. There is also a different type of regularizer that takes into account the idea that a neural network should have sparse activations for any particular input. There are several theoretical reeasons for why sparsity is important, a topic covered very well by Glorot et al. in a [2011 paper](http://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf).
+While techniques such as L2 regularization can be used while training a neural network, employing techniques such as dropout, which randomly discards some proportion of the activations at a per-layer level during training, have been shown to be much more successful. There is also a different type of regularizer that takes into account the idea that a neural network should have sparse activations for any particular input. There are several theoretical reeasons for why sparsity is important, a topic covered very well by Glorot et al. in a [2011 paper](http://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf).
 
 Since sparsity is important in neural networks, we can introduce a constraint that can gaurantee us some degree of sparsity. Specifically, we can constrain the average activation of a particular neuron in a particular hidden layer. 
 
