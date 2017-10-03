@@ -51,7 +51,7 @@ I've found that one of the best ways to learn something is by being able to expl
 
 2. [Bias and Variance in Machine Learning](http://rohanvarma.me/Regularization/)
 
-3. [Tensorflow workshop series](http://github.com/uclaacmai/tf-workshop-series/) to which all other AI officers contributed to
+3. [Tensorflow workshop series](http://github.com/uclaacmai/tf-workshop-series/) to which all other AI officers contributed to.
 
 ### Reading
 I maintain a list of my favorite reads, as well as my current reading list. 
