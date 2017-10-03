@@ -47,9 +47,11 @@ I have enjoyed writing since high school, and I exercise that enjoyment on [Quor
 ### Explanations/Tutorials
 I've found that one of the best ways to learn something is by being able to explain it (ie the Feynman Technique). I've attempted to explain a few of the tricker concepts I've had trouble in and I'm more interested in, in the form of blog posts or Jupyter notebooks: 
 
-[Word2Vec and Language Modelling](http://rohanvarma.me/Word2Vec/)
-[Bias and Variance in Machine Learning](http://rohanvarma.me/Regularization/)
-[Tensorflow workshop series](http://github.com/uclaacmai/tf-workshop-series/) to which all other AI officers contributed to
+1. [Word2Vec and Language Modelling](http://rohanvarma.me/Word2Vec/)
+
+2. [Bias and Variance in Machine Learning](http://rohanvarma.me/Regularization/)
+
+3. [Tensorflow workshop series](http://github.com/uclaacmai/tf-workshop-series/) to which all other AI officers contributed to
 
 ### Reading
 I maintain a list of my favorite reads, as well as my current reading list. 
