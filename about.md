@@ -11,7 +11,7 @@ Hi! I'm Rohan, a computer science student at UCLA. My main interests are machine
 
 I had the awesome opportunity to work as a software engineering intern on the messaging squad at [Hudl](http://hudl.com) in the summer of 2016. I worked mostly on the backend, and shipped several messaging services that other microservices could use. I am especially thankful to my mentors [Andy Pryor](https://github.com/andypryor) and [Graham McCulloch](https://github.com/grahammcculloch) who made my first industry experience an excellent one.
 
-This summer, I'm enjoying the opportunity of learning from some great engineers as a software engineering intern at [Blend](http://blend.com) in San Francisco.
+In the summer of 2017, I got to work at [Blend](http://blend.com) on the Intelligence team along some great engineers, QAs, product managers, and designers. I was fortunate enough to have an excellent mentor in Albert Lee, who was always available to help me with my JavaScript difficulties and really wanted to see me succeed as an engineer.
 
 ### Other Experiences
 
