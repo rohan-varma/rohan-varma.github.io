@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 
-Hi! I'm Rohan, a computer science student at UCLA. My main interests are machine learning/deep learning, mathematics, running, playing chess, reading, and writing. I'm originally from San Jose, California.
+Hi! I'm Rohan, a computer science student at UCLA. My main interests are machine learning/deep learning, math, running, playing chess, reading, and writing. I'm originally from San Jose, California.
 
 ### Internships
 
