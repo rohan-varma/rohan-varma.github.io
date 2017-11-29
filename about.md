@@ -30,7 +30,7 @@ I occassionally work on projects mostly in the field of machine learning and dee
 Other in progress and miscellaneous projects are on my [Github](https://github.com/rohan-varma).
 
 ### Writing
-I have enjoyed writing since high school, and I exercise that enjoyment on [Quora](http://quora.com/Rohan-Varma-8) and this blog. Below is a list of my favorite pieces I've written (in no particular order). 
+I have enjoyed writing since high school, and I exercise that enjoyment on [Quora](http://quora.com/Rohan-Varma-8) and this blog. Below is a list of my favorite pieces I've written. 
 
 1. [Getting Started in Machine Learning](https://medium.com/techatucla/getting-started-in-machine-learning-c68bdd739c44)
 
