@@ -34,7 +34,7 @@ I have enjoyed writing since high school, and I exercise that enjoyment on [Quor
 
 1. [Getting Started in Machine Learning](https://medium.com/techatucla/getting-started-in-machine-learning-c68bdd739c44)
 
-2. [Implementing a Neural Network in Python](http://rohanvarma.me/Neural-Net/)
+2. [My answer to "Why is the 0-1 loss a poor choice of loss function?](https://www.quora.com/Why-is-the-0-1-indicator-function-a-poor-choice-for-loss-function/answer/Rohan-Varma-8)
 
 3. [An explanation of kernelized Support Vector Machines](https://www.quora.com/What-are-C-and-gamma-with-regards-to-a-support-vector-machine)
 
@@ -49,11 +49,13 @@ I have enjoyed writing since high school, and I exercise that enjoyment on [Quor
 ### Explanations/Tutorials
 I've found that one of the best ways to learn something is by being able to explain it (ie the Feynman Technique). I've attempted to explain a few of the tricker concepts I've had trouble in and I'm more interested in, in the form of blog posts or Jupyter notebooks: 
 
-1. [Word2Vec and Language Modeling](http://rohanvarma.me/Word2Vec/) [discussion on HN](https://news.ycombinator.com/item?id=15578788)
+1. [Word2Vec and Language Modeling](http://rohanvarma.me/Word2Vec/) and [discussion on HN](https://news.ycombinator.com/item?id=15578788)
 
 2. [Bias and Variance in Machine Learning](http://rohanvarma.me/Regularization/)
 
 3. [Tensorflow workshop series](http://github.com/uclaacmai/tf-workshop-series/) to which all other AI officers contributed to.
+
+4. [Implementing a Neural Network in Python](http://rohanvarma.me/Neural-Net/)
 
 ### Contact me
 
