@@ -1,6 +1,6 @@
 ---
 layout: post
-title: helol he
+title: Picking Loss Functions: A comparison between MSE, Cross Entropy, and Hinge Loss
 mathjax: True
 ---
 
