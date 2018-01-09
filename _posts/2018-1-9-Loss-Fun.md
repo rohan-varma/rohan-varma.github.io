@@ -1,13 +1,12 @@
 ---
 layout: post
-title: Picking Loss Functions: A comparison between MSE, Cross Entropy, and Hinge Loss
+title: Picking Loss Functions - A comparison between MSE, Cross Entropy, and Hinge Loss
 mathjax: True
 ---
 
 Loss functions are a key part of any machine learning model: they define an objective against which the performance of your model is measured, and the setting of weight parameters learned by the model is determined by minimizing a chosen loss function. There are several different common loss functions to choose from: the cross-entropy loss, the mean-squared error, the huber loss, and the hinge loss - just to name a few. Given a particular model, each loss function has particular properties that make it interesting - for example, the (L2-regularized) hingle loss comes with the maximum-margin property, and the mean-squared error when used in conjunction with linear regression comes with convexity guarantees.
 
-In this post, I'll discuss two commonly used loss functions: the mean-squared (MSE) loss and the cross-entropy loss. These are the two most commonly used functions I've seen used in traditional machine learning and deep learning models, so I thought it would be a good idea to figure out the underlying theory behind each one, and when to prefer one over the other. 
-
+In this post, I'll discuss three common loss functions: the mean-squared (MSE) loss, cross-entropy loss, and the hinge loss. These are the most commonly used functions I've seen used in traditional machine learning and deep learning models, so I thought it would be a good idea to figure out the underlying theory behind each one, and when to prefer one over the others. 
 
 
 #### The Mean-Squared Loss: Probabalistic Interpretation
