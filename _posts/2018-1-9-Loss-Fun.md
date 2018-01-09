@@ -14,13 +14,13 @@ In this post, I'll discuss two commonly used loss functions: the mean-squared (M
 
 For a model prediction such as $$h_\theta(x_i) = \theta_0 + \theta_1x$$ (a simple linear regression in 2 dimensions) where the inputs are a feature vector $$x_i$$, the mean-squared error is given by summing across all $$N$$ training examples, and for each example, calculating the squared difference from the true label $$y_i$$ and the prediction $$h_\theta(x_i)$$:
 
-​						$$ J = \frac{1}{N} \sum_{i=1}^{N} (y_i - h_\theta(x_i))^2$$
+$$ J = \frac{1}{N} \sum_{i=1}^{N} (y_i - h_\theta(x_i))^2$$
 
  It turns out we can derive the mean-squared loss by considering a typical linear regression problem. 
 
 With linear regression, we seek to model our real-valued labels $$Y$$ as being a linear function of our inputs $$X$$, corrupted by some noise. Let's write out this assumption: 
 
-​					$$Y = \theta_0 + \theta_1x + \eta$$ 
+$$Y = \theta_0 + \theta_1x + \eta$$ 
 
 And to solidify our assumption, we'll say that $$\eta$$ is Gaussian noise with 0 mean and unit variance, that is $$\eta \sim N(0, 1)$$. This means that $$E[Y] = E[\theta_0 + \theta_1x + \eta] = \theta_0 + \theta_1x$$ and $$Var[Y] = Var[\theta_0 + \theta_1x + \eta] = $$,1 so $$Y$$ is also Gaussian with mean $$\theta_0 + \theta_1x$$ and variance 1. 
 
@@ -30,15 +30,15 @@ $$ p(y_i \vert x_i) = e^{-\frac{(y_{i} - (\theta_{0} + \theta_{1}x_{i}))^2}{2}} 
 
 Summing across $$N$$ of these samples in our dataset, we can write down the likelihood - essentially the probability of observing all $$N$$ of our samples. Note that we also make the assumption that our data are independent of each other, so we can write out the likelihood as a simple product over each individual probability: 
 
-​				$$ L(x, y) = \prod_{i=1}^{N}e^{-\frac{(y_i - (\theta_0 + \theta_1x_i))^2}{2}}$$
+$$ L(x, y) = \prod_{i=1}^{N}e^{-\frac{(y_i - (\theta_0 + \theta_1x_i))^2}{2}}$$
 
 Next, we can take the log of our likelihood function to obtain the log-likelihood, a function that is easier to differentiate and overall nicer to work with: 
 
-​				$$l(x, y) = -\frac{1}{2}\sum_{i=1}^{N}(y_i - (\theta_0 + \theta_1x_i))^2$$
+$$l(x, y) = -\frac{1}{2}\sum_{i=1}^{N}(y_i - (\theta_0 + \theta_1x_i))^2$$
 
 This gives us the MSE: 
 
-​				$$J = \frac{1}{2}\sum_{i=1}^{N}(y_i - \theta^Tx_i)^2$$
+$$J = \frac{1}{2}\sum_{i=1}^{N}(y_i - \theta^Tx_i)^2$$
 
 Essentially, this means that using the MSE loss makes sense if the assumption that your outputs are a real-valued function of your inputs, with a certain amount of irreducible Gaussian noise, with constant mean and variance. If these assumptions don't hold true (such as in the context of classification), the MSE loss may not be the best bet.
 
@@ -46,25 +46,25 @@ Essentially, this means that using the MSE loss makes sense if the assumption th
 
 In the context of classification, our model's prediction $$h_\theta(x_i)$$ will be given by $$\sigma(Wx_i + b)$$ which produces a value between $$0$$ and $$1$$ that can be interpreted as a probability of example $$x_i$$ belonging to the positive class. If this probability were less than $$0.5$$ we'd classify it as a negative example, otherwise we'd classify it as a positive example. This means that we can write down the probabilily of observing a negative or positive instance:
 
-​				$$ p(y_i = 1 \vert x_i)  = h_\theta(x_i)$$ and $$p(y_i = 0 \vert x_i) = 1 - h_\theta(x_i)$$
+$$ p(y_i = 1 \vert x_i)  = h_\theta(x_i)$$ and $$p(y_i = 0 \vert x_i) = 1 - h_\theta(x_i)$$
 
 We can combine these two cases into one expression:
 
-​				$$p(y_i | x_i) = [h_\theta(x_i)]^{(y_i)} [1 - h_\theta(x_i)]^{(1 - y_i)}$$
+$$p(y_i | x_i) = [h_\theta(x_i)]^{(y_i)} [1 - h_\theta(x_i)]^{(1 - y_i)}$$
 
 Invoking our assumption that the data are independent and identically distributed, we can write down the likelihood by simply taking the product across the data:
 
-​				$$ L(x, y) = \prod_{i = 1}^{N}[h_\theta(x_i)]^{(y_i)} [1 - h_\theta(x_i)]^{(1 - y_i)}$$
+$$ L(x, y) = \prod_{i = 1}^{N}[h_\theta(x_i)]^{(y_i)} [1 - h_\theta(x_i)]^{(1 - y_i)}$$
 
 Similar to above, we can take the log of the above expression and use properties of logs to simplify, and finally invert our entire expression to obtain the cross entropy loss: 
 
-​				$$ J = -\sum_{i=1}^{N} y_i\log (h_\theta(x_i)) + (1 - y_i)\log(1 - h_\theta(x_i))$$
+$$ J = -\sum_{i=1}^{N} y_i\log (h_\theta(x_i)) + (1 - y_i)\log(1 - h_\theta(x_i))$$
 
 #### The Cross-Entropy Loss in the case of multi-class classification
 
 Let's supposed that we're now interested in applying the cross-entropy loss to multiple (> 2) classes. The idea behind the loss function doesn't change, but now since our labels $$y_i$$ are one-hot encoded, we write down the loss (slightly) differently:
 
-​				$$ -\sum_{i=1}^{N} \sum_{j=1}^{K} y_{ij} \log(h_{\theta}(x_{i}){_j})$$
+$$ -\sum_{i=1}^{N} \sum_{j=1}^{K} y_{ij} \log(h_{\theta}(x_{i}){_j})$$
 
 This is pretty similar to the binary cross entropy loss we defined above, but since we have multiple classes we need to sum over all of them. The loss $$L_i$$ for a particular training example is given by 
 
@@ -94,7 +94,7 @@ Interpreting the cross-entropy loss as minimizing the KL divergence between 2 di
 
 It turns out that if we're given a typical classification problem, we can show that (at least theoretically) the cross-entropy loss leads to quicker learning through gradient descent than the MSE loss. First, let's recall the gradient descent update rule:
 
-```python
+```
 For i = 1 ... N:
     Compute dJ/dw_i for i = 1 ... M parameters
     Let w_i = w_i - learning_rate * dJ/dw_i
@@ -108,7 +108,7 @@ We'll show that given our model $$h_\theta(x) = \sigma(Wx_i + b)$$, learning can
 
 First, given our prediction $$\hat{y_i} = \sigma(Wx_i + b)$$ and our loss $$J = \frac{1}{2}(y_i - \hat{y_i})^2$$ , we first obtain the partial derivative $$\frac{dJ}{dW}$$, applying the chain rule twice:
 
-​				$$\frac{dJ}{dW} = (y_i - \hat{y_i})\sigma'(Wx_i + b)x_i$$
+$$\frac{dJ}{dW} = (y_i - \hat{y_i})\sigma'(Wx_i + b)x_i$$
 
 This derivative has the term $$\sigma'(Wx_i + b)$$ in it. This can be expressed as $$\sigma(Wx_i + b)(1 - \sigma(Wx_i + b))$$ (see here for a proof). Since we initialized our weights randomly with values close to 0, this expression will be very close to 0, which will make the partial derivative nearly vanish during the early stages of training. A plot of the sigmoid curve's derivative is shown below, indicating that the gradients are small whenever the outputs are close to $$0$$ or $$1$$: 
 
@@ -118,15 +118,15 @@ This can lead to slower learning at the beginning stages of gradient descent, si
 
 On the other hand, given the cross entropy loss: 
 
-​				$$\frac{dJ}{dW} = -\sum_{i=1}^{N} y_i\log(\sigma (Wx_i + b)) + (1-y_i)\log(1 - \sigma(Wx_i + b))$$
+$$\frac{dJ}{dW} = -\sum_{i=1}^{N} y_i\log(\sigma (Wx_i + b)) + (1-y_i)\log(1 - \sigma(Wx_i + b))$$
 
 We can obtain the partial derivative $$ \frac{dJ}{dW}$$ as follows (with the substitution $$\sigma(z) = \sigma(Wx_i + b)$$:
 
-​				$$\frac{dJ}{dW} = -\sum_{i=1}^{N} \frac{y_i x_i\sigma'(z)}{\sigma(z)} - \frac{(1-y_i)x_i \sigma'(z)}{1 - \sigma(z)} $$
+$$\frac{dJ}{dW} = -\sum_{i=1}^{N} \frac{y_i x_i\sigma'(z)}{\sigma(z)} - \frac{(1-y_i)x_i \sigma'(z)}{1 - \sigma(z)} $$
 
 Simplifying, we obtain a nice expression for the gradient of the loss function with respect to the weights: 
 
-​				$$\sum_{i=1}^{N} x_i(\sigma(z) - y_i)$$
+$$\sum_{i=1}^{N} x_i(\sigma(z) - y_i)$$
 
 This derivative does not have a $$\sigma'$$ term in it, and we can see that the magnitude of the derivative is entirely dependent on the magnitude of our error $$\sigma(z) - y_i$$ - how far off our prediction was from the ground truth. This is great, since that means early on in learning, the derivatives will be large, and later on in learning, the derivatives will get smaller and smaller, corresponding to smaller adjustments to the weight variables, which makes intuitive sense since if our error is small, then we'd want to avoid large adjustments that could cause us to jump out of the minima. Michael Nielsen in his [book](http://neuralnetworksanddeeplearning) has an in-depth discussion and illustration of this that is really helpful.
 
@@ -138,7 +138,7 @@ There's actually another commonly used type of loss function in classification r
 
 The hinge loss penalizes predictions not only when they are incorrect, but even when they are correct but not "confident". It penalizes gravely wrong predictions significantly, correct but not confident predictions a little less, and only confident, correct predictions are not penalized at all. Let's formalize this by writing out the hinge loss in the case of binary classification: 
 
-​				$$\sum_{i} max(0, 1 - y_{i} * h_\theta(x_i))$$
+$$\sum_{i} max(0, 1 - y_{i} * h_\theta(x_i))$$
 
 Our labels $$y_i$$ are either -1 or 1, so the loss is only zero when the signs match and $$|(h_\theta(x_i))| \geq 1$$. For example, if our score for a particular training example was $$0.2$$ but the label was $$-1$$, we'd incur a penalty of $$1.2$$, if our score was $$-0.7$$ (meaning that this instance was predicted to have label $$-1$$) we'd still incur a penalty of $$0.3$$, but if we predicted $$-1.1$$ then we would incur no penalty. A visualization of the hinge loss (in green) compared to other cost functions is given below:
 
