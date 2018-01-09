@@ -72,7 +72,13 @@ $$ L_{i} = - \log p(Y = y_{i} \vert X = x_{i})$$.
 
 In particular, in the inner sum, only one term will be non-zero, and that term will be the $$\log$$ of the (normalized) probability assigned to the correct class. Intuitively, this makes sense because $$\log(x)$$ is increasing on the interval $(0, 1)$ so $$-\log(x)$$ is decreasing on that interval. For example, if we have a score of 0.8 for the correct label, our loss will be 0.09, if we have a score of .08 our loss would be 1.09. (TODO figure out what base this is)
 
-Another variant on the cross entropy loss for multi-class classification also adds the other predicted class scores to the loss: $$- \sum_{i=1}^{N} \sum_{j=1}^{K} y_{ij} \log(h_{\theta}(x_{i})_{j}) + (1-y_{ij})log(1 - h_{\theta}(x_{i})_{j})$$. The second term in the inner sum essentially inverts our labels and score assignments: it gives the other predicted classes a probability of $$1 - s_j$$, and penalizes them by the $$\log$$ of that amount (here, $$s_j$$ denotes the $$j$$th score, which is the $$j$$th element of $$h_\theta(x_i)$$. . This again makes sense - penalizing the incorrect classes in this way will encourage the values $$1 - s_j$$ (where each $$s_j$$ is a probability assigned to an incorrect class) to be large, which will in turn encourage $$s_j$$ to be low. This alternative version seems to tie in more closely to the binary cross entropy that we obtained from the maximum likelihood estimate, but the first version appears to be more commonly used both in practice and in teaching (such as in the CS231n lecture notes and video).
+Another variant on the cross entropy loss for multi-class classification also adds the other predicted class scores to the loss: 
+
+$$- \sum_{i=1}^{N} \sum_{j=1}^{K} y_{ij} \log(h_{\theta}(x_{i})_{j}) + (1-y_{ij})log(1 - h_{\theta}(x_{i})_{j})$$
+
+The second term in the inner sum essentially inverts our labels and score assignments: it gives the other predicted classes a probability of $$1 - s_j$$, and penalizes them by the $$\log$$ of that amount (here, $$s_j$$ denotes the $$j$$th score, which is the $$j$$th element of $$h_\theta(x_i)$$. 
+
+This again makes sense - penalizing the incorrect classes in this way will encourage the values $$1 - s_j$$ (where each $$s_j$$ is a probability assigned to an incorrect class) to be large, which will in turn encourage $$s_j$$ to be low. This alternative version seems to tie in more closely to the binary cross entropy that we obtained from the maximum likelihood estimate, but the first version appears to be more commonly used both in practice and in teaching (such as in the CS231n lecture notes and video).
 
 It turns out that it doesn't really matter which variant of cross-entropy you use for multiple-class classification, as they both decrease at similar rates and are just offset, with the second variant discussed having a higher loss for a particular setting of scores. To show this, I [wrote some code](https://github.com/rohan-varma/machine-learning-courses/blob/master/cs231n/loss.py to plot these 2 loss functions against each other, for probabilities for the correct class ranging from 0.01 to 0.98, and obtained the following plot: 
 
@@ -138,9 +144,9 @@ There's actually another commonly used type of loss function in classification r
 
 The hinge loss penalizes predictions not only when they are incorrect, but even when they are correct but not "confident". It penalizes gravely wrong predictions significantly, correct but not confident predictions a little less, and only confident, correct predictions are not penalized at all. Let's formalize this by writing out the hinge loss in the case of binary classification: 
 
-$$\sum_{i} max(0, 1 - y_{i} * h_\theta(x_i))$$
+$$\sum_{i} max(0, 1 - y_{i} * h_{\theta}(x_{i}))$$
 
-Our labels $$y_i$$ are either -1 or 1, so the loss is only zero when the signs match and $$|(h_\theta(x_i))| \geq 1$$. For example, if our score for a particular training example was $$0.2$$ but the label was $$-1$$, we'd incur a penalty of $$1.2$$, if our score was $$-0.7$$ (meaning that this instance was predicted to have label $$-1$$) we'd still incur a penalty of $$0.3$$, but if we predicted $$-1.1$$ then we would incur no penalty. A visualization of the hinge loss (in green) compared to other cost functions is given below:
+Our labels $$y_{i}$$ are either -1 or 1, so the loss is only zero when the signs match and $$|(h_{\theta}(x_{i}))| \geq 1$$. For example, if our score for a particular training example was $$0.2$$ but the label was $$-1$$, we'd incur a penalty of $$1.2$$, if our score was $$-0.7$$ (meaning that this instance was predicted to have label $$-1$$) we'd still incur a penalty of $$0.3$$, but if we predicted $$-1.1$$ then we would incur no penalty. A visualization of the hinge loss (in green) compared to other cost functions is given below:
 
 
 
