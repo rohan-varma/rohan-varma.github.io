@@ -131,17 +131,17 @@ This derivative does not have a $$\sigma'$$ term in it, and we can see that the 
 
 There's actually another commonly used type of loss function in classification related tasks: the hinge loss. The (L2-regularized) hinge loss leads to the canonical support vector machine model with the max-margin property: the margin is the smallest distance from the line (or more generally, hyperplane) that separates our points into classes and defines our classification:
 
-~[svm](https://docs.opencv.org/2.4.13.4/doc/tutorials/ml/introduction_to_svm/introduction_to_svm.html)
+~[svm](https://docs.opencv.org/2.4.13.4/_images/optimal-hyperplane.png)
 
 The hinge loss penalizes predictions not only when they are incorrect, but even when they are correct but not "confident". It penalizes gravely wrong predictions significantly, correct but not confident predictions a little less, and only confident, correct predictions are not penalized at all. Let's formalize this by writing out the hinge loss in the case of binary classification: 
 
 ​				$$\sum_i max(0, 1 - y_i * h_\theta(x_i))$$
 
-Our labels $$y_i$$ are either -1 or 1, so the loss is only zero when the signs match and $$|(h_\theta(x_i))| \geq 1$$. For example, if our score for a particular training example was $$0.2$$ but the label was $$-1$$, we'd incur a penalty of $$1.2$$, if our score was $$-0.7$$ (meaning that this instance was predicted to have label $$-1$$) we'd still incur a penalty of $$0.3$$, but if we predicted $$-1.1$$ then we would incur no penalty. A visualization of the hinge loss is given below:
+Our labels $$y_i$$ are either -1 or 1, so the loss is only zero when the signs match and $$|(h_\theta(x_i))| \geq 1$$. For example, if our score for a particular training example was $$0.2$$ but the label was $$-1$$, we'd incur a penalty of $$1.2$$, if our score was $$-0.7$$ (meaning that this instance was predicted to have label $$-1$$) we'd still incur a penalty of $$0.3$$, but if we predicted $$-1.1$$ then we would incur no penalty. A visualization of the hinge loss (in green) compared to other cost functions is given below:
 
 
 
-![hinge loss](https://www.researchgate.net/figure/312935261_fig10_Fig-11-Plot-of-hinge-loss-function)
+![hinge loss](https://i.stack.imgur.com/4DFDU.png)
 
 
 
@@ -163,4 +163,4 @@ In this post, we've show that the MSE loss comes from a probabalistic interpreta
 
 3. [OpenCV introduction to SVMs](https://docs.opencv.org/2.4.13.4/doc/tutorials/ml/introduction_to_svm/introduction_to_svm.html)
 
-4. [Hierarchical Composition of Large Deep Networks, by Sumanth Chennupati](https://www.researchgate.net/figure/312935261_Plot-of-hinge-loss-function)
+4. [StackExchange answer on hinge loss minimization](https://math.stackexchange.com/questions/782586/how-do-you-minimize-hinge-loss)
