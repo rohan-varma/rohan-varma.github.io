@@ -71,7 +71,7 @@ This is pretty similar to the binary cross entropy loss we defined above, but si
 
 $$ L_{i} = - \log p(Y = y_{i} \vert X = x_{i})$$. 
 
-In particular, in the inner sum, only one term will be non-zero, and that term will be the $$\log$$ of the (normalized) probability assigned to the correct class. Intuitively, this makes sense because $$\log(x)$$ is increasing on the interval $(0, 1)$ so $$-\log(x)$$ is decreasing on that interval. For example, if we have a score of 0.8 for the correct label, our loss will be 0.09, if we have a score of .08 our loss would be 1.09. (TODO figure out what base this is)
+In particular, in the inner sum, only one term will be non-zero, and that term will be the $$\log$$ of the (normalized) probability assigned to the correct class. Intuitively, this makes sense because $$\log(x)$$ is increasing on the interval $(0, 1)$ so $$-\log(x)$$ is decreasing on that interval. For example, if we have a score of 0.8 for the correct label, our loss will be 0.09, if we have a score of .08 our loss would be 1.09.
 
 Another variant on the cross entropy loss for multi-class classification also adds the other predicted class scores to the loss: 
 
@@ -119,7 +119,7 @@ $$\frac{dJ}{dW} = (y_i - \hat{y_i})\sigma'(Wx_i + b)x_i$$
 
 This derivative has the term $$\sigma'(Wx_i + b)$$ in it. This can be expressed as $$\sigma(Wx_i + b)(1 - \sigma(Wx_i + b))$$ (see here for a proof). Since we initialized our weights randomly with values close to 0, this expression will be very close to 0, which will make the partial derivative nearly vanish during the early stages of training. A plot of the sigmoid curve's derivative is shown below, indicating that the gradients are small whenever the outputs are close to $$0$$ or $$1$$: 
 
-insert sigmoid graph plot here
+![sigmoid](http://ronny.rest/media/blog/2017/2017_08_10_sigmoid/sigmoid_and_derivative_plot.jpg)
 
 This can lead to slower learning at the beginning stages of gradient descent, since the smaller derivatives change each weight by only a small amount, and gradient descent takes a while to get out of this loop and make larger updates towards a minima.
 
@@ -175,4 +175,6 @@ In this post, we've show that the MSE loss comes from a probabalistic interpreta
 
 4. [StackExchange answer on hinge loss minimization](https://math.stackexchange.com/questions/782586/how-do-you-minimize-hinge-loss)
 
-5. [
+5. [Machine Learning, Princeton University](https://www.cs.princeton.edu/courses/archive/fall16/cos402/lectures/402-lec5.pdf)
+
+6. [Ronny Restrepo, sigmoid functions](http://ronny.rest/blog/post_2017_08_10_sigmoid/)
