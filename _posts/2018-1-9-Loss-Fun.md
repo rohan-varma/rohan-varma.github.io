@@ -26,7 +26,7 @@ And to solidify our assumption, we'll say that $$\eta$$ is Gaussian noise with 0
 
 We can write out the probability of observing a single $$(x_i, y_i)$$ sample: 
 
-    $$ p(y_i \vert x_i) $$
+$$ p(y_i \vert x_i) $$
 
 Summing across $$N$$ of these samples in our dataset, we can write down the likelihood - essentially the probability of observing all $$N$$ of our samples. Note that we also make the assumption that our data are independent of each other, so we can write out the likelihood as a simple product over each individual probability: 
 
