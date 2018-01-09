@@ -75,7 +75,7 @@ It turns out that it doesn't really matter which variant of cross-entropy you us
 
 
 
-INSERT PLOT HERE
+![loss](https://raw.githubusercontent.com/rohan-varma/machine-learning-courses/master/cs231n/loss.png)
 
 
 
