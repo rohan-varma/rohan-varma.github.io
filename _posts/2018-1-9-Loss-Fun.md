@@ -26,7 +26,7 @@ And to solidify our assumption, we'll say that $$\eta$$ is Gaussian noise with 0
 
 We can write out the probability of observing a single $$(x_i, y_i)$$ sample: 
 
-​				$$p(y_i \vert x_i) = e^{-\frac{(y_i - (\theta_0 + \theta_1x_i))^2}{2}}$$
+    $$ p(y_i \vert x_i) $$
 
 Summing across $$N$$ of these samples in our dataset, we can write down the likelihood - essentially the probability of observing all $$N$$ of our samples. Note that we also make the assumption that our data are independent of each other, so we can write out the likelihood as a simple product over each individual probability: 
 
@@ -66,7 +66,11 @@ Let's supposed that we're now interested in applying the cross-entropy loss to m
 
 ​				$$ -\sum_{i=1}^{N} \sum_{j=1}^{K} y_{ij} \log(h_{\theta}(x_{i}){_j})$$
 
-This is pretty similar to the binary cross entropy loss we defined above, but since we have multiple classes we need to sum over all of them. The loss $$L_i$$ for a particular training example is given by $$L_i = - \log p(Y = y_i | X = x_i)$$. In particular, in the inner sum, only one term will be non-zero, and that term will be the $$\log$$ of the (normalized) probability assigned to the correct class. Intuitively, this makes sense because $$\log(x)$$ is increasing on the interval $(0, 1)$ so $$-\log(x)$$ is decreasing on that interval. For example, if we have a score of 0.8 for the correct label, our loss will be 0.09, if we have a score of .08 our loss would be 1.09. (TODO figure out what base this is)
+This is pretty similar to the binary cross entropy loss we defined above, but since we have multiple classes we need to sum over all of them. The loss $$L_i$$ for a particular training example is given by 
+
+$$ L_{i} = - \log p(Y = y_{i} \vert X = x_{i})$$. 
+
+In particular, in the inner sum, only one term will be non-zero, and that term will be the $$\log$$ of the (normalized) probability assigned to the correct class. Intuitively, this makes sense because $$\log(x)$$ is increasing on the interval $(0, 1)$ so $$-\log(x)$$ is decreasing on that interval. For example, if we have a score of 0.8 for the correct label, our loss will be 0.09, if we have a score of .08 our loss would be 1.09. (TODO figure out what base this is)
 
 Another variant on the cross entropy loss for multi-class classification also adds the other predicted class scores to the loss: $$- \sum_{i=1}^{N} \sum_{j=1}^{K} y_{ij} \log(h_{\theta}(x_{i})_{j}) + (1-y_{ij})log(1 - h_{\theta}(x_{i})_{j})$$. The second term in the inner sum essentially inverts our labels and score assignments: it gives the other predicted classes a probability of $$1 - s_j$$, and penalizes them by the $$\log$$ of that amount (here, $$s_j$$ denotes the $$j$$th score, which is the $$j$$th element of $$h_\theta(x_i)$$. . This again makes sense - penalizing the incorrect classes in this way will encourage the values $$1 - s_j$$ (where each $$s_j$$ is a probability assigned to an incorrect class) to be large, which will in turn encourage $$s_j$$ to be low. This alternative version seems to tie in more closely to the binary cross entropy that we obtained from the maximum likelihood estimate, but the first version appears to be more commonly used both in practice and in teaching (such as in the CS231n lecture notes and video).
 
