@@ -6,7 +6,7 @@ mathjax: True
 
 ![loss](https://qph.fs.quoracdn.net/main-qimg-eb4345f0ebb02477e9ec870cdf9f3155.webp)
 
-Loss functions are a key part of any machine learning model: they define an objective against which the performance of your model is measured, and the setting of weight parameters learned by the model is determined by minimizing a chosen loss function. There are several different common loss functions to choose from: the cross-entropy loss, the mean-squared error, the huber loss, and the hinge loss - just to name a few. Given a particular model, each loss function has particular properties that make it interesting - for example, the (L2-regularized) hingle loss comes with the maximum-margin property, and the mean-squared error when used in conjunction with linear regression comes with convexity guarantees.
+Loss functions are a key part of any machine learning model: they define an objective against which the performance of your model is measured, and the setting of weight parameters learned by the model is determined by minimizing a chosen loss function. There are several different common loss functions to choose from: the cross-entropy loss, the mean-squared error, the huber loss, and the hinge loss - just to name a few. Given a particular model, each loss function has particular properties that make it interesting - for example, the (L2-regularized) hinge loss comes with the maximum-margin property, and the mean-squared error when used in conjunction with linear regression comes with convexity guarantees.
 
 In this post, I'll discuss three common loss functions: the mean-squared (MSE) loss, cross-entropy loss, and the hinge loss. These are the most commonly used functions I've seen used in traditional machine learning and deep learning models, so I thought it would be a good idea to figure out the underlying theory behind each one, and when to prefer one over the others. 
 
@@ -71,15 +71,15 @@ This is pretty similar to the binary cross entropy loss we defined above, but si
 
 $$ L_{i} = - \log p(Y = y_{i} \vert X = x_{i})$$. 
 
-In particular, in the inner sum, only one term will be non-zero, and that term will be the $$\log$$ of the (normalized) probability assigned to the correct class. Intuitively, this makes sense because $$\log(x)$$ is increasing on the interval $(0, 1)$ so $$-\log(x)$$ is decreasing on that interval. For example, if we have a score of 0.8 for the correct label, our loss will be 0.09, if we have a score of .08 our loss would be 1.09.
+In particular, in the inner sum, only one term will be non-zero, and that term will be the $$\log$$ of the (normalized) probability assigned to the correct class. Intuitively, this makes sense because $$\log(x)$$ is increasing on the interval $$(0, 1)$$ so $$-\log(x)$$ is decreasing on that interval. For example, if we have a score of 0.8 for the correct label, our loss will be 0.09, if we have a score of .08 our loss would be 1.09.
 
 Another variant on the cross entropy loss for multi-class classification also adds the other predicted class scores to the loss: 
 
 $$- \sum_{i=1}^{N} \sum_{j=1}^{K} y_{ij} \log(h_{\theta}(x_{i})_{j}) + (1-y_{ij})log(1 - h_{\theta}(x_{i})_{j})$$
 
-The second term in the inner sum essentially inverts our labels and score assignments: it gives the other predicted classes a probability of $$1 - s_j$$, and penalizes them by the $$\log$$ of that amount (here, $$s_j$$ denotes the $$j$$th score, which is the $$j$$th element of $$h_\theta(x_i)$$. 
+The second term in the inner sum essentially inverts our labels and score assignments: it gives the other predicted classes a probability of $$1 - s_j$$, and penalizes them by the $$\log$$ of that amount (here, $$s_j$$ denotes the $$j$$th score, which is the $$j$$th element of $$h_\theta(x_i)$$). 
 
-This again makes sense - penalizing the incorrect classes in this way will encourage the values $$1 - s_j$$ (where each $$s_j$$ is a probability assigned to an incorrect class) to be large, which will in turn encourage $$s_j$$ to be low. This alternative version seems to tie in more closely to the binary cross entropy that we obtained from the maximum likelihood estimate, but the first version appears to be more commonly used both in practice and in teaching (such as in the CS231n lecture notes and video).
+This again makes sense - penalizing the incorrect classes in this way will encourage the values $$1 - s_j$$ (where each $$s_j$$ is a probability assigned to an incorrect class) to be large, which will in turn encourage $$s_j$$ to be low. This alternative version seems to tie in more closely to the binary cross entropy that we obtained from the maximum likelihood estimate, but the first version appears to be more commonly used both in practice and in teaching.
 
 It turns out that it doesn't really matter which variant of cross-entropy you use for multiple-class classification, as they both decrease at similar rates and are just offset, with the second variant discussed having a higher loss for a particular setting of scores. To show this, I [wrote some code](https://github.com/rohan-varma/machine-learning-courses/blob/master/cs231n/loss.py) to plot these 2 loss functions against each other, for probabilities for the correct class ranging from 0.01 to 0.98, and obtained the following plot: 
 
@@ -91,7 +91,7 @@ It turns out that it doesn't really matter which variant of cross-entropy you us
 
 #### Cross Entropy Loss: An information theory perspective
 
-As mentioned in the CS 231n lectures, the cross-entropy loss can be interpreted via information theory. In information theory, the Kullback-Leibler (KL) divergence measures how "different" two probability distributions are. We can think of our classification problem as having 2 different probability distributions: first, the distribution for our actual labels, where all the probability mass is concentrated on the correct label, and there is no probability mass on the rest, and second, the distribution which we are learning, where the concentrations of probability mass are given by the outputs of the running our raw scores through a softmax function.
+As mentioned in the [CS 231n lectures](http://cs231n.github.io/linear-classify/), the cross-entropy loss can be interpreted via information theory. In information theory, the Kullback-Leibler (KL) divergence measures how "different" two probability distributions are. We can think of our classification problem as having 2 different probability distributions: first, the distribution for our actual labels, where all the probability mass is concentrated on the correct label, and there is no probability mass on the rest, and second, the distribution which we are learning, where the concentrations of probability mass are given by the outputs of the running our raw scores through a softmax function.
 
 In an ideal world, our learned distribution would match the actual distribution, with 100% probability being assigned to the correct label. This can't really happen since that would mean our raw scores would have to be $$\infty$$ and $$-\infty$$ for our correct and incorrect classes respectively, and, more practically, constraints we impose on our model (i.e. using logistic regression instead of a deep neural net) will limit our ability to correctly classify every example with high probability on the correct label.
 
@@ -109,7 +109,7 @@ For i = 1 ... N:
 
 Essentially, the gradient descent algorithm computes partial derivatives for all the parameters in our network, and updates the parameters by decrementing the parameters by their respective partial derivatives, times a constant known as the learning rate, taking a step towards a local minimum. 
 
-This means that the "speed" of learning is dictated by two things: the learning rate and the size of the partial derivative. The learning rate is a hyperparameter that we must tune, so we'll focus on the size of the partial derivatives for now. Consider the following binary classification scenario: we have an input feature vector $$x_i$$, a label $$y_i = 1$$, and a prediction $$\hat{y_i} = h_\theta(x_i) = 0$$. 
+This means that the "speed" of learning is dictated by two things: the learning rate and the size of the partial derivative. The learning rate is a hyperparameter that we must tune, so we'll focus on the size of the partial derivatives for now. Consider the following binary classification scenario: we have an input feature vector $$x_i$$, a label $$y_i$$, and a prediction $$\hat{y_i} = h_\theta(x_i)$$. 
 
 We'll show that given our model $$h_\theta(x) = \sigma(Wx_i + b)$$, learning can occur much faster during the beginning phases of training if we used the cross-entropy loss instead of the MSE loss. And we want this to happen, since at the beginning of training, our model is performing poorly due to the weights being randomly initialized. 
 
@@ -125,7 +125,7 @@ This can lead to slower learning at the beginning stages of gradient descent, si
 
 On the other hand, given the cross entropy loss: 
 
-$$\frac{dJ}{dW} = -\sum_{i=1}^{N} y_i\log(\sigma (Wx_i + b)) + (1-y_i)\log(1 - \sigma(Wx_i + b))$$
+$$J = -\sum_{i=1}^{N} y_i\log(\sigma (Wx_i + b)) + (1-y_i)\log(1 - \sigma(Wx_i + b))$$
 
 We can obtain the partial derivative $$ \frac{dJ}{dW}$$ as follows (with the substitution $$\sigma(z) = \sigma(Wx_i + b)$$:
 
@@ -141,9 +141,9 @@ This derivative does not have a $$\sigma'$$ term in it, and we can see that the 
 
 There's actually another commonly used type of loss function in classification related tasks: the hinge loss. The (L2-regularized) hinge loss leads to the canonical support vector machine model with the max-margin property: the margin is the smallest distance from the line (or more generally, hyperplane) that separates our points into classes and defines our classification:
 
-~[svm](https://docs.opencv.org/2.4.13.4/_images/optimal-hyperplane.png)
+![svm](https://docs.opencv.org/2.4.13.4/_images/optimal-hyperplane.png)
 
-The hinge loss penalizes predictions not only when they are incorrect, but even when they are correct but not "confident". It penalizes gravely wrong predictions significantly, correct but not confident predictions a little less, and only confident, correct predictions are not penalized at all. Let's formalize this by writing out the hinge loss in the case of binary classification: 
+The hinge loss penalizes predictions not only when they are incorrect, but even when they are correct but not confident. It penalizes gravely wrong predictions significantly, correct but not confident predictions a little less, and only confident, correct predictions are not penalized at all. Let's formalize this by writing out the hinge loss in the case of binary classification: 
 
 $$\sum_{i} max(0, 1 - y_{i} * h_{\theta}(x_{i}))$$
 
