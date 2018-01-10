@@ -155,14 +155,12 @@ Our labels $$y_{i}$$ are either -1 or 1, so the loss is only zero when the signs
 
 
 
-The main difference between the hinge loss and the cross entropy loss is that the former arises from trying to maximize the margin between our decision boundary and data points - thus attempting to ensure that each point is correctly and confidently classified*, while the latter comes from a maximum likelihood estimate of our model's parameters. The softmax function, whose scores are used by the cross entropy loss, allows us to interpret our model's scores as relative probabilities against each other - for example, the cross-entropy loss would invoke a much higher loss if our (un-normalized) scores were $$[10, 9, 9]$$ versus $$[10, -10, -10]$$, while the hinge loss (with a margin of $$1$$ ) would not differentiate between the 2 different scores. 
-
+The main difference between the hinge loss and the cross entropy loss is that the former arises from trying to maximize the margin between our decision boundary and data points - thus attempting to ensure that each point is correctly and confidently classified*, while the latter comes from a maximum likelihood estimate of our model's parameters. The softmax function, whose scores are used by the cross entropy loss, allows us to interpret our model's scores as relative probabilities against each other. For example, the cross-entropy loss would invoke a much higher loss than the hinge loss if our (un-normalized) scores were $$[10, 8, 8]$$ versus $$[10, -10, -10]$$, where the first class is correct. In fact, the (multi-class) hinge loss would recognize that the correct class score already exceeds the other scores by more than the margin, so it will invoke zero loss on both scores. Once the margins are satisfied, the SVM will no longer optimize the weights in an attempt to "do better" than it is already.
 
 
 #### Wrap-Up
 
 In this post, we've show that the MSE loss comes from a probabalistic interpretation of the regression problem, and the cross-entropy loss comes from a probabalistic interpretaion of binary classification. The MSE loss is therefore better suited to regression problems, and the cross-entropy loss provides us with faster learning when our predictions differ significantly from our labels, as is generally the case during the first several iterations of model training. We've also compared and contrasted the cross-entropy loss and hinge loss, and discussed how using one over the other leads to our models learning in different ways. Thanks for reading, and hope you enjoyed the post! 
-
   
 
 #### Sources
