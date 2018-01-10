@@ -69,7 +69,7 @@ $$ -\sum_{i=1}^{N} \sum_{j=1}^{K} y_{ij} \log(h_{\theta}(x_{i}){_j})$$
 
 This is pretty similar to the binary cross entropy loss we defined above, but since we have multiple classes we need to sum over all of them. The loss $$L_i$$ for a particular training example is given by 
 
-$$ L_{i} = - \log p(Y = y_{i} \vert X = x_{i})$$. 
+$$L_{i} = - \log p(Y = y_{i} \vert X = x_{i})$$. 
 
 In particular, in the inner sum, only one term will be non-zero, and that term will be the $$\log$$ of the (normalized) probability assigned to the correct class. Intuitively, this makes sense because $$\log(x)$$ is increasing on the interval $$(0, 1)$$ so $$-\log(x)$$ is decreasing on that interval. For example, if we have a score of 0.8 for the correct label, our loss will be 0.09, if we have a score of .08 our loss would be 1.09.
 
