@@ -30,6 +30,8 @@ Summing across $$N$$ of these samples in our dataset, we can write down the like
 
 Next, we can take the log of our likelihood function to obtain the log-likelihood, a function that is easier to differentiate and overall nicer to work with: 
 
+$\vert 1 + 5 \vert$$
+
 ​				$$l(x, y) = -\frac{1}{2}\sum_{i=1}^{N}(y_i - (\theta_0 + \theta_1x_i))^2$$
 
 This gives us the MSE: 
