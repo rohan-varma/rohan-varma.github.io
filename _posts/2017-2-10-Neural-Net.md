@@ -364,11 +364,13 @@ def compute_dropout(self, activations, p):
         return activations
 ```
 
-With these modificaitons, our neural network is less prone to overfitting and generalizes better. The full source code for the neural network can be found [here](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetwork.py), along with an [iPython notebook](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetDemo.ipynb) with a demonstration on the MNIST dataset.
+With these modificaitons, our neural network is less prone to overfitting and generalizes better. The full source code for the neural network can be found [here](https://github.com/rohan-varma/neuralnets/blob/master/NeuralNetwork.py), along with an [iPython notebook](https://github.com/rohan-varma/neuralnets/blob/master/NeuralNetDemo.ipynb) with a demonstration on the MNIST dataset.
 
 **Error Corrections/Changes**
 
 - (1/16/18): Realized that I forgot to scale the activations when using dropout, so I added a note for that. Also fixed in the code with [this](https://github.com/rohan-varma/neuralnets/commit/1040f5f091a38e369e933fde6d72f7f49e84b049) commit.
+- (1/16/18): Fixed broken links to source code.
+
 
 **References**
 
