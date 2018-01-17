@@ -352,18 +352,23 @@ def forward(self, X, w1, w2, do_dropout = True):
         return a1, z2, a2, z3, a3
 ```
 
-In order to actually compute the dropout, we can randomly sample the activations to set to 0 from a binomial distribution with probability p, which is yet another hyperparameter that must be tuned:
+In order to actually compute the dropout, we can randomly sample the activations to set to 0 from a binomial distribution with probability p, which is yet another hyperparameter that must be tuned. When using dropout, its also important to scale the activations by p when doing a prediction (which doesn't use dropout). This is because during training time, the average value of a certain neuron will be $$px + (1-p)x$$, where x was the activation before applying dropout. To keep the same average output when dropout is off during prediction time, we should scale the activations by p. This is equivalent to dividing the activations by p when training, and we'd prefer to do that to be more efficient while predicting. The [CS 231n lectures](http://cs231n.github.io/neural-networks-2/) explain this dropout scaling concept well. 
 
 
 ```python
 def compute_dropout(self, activations, p):
         """Sets a proportion p of the activations to zero"""
-        mult = np.random.binomial(1, 1-p, size = activations.shape)
+        mult = np.random.binomial(1, p, size = activations.shape)
+        activations/=p
         activations*=mult
         return activations
 ```
 
 With these modificaitons, our neural network is less prone to overfitting and generalizes better. The full source code for the neural network can be found [here](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetwork.py), along with an [iPython notebook](https://github.com/rohan-varma/neuralnets/blob/master/neuralnetwork/NeuralNetDemo.ipynb) with a demonstration on the MNIST dataset.
+
+**Error Corrections/Changes**
+
+- (1/16/18): Realized that I forgot to scale the activations when using dropout, so I added a note for that. Also fixed in the code with [this](https://github.com/rohan-varma/neuralnets/commit/1040f5f091a38e369e933fde6d72f7f49e84b049) commit.
 
 **References**
 
