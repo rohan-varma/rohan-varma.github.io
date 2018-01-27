@@ -12,7 +12,6 @@ Please send me a [pull request](http://google.com) if you find any mistakes, ina
 - [Probabalistic Interpretation for Linear Regression & Gradient Descent](https://github.com/rohan-varma/CS-188/blob/master/notes/Probabalistic%20Interpretation%20and%20SGD.ipynb)
 - [Linear & Logistic Regression, Convexity, Hessian Matrices, and closed-form solutions](https://github.com/rohan-varma/CS-188/blob/master/notes/Lecture%207%20and%208%20-%20Logistic%20Regression%2C%20Linear%20Regression%2C%20Gradient%20Descent.ipynb)
 - [Regularized (ridge) linear regression](https://github.com/rohan-varma/CS-188/blob/master/notes/Lecture%2010%20-%20Regularization%20and%20Overfitting%20.ipynb)
-- 
 
 #### Regularization & Preventing Overfitting
 - [L1 and L2 regularization basics](https://github.com/rohan-varma/machine-learning-courses/blob/master/cs231n/notes/Regularization%20Notes.ipynb) 
