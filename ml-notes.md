@@ -30,3 +30,6 @@ Please send me a [pull request](http://google.com) if you find any mistakes, ina
 #### Probability and Linear Algebra
 - [Linear Algebra primer](https://uclaacmai.github.io/deeplearning-book-notes/Ch2-Linear-Algebra)
 
+#### Misc
+- [Xavier initialization of weights](https://github.com/rohan-varma/machine-learning-courses/blob/master/cs231n/notes/Explanation%20of%20Xavier%20Initialization.ipynb)
+
