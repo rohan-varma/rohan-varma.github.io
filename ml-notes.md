@@ -24,7 +24,7 @@ Please send me a [pull request](http://google.com) if you find any mistakes, ina
 - [Kernelized SVMs](https://github.com/rohan-varma/CS-188/blob/master/notes/Lecture%2013%20-%20Kernelizing%20SVMs.ipynb)
 
 #### Convolutional Networks
-- [Convolutioal Networks, Filter Sizes](https://github.com/rohan-varma/machine-learning-courses/blob/master/cs231n/notes/ConvNets%20Notes.ipynb)
+- [Convolutional Networks, Filter Sizes](https://github.com/rohan-varma/machine-learning-courses/blob/master/cs231n/notes/ConvNets%20Notes.ipynb)
 
 
 #### Probability and Linear Algebra
