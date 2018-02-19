@@ -4,7 +4,7 @@ title: Training very deep networks with Batchnorm
 mathjax: True
 ---
 
-![loss](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/loss3.jpg)
+![grad](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/batchnorm_grad_first_layer.png)
 
 Training very deep neural networks is hard. It turns out one significant issue with deep neural networks is that the activations of each layer tend to converge to 0 in the later layers, and therefore the gradients vanish as they backpropagate throughout the network.
 
