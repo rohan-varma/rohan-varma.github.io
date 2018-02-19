@@ -1,178 +1,214 @@
 ---
 layout: post
-title: Picking Loss Functions - A comparison between MSE, Cross Entropy, and Hinge Loss
+title: Training very deep networks with Batchnorm
 mathjax: True
 ---
 
 ![loss](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/loss3.jpg)
 
-Loss functions are a key part of any machine learning model: they define an objective against which the performance of your model is measured, and the setting of weight parameters learned by the model is determined by minimizing a chosen loss function. There are several different common loss functions to choose from: the cross-entropy loss, the mean-squared error, the huber loss, and the hinge loss - just to name a few. Given a particular model, each loss function has particular properties that make it interesting - for example, the (L2-regularized) hinge loss comes with the maximum-margin property, and the mean-squared error when used in conjunction with linear regression comes with convexity guarantees.
+Training very deep neural networks is hard. It turns out one significant issue with deep neural networks is that the activations of each layer tend to converge to 0 in the later layers, and therefore the gradients vanish as they backpropagate throughout the network.
 
-In this post, I'll discuss three common loss functions: the mean-squared (MSE) loss, cross-entropy loss, and the hinge loss. These are the most commonly used functions I've seen used in traditional machine learning and deep learning models, so I thought it would be a good idea to figure out the underlying theory behind each one, and when to prefer one over the others. 
+A lot of this has to do with the sheer size of the network - obviously as you multiply numbers less than zero together over and over, they’ll converge to zero, and that’s partially why network architectures such as InceptionV3 insert auxiliary classifiers after layers earlier on in their network, so there’s a stronger gradient signal back propagated during the first few epochs of training.
 
+However, there’s also a more subtle issue that leads to this problem of vanishing activations and gradients. It has to do with the initialization of the weights in each layer of our network, and the subsequent distributions of the activations in our network. Understanding this issue is key to understanding why batch normalization helps fix this issue.
 
-#### The Mean-Squared Loss: Probabalistic Interpretation
+First, we can write some code to generate some random data, and forward it through a dummy deep neural network:
 
-For a model prediction such as $$h_\theta(x_i) = \theta_0 + \theta_1x$$ (a simple linear regression in 2 dimensions) where the inputs are a feature vector $$x_i$$, the mean-squared error is given by summing across all $$N$$ training examples, and for each example, calculating the squared difference from the true label $$y_i$$ and the prediction $$h_\theta(x_i)$$:
+```python
+n_examples, hidden_layer_dim = 100, 100
+input_dim = 1000
+X = np.random.randn(n_examples, input_dim) # 100 examples of 1000 points
+n_layers = 20
+layer_dim = [hidden_layer_dim] * n_layers # each one has 100 neurons
 
-$$ J = \frac{1}{N} \sum_{i=1}^{N} (y_i - h_\theta(x_i))^2$$
+hs = [X] # stores the hidden layer activations 
+zs = [X] # stores the affine transforms in each layer, used for backprop
+ws = [] # stores the weights
 
- It turns out we can derive the mean-squared loss by considering a typical linear regression problem. 
-
-With linear regression, we seek to model our real-valued labels $$Y$$ as being a linear function of our inputs $$X$$, corrupted by some noise. Let's write out this assumption: 
-
-$$Y = \theta_0 + \theta_1x + \eta$$ 
-
-And to solidify our assumption, we'll say that $$\eta$$ is Gaussian noise with 0 mean and unit variance, that is $$\eta \sim N(0, 1)$$. This means that $$E[Y] = E[\theta_0 + \theta_1x + \eta] = \theta_0 + \theta_1x$$ and $$Var[Y] = Var[\theta_0 + \theta_1x + \eta] = $$,1 so $$Y$$ is also Gaussian with mean $$\theta_0 + \theta_1x$$ and variance 1. 
-
-We can write out the probability of observing a single $$(x_i, y_i)$$ sample: 
-
-$$ p(y_i \vert x_i) = e^{-\frac{(y_{i} - (\theta_{0} + \theta_{1}x_{i}))^2}{2}} $$
-
-Summing across $$N$$ of these samples in our dataset, we can write down the likelihood - essentially the probability of observing all $$N$$ of our samples. Note that we also make the assumption that our data are independent of each other, so we can write out the likelihood as a simple product over each individual probability: 
-
-$$ L(x, y) = \prod_{i=1}^{N}e^{-\frac{(y_i - (\theta_0 + \theta_1x_i))^2}{2}}$$
-
-Next, we can take the log of our likelihood function to obtain the log-likelihood, a function that is easier to differentiate and overall nicer to work with: 
-
-$$l(x, y) = -\frac{1}{2}\sum_{i=1}^{N}(y_i - (\theta_0 + \theta_1x_i))^2$$
-
-This gives us the MSE: 
-
-$$J = \frac{1}{2}\sum_{i=1}^{N}(y_i - \theta^Tx_i)^2$$
-
-Essentially, this means that using the MSE loss makes sense if the assumption that your outputs are a real-valued function of your inputs, with a certain amount of irreducible Gaussian noise, with constant mean and variance. If these assumptions don't hold true (such as in the context of classification), the MSE loss may not be the best bet.
-
-#### The Cross-Entropy Loss: Probabalistic Interpretation
-
-In the context of classification, our model's prediction $$h_\theta(x_i)$$ will be given by $$\sigma(Wx_i + b)$$ which produces a value between $$0$$ and $$1$$ that can be interpreted as a probability of example $$x_i$$ belonging to the positive class. If this probability were less than $$0.5$$ we'd classify it as a negative example, otherwise we'd classify it as a positive example. This means that we can write down the probabilily of observing a negative or positive instance:
-
-$$ p(y_i = 1 \vert x_i)  = h_\theta(x_i)$$ and $$p(y_i = 0 \vert x_i) = 1 - h_\theta(x_i)$$
-
-We can combine these two cases into one expression:
-
-$$p(y_i | x_i) = [h_\theta(x_i)]^{(y_i)} [1 - h_\theta(x_i)]^{(1 - y_i)}$$
-
-Invoking our assumption that the data are independent and identically distributed, we can write down the likelihood by simply taking the product across the data:
-
-$$ L(x, y) = \prod_{i = 1}^{N}[h_\theta(x_i)]^{(y_i)} [1 - h_\theta(x_i)]^{(1 - y_i)}$$
-
-Similar to above, we can take the log of the above expression and use properties of logs to simplify, and finally invert our entire expression to obtain the cross entropy loss: 
-
-$$ J = -\sum_{i=1}^{N} y_i\log (h_\theta(x_i)) + (1 - y_i)\log(1 - h_\theta(x_i))$$
-
-#### The Cross-Entropy Loss in the case of multi-class classification
-
-Let's supposed that we're now interested in applying the cross-entropy loss to multiple (> 2) classes. The idea behind the loss function doesn't change, but now since our labels $$y_i$$ are one-hot encoded, we write down the loss (slightly) differently:
-
-$$ -\sum_{i=1}^{N} \sum_{j=1}^{K} y_{ij} \log(h_{\theta}(x_{i}){_j})$$
-
-This is pretty similar to the binary cross entropy loss we defined above, but since we have multiple classes we need to sum over all of them. The loss $$L_i$$ for a particular training example is given by 
-
-$$L_{i} = - \log p(Y = y_{i} \vert X = x_{i})$$. 
-
-In particular, in the inner sum, only one term will be non-zero, and that term will be the $$\log$$ of the (normalized) probability assigned to the correct class. Intuitively, this makes sense because $$\log(x)$$ is increasing on the interval $$(0, 1)$$ so $$-\log(x)$$ is decreasing on that interval. For example, if we have a score of 0.8 for the correct label, our loss will be 0.09, if we have a score of .08 our loss would be 1.09.
-
-Another variant on the cross entropy loss for multi-class classification also adds the other predicted class scores to the loss: 
-
-$$- \sum_{i=1}^{N} \sum_{j=1}^{K} y_{ij} \log(h_{\theta}(x_{i})_{j}) + (1-y_{ij})log(1 - h_{\theta}(x_{i})_{j})$$
-
-The second term in the inner sum essentially inverts our labels and score assignments: it gives the other predicted classes a probability of $$1 - s_j$$, and penalizes them by the $$\log$$ of that amount (here, $$s_j$$ denotes the $$j$$th score, which is the $$j$$th element of $$h_\theta(x_i)$$). 
-
-This again makes sense - penalizing the incorrect classes in this way will encourage the values $$1 - s_j$$ (where each $$s_j$$ is a probability assigned to an incorrect class) to be large, which will in turn encourage $$s_j$$ to be low. This alternative version seems to tie in more closely to the binary cross entropy that we obtained from the maximum likelihood estimate, but the first version appears to be more commonly used both in practice and in teaching.
-
-It turns out that it doesn't really matter which variant of cross-entropy you use for multiple-class classification, as they both decrease at similar rates and are just offset, with the second variant discussed having a higher loss for a particular setting of scores. To show this, I [wrote some code](https://github.com/rohan-varma/machine-learning-courses/blob/master/cs231n/loss.py) to plot these 2 loss functions against each other, for probabilities for the correct class ranging from 0.01 to 0.98, and obtained the following plot: 
-
-
-
-![loss](https://raw.githubusercontent.com/rohan-varma/machine-learning-courses/master/cs231n/loss.png)
-
-
-
-#### Cross Entropy Loss: An information theory perspective
-
-As mentioned in the [CS 231n lectures](http://cs231n.github.io/linear-classify/), the cross-entropy loss can be interpreted via information theory. In information theory, the Kullback-Leibler (KL) divergence measures how "different" two probability distributions are. We can think of our classification problem as having 2 different probability distributions: first, the distribution for our actual labels, where all the probability mass is concentrated on the correct label, and there is no probability mass on the rest, and second, the distribution which we are learning, where the concentrations of probability mass are given by the outputs of the running our raw scores through a softmax function.
-
-In an ideal world, our learned distribution would match the actual distribution, with 100% probability being assigned to the correct label. This can't really happen since that would mean our raw scores would have to be $$\infty$$ and $$-\infty$$ for our correct and incorrect classes respectively, and, more practically, constraints we impose on our model (i.e. using logistic regression instead of a deep neural net) will limit our ability to correctly classify every example with high probability on the correct label.
-
-Interpreting the cross-entropy loss as minimizing the KL divergence between 2 distributions is interesting if we consider how we can extend cross-entropy to different scenarios. For example, a lot of datasets are only partially labelled or have noisy (i.e. occasionally incorrect) labels. If we could probabilistically assign labels to the unlabelled portion of a dataset, or interpret the incorrect labels as being sampled from a probabalistic noise distribution, we can still apply the idea of minimizing the KL-divergence, although our ground-truth distribution will no longer concentrate all the probability mass over a single label.
-
-#### Differences in learning speed for classification
-
-It turns out that if we're given a typical classification problem, we can show that (at least theoretically) the cross-entropy loss leads to quicker learning through gradient descent than the MSE loss. First, let's recall the gradient descent update rule:
-
-```
-For i = 1 ... N:
-    Compute dJ/dw_i for i = 1 ... M parameters
-    Let w_i = w_i - learning_rate * dJ/dw_i
+# the forward pass
+for i in np.arange(n_layers):
+	h = hs[-1] # get the input into this hidden layer
+	#W = np.random.randn(h.shape[0], layer_dim[i]) * np.sqrt(2)/(np.sqrt(200) * np.sqrt(3))
+	#W = np.random.uniform(-np.sqrt(6)/(200), np.sqrt(6)/200, size = (h.shape[0], layer_dim[i]))
+	W = np.random.normal(0, np.sqrt(2/(h.shape[0] + layer_dim[i])), size = (layer_dim[i], h.shape[0]))
+	#W = np.random.normal(0, np.sqrt(2/(h.shape[0] + layer_dim[i])), size = (layer_dim[i], h.shape[0])) * 0.01
+	z = np.dot(W, h)
+	h_out = z * (z > 0)
+	ws.append(W)
+	zs.append(z)
+	hs.append(h_out)
 ```
 
-Essentially, the gradient descent algorithm computes partial derivatives for all the parameters in our network, and updates the parameters by decrementing the parameters by their respective partial derivatives, times a constant known as the learning rate, taking a step towards a local minimum. 
+Now that we have a list of each layer’s hidden activations stored in **hs**, we can go ahead and plot the activations to see what their distribution looks like. Here, I’ve included plots of the activations at the final hidden layers in our 20 layer network:
 
-This means that the "speed" of learning is dictated by two things: the learning rate and the size of the partial derivative. The learning rate is a hyperparameter that we must tune, so we'll focus on the size of the partial derivatives for now. Consider the following binary classification scenario: we have an input feature vector $$x_i$$, a label $$y_i$$, and a prediction $$\hat{y_i} = h_\theta(x_i)$$. 
+![act19](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/activation_19.png)
 
-We'll show that given our model $$h_\theta(x) = \sigma(Wx_i + b)$$, learning can occur much faster during the beginning phases of training if we used the cross-entropy loss instead of the MSE loss. And we want this to happen, since at the beginning of training, our model is performing poorly due to the weights being randomly initialized. 
+![act20](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/activation_20.png)
 
-First, given our prediction $$\hat{y_i} = \sigma(Wx_i + b)$$ and our loss $$J = \frac{1}{2}(y_i - \hat{y_i})^2$$ , we first obtain the partial derivative $$\frac{dJ}{dW}$$, applying the chain rule twice:
+What’s important to notice is that in later layers, *nearly all of the activations are zero* (just look at the scale of the axes). If we look at the distributions of these activations, it’s clear that they differ significantly with respect to each other - the first activation takes on a clear Gaussian shape around 0, while successive hidden layers have most of their activations at 0, with rapidly decreasing variance. This is what the [batch normalization paper](https://arxiv.org/pdf/1502.03167.pdf) refers to as *internal covariate shift* - it basically means that the distributions of activations differ with respect to each other.
 
-$$\frac{dJ}{dW} = (y_i - \hat{y_i})\sigma'(Wx_i + b)x_i$$
+**Why does this matter, and why is this bad?**
 
-This derivative has the term $$\sigma'(Wx_i + b)$$ in it. This can be expressed as $$\sigma(Wx_i + b)(1 - \sigma(Wx_i + b))$$ (see here for a proof). Since we initialized our weights randomly with values close to 0, this expression will be very close to 0, which will make the partial derivative nearly vanish during the early stages of training. A plot of the sigmoid curve's derivative is shown below, indicating that the gradients are small whenever the outputs are close to $$0$$ or $$1$$: 
+This is bad mostly due to the small, and decreasing variance in the distributions of our activations across layers. Having zero activations is fine, unless nearly all your activations are zero. To understand why this is bad, we need to look at the backwards pass of our network, which is responsible for computing each gradient dLdwidLdwi across each hidden layer in our network. Given the following formulation of an arbitrary layer in our network: $$h_i=relu(W_ih_i−1+b_i)$$ where $$h_i$$ denotes the activations of the *i*th layer in our network, we can construct the local gradient $$\frac{dL}{dW_i}$$. Given an upstream gradient into this layer $$\frac{dL}{dh_i}$$, we can compute the local gradient with the chain rule:
 
-![sigmoid](http://ronny.rest/media/blog/2017/2017_08_10_sigmoid/sigmoid_and_derivative_plot.jpg)
+$$\frac{dL}{dW_i} = \frac{dL}{dh_i} * \frac{dh_i}{dw_i}$$
 
-This can lead to slower learning at the beginning stages of gradient descent, since the smaller derivatives change each weight by only a small amount, and gradient descent takes a while to get out of this loop and make larger updates towards a minima.
+Applying the derivatives, we obtain:
 
-On the other hand, given the cross entropy loss: 
+$$\frac{dL}{dw_i} = \frac{dL}{dh_i}( \mathbb{1}(W_ih_{i-1} + b > 0))h_{i-1}$$
 
-$$J = -\sum_{i=1}^{N} y_i\log(\sigma (Wx_i + b)) + (1-y_i)\log(1 - \sigma(Wx_i + b))$$
+**What does this tell us about our gradients for our weights?**
 
-We can obtain the partial derivative $$ \frac{dJ}{dW}$$ as follows (with the substitution $$\sigma(z) = \sigma(Wx_i + b)$$:
+The expression for the gradient of our weights is intuitive: for every element in the incoming gradient matrix, pass the gradient through if this layer’s linear transformation would activate the relu neuron at that element, and scale the gradient by our input into this layer. Otherwise, zero out the gradient.
 
-$$\frac{dJ}{dW} = -\sum_{i=1}^{N} \frac{y_i x_i\sigma'(z)}{\sigma(z)} - \frac{(1-y_i)x_i \sigma'(z)}{1 - \sigma(z)} $$
+This means that if the incoming gradient at a certain element wasn’t already zero, it will be scaled by the input into this layer. The input in this layer is just the activations from the previous layer in our network. And as we discussed above, essentially all of those activations were zero.
 
-Simplifying, we obtain a nice expression for the gradient of the loss function with respect to the weights: 
+Therefore, nearly all of the gradients backpropagated through our network will be zero, and few weight updates, if any, will occur. In the final few layers of our network, this isn’t as much of a problem, since the number of times a gradient has had the opportunity to be “scaled” by a zero activation is small, but after we backpropagate even a few layers, chances are high that the gradient is already zero.
 
-$$\sum_{i=1}^{N} x_i(\sigma(z) - y_i)$$
+In order to see if this is actually true, we can write out the backwards pass of our 20 layer network, and plot the gradients as we did with our activations. The following code computes the gradients using the expression given above, for all layers in our network:
 
-This derivative does not have a $$\sigma'$$ term in it, and we can see that the magnitude of the derivative is entirely dependent on the magnitude of our error $$\sigma(z) - y_i$$ - how far off our prediction was from the ground truth. This is great, since that means early on in learning, the derivatives will be large, and later on in learning, the derivatives will get smaller and smaller, corresponding to smaller adjustments to the weight variables, which makes intuitive sense since if our error is small, then we'd want to avoid large adjustments that could cause us to jump out of the minima. Michael Nielsen in his [book](http://neuralnetworksanddeeplearning) has an in-depth discussion and illustration of this that is really helpful.
+```python
+dLdh = 100 * np.random.randn(hidden_layer_dim, input_dim) # random incoming grad into our last layer
+h_grads = [dLdh] # store the incoming grads into each layer
+w_grads = [] # store dL/dw for each layer
 
-#### Hinge Loss vs Cross-Entropy Loss
+for i in np.flip(np.arange(1, n_layers), axis = 0):
+	# get the incoming gradient
+	incoming_loss_grad = h_grads[-1]
+	# backprop through the relu
+	dLdz = incoming_loss_grad * (zs[i] > 0) # zs was the result of Wx + b
+	# get the gradient dL/dh_{i-1}, this will be the incoming grad into the next layer
+	h_grad = ws[i-1].T.dot(dLdz) # ws[i-1] are our weights at this layer
+	# get the gradient of the weights of this layer (dL/dw)
+	weight_grad = dLdz.dot(hs[i-1].T) # hs[i-1] was our input into this layer
+	h_grads.append(h_grad)
+	w_grads.append(weight_grad)
+```
 
-There's actually another commonly used type of loss function in classification related tasks: the hinge loss. The (L2-regularized) hinge loss leads to the canonical support vector machine model with the max-margin property: the margin is the smallest distance from the line (or more generally, hyperplane) that separates our points into classes and defines our classification:
+Now, we can plot our gradients for our earlier layers and see if our hypothesis was true:
 
-![svm](https://docs.opencv.org/2.4.13.4/_images/optimal-hyperplane.png)
+![grad1](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/grad_layer2.png)
 
-The hinge loss penalizes predictions not only when they are incorrect, but even when they are correct but not confident. It penalizes gravely wrong predictions significantly, correct but not confident predictions a little less, and only confident, correct predictions are not penalized at all. Let's formalize this by writing out the hinge loss in the case of binary classification: 
+![grad3](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/grad_layer_3.png)
 
-$$\sum_{i} max(0, 1 - y_{i} * h_{\theta}(x_{i}))$$
+![grad4](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/grad_layer_4.png)
 
-Our labels $$y_{i}$$ are either -1 or 1, so the loss is only zero when the signs match and $$\vert (h_{\theta}(x_{i}))\vert \geq 1$$. For example, if our score for a particular training example was $$0.2$$ but the label was $$-1$$, we'd incur a penalty of $$1.2$$, if our score was $$-0.7$$ (meaning that this instance was predicted to have label $$-1$$) we'd still incur a penalty of $$0.3$$, but if we predicted $$-1.1$$ then we would incur no penalty. A visualization of the hinge loss (in green) compared to other cost functions is given below:
+![grad20](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/grads_layer_20.png)
 
+As we can see, for the final layer vanishing gradients aren’t an issue, but they are for earlier layers - in fact, after a few layers nearly all of the gradients are zero). This will result in extremely slow learning (if at all).
 
+**Ok, but what does batch normalization have to do any of this?**
 
-![hinge loss](https://i.stack.imgur.com/4DFDU.png)
-
-
-
-The main difference between the hinge loss and the cross entropy loss is that the former arises from trying to maximize the margin between our decision boundary and data points - thus attempting to ensure that each point is correctly and confidently classified*, while the latter comes from a maximum likelihood estimate of our model's parameters. The softmax function, whose scores are used by the cross entropy loss, allows us to interpret our model's scores as relative probabilities against each other. For example, the cross-entropy loss would invoke a much higher loss than the hinge loss if our (un-normalized) scores were $$[10, 8, 8]$$ versus $$[10, -10, -10]$$, where the first class is correct. In fact, the (multi-class) hinge loss would recognize that the correct class score already exceeds the other scores by more than the margin, so it will invoke zero loss on both scores. Once the margins are satisfied, the SVM will no longer optimize the weights in an attempt to "do better" than it is already.
+Batch normalization is a way to fix the root cause of our issue of zero activations and vanishing gradients: reducing internal covariate shift. We want to ensure that the variances of our activations do not differ too much from each other. Batch normalization does this by normalizing each activation in a batch:
 
 
-#### Wrap-Up
 
-In this post, we've show that the MSE loss comes from a probabalistic interpretation of the regression problem, and the cross-entropy loss comes from a probabalistic interpretaion of binary classification. The MSE loss is therefore better suited to regression problems, and the cross-entropy loss provides us with faster learning when our predictions differ significantly from our labels, as is generally the case during the first several iterations of model training. We've also compared and contrasted the cross-entropy loss and hinge loss, and discussed how using one over the other leads to our models learning in different ways. Thanks for reading, and hope you enjoyed the post! 
-  
+$$x_k = \frac{x_k - \mu_B}{\sqrt{\sigma^2_B + \epsilon}}$$
 
-#### Sources
+Here, we denote$$ x_k$$ to be a certain activation, and $$\mu_B$$, $$\sigma^2_B$$ to be the mean and variance across the minibatch for that activation. A small constant $$\epsilon$$ is added to ensure that we don't divide by zero. 
 
-1. [Michael Nielsen's Neural Networks and Deep Learning, Chapter 3](http://neuralnetworksanddeeplearning.com/chap3.html)
+This constrains all hidden layer activations to have zero mean and unit variance, so the variances in our hidden layer activations should not differ too much from each other, and therefore we shouldn’t have nearly all our activations be zero.
 
-2. [Stanford CS 231n notes on cross entropy and hinge loss](http://cs231n.github.io/linear-classify/)
+It’s important to note here that batch normalization doesn’t *force* the network activations to rigidly follow this distribution at all times, because the above result is scaled and shifted by some parameters before being passed as input into the next layer:
 
-3. [OpenCV introduction to SVMs](https://docs.opencv.org/2.4.13.4/doc/tutorials/ml/introduction_to_svm/introduction_to_svm.html)
+$$y_k = \gamma \hat{x_i} + \beta$$
 
-4. [StackExchange answer on hinge loss minimization](https://math.stackexchange.com/questions/782586/how-do-you-minimize-hinge-loss)
+This allows the network to “undo” the previous normalization procedure if it wants to, such as if $$y_k$$ was an input into a sigmoid neuron, we may not want to normalize at all, because doing so may constrain the expressivity of the sigmoid neuron.
 
-5. [Machine Learning, Princeton University](https://www.cs.princeton.edu/courses/archive/fall16/cos402/lectures/402-lec5.pdf)
+**Does normalizing our inputs into the next layer actually work?**
 
-6. [Ronny Restrepo, sigmoid functions](http://ronny.rest/blog/post_2017_08_10_sigmoid/)
+With batch normalization, we can be confident that the distributions of our activations across hidden layers are reasonably similar. If this is true, then we know that the gradients should have a wider distribution, and not be nearly all zero, following the same scaling logic described above.
+
+Let’s add batch normalization to our forward pass to see if the activations have reasonable variances. Our forward pass changes in only a few lines:
+
+```python
+n_examples, hidden_layer_dim = 100, 100
+input_dim = 1000
+X = np.random.randn(n_examples, input_dim) # 100 examples of 1000 points
+n_layers = 20
+layer_dim = [hidden_layer_dim] * n_layers # each one has 100 neurons
+
+hs = [X] # save hidden states
+hs_not_batchnormed = [X] # saves the results before we do batchnorm, because we need this in the backward pass.
+zs = [X] # save affine transforms for backprop
+ws = [] # save the weights
+gamma, beta = 1, 0
+# the forward pass
+for i in np.arange(n_layers):
+	h = hs[-1] # get the input into this hidden layer
+	W = np.random.normal(size = (layer_dim[i], h.shape[0])) * 0.01 # weight init: gaussian around 0
+	z = np.dot(W, h)
+	h_out = z * (z > 0)
+	# save the not batchnormmed part for backprop
+	hs_not_batchnormed.append(h_out)
+	# apply batch normalization
+	h_out = (h_out - np.mean(h_out, axis = 0)) / np.std(h_out, axis = 0)
+	# scale and shift
+	h_out = gamma * h_out + beta
+	ws.append(W)
+	zs.append(z)
+	hs.append(h_out)
+```
+
+Using the results of this forward pass (again stored in **hs**), we can plot a few of the activations:
+
+![act4](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/batchnorm_activation_4.png)
+
+![act20](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/batchnorm_activation_19.png)
+
+![act20](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/batchnorm_activation_20.png)
+
+This is great! Our later activations now have a much more reasonable distribution compared to previously, where they were all almost zero - just compare the scales of the axes on the batchnorm graphs against the non-original graphs.
+
+Let’s see if this makes any difference in our gradients. First, we have to rewrite our original backwards pass to accommodate the gradients for the batchnorm operation. The gradients I used in the batchnorm layer are the ones given by the [original paper](https://arxiv.org/pdf/1502.03167.pdf). Our backwards pass now becomes:
+
+
+
+```python
+dLdh = 0.01 * np.random.randn(hidden_layer_dim, input_dim) # random incoming grad into our last layer
+h_grads = [dLdh] # incoming grads into each layer
+w_grads = [] # will hold dL/dw_i for each layer
+
+# the backwards pass
+for i in np.flip(np.arange(1, n_layers), axis = 0):
+	# get the incoming gradient
+	incoming_loss_grad = h_grads[-1]
+	# backprop through the batchnorm layer
+	#the y_i is the restult of batch norm, so h_out or hs[i]
+	dldx_hat = incoming_loss_grad * gamma
+	dldvar = np.sum(dldx_hat * (hs_not_batchnormed[i] - np.mean(hs_not_batchnormed[i], axis = 0)) * -.5 * np.power(np.var(hs_not_batchnormed[i], axis = 0), -1.5), axis = 0)
+	dldmean = np.sum(dldx_hat * -1/np.std(hs_not_batchnormed[i], axis = 0), axis = 0) + dldvar * -2 * (hs_not_batchnormed[i] - np.mean(hs_not_batchnormed[i], axis = 0))/hs_not_batchnormed[i].shape[0]
+	# the following is dL/hs_not_batchnormmed[i] (aka dL/dx_i) in the paper!
+	dldx = dldx_hat * 1/np.std(hs_not_batchnormed[i], axis = 0) + dldvar * -2 * (hs_not_batchnormed[i] - np.mean(hs_not_batchnormed[i], axis = 0))/hs_not_batchnormed[i].shape[0] + dldmean/hs_not_batchnormed[i].shape[0]
+	# although we don't need it for this demo, for completeness we also compute the derivatives with respect to gamma and beta. 
+	dldgamma = incoming_loss_grad * hs[i]
+	dldbeta = np.sum(incoming_loss_grad)
+	# now incoming_loss_grad should be replaced by that backpropped result
+	incoming_loss_grad = dldx
+	# backprop through the relu
+	print(incoming_loss_grad.shape)
+	dLdz = incoming_loss_grad * (zs[i] > 0)
+	# get the gradient dL/dh_{i-1}, this will be the incoming grad into the next layer
+	h_grad = ws[i-1].T.dot(dLdz)
+	# get the gradient of the weights of this layer (dL/dw)
+	weight_grad = dLdz.dot(hs[i-1].T)
+	h_grads.append(h_grad)
+	w_grads.append(weight_grad)
+```
+
+Using this backwards pass, we can now plot our gradients. We expect them to no longer be nearly all zero, which will mean that avoiding internal covariate shift fixed our vanishing gradients problem:
+
+![bngrad1](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/batchnorm_grad_first_layer.png)
+
+![bngrad3](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/batchnorm_grad_second_layer.png)
+
+Awesome! Looking at our gradients early in the network, we can see that they follow a roughly normal distribution with plenty of non-zero, large-magnitude values. Since our gradients are much more reasonable than previously, where they were nearly all zero, we are more confident that learning will occur at a reasonable rate, even for a large deep neural network (20 layers). We’ve successfully used batch normalization to fix the most common issue in training deep neural networks!
+
+P.S. - all the code used to generate the plots used in this answer are available [here](https://github.com/rohan-varma/nn-init-demo/).
+
+
+
+#### References
+
+1. [Batch Normalization Paper](https://arxiv.org/abs/1502.03167)
+2. [CS 231n Lecture on Batch Normlization](cs231n.stanford.edu)
