@@ -21,7 +21,7 @@ From Fall 2015 to Winter 2017, I was an undergraduate machine learning researche
 
 With the help of several officers, I currently run [AI at UCLA](https://github.com/uclaacmai/), a committee of the umbrella organization [ACM at UCLA](http://acm.cs.ucla.edu). We teach machine learning topics through regular workshops as well as work on projects and read papers and books together. Most of our work is currently in deep learning. This past spring, we hosted a series of weekly [Tensorflow workshops](http://github.com/uclaacmai/tf-workshop-series/). 
 
-Other than that, I've previously tutor lower division computer science classes as a part of [Upsilon Pi Epsilon](http://upe.seas.ucla.edu), hosted potential UCLA freshman as part of an outreach program by UCLA's [Regents Scholars Society](http://www.rssla.org/), and worked on consulting projects as a member of [Bruin Consulting](http://bruinconsulting.org).
+Other than that, I've previously tutor lower division computer science classes as a part of [Upsilon Pi Epsilon](http://upe.seas.ucla.edu), and hosted potential UCLA freshman as part of an outreach program by UCLA's [Regents Scholars Society](http://www.rssla.org/).
 
 ### Personal Projects
 
