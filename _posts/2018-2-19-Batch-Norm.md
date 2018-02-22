@@ -39,7 +39,9 @@ for i in np.arange(n_layers):
 	hs.append(h_out)
 ```
 
-Now that we have a list of each layer’s hidden activations stored in **hs**, we can go ahead and plot the activations to see what their distribution looks like. Here, I’ve included plots of the activations at the final hidden layers in our 20 layer network:
+Now that we have a list of each layer’s hidden activations stored in **hs**, we can go ahead and plot the activations to see what their distribution looks like. Here, I’ve included plots of the activations at the first and final hidden layers in our 20 layer network:
+
+![act0](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/activation_0.png)
 
 ![act19](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/activation_19.png)
 
@@ -49,21 +51,27 @@ What’s important to notice is that in later layers, *nearly all of the activat
 
 **Why does this matter, and why is this bad?**
 
-This is bad mostly due to the small, and decreasing variance in the distributions of our activations across layers. Having zero activations is fine, unless nearly all your activations are zero. To understand why this is bad, we need to look at the backwards pass of our network, which is responsible for computing each gradient dLdwidLdwi across each hidden layer in our network. Given the following formulation of an arbitrary layer in our network: $$h_i=relu(W_ih_i−1+b_i)$$ where $$h_i$$ denotes the activations of the *i*th layer in our network, we can construct the local gradient $$\frac{dL}{dW_i}$$. Given an upstream gradient into this layer $$\frac{dL}{dh_i}$$, we can compute the local gradient with the chain rule:
+This is bad mostly due to the small, and decreasing variance in the distributions of our activations across layers. Having zero activations is fine, unless nearly all your activations are zero. To understand why this is bad, we need to look at the backwards pass of our network, which is responsible for computing each gradient $\frac{dL}{dW_i}$ across each hidden layer in our network. Given the following formulation of an arbitrary layer in our network: $$h_i=relu(W_ih_{i−1}+b_i)$$ where $$h_i$$ denotes the activations of the *i*th layer in our network, we can construct the local gradient $$\frac{dL}{dW_i}$$. Given an upstream gradient into this layer $$\frac{dL}{dh_i}$$, we can compute the local gradient with the chain rule:
 
-$$\frac{dL}{dW_i} = \frac{dL}{dh_i} * \frac{dh_i}{dw_i}$$
+$$\frac{dL}{dW_i} = \frac{dh_i}{dW_i} * \frac{dL}{dh_i} $$
 
 Applying the derivatives, we obtain:
 
-$$\frac{dL}{dw_i} = \frac{dL}{dh_i}( \mathbb{1}(W_ih_{i-1} + b > 0))h_{i-1}$$
+$$\frac{dL}{dW_i} = [\mathbb{1}(W_ih_{i-1} + b > 0) \odot \frac{dL}{dh_i}]h_{i-1}^T$$
+
+Concretely, we can take our loss function for a single point to be given by the squared error, i.e. $L_i = \frac{1}{2}(y-t)^2$, and if we were at the last layer of our network (i.e. $h_i = y$), our upstream gradient would be $\frac{dL}{dh_i} = h_i - t$. This would give us a gradient of 
+
+$$\frac{dL}{dW_i} = [\mathbb{1}(W_ih_{i-1} + b > 0) \odot (h_i - t)]h_{i-1}^T$$ 
+
+in the final layer of our network. 
 
 **What does this tell us about our gradients for our weights?**
 
 The expression for the gradient of our weights is intuitive: for every element in the incoming gradient matrix, pass the gradient through if this layer’s linear transformation would activate the relu neuron at that element, and scale the gradient by our input into this layer. Otherwise, zero out the gradient.
 
-This means that if the incoming gradient at a certain element wasn’t already zero, it will be scaled by the input into this layer. The input in this layer is just the activations from the previous layer in our network. And as we discussed above, essentially all of those activations were zero.
+This means that if the incoming gradient at a certain element wasn’t already zero, it will be scaled by the input into this layer. The input in this layer is just the activations from the previous layer in our network. And as we discussed above, nearly all of those activations were zero.
 
-Therefore, nearly all of the gradients backpropagated through our network will be zero, and few weight updates, if any, will occur. In the final few layers of our network, this isn’t as much of a problem, since the number of times a gradient has had the opportunity to be “scaled” by a zero activation is small, but after we backpropagate even a few layers, chances are high that the gradient is already zero.
+Therefore, nearly all of the gradients backpropagated through our network will be zero, and few weight updates, if any, will occur. In the final few layers of our network, this isn't as much of a problem. We have a strong gradient signal (i.e. $h_i - t$ in the example above) coming from the gradient of our loss function with respect to the outputs of our network (since it is early in learning, and our predictions are inaccurate). However, after we backpropagate this signal even a few layers, chances that the gradient is zeroed out become extremely high. 
 
 In order to see if this is actually true, we can write out the backwards pass of our 20 layer network, and plot the gradients as we did with our activations. The following code computes the gradients using the expression given above, for all layers in our network:
 
@@ -202,7 +210,11 @@ Using this backwards pass, we can now plot our gradients. We expect them to no l
 
 ![bngrad3](https://raw.githubusercontent.com/rohan-varma/nn-init-demo/master/plots/batchnorm_grad_second_layer.png)
 
-Awesome! Looking at our gradients early in the network, we can see that they follow a roughly normal distribution with plenty of non-zero, large-magnitude values. Since our gradients are much more reasonable than previously, where they were nearly all zero, we are more confident that learning will occur at a reasonable rate, even for a large deep neural network (20 layers). We’ve successfully used batch normalization to fix the most common issue in training deep neural networks!
+Awesome! Looking at our gradients early in the network, we can see that they follow a roughly normal distribution with plenty of non-zero, large-magnitude values. Since our gradients are much more reasonable than previously, where they were nearly all zero, we are more confident that learning will occur at a reasonable rate, even for a large deep neural network (20 layers). We’ve successfully used batch normalization to fix one of the most common issues in training deep neural networks!
+
+#### Intuition for why Batch Normalization helps with better gradient signals
+
+When gradient descent updates a certain layer in our network with the gradient $\frac{dL}{dW_i}$, it is ignorant of the changes in statistics in other layers - for example, it implicitly assumes that the distribution of the activations of the previous layer (and hence the input into this layer) stay the same as it updates the current layer it is on. Without batch normalization, this assumption isn't true: gradient descent also eventually updates the weights in the previous layer, therefore changing the statistics of the output activations for that layer. Therefore, there could be a case where we update layer $i$ , but the distribution of the inputs into that layer change such that the update actually does *worse* on these new inputs. Batch normalization fixes this, by guaranteeing that the statistics of the input into each layer stay the same throughout the learning process. See [this explanation](https://www.youtube.com/watch?v=Xogn6veSyxA&feature=youtu.be&t=325) by Goodfellow for more on this.
 
 P.S. - all the code used to generate the plots used in this answer are available [here](https://github.com/rohan-varma/nn-init-demo/).
 
@@ -212,3 +224,11 @@ P.S. - all the code used to generate the plots used in this answer are available
 
 1. [Batch Normalization Paper](https://arxiv.org/abs/1502.03167)
 2. [CS 231n Lecture on Batch Normlization](cs231n.stanford.edu)
+
+
+
+#### Notes
+
+[2/21/18] - The code used in the forward and backward pass isn't completely accurate with respect to scaling the outputs by parameters $\gamma$ and $\beta$. In actuality, there is supposed to be a $\gamma_i$ and a $\beta_i$ for *each* activation in *each* hidden layer - for example, if we have a batch of $100$ activations and each activation has shape $1000$, there should be $1000$ $\gamma_i$s and $1000$ $\beta_i$s in each layer. I didn't bother to actually implement it this way as it doesn't affect the normalization process for the one step I illustrated.
+
+[2/22/18] - I applied batch normalization *after* the ReLU nonlinearity, whereas the original paper states that it is applied after the affine layer and *before* the nonlinearity. Apparently, their actual code applies it after the ReLU as well, and it was misstated in their paper. See [this Reddit thread](https://www.reddit.com/r/MachineLearning/comments/67gonq/d_batch_normalization_before_or_after_relu/) for more discussion. 
