@@ -229,6 +229,8 @@ P.S. - all the code used to generate the plots used in this answer are available
 
 #### Notes
 
+[2/19/18] - I originally wrote this as an [answer on Quora](https://www.quora.com/How-does-batch-normalization-help/answer/Rohan-Varma-8)
+
 [2/21/18] - The code used in the forward and backward pass isn't completely accurate with respect to scaling the outputs by parameters $\gamma$ and $\beta$. In actuality, there is supposed to be a $\gamma_i$ and a $\beta_i$ for *each* activation in *each* hidden layer - for example, if we have a batch of $100$ activations and each activation has shape $1000$, there should be $1000$ $\gamma_i$s and $1000$ $\beta_i$s in each layer. I didn't bother to actually implement it this way as it doesn't affect the normalization process for the one step I illustrated.
 
 [2/22/18] - I applied batch normalization *after* the ReLU nonlinearity, whereas the original paper states that it is applied after the affine layer and *before* the nonlinearity. Apparently, their actual code applies it after the ReLU as well, and it was misstated in their paper. See [this Reddit thread](https://www.reddit.com/r/MachineLearning/comments/67gonq/d_batch_normalization_before_or_after_relu/) for more discussion. 
