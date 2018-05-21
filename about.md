@@ -15,19 +15,7 @@ Over the summer of 2017, I worked at [Blend](http://blend.com) as a software eng
 
 ### Research
 
-From Fall 2015 to Winter 2017, I was an undergraduate machine learning researcher at [UCLA's Ozcan Research Group](http://innovate.ee.ucla.edu/), where I implemented the lab's first deep learning models that were used to automatically diagnose bloodborne and waterborne pathogen disease. Our group's work in the form of an abstract was presented at UCLA's Annual Undergraduate Research Day and a few other conferences. A [poster](https://www.slideshare.net/slideshow/embed_code/key/aWOGsmotZPmdGg) and [abstract](https://www.slideshare.net/slideshow/embed_code/key/5pWzzCrbE4oQxI) are available. 
-
-### Activities
-
-With the help of several officers, I currently run [AI at UCLA](https://github.com/uclaacmai/), a committee of the umbrella organization [ACM at UCLA](http://acm.cs.ucla.edu). We teach machine learning topics through regular workshops as well as work on projects and read papers and books together. Most of our work is currently in deep learning. This past spring, we hosted a series of weekly [Tensorflow workshops](http://github.com/uclaacmai/tf-workshop-series/). 
-
-Other than that, I've previously tutor lower division computer science classes as a part of [Upsilon Pi Epsilon](http://upe.seas.ucla.edu), and hosted potential UCLA freshman as part of an outreach program by UCLA's [Regents Scholars Society](http://www.rssla.org/).
-
-### Personal Projects
-
-I occassionally work on projects mostly in the field of machine learning and deep learning to learn more about the field and how to use what I've learned in practice. Some of my more interesting projects are [Machine Learning on Movie Reviews](https://github.com/rohan-varma/word2vec), a hackathon project that dealt with [identifying similar athletes](https://github.com/rohan-varma/awesome-athletes), a [bare-bones implementation of a Neural Network](https://github.com/rohan-varma/neuralnets), and a [machine learning library](https://github.com/rohan-varma/ml-algorithms) in Python. 
-
-Other in progress and miscellaneous projects are on my [Github](https://github.com/rohan-varma).
+From Fall 2015 to Winter 2018, I was an undergraduate machine learning researcher at [UCLA's Ozcan Research Group](http://innovate.ee.ucla.edu/), where I worked on deep learning models that were used to diagnose bloodborne and waterborne pathogen disease. Our group's work in the form of an abstract was presented at UCLA's Annual Undergraduate Research Day and a few other conferences. A [poster](https://www.slideshare.net/slideshow/embed_code/key/aWOGsmotZPmdGg) and [abstract](https://www.slideshare.net/slideshow/embed_code/key/5pWzzCrbE4oQxI) are available. 
 
 ### Writing
 I have enjoyed writing since high school, and I exercise that enjoyment on [Quora](http://quora.com/Rohan-Varma-8) and this blog. Below is a list of my favorite pieces I've written. 
@@ -47,7 +35,7 @@ I have enjoyed writing since high school, and I exercise that enjoyment on [Quor
 7. [Scaled ML Notes and Thoughts](https://medium.com/@rvarm1/scaled-ml-2017-thoughts-takeaways-fafc82ee4bb6)
 
 ### Explanations/Tutorials
-I've found that one of the best ways to learn something is by being able to explain it (ie the Feynman Technique). I've attempted to explain a few of the tricker concepts I've had trouble in and I'm more interested in, in the form of blog posts or Jupyter notebooks: 
+I've found that one of the best ways to learn something is by being able to explain it, so I've tried to do that in the following posts.
 
 1. [Word2Vec and Language Modeling](http://rohanvarma.me/Word2Vec/) and [discussion on HN](https://news.ycombinator.com/item?id=15578788)
 
