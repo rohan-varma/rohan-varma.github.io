@@ -1,7 +1,6 @@
 ---
 layout: post
 title: How Much do I use my Phone?
-mathjax: True
 ---
 
 
