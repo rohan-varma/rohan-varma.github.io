@@ -5,12 +5,16 @@ permalink: /about/
 ---
 
 
-Hi! I'm Rohan, a computer science student at UCLA. My main interests are machine learning/deep learning, math, running, playing chess, reading, and writing. I'm originally from San Jose, California.
+Hi! I'm Rohan, a computer science student at UCLA. My main interests are software engineering, machine learning, math, running, playing chess, reading, and writing. I'm originally from San Jose, California.
+
+### Work
+
+I will be joining [Facebook](https://code.facebook.com/posts/) as a software engineer in August 2019.
 
 ### Internships
 
-I will be joining [Affirm](http://affirm.com) as a machine learning intern in the spring of 2018 and [Facebook](https://code.facebook.com/posts/) as a software engineering intern in the summer of 2018.
-
+Over the summer of 2018, I worked at [Facebook](https://code.facebook.com/posts/) as a software engineering intern on video.
+Over the spring of 2018, I worked at [Affirm](http://affirm.com) as a machine learning intern on the machine learning platform team.
 Over the summer of 2017, I worked at [Blend](http://blend.com) as a software engineering intern on the intelligence team and over the summer of 2016 I worked at [Hudl](http://hudl.com) as a software engineering intern on the messaging team. 
 
 ### Research
