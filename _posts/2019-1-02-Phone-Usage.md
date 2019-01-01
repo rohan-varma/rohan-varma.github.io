@@ -311,7 +311,7 @@ To be fair, the month of April had a large amount of variability, so the mean of
 
 #### Concluding Remarks
 
-The data indicates that my phone occupies a pretty significant chunk of my waking hours on an average day. However, this data doesn't capture more granular information of whether I'm using my phone for more "useful" purposes such as necessary communication, homework/work-related stuff, calling a lyft/uber, getting directions, or talking/video chatting on the phone with someone, versus more typical time wasters (randomly checking social media/email for the 10000th+ time or just browsing around).
+The data indicates that my phone occupies a pretty significant chunk of my waking hours on an average day. I knew, like many people, that I used my phone a lot, but I didn't quite understand how much until I actually looked at the data. However, this data doesn't capture more granular information of whether I'm using my phone for more "useful" purposes such as necessary communication, homework/work-related stuff, calling a lyft/uber, getting directions, or talking on the phone, versus more typical time wasters (randomly checking social media/email for the 10000th+ time or just browsing around).
 
 The overall takeaway for me is to think of my phone more as a tool, instead of as a distraction for when I'm bored. Phones and applications can be incredibly useful in keeping us connected with our friends and family, getting from place to place, learning new things, or capturing incredible moments, but can also take away from the present moment. 
 
