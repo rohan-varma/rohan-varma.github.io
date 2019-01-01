@@ -100,7 +100,8 @@ Let's look at some more data, such as whether there's a difference between weekd
 
 ```python
 # separate weekdays and weekends, and plot each
-weekdays, weekends = [d.minutes for d in days if d.is_weekday], [d.minutes for d in days if not d.is_weekday]
+weekdays, weekends = [d.minutes for d in days if d.is_weekday]
+weekends = [d.minutes for d in days if not d.is_weekday]
 weekday_mean, weekend_mean = np.mean(weekdays), np.mean(weekends)
 weekday_std, weekend_std = np.std(weekdays), np.std(weekends)
 
@@ -232,12 +233,14 @@ plt.title('Weekly Phone Usage Distribution')
 plt.xticks(bins)
 plt.ylabel('Frequency (# of Weeks)')
 plt.xlabel('Weekly Phone Usage Time')
-plt.text(950, 12, r'$\mu={0:.2f},\ \sigma={1:.2f}$'.format(np.mean(weekly_usages), np.std(weekly_usages)))
+plt.text(950, 12, r'$\mu={0:.2f},\ \sigma={1:.2f}$'.format(
+	np.mean(weekly_usages), np.std(weekly_usages)))
 plt.grid(True)
 plt.show()
 
 max_weekly, min_weekly = max(weekly_usages), min(weekly_usages)
-print('{} minutes in highest-usage week, {} minutes in lowest-usage week'.format(max_weekly, min_weekly))
+print('{} minutes in highest-usage week, {} minutes in lowest-usage week'.format(
+max_weekly, min_weekly))
 ```
 
 
@@ -257,7 +260,8 @@ This is pretty interesting - it looks like my phone usage clustered around the 7
 ```python
 # parse months out of dates, and get those days corresponding to the month
 months = list(set(["-".join(day.date.split("-")[0:2]) for day in ordered_days]))
-month_to_days = {int(month.split("-")[1]): [day for day in ordered_days if month in day.date] for month in months}
+month_to_days = {int(month.split("-")[1]): 
+	[day for day in ordered_days if month in day.date] for month in months}
 
 # plot bar graph of monthly means
 monthly_means = [np.mean([day.minutes for day in li]) for li in list(month_to_days.values())]
@@ -272,7 +276,8 @@ plt.show()
 most_use_month, least_use_month = np.argmax(monthly_means) + 1, np.argmin(monthly_means) + 1
 
 most_use_days, least_use_days = month_to_days[most_use_month], month_to_days[least_use_month]
-most_use_mins, least_use_mins = [day.minutes for day in most_use_days], [day.minutes for day in least_use_days]
+most_use_mins = [day.minutes for day in most_use_days]
+least_use_mins = [day.minutes for day in least_use_days]
 
 def plot(month, mins):    
     bins = [i for i in range(0, max(mins) + 60, 60)]
