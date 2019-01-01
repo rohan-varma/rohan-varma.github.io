@@ -10,9 +10,6 @@ Towards the end of 2017, I started using an iOS app called [Moment](https://inth
 I decided to do some exploring to figure out just how much I've been using my phone on a daily basis, and see if there are any daily, weekly, or monthly differences - i.e. did I use my phone more on the weekends or on the weekdays? What follows is a Jupyter notebook that I created for analyzing this data and coming up with some interesting plots, as well as a bit of analysis. The code cells are collapsed so the reader can simply browse through the graphs and conclusions, but can be expanded if you're interested in the data munging needed to come up with the analysis.
 
 
-<details>
-  <summary>Click to expand code block</summary>
-
 ```python
 # imports
 import json
@@ -42,7 +39,6 @@ days = [Day(d) for d in day_data]
 # filter out non 2018
 days = [d for d in days if '2018' in d.date]
 ```
-</details>
 
 
 
