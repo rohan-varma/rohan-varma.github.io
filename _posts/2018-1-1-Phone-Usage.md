@@ -1,203 +1,342 @@
 ---
 layout: post
-title: Interpreting Regularization as a Bayesian Prior
+title: How Much do I use my Phone?
 mathjax: True
 ---
 
 
+Towards the end of 2017, I started using an iOS app called [Moment](https://inthemoment.io/), which tracks how much time you spent on your phone each day and how many different times you pick it up as well. Through using this application for the year of 2018 and poking around in the app for a way to export my day-by-day data, I was able to obtain a [JSON file](https://github.com/rohan-varma/phone-usage-tracking/blob/master/data/moment.json) consisting of my phone usage time and number of pickups for every day of the year.
 
-![img](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/reg.png)
+I decided to do some exploring to figure out just how much I've been using my phone on a daily basis, and see if there are any daily, weekly, or monthly differences - i.e. did I use my phone more on the weekends or on the weekdays? What follows is a Jupyter notebook that I created for analyzing this data and coming up with some interesting plots, as well as a bit of analysis. The code cells are collapsed so the reader can simply browse through the graphs and conclusions, but can be expanded if you're interested in the data munging needed to come up with the analysis.
 
-### Introduction/Background
 
-In machine learning, we often start off by writing down a probabalistic model that defines our data. We then go on to write down a likelihood or some type of loss function, which we then optimize over to get the optimal settings for the parameters that we seek to estimate. Along the way, techniques such as regularization, hyperparameter tuning, and cross-validation can be used to ensure that we don't overfit on our training dataset and our model generalizes well to unseen data. 
+<details>
+  <summary>Click to expand code block</summary>
 
-Specifically, we have a few key functions and variables: the underlying probability distribution $$ p(x, y) $$ which generate our training examples (pairs of features and labels), a training set $$ (x, y)_{i = 1}^{D} $$ of $$ D $$ examples which we observe, and a model $$ h(x) : x \rightarrow{} y $$ which we wish to learn in order to produce a mapping from $$ x $$ to $$ y $$. This function $$ h $$ is selected from a larger function space $$ H $$. 
+```python
+# imports
+import json
+import numpy as np
+from datetime import datetime
+import matplotlib.pyplot as plt
+%matplotlib inline
 
-For example, if we are in the context of linear regression models, then all functions in the function space of $$ H $$ will take on the form $$ y_i = x_{i}^T \beta $$ where a particular setting of our parameters $$ \beta $$ will result in a particular $$ h(x) $$. We also have some function $$ L(h(x), y) $$ that takes in our predictions and labels, and quantifies how accurate our model is across some data. 
+# a class to manage the phone usage data for a particular day
+class Day:
+    def __init__(self, day_dict):
+        self.minutes = day_dict['minuteCount']
+        self.pickups = day_dict['pickupCount']
+        # get the date and save if it is a weekday or not
+        self.date = day_dict['date'].split('T')[0]
+        self.is_weekday = datetime.strptime(self.date, '%Y-%M-%d').weekday() < 5
 
-Ideally, we'd like to minimize the risk function 
+    def __repr__(self):
+        return 'minutes: {0}, pickups: {1}, date: {2}'.format(self.minutes, self.pickups, self.date)
 
-$$ R[h(x)] = \sum_{(x, y)} L( h(x), y) p(x, y) $$ 
+# open and deserialize json, convert into day objects
+with open('data/moment.json') as f:
+	data = json.load(f)
 
-across all possible $$ (x, y)$$ pairs. However, this is impossible since we don't know the underlying probability distribution that describes our dataset, so instead we seek to approximate the risk function by minimizing a loss function across the data that we have observed: 
+day_data = next(iter(data.values()))
+days = [Day(d) for d in day_data]
+# filter out non 2018
+days = [d for d in days if '2018' in d.date]
+```
+</details>
 
-$$ \frac{1}{N} \sum_{i = 1}^{N} L(h(x), y) $$
 
-### Linear Models
 
-If we assume that our data are roughly linear, then we can write a relationship between our features and real-valued outputs: $$ y_i = x_i^T \beta + \epsilon $$ where $$ \epsilon \tilde{}  N(0, \sigma^2) $$. This essentially means that our data has a linear relationship that is corrupted by random Gaussian noise that has zero mean and constant variance. 
+<br />
+Here is what some of the raw JSON data coming from the Moment app looks like:
 
-This has the implication that $$ y_i $$ is a Gaussian random variable, and we can compute its expectation and variance:
+<details>
+  <summary>Click to expand code block</summary>
 
-$$ E[y_i] = E[x_i^T \beta + \epsilon] = x_i^T \beta $$ 
+```python
+print(day_data[0])
+```
+</details>
 
-$$ Var[y_i] = Var[x_i^T \beta + \epsilon] = \sigma^2 $$ 
+    {'pickupCount': 69, 'pickups': [], 'date': '2018-12-30T00:00:00+11:00', 'minuteCount': 181, 'appUsages': [], 'sessions': []}
 
-We can now write down the probability of observing a value $$ y_i $$ given a certain set of features $$ x $$: 
 
-$$ p(y_i | x_i) = N(y_i | x_i^T \beta, \sigma^2)$$
+To attempt to understand the overall data, we can find the mean and standard deviation of how many minutes per day I used my phone, as well as plot a histogram. 
 
-Next, we can write down the probability of observing the entire dataset of $$ (x, y) $$ pairs. This is known as the likelihood, and it's simply the product of observing each of the individual feature, label pairs:
+<details>
+  <summary>Click to expand code block</summary>
 
-$$ L(x,y) = \prod_{i = 1}^{n} N(y_i | x_i \beta, \sigma^2) $$
+```python
+minute_data = [d.minutes for d in days]
+mean_time, time_std = np.mean(minute_data), np.std(minute_data)
+# hourly bins
+bins = [i for i in range(0, max(minute_data) + 60, 60)]
 
-As a note, writing down the likelihood this way does assume that our training data are independent and identically distributed, meaning that we are assuming that each of the training samples have the same probability distribution, and are mutually independent.
+# plot overall usage
+n, bins, _ = plt.hist([minute_data], bins=bins)
+plt.xlabel('Minutes of Phone Usage')
+plt.xticks(bins)
+plt.ylabel('Frequency (# of Days)')
+plt.title('Histogram of Phone Usage Time')
+plt.text(300, 50, r'$\mu={0:.2f},\ \sigma={1:.2f}$'.format(mean_time, time_std))
+plt.grid(True)
+plt.show()
 
-If we want to find the $$\hat{\beta}$$ that maximizes the chance of us observing the training examples that we observed, then it makes sense to maximize the above likelihood. This is known as **maximum likelihood estimation**, and is a common approach to many machine learning problems such as linear and logistic regression. 
+# hour-by-hour data
+bin_ranges = [(bins[i], bins[i+1]) for i in range(len(bins)-1)]
+hours_to_num_days = dict(zip(bin_ranges, n))
+for k, v in sorted(hours_to_num_days.items()):
+    print('Between {0} and {1} hours of usage: {2} days'.format(k[0]/60, k[1]/60, int(v)))
 
-In other words, we want to find
+```
+</details>
 
-$$ \hat{\beta} = argmax_{\beta} \prod_{i = 1}^{n} N(y_i | x_i \beta, \sigma^2) $$
 
-To simplify this a little bit, we can write out the normal distribution, and also take the log of the function, since the $$\hat{\beta}$$ that maximizes $$L$$ will also maximize $$log(L)$$. We end up with
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_6_0.png)
 
-$$ \hat{\beta} = argmax_{\beta} log \prod_{i = 1}^{n} \frac{1}{\sqrt(2 \pi \sigma^2}e^-\frac{(y_i - x_i \beta)^2}{2 \sigma^2}$$
 
-Distributing the log and dropping constants (since they don't affect the value of our parameter which maximizes the expression), we obtain 
+    Between 0.0 and 1.0 hours of usage: 33 days
+    Between 1.0 and 2.0 hours of usage: 154 days
+    Between 2.0 and 3.0 hours of usage: 121 days
+    Between 3.0 and 4.0 hours of usage: 42 days
+    Between 4.0 and 5.0 hours of usage: 8 days
+    Between 5.0 and 6.0 hours of usage: 3 days
+    Between 6.0 and 7.0 hours of usage: 1 days
+    Between 7.0 and 8.0 hours of usage: 1 days
+    Between 8.0 and 9.0 hours of usage: 1 days
 
-$$ \hat{\beta} = argmax_{\beta} \sum_{i = 1}^{N} -(y_i - x_i \beta)^2 $$
 
-Since minimizing the opposite of a function is the same as maximizing it, we can turn the above into a minimization problem: 
+It looks like I spent an average of about 2 hours and 6 minutes on my phone each day, with a large standard deviation of 1 hour and 2 minutes. This is slightly lower than the [average time per day](https://hackernoon.com/how-much-time-do-people-spend-on-their-mobile-phones-in-2017-e5f90a0b10a6) spent on their phones by American adults, which comes in at 2 hours and 51 minutes. 
 
-$$ \hat{\beta} = argmin_{\beta} \sum_{i = 1}^{N} (y_i - x_i \beta)^2 $$
+In other words, I spent about 8.75% of my entire day on my phone. If you only consider waking hours and assume 8 hours of sleep per day, then I spent about 13% of my waking hours using my phone each day. Translated to a year, this means I spent a whopping 766.25 hours on my phone in 2018, or 31.93 days - more than an entire month! 
 
-This is the familiar least squares estimator, which says that the optimal parameter is the one that minimizes the $$ L2 $$ squared norm between the predictions and actual values. We can use gradient descent with some initial setting of $$ \beta $$ and be guaranteed to get to a global minimum (since the function is convex) or we can explicitly solve for $$ \beta $$ and obtain the same answer. 
+Another interesting thing to look at is the variability in my phone usage. Most days, I was around one to three hours of phone usage per day - this accounts for about 75% of all days of the year. However, there were a couple days with more than 6+ hours of phone usage per day, which definitely increased the variability in my phone usage. Looking back, I think that this makes sense, as I do use my phone a lot on days when I'm traveling or on a road trip, or if I'm just really bored that day and don't feel like doing anything else. 
 
+Let's look at some more data, such as whether there's a difference between weekdays and weekends.
 
-Right now is a good time to think about the assumptions of this linear regression model. Like many models, it assumes that the data are drawn independently from the same data generating distribution. Furthermore, it assumes that this distribution is normal with a linear mean and constant variance. It also has a more implicit assumption: that the parameter $$ \beta $$ which we wish to estimate is not a random variable itself, and we will show how relaxing this assumption leads to a regularized linear model. 
+<details>
+  <summary>Click to expand code block</summary>
 
-### Regularization
+```python
+# separate weekdays and weekends, and plot each
+weekdays, weekends = [d.minutes for d in days if d.is_weekday], [d.minutes for d in days if not d.is_weekday]
+weekday_mean, weekend_mean = np.mean(weekdays), np.mean(weekends)
+weekday_std, weekend_std = np.std(weekdays), np.std(weekends)
 
-Regularization is a popular approach to reducing a model's predisposition to overfit on the training data and thus hopefully increasing the generalization ability of the model. Previously, we sought to learn the optimial $$ h(x) $$ from the space of functions $$ H $$. However, if the whole function space can be explored, and our samples were observed with some amount of noise, then the model will likely select a function that overfits on the observed data. One way we can combat this is by limiting our search to a subspace within $$ H $$, and this is exactly what regularization does. 
+n, bins, _ = plt.hist(weekdays, bins=bins)
+plt.xlabel('Minutes of Phone Usage on Weekdays')
+plt.xticks(bins)
+plt.ylabel('Frequency (# of Days)')
+plt.title('Weekday Phone Usage Time')
+plt.text(300, 50, r'$\mu={0:.2f},\ \sigma={1:.2f}$'.format(weekday_mean, weekday_std))
+plt.grid(True)
+plt.show()
 
-To regularize a model, we take our loss function and add a regularizer to it. Regularizers take the form $$ \lambda R(\beta) $$ where $$ R(\beta) $$ is some function of our parameters, and $$ \lambda $$ is a hyperparameter describing our regularization constant. Using this rule, we can write out a regularized version of our loss function above, giving us a model known as ridge regression: 
+n, bins, _ = plt.hist(weekends, bins=bins, facecolor='orange')
+plt.xlabel('Minutes of Phone Usage on Weekends')
+plt.xticks(bins)
+plt.ylabel('Frequency (# of Days)')
+plt.title('Weekend Phone Usage Time')
+plt.text(300, 12, r'$\mu={0:.2f},\ \sigma={1:.2f}$'.format(weekend_mean, weekend_std))
+plt.grid(True)
 
-$$ \hat{\beta} = argmin_{\beta} \sum_{i = 1}^{N} (y_i - x_i \beta)^2 + \lambda \sum_{i = 1}^{j} \beta_j^2$$
 
-What's interesting about regularization is that it can be more deeply understood if we reconsider our original probabalistic model. In our original model, we conditioned our outputs on a linear function of the parameter which we wish to learn $$ \beta $$. It turns out we often want to also consider $$ \beta $$ itself as a random variable, and impose a probability distribution on it. This is known as the **prior** probability distribution, because we assign $$ \beta $$ some probability without having observed the associated $$ (x, y) $$ pairs. Imposing a prior would be especially useful if we had some information about the parameter before observing any of the training data (possibly from domain knowledge), but it turns out that imposing a Gaussian prior even in the absence of actual prior knowledge leads to interesting properties. In particular, we can condition $$ \beta $$ as on a Gaussian with 0 mean and constant variance [1]: 
+plt.show()
 
-$$ \beta \tilde{} N(0, \lambda^{-1}) $$
+```
+</details>
 
-As a consequence, we must adjust our probability of observing a particular $$(x, y)$$ pair to accommodate the probability of observing the parameter that generated this pair. We obtain a new expression for our likelihood: 
 
-$$ L(x,y) = \prod_{i = 1}^{n} N(y_i | x_i \beta, \sigma^2) N(\beta | 0, \lambda^{-1}) $$
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_8_0.png)
 
-Similar to the previously discussed method of maximum likelihood estimation, we can estimate the parameter $$ \beta $$ to be the $$ \hat{\beta} $$ that maximizes the above function: 
 
-$$ \hat{\beta} = argmax_{\beta} \sum_{i = 1}^{N} log N(y_i | x_i \beta, \sigma^2) + log N(\beta | 0, \lambda^{-1}) $$
 
-This is the maximum a posteriori estimate of $$ \beta $$, and it only differs from the maximum likelihood estimate in that the former takes into account previous information, or a prior distribution, on the parameter $$ \beta $$. In fact, the maximum likelihood estimate of the parameter can be seen as a special case of the maximum a posteriori estimate, where we take the prior probability distribution on the parameter to just be a constant. 
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_8_1.png)
 
-Since (dropping unneeded constants) $$ N(\beta, 0, \lambda^{-1}) = exp(\frac{- \beta^{2}}{2 \lambda^{-1}}) $$, after taking the log, and minimizing the negative of the above function we obtain the familiar regularizer $$ \frac{1}{2} \lambda \beta^2 $$ and our squared loss function $$ \sum_{i = 1}^{N} (y_i - x_i \beta)^2 $$ is the same as the loss function we obtained without regularization. In this way, $$ L2 $$ regularization on a linear model can be thought of as imposing a Bayesian prior on the underlying parameters which we wish to estimate. 
 
+This was really interesting to me - the mean and standard deviations for my weekend and weekday phone usage is essentially the same, and the distributions take on basically the same shape, indicating that there's essentially no difference in my phone usage on a weekend or weekday. This ran counter to my hypothesis that I'd use my phone a lot more on weekends, as I have more time since I don't have class or work. Next, lets see if there's any particular difference in phone usage on different days of the week, different weeks, and different months.
 
+<details>
+  <summary>Click to expand code block</summary>
 
+```python
+# separate each day of the week, and plot each.
+mon = [d.minutes for d in days if datetime.strptime(d.date, '%Y-%M-%d').weekday() == 0]
+tues = [d.minutes for d in days if datetime.strptime(d.date, '%Y-%M-%d').weekday() == 1]
+wed = [d.minutes for d in days if datetime.strptime(d.date, '%Y-%M-%d').weekday() == 2]
+thurs = [d.minutes for d in days if datetime.strptime(d.date, '%Y-%M-%d').weekday() == 3]
+fri = [d.minutes for d in days if datetime.strptime(d.date, '%Y-%M-%d').weekday() == 4]
+sat = [d.minutes for d in days if datetime.strptime(d.date, '%Y-%M-%d').weekday() == 5]
+sun = [d.minutes for d in days if datetime.strptime(d.date, '%Y-%M-%d').weekday() == 6]
 
+def plot(data, title):
+    global bins
+    n, bins, _ = plt.hist(data, bins=bins)
+    plt.title(title)
+    plt.xticks(bins)
+    plt.ylabel('Frequency (# of Days)')
+    plt.xlabel('Phone Usage Time')
+    plt.text(300, 12, r'$\mu={0:.2f},\ \sigma={1:.2f}$'.format(np.mean(data), np.std(data)))
+    plt.grid(True)
+    plt.show()
 
-### Aside: interpreting regularization in the context of bias and variance
+    
+plot(data=mon, title='Minutes of Phone Usage on Monday')
+plot(data=tues, title='Minutes of Phone Usage on Tuesday')
+plot(data=wed, title='Minutes of Phone Usage on Wednesday')
+plot(data=thurs, title='Minutes of Phone Usage on Thursday')
+plot(data=fri, title='Minutes of Phone Usage on Friday')
+plot(data=sat, title='Minutes of Phone Usage on Saturday')
+plot(data=sun, title='Minutes of Phone Usage on Sunday')
 
-The error of a statistical model can be decomposed into three distinct sources of error: error due to bias, error due to variance, and irreducible error. They are related as follows: 
+# plot overall for mean comparison
+means = [np.mean(x) for x in [mon, tues, wed, thurs, fri, sat, sun]]
+print(means)
+plt.bar(range(0,7), means)
+plt.title('Average Phone Usage for Day of Week')
+plt.ylabel('Average Phone Usage')
+plt.xlabel('Day of Week')
+plt.show()
+```
+</details>
 
-$$ Err(x) = bias(X)^2 + var(x) + \epsilon $$
 
-Given a constant error, this means that there will always be a tradeoff between bias and variance. Having too much bias or too much variance isn't good for a model, but for different reasons. A high bias, low variance model will likely end up being inaccurate across both the training and testing datasets, and its predictions will likely not deviate too much based on the data sample it is trained on. On the other hand, a low-bias, high-variance model will likely give good results on a training dataset, but fail to generalize as well on a testing dataset. 
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_0.png)
 
-The Gauss-Markov theorem states that in a linear regression problem, the least squares estimator has the lowest variance out of all other unbiased estimators. However, if we consider biased estimators such as the estimator given by ridge regression, we can arrive at a lower variance, higher-bias solution. In particular, the expectation of the ridge estimator (derived [here](http://math.bu.edu/people/cgineste/classes/ma575/p/w14_1.pdf)) is given by: 
 
-$$ \beta - \lambda (X^TX + \lambda I)^{-1} \beta $$
 
-The bias of an estimator is defined as the difference between the parameter's expected value and the true parameter $$ \beta $$: $$bias(\hat{\beta}) = E[\hat{\beta}] - \beta $$
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_1.png)
 
 
 
-As you can see, the bias is proportional to $$ \lambda $$ and $$ \lambda = 0$$ gives us the unbiased least squares estimator since $$ E[\hat{\beta}] = \beta $$. Therefore, assuming a constant total error for the least squares estimator and the ridge estimator, the variance for the ridge estimator is lower. A more complete discussion, including formal calculations for the bias and variance of the ridge estimator compared to the least squares estimator, is given [here](http://math.bu.edu/people/cgineste/classes/ma575/p/w14_1.pdf).
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_2.png)
 
 
 
-### A linear algebra perspective
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_3.png)
 
-To see why regularization makes sense from a linear algebra perspective, we can write down our least squares estimate in vectorized form: 
 
-$$ argmin_{\beta} { (y - X\beta)^T (y - X \beta) } $$
 
-Next, we can expand this and simplify a little bit: 
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_4.png)
 
-$$ argmin_{\beta} (y^T - \beta^TX^T)(y - X\beta) $$
 
-$$ = argmin_{\beta} -2y^TX\beta + \beta^TX^TX\beta $$
 
-where we have dropped the terms that are not a factor of $$ \beta $$ since they will zero out when we differentiate.
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_5.png)
 
-To minimize, we differentiate with respect to $$ \beta $$: 
 
-$$ \frac{\delta L}{\delta \beta} = -2 y^TX + 2X^TX\beta $$
 
-Setting the derivative equal to zero gives us the closed form solution of $$ \beta $$ which is the least-squares estimate [2]:
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_6.png)
 
-$$ \hat{\beta} = (X^TX)^{-1} y^TX $$
 
 
-As we can see, in order to actually compute this quantity the matrix $$ X^T X $$ must be invertible. The matrix $$ X^T X $$ being invertible corresponds exactly to showing that the matrix is positive definite, which means that the scalar quantity $$ z^T X^T X z > 0 $$ for any real, non-zero vectors $$ z $$. However, the best we can do is show that $$ X^T X $$ is positive semidefinite.
 
-To show that $$ X^TX $$ is positive semidefinite, we must show that the quantity $$ z^T X^T X z \geq 0 $$ for any real, non-zero vectors $$ z $$. 
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_8.png)
 
-If we expand out the quantity $$ X^T X $$, we obtain $$ \sum_{i = 1}^{N} x_i x_i^T $$ and it follows that the quantity $$ z^T (\sum_{i = 1}^{N} x_i x_i^T) z = \sum_{i = 1}^{N} (x_i^Tz)^2 \geq 0$$. This means that in sitautions where this quantity is exactly $$ 0 $$, the matrix $$ X^T X $$ cannot be inverted and a closed-form least squares solution cannot be computed. 
 
-On the other hand, expanding out our ridge estimate which has an extra regulariztion term $$ \lambda \sum_{i} \beta_i^2 $$, we obtain the derivative 
+We can see that there's a lot of similarity between the days of the weeks, though it looks like on average, I use my phone less on Thursdays, Fridays, and Sundays, while I use it comparatively more on Tuesdays, Wednesdays, and Saturdays. Overall though, we can see that each day's distribution is quite similar, taking on a mean of around two hours and a standard deviaton of around an hour. Let's examine weekly usage now.
 
-$$ \frac{\delta L}{\delta \beta} = -2 y^TX + 2X^TX\beta + 2 \lambda \beta $$ 
+<details>
+  <summary>Click to expand code block</summary>
 
-Setting this quantity equal to zero, and rewriting $$ \lambda \beta $$ as $$ \lambda I \beta $$ (using the property of multiplication with the identity matrix), we now obtain
+```python
+# extract weeks from the year by sorting days and going by sevens
+ordered_days = list(reversed(days))
+weeks = [ordered_days[i:i+7] for i in range(0, len(ordered_days), 7)]
+weekly_usages = [sum(d.minutes for d in week) for week in weeks]
 
-$$ \beta (X^TX + \lambda I) = y^T X $$ 
+# plot each week's usage in a bar graph
+plt.bar([i for i in range(len(weekly_usages))],weekly_usages)
+plt.xlabel('Week of the Year')
+plt.ylabel('Phone Usage Minutes')
+plt.title('Week-by-Week Phone Usage Minutes')
+plt.show()
 
-giving us the ridge estimate 
+# plot weekly usage histogram
+n, bins, _ = plt.hist(weekly_usages)
+plt.title('Weekly Phone Usage Distribution')
+plt.xticks(bins)
+plt.ylabel('Frequency (# of Weeks)')
+plt.xlabel('Weekly Phone Usage Time')
+plt.text(950, 12, r'$\mu={0:.2f},\ \sigma={1:.2f}$'.format(np.mean(weekly_usages), np.std(weekly_usages)))
+plt.grid(True)
+plt.show()
 
-$$\hat{\beta_{ridge}} = (X^TX + \lambda I)^{-1} y^TX $$
+max_weekly, min_weekly = max(weekly_usages), min(weekly_usages)
+print('{} minutes in highest-usage week, {} minutes in lowest-usage week'.format(max_weekly, min_weekly))
+```
+</details>
 
-The only difference in this closed-form solution is the addition of the $$ \lambda I $$ term to the quantity that gets inverted, so we are now sure that this quantity is positive definite if $$ \lambda > 0 $$. In other words, even when the matrix $$ X^T X $$ is not invertible, we can still compute a ridge estimate from our data [3]. 
 
-### Regularizers in neural networks
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_12_0.png)
 
-While techniques such as L2 regularization can be used while training a neural network, employing techniques such as dropout, which randomly discards some proportion of the activations at a per-layer level during training, have been shown to be much more successful. There is also a different type of regularizer that takes into account the idea that a neural network should have sparse activations for any particular input. There are several theoretical reeasons for why sparsity is important, a topic covered very well by Glorot et al. in a [2011 paper](http://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf).
 
-Since sparsity is important in neural networks, we can introduce a constraint that can gaurantee us some degree of sparsity. Specifically, we can constrain the average activation of a particular neuron in a particular hidden layer. 
 
-In particular, the average activation of a neuron in a particular layer, weighted by the input into the neuron, can be given by summing over all of the activation - input pairs: $$ \hat{\rho} = \frac{1}{m} \sum_{i = 1}^{N} x_i a_i^2 $$. Next, we can choose a hyperparameter $$ \rho $$ for this particular neuron, which represents the average activation we want it to have - for example, if we wanted this neuron to activate sparsely, we might set $$ \rho = 0.05 $$. In order to ensure that our model learns neurons which sparsely activate, we must incorporate some function of $$\hat{\rho} $$ and $$ \rho $$ into our cost function. 
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_12_1.png)
 
-One way to do this is with the [KL divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence), which computes how much one probability distribution (in this case, our current average activation $$ \hat\rho $$) and another expected probability distribution ($$ \rho $$) diverge from each other. If we minimize the KL divergence for each of our neuron's activations then our model will learn sparse activations. The cost function may be: 
 
-$$ J_{sparse} (W, b) = J(W, b) + \lambda \sum_{i = 1}^{M} KL(\rho_i || \hat{\rho_i}) $$
+    1685 minutes in highest-usage week, 580 minutes in lowest-usage week
 
-where $$ J(W, b) $$ is a regular cost function used in neural networks, such as the cross-entropy loss. The hyperparameter $$ \lambda $$ indicates how important sparsity is to us - as $$ \lambda \rightarrow{} \infty $$, we disregard the actual loss function and only aim to learn a sparse representation, and as $$\lambda \rightarrow{} 0 $$ we disregard the importance of sparse activations and only minimize the original loss function. Additional details on this type of regularization with application to sparse autoencoders are given [here](http://ufldl.stanford.edu/wiki/index.php/Autoencoders_and_Sparsity).
 
-### Recap ###
+This is pretty interesting - it looks like my phone usage clustered around the 700-900 minute range for many weeks, with frequent spikes up to the 1100+ minute range in a couple of the weeks. My highest-usage week was a whopping 1685 minutes, which 28 hours, or more than an entire day of the week spent solely on my phone. Finally, let's move on to monthly usage.
 
-As we have seen, regularization can be interpreted in several different ways, each of which gives us additional insight into what exactly regularization accomplishes. A few of the different interpretations are:
+<details>
+  <summary>Click to expand code block</summary>
 
-1) As a Bayesian prior on the paramaters which we are trying to learn.
+```python
+# parse months out of dates, and get those days corresponding to the month
+months = list(set(["-".join(day.date.split("-")[0:2]) for day in ordered_days]))
+month_to_days = {int(month.split("-")[1]): [day for day in ordered_days if month in day.date] for month in months}
 
-2) As a term added to the loss function of our model which penalizes some function of our parameters, thereby introducing a tradeoff between minimizing the original loss function and ensuring our weights do not deviate too much from what we want them to be.
+# plot bar graph of monthly means
+monthly_means = [np.mean([day.minutes for day in li]) for li in list(month_to_days.values())]
+plt.bar(list(month_to_days.keys()), monthly_means)
+plt.xlabel('Month (1 = Jan)')
+plt.ylabel('Average daily minutes of phone usage')
+plt.title('Average daily minutes of phone usage per month')
+plt.xticks(list(range(1,13)))
+plt.show()
 
-3) As a constraint on the model which we are trying to learn. This means we can take the original optimization problem and frame it in a constrained fashion, thereby ensuring that the magnitude of our weights never exceed a certain threshold (in the case of $$ L2 $$ regularization).
+# plot histograms of most and least used months.
+most_use_month, least_use_month = np.argmax(monthly_means) + 1, np.argmin(monthly_means) + 1
 
-4) As a method of reducing the function search space $$ H $$ to a new function search space $$ H' $$ that is smaller than $$ H $$. Without regularization, we may search for our optimal function $$ h $$ in a much larger space, and constraining this to a smaller subspace can lead us to select models with better generalization ability. 
+most_use_days, least_use_days = month_to_days[most_use_month], month_to_days[least_use_month]
+most_use_mins, least_use_mins = [day.minutes for day in most_use_days], [day.minutes for day in least_use_days]
 
-Overall, regularization is a useful technique that is often employed to reduce the overall variance of a model, thereby improving its generalization capability. Of course, there's tradeoffs in using regularization, most notably having to tune the hyperparameter $$ \lambda $$ which can be costly in terms of computational time. Thanks for reading!
+def plot(month, mins):    
+    bins = [i for i in range(0, max(mins) + 60, 60)]
+    n, bins, _ = plt.hist(mins, bins)
+    plt.xlabel('Minutes of Phone Usage')
+    plt.xticks(bins)
+    plt.ylabel('Frequency (# of Days)')
+    plt.title('Histogram of Phone Usage Time: Month {0:02d}'.format(month))
+    plt.text(300, 5, r'$\mu={0:.2f},\ \sigma={1:.2f}$'.format(np.mean(mins), np.std(mins)))
+    plt.grid(True)
+    plt.show()
 
+plot(most_use_month, most_use_mins)
+plot(least_use_month, least_use_mins)
+```
+</details>
 
-### Sources ###
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_0.png)
 
-1. [Boston University Linear Models Course by Cedric Ginestet](http://math.bu.edu/people/cgineste/classes/ma575/p/w14_1.pdf)
 
-2. [Autoencoders and Sparsity, Stanford UFDL](http://ufldl.stanford.edu/wiki/index.php/Autoencoders_and_Sparsity)
 
-3. [Explanation of MAP Estimation](https://math.stackexchange.com/questions/1582348/simple-example-of-maximum-a-posteriori/1582407)
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_1.png)
 
 
-[1] Imposing different prior distributions on the parameter leads to different types of regularization. A normal distribution with zero mean and constant variance leads to $$ L2 $$ regularization, while a Laplacean prior would lead to $$ L1 $$ regularization.
 
-[2] Technically, we've only shown that the $$ \hat{\beta} $$ we've found is a local optimum. We actually want to verify that this is indeed a global minimum, which can be done by showing that the function we are minimizing is convex.
+![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_2.png)
 
-[3] For completeness, it is worth mentioning that there are other solutions if the inverse of the matrix $$ X^T X $$ does not exist. One common workaround is to use the [Moore-Penrose Psuedoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_pseudoinverse) which can be computed using the singular value decompisition of the matrix being psuedo-inverted. This is commonly used in implementations of PCA algorithms. 
+
+It looks like my monthly phone usage was mostly consistent, usually hovering around the slightly above two hour mark, with a dip during the summer months and an increase during April and December. Over April, I used my phone for slightly over three hours a day on average (nearly 19% of my waking hours!) while using my phone for 1 hour and 43 minutes, or 10.7% of my waking hours, in the least-used month of August.
+
+To be fair, the month of April had a large amount of variability, so the mean of 3 hours doesn't really reflect my usual usage that month: April contained all three of the outliers in the entire year, where I used my phone for more than 6 hours. Honestly, I'm not too sure what may have happened, I either left my phone on accidently at some points during the month or more realistically just wasted a lot of time on a couple of days. 
+
+#### Concluding Remarks
+
+The data indicates that I sure do use my phone a lot, and it occupies a pretty significant chunk of my waking hours on an average day. It doesn't really tell the full story though, since this data doesn't capture more granular information of whether I'm using my phone for more "useful" purposes such as necessary communication, calling a lyft/uber, getting directions, or talking/video chatting on the phone with someone, versus more typical time wasters (randomly checking social media for the 10000th+ time or just browsing around).
+
+The overall takeaway for me is to think of my phone more as a tool, instead of as a distraction for when I'm bored. Phones and applications can be incredibly useful in keeping us connected with our friends and family, getting from place to place, learning new things, or capturing incredible moments, but can also take away from the present moment. 
+
+In 2019, I'm going to make a conscious effort to simply note when I use my phone immediately when boredom presents itself, such as during a long car ride, waiting for an elevator, or even just walking from place to place. Hopefully, this will make me more mindful when I use my phone to distract myself from the present moment, and in time, I can learn to turn off this deeply ingrained habit. Here's to being more present in 2019.
+
