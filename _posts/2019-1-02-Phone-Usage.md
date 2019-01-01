@@ -76,7 +76,7 @@ for k, v in sorted(hours_to_num_days.items()):
 
 ```
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_6_0.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_6_0.png)
 
 
     Between 0.0 and 1.0 hours of usage: 33 days
@@ -128,11 +128,11 @@ plt.show()
 ```
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_8_0.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_8_0.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_8_1.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_8_1.png)
 
 
 This was really interesting to me - the mean and standard deviations for my weekend and weekday phone usage is essentially the same, and the distributions take on basically the same shape, indicating that there's essentially no difference in my phone usage on a weekend or weekday. This ran counter to my hypothesis that I'd use my phone a lot more on weekends, as I have more time since I don't have class or work. Next, lets see if there's any particular difference in phone usage on different days of the week, different weeks, and different months.
@@ -179,36 +179,36 @@ plt.show()
 ```
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_0.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_0.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_1.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_1.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_2.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_2.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_3.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_3.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_4.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_4.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_5.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_5.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_6.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_6.png)
 
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_8.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_8.png)
 
 
 We can see that there's a lot of similarity between the days of the weeks, though it looks like on average, I use my phone less on Thursdays, Fridays, and Sundays, while I use it comparatively more on Tuesdays, Wednesdays, and Saturdays. Overall though, we can see that each day's distribution is quite similar, taking on a mean of around two hours and a standard deviaton of around an hour. Let's examine weekly usage now.
@@ -244,11 +244,11 @@ max_weekly, min_weekly))
 ```
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_12_0.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_12_0.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_12_1.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_12_1.png)
 
 
     1685 minutes in highest-usage week, 580 minutes in lowest-usage week
@@ -294,15 +294,15 @@ plot(most_use_month, most_use_mins)
 plot(least_use_month, least_use_mins)
 ```
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_0.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_0.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_1.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_1.png)
 
 
 
-![png](How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_2.png)
+![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_2.png)
 
 
 It looks like my monthly phone usage was mostly consistent, usually hovering around the slightly above two hour mark, with a dip during the summer months and an increase during April and December. Over April, I used my phone for slightly over three hours a day on average (nearly 19% of my waking hours!) while using my phone for 1 hour and 43 minutes, or 10.7% of my waking hours, in the least-used month of August.
