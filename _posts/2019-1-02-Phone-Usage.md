@@ -100,7 +100,7 @@ Let's look at some more data, such as whether there's a difference between weekd
 
 ```python
 # separate weekdays and weekends, and plot each
-weekdays, weekends = [d.minutes for d in days if d.is_weekday]
+weekdays = [d.minutes for d in days if d.is_weekday]
 weekends = [d.minutes for d in days if not d.is_weekday]
 weekday_mean, weekend_mean = np.mean(weekdays), np.mean(weekends)
 weekday_std, weekend_std = np.std(weekdays), np.std(weekends)
