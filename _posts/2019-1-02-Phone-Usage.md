@@ -5,9 +5,9 @@ mathjax: false
 ---
 
 
-Towards the end of 2017, I started using an iOS app called [Moment](https://inthemoment.io/), which tracks how much time you spent on your phone each day and how many different times you pick it up as well. Through using this application for the year of 2018 and poking around in the app for a way to export my day-by-day data, I was able to obtain a [JSON file](https://github.com/rohan-varma/phone-usage-tracking/blob/master/data/moment.json) consisting of my phone usage time and number of pickups for every day of the year.
+Towards the end of 2017, I started using an iOS app called [Moment](https://inthemoment.io/), which tracks how much time you spent on your phone each day and how many times you pick it up. Through using this application for the year of 2018 and poking around in the app for a way to export my day-by-day data, I was able to obtain a [JSON file](https://github.com/rohan-varma/phone-usage-tracking/blob/master/data/moment.json) consisting of my phone usage time and number of pickups for every day of the year.
 
-I decided to do some exploring to figure out just how much I've been using my phone on a daily basis, and see if there are any daily, weekly, or monthly differences - i.e. did I use my phone more on the weekends or on the weekdays? What follows is a Jupyter notebook that I created for analyzing this data and coming up with some interesting plots, as well as a bit of analysis.
+I decided to do some exploring to figure out just how much I've been using my phone on a daily basis, and see if there are any daily, weekly, or monthly differences - i.e. did I use my phone more on the weekends or on the weekdays? What follows is a Jupyter notebook that I created for analyzing this data and coming up with some plots, as well as a bit of analysis.
 
 ```python
 # imports
@@ -90,11 +90,11 @@ for k, v in sorted(hours_to_num_days.items()):
     Between 8.0 and 9.0 hours of usage: 1 days
 
 
-It looks like I spent an average of about 2 hours and 6 minutes on my phone each day, with a large standard deviation of 1 hour and 2 minutes. This is slightly lower than the [average time per day](https://hackernoon.com/how-much-time-do-people-spend-on-their-mobile-phones-in-2017-e5f90a0b10a6) spent on their phones by American adults, which comes in at 2 hours and 51 minutes. 
+It looks like I spent an average of about 2 hours and 6 minutes on my phone each day, with a standard deviation of 1 hour and 2 minutes. This is slightly lower than the [average time per day](https://hackernoon.com/how-much-time-do-people-spend-on-their-mobile-phones-in-2017-e5f90a0b10a6) spent on their phones by American adults, which comes in at 2 hours and 51 minutes. 
 
 In other words, I spent about 8.75% of my entire day on my phone. If you only consider waking hours and assume 8 hours of sleep per day, then I spent about 13% of my waking hours using my phone each day. Translated to a year, this means I spent a whopping 766.25 hours on my phone in 2018, or 31.93 days - more than an entire month! 
 
-Another interesting thing to look at is the variability in my phone usage. Most days, I was around one to three hours of phone usage per day - this accounts for about 75% of all days of the year. However, there were a couple days with more than 6+ hours of phone usage per day, which definitely increased the variability in my phone usage. Looking back, I think that this makes sense, as I do use my phone a lot on days when I'm traveling or on a road trip, or if I'm just really bored that day and don't feel like doing anything else. 
+Another interesting thing to look at is the variability in my phone usage. Most days, I was around one to three hours of phone usage per day - this accounts for about 75% of all days of the year. However, there were a couple days with more than 6+ hours of phone usage per day, which increased the variability in my phone usage. Looking back, I think that this makes sense, as I do use my phone a lot on days when I'm traveling or on a road trip, or if I'm just really bored that day and don't feel like doing anything else. 
 
 Let's look at some more data, such as whether there's a difference between weekdays and weekends.
 
@@ -135,7 +135,7 @@ plt.show()
 ![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_8_1.png)
 
 
-This was really interesting to me - the mean and standard deviations for my weekend and weekday phone usage is essentially the same, and the distributions take on basically the same shape, indicating that there's essentially no difference in my phone usage on a weekend or weekday. This ran counter to my hypothesis that I'd use my phone a lot more on weekends, as I have more time since I don't have class or work. Next, lets see if there's any particular difference in phone usage on different days of the week, different weeks, and different months.
+This was really interesting to me - the distributions for my weekday and weekend phone usage are quite similar, indicating that there's little difference in my phone usage on a weekend or weekday. This ran counter to my hypothesis that I'd use my phone a lot more on weekends, given that I don't have class or work. Next, lets see if there's any difference in phone usage on different days of the week, different weeks, and different months.
 
 
 ```python
@@ -211,7 +211,7 @@ plt.show()
 ![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_10_8.png)
 
 
-We can see that there's a lot of similarity between the days of the weeks, though it looks like on average, I use my phone less on Thursdays, Fridays, and Sundays, while I use it comparatively more on Tuesdays, Wednesdays, and Saturdays. Overall though, we can see that each day's distribution is quite similar, taking on a mean of around two hours and a standard deviaton of around an hour. Let's examine weekly usage now.
+We can see that there's a lot of similarity between the days of the weeks, though it looks like on average, I use my phone less on Thursdays, Fridays, and Sundays, while I use it comparatively more on Tuesdays, Wednesdays, and Saturdays. Overall, we can see that each day's distribution is similar, taking on a mean of around two hours and a standard deviaton of around an hour. Let's examine weekly usage now.
 
 
 ```python
@@ -254,7 +254,7 @@ max_weekly, min_weekly))
     1685 minutes in highest-usage week, 580 minutes in lowest-usage week
 
 
-This is pretty interesting - it looks like my phone usage clustered around the 700-900 minute range for many weeks, with frequent spikes up to the 1100+ minute range in a couple of the weeks. My highest-usage week was a whopping 1685 minutes, which 28 hours, or more than an entire day of the week spent solely on my phone. Finally, let's move on to monthly usage.
+This is pretty interesting - it looks like my phone usage clustered around the 700-900 minute range for many weeks, with frequent spikes up to the 1100+ minute range in a couple of the weeks. My highest-usage week was a whopping 1685 minutes, or over 28 hours, or more than an entire day of the week spent solely on my phone. Finally, let's move on to monthly usage.
 
 
 ```python
@@ -305,13 +305,13 @@ plot(least_use_month, least_use_mins)
 ![png](https://raw.githubusercontent.com/rohan-varma/phone-usage-tracking/master/How%20Much%20do%20I%20use%20my%20Phone%3F_files/How%20Much%20do%20I%20use%20my%20Phone%3F_14_2.png)
 
 
-It looks like my monthly phone usage was mostly consistent, usually hovering around the slightly above two hour mark, with a dip during the summer months and an increase during April and December. Over April, I used my phone for slightly over three hours a day on average (nearly 19% of my waking hours!) while using my phone for 1 hour and 43 minutes, or 10.7% of my waking hours, in the least-used month of August.
+It looks like my monthly phone usage was consistent, hovering around the slightly above two hour mark, with a dip during the summer months and an increase during April and December. Over April, I used my phone for slightly over three hours a day on average (nearly 19% of my waking hours!) while using my phone for 1 hour and 43 minutes, or 10.7% of my waking hours, in the least-used month of August.
 
-To be fair, the month of April had a large amount of variability, so the mean of 3 hours doesn't really reflect my usual usage that month: April contained all three of the outliers in the entire year, where I used my phone for more than 6 hours. Honestly, I'm not too sure what may have happened, I either left my phone on accidently at some points during the month or more realistically just wasted a lot of time on a couple of days. 
+To be fair, the month of April had a large amount of variability, so the mean of 3 hours doesn't really reflect my usual usage that month: April contained all three of the outliers in the entire year, where I used my phone for more than 6 hours. Honestly, I'm not too sure what may have happened, I either left my phone on accidently at some points during the month or more realistically just used my phone a lot those couple of days. 
 
 #### Concluding Remarks
 
-The data indicates that I sure do use my phone a lot, and it occupies a pretty significant chunk of my waking hours on an average day. It doesn't really tell the full story though, since this data doesn't capture more granular information of whether I'm using my phone for more "useful" purposes such as necessary communication, calling a lyft/uber, getting directions, or talking/video chatting on the phone with someone, versus more typical time wasters (randomly checking social media for the 10000th+ time or just browsing around).
+The data indicates that my phone occupies a pretty significant chunk of my waking hours on an average day. However, this data doesn't capture more granular information of whether I'm using my phone for more "useful" purposes such as necessary communication, homework/work-related stuff, calling a lyft/uber, getting directions, or talking/video chatting on the phone with someone, versus more typical time wasters (randomly checking social media/email for the 10000th+ time or just browsing around).
 
 The overall takeaway for me is to think of my phone more as a tool, instead of as a distraction for when I'm bored. Phones and applications can be incredibly useful in keeping us connected with our friends and family, getting from place to place, learning new things, or capturing incredible moments, but can also take away from the present moment. 
 
