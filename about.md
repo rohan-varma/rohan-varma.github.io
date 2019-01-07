@@ -13,13 +13,7 @@ I will be joining [Facebook](https://code.facebook.com/posts/) as a software eng
 
 ### Internships
 
-Over the summer of 2018, I worked at [Facebook](https://code.facebook.com/posts/) as a software engineering intern on video.
-
-Over the spring of 2018, I worked at [Affirm](http://affirm.com) as a machine learning intern on the machine learning platform team.
-
-Over the summer of 2017, I worked at [Blend](http://blend.com) as a software engineering intern on the intelligence team.
-
-Over the summer of 2016 I worked at [Hudl](http://hudl.com) as a software engineering intern on the messaging team. 
+Previously, I have worked at [Facebook](https://code.facebook.com/posts/), [Affirm](http://affirm.com), [Blend](http://blend.com), and [Hudl](http://hudl.com) in software engineering/machine learning roles.
 
 ### Research
 
