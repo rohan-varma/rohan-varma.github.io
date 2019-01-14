@@ -9,18 +9,18 @@ Hi! I'm Rohan, a computer science student at UCLA. My main interests are softwar
 
 ### Work
 
-I will be joining [Facebook](https://code.facebook.com/posts/) as a software engineer in August 2019.
+I will be joining [Facebook](https://code.facebook.com/posts/) as a software engineer after graduation.
 
 ### Internships
 
-Previously, I have worked at [Facebook](https://code.facebook.com/posts/), [Affirm](http://affirm.com), [Blend](http://blend.com), and [Hudl](http://hudl.com) in software engineering/machine learning roles.
+Previously, I worked at [Facebook](https://code.facebook.com/posts/), [Affirm](http://affirm.com), [Blend](http://blend.com), and [Hudl](http://hudl.com) in software engineering/machine learning roles.
 
 ### Research
 
-From Fall 2015 to Winter 2018, I was an undergraduate machine learning researcher at [UCLA's Ozcan Research Group](http://innovate.ee.ucla.edu/), where I worked on deep learning models that were used to diagnose bloodborne and waterborne pathogen disease. Our group's work in the form of an abstract was presented at UCLA's Annual Undergraduate Research Day and a few other conferences. A [poster](https://www.slideshare.net/slideshow/embed_code/key/aWOGsmotZPmdGg) and [abstract](https://www.slideshare.net/slideshow/embed_code/key/5pWzzCrbE4oQxI) are available. 
+From Fall 2015 to Winter 2018, I was an undergraduate machine learning researcher at [UCLA's Ozcan Research Group](http://innovate.ee.ucla.edu/), where I worked on deep learning models that were used to diagnose bloodborne and waterborne pathogen disease.
 
 ### Writing
-I have enjoyed writing since high school, and I exercise that enjoyment on [Quora](http://quora.com/Rohan-Varma-8) and this blog. Below is a list of my favorite pieces I've written. 
+I write about things on this blog, [Quora](http://quora.com/Rohan-Varma-8), and [Medium](https://medium.com/@rvarm1). Below is a list of my favorite pieces I've written. 
 
 1. [Getting Started in Machine Learning](https://medium.com/techatucla/getting-started-in-machine-learning-c68bdd739c44)
 
