@@ -85,7 +85,7 @@ It turns out that it doesn't really matter which variant of cross-entropy you us
 
 
 
-![loss](https://raw.githubusercontent.com/rohan-varma/machine-learning-courses/master/cs231n/loss.png)
+![loss](https://raw.githubusercontent.com/rohan-varma/machine-learning-notes/master/loss-experiment/loss.png)
 
 
 
