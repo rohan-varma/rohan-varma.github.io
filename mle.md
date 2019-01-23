@@ -24,7 +24,7 @@ The log-likelihood can be given by $$\frac{-1}{2\sigma^2}\sum_{n=1}^{N}(x_n - \m
 
 Maximum likelihood gives us:
 
-$$\hat{\mu} = \frac{1}{N}\sum_{n=1}^{N}x_n$ and $\sigma^2 = \frac{1}{N}\sum_{n=1}^{N}(x_n - \mu)^2$$ 
+$$\hat{\mu} = \frac{1}{N}\sum_{n=1}^{N}x_n$$ and $$\hat{\sigma^2} = \frac{1}{N}\sum_{n=1}^{N}(x_n - \mu)^2$$ 
 
 i.e., the typical values for the sample mean and (uncorrected) sample standard deviation. If we apply Bessel's correction and multiply the sample standard deviation by $$\frac{N}{N-1}$$ then we obtain an unbiased estimate for the standard deviation.
 
