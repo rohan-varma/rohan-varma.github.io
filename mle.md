@@ -31,7 +31,7 @@ i.e., the typical values for the sample mean and (uncorrected) sample standard d
 **Downsides of simple maximum likelihood estimation**
 
 - We can show that while the mean obtained through this estimation is unbiased, the variance is a biased estimate of the true distribution variance.
-  - *Unbiased* in this context means that $$E[\hat{\theta}] - \theta \neq{} 0$$
+  - *Biased* in this context means that $$E[\hat{\theta}] - \theta \neq{} 0$$
   - This further means that if you take a bunch of samples of $$x$$ (tending towards infinity) and predict $$\hat{\theta}$$ for each sample, then the difference between the average prediction and the actual parameter will be $$0$$. 
   - Practically, this doesn't say much since:
     - It doesn't make any statement about the difference of a single point estimate and the true parameter
