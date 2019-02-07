@@ -216,7 +216,7 @@ Gradient descent seeks to find the weights that bring our cost function to a glo
 
 We can still use gradient descent and get to a reasonably good set of weights, however. The art of doing this is an active area of deep learning research. Currently, a common method for implementing gradient descent for deep learning seems to be: 
 
-   1) Initializing your weights sensibly. This often involves some experimentation in how you initialize your weights. If your network is not very deep, initializing them randomly with small values and low variance usually works. If your network is deeper, larger values are preferred. [Xavier initialization](http://andyljones.tumblr.com/post/110998971763/an-explanation-of-xavier-initialization) is a useful algorithm that determines weight initialization with respect to the net's size.
+   1) Initializing your weights sensibly. This often involves some experimentation in how you initialize your weights. If your network is not very deep, initializing them randomly with small values and low variance usually works. If your network is deeper, larger values are preferred. [Xavier initialization](https://andyljones.tumblr.com/post/110998971763/an-explanation-of-xavier-initialization) is a useful algorithm that determines weight initialization with respect to the net's size.
    
    2) Choosing an optimal learning rate. If the learning rate is too large, gradient descent could end up actually diverging, or skipping over the minimum entirely since it takes steps that are too large. Likewise, if the learning rate is too small, gradient descent will converge much more slowly. In general, it is advisable to start off with a small learning rate and decay it over time as your function begins to converge. 
     
@@ -224,7 +224,7 @@ We can still use gradient descent and get to a reasonably good set of weights, h
     
    4) Use the momentum method. This involves remembering the previous gradients, and factoring in the direction of those previous gradients when calculating the current update. This has proved to be pretty successful, as Geoffrey Hinton discusses in [this video](https://www.youtube.com/watch?v=8yg2mRJx-z4).
 
-As a side note, the co-founder of OpenAI, Ilya Sutskever, has more about training deep neural networks with stochastic gradient descent [here](http://yyue.blogspot.com/2015/01/a-brief-overview-of-deep-learning.html)
+As a side note, the co-founder of OpenAI, Ilya Sutskever, has more about training deep neural networks with stochastic gradient descent [here](https://yyue.blogspot.com/2015/01/a-brief-overview-of-deep-learning.html)
     
 Here's an implementation of the fit() function: 
 
@@ -275,7 +275,7 @@ def fit(self, X, y, print_progress=True):
         return self
 ```
 
-To compute the actual gradients, we use the backpropagation algorithm that calculates the gradients that we need to update our weights from the outputs of our feed forward step. Essentially, we repeatedly apply the chain rule starting from our outputs until we end up with values for $$\frac{\delta L}{\delta W_1} $$ and $$ \frac{\delta L}{\delta W_2} $$. CS 231N provides an [excellent explanation](http://cs231n.github.io/optimization-2/) of backprop.
+To compute the actual gradients, we use the backpropagation algorithm that calculates the gradients that we need to update our weights from the outputs of our feed forward step. Essentially, we repeatedly apply the chain rule starting from our outputs until we end up with values for $$\frac{\delta L}{\delta W_1} $$ and $$ \frac{\delta L}{\delta W_2} $$. CS 231N provides an [excellent explanation](https://cs231n.github.io/optimization-2/) of backprop.
 
 Our forward pass was given by: 
 ```python
@@ -326,7 +326,7 @@ Dropout is a recently introduced, but very effective technique for reducing over
 
 When dropout is used, each neuron is forced to learn redundant representations of its features, meaning that it is less likely to only fire when an extremely specific set of features is seen. This leads to better generalization. Alternatively, dropout can be seen as training several different neural network architectures during training (since some neurons are sampled out). When the network is tested, we don't discard any activations, so it is similar to taking an average prediction from many different (though not independent) neural network architectures. 
 
-Dropout is very effective, often yielding better results than state-of-the-art regularization and early-stopping (stopping training when the error on validation dataset gets too high). In a [paper describing dropout](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf), researchers were able to train a 65-million parameter network on MNIST (which has 60,000 training examples) with only 0.95% error using dropout - overfitting would have been a huge issue if such a large network relied only on regularization methods. 
+Dropout is very effective, often yielding better results than state-of-the-art regularization and early-stopping (stopping training when the error on validation dataset gets too high). In a [paper describing dropout](https://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf), researchers were able to train a 65-million parameter network on MNIST (which has 60,000 training examples) with only 0.95% error using dropout - overfitting would have been a huge issue if such a large network relied only on regularization methods. 
 
 To implement dropout, we can set some of the activations computed to 0, and then pass that vector of results to the next layer. Forward propagation changes slightly:
 
@@ -352,7 +352,7 @@ def forward(self, X, w1, w2, do_dropout = True):
         return a1, z2, a2, z3, a3
 ```
 
-In order to actually compute the dropout, we can randomly sample the activations to set to 0 from a binomial distribution with probability p, which is yet another hyperparameter that must be tuned. When using dropout, its also important to scale the activations by p when doing a prediction (which doesn't use dropout). This is because during training time, the average value of a certain neuron will be $$px + (1-p)x$$, where x was the activation before applying dropout. To keep the same average output when dropout is off during prediction time, we should scale the activations by p. This is equivalent to dividing the activations by p when training, and we'd prefer to do that to be more efficient while predicting. The [CS 231n lectures](http://cs231n.github.io/neural-networks-2/) explain this dropout scaling concept well. 
+In order to actually compute the dropout, we can randomly sample the activations to set to 0 from a binomial distribution with probability p, which is yet another hyperparameter that must be tuned. When using dropout, its also important to scale the activations by p when doing a prediction (which doesn't use dropout). This is because during training time, the average value of a certain neuron will be $$px + (1-p)x$$, where x was the activation before applying dropout. To keep the same average output when dropout is off during prediction time, we should scale the activations by p. This is equivalent to dividing the activations by p when training, and we'd prefer to do that to be more efficient while predicting. The [CS 231n lectures](https://cs231n.github.io/neural-networks-2/) explain this dropout scaling concept well. 
 
 
 ```python
@@ -374,17 +374,17 @@ With these modificaitons, our neural network is less prone to overfitting and ge
 
 **References**
 
-[1] [The MNIST Database of Handwritten Digits](http://yann.lecun.com/exdb/mnist/)
+[1] [The MNIST Database of Handwritten Digits](https://yann.lecun.com/exdb/mnist/)
 
 [2] [Programming a Perceptron in Python](https://blog.dbrgn.ch/2013/3/26/perceptrons-in-python/) by Danilo Bargen
 
-[3] [Stanford CS 231N](http://cs231n.github.io/linear-classify/)
+[3] [Stanford CS 231N](https://cs231n.github.io/linear-classify/)
 
-[4] [Stanford Deep Learning Tutorial](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
+[4] [Stanford Deep Learning Tutorial](https://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
 
-[5] [Ameet Talwalkar, UCLA CS 260](http://web.cs.ucla.edu/~ameet/teaching/winter17/cs260/lectures/lec09.pdf)
+[5] [Ameet Talwalkar, UCLA CS 260](https://web.cs.ucla.edu/~ameet/teaching/winter17/cs260/lectures/lec09.pdf)
 
-[6] [Srivastava, Hinton, et. al, Dropout: A simple way to prevent Neural Networks from Overfitting](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
+[6] [Srivastava, Hinton, et. al, Dropout: A simple way to prevent Neural Networks from Overfitting](https://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
 
 [7] [Sebastian Raschka, Python Machine Learning, Chapter 12 Neural Networks](https://github.com/rasbt/python-machine-learning-book/blob/master/code/ch12/ch12.ipynb) for code samples
 

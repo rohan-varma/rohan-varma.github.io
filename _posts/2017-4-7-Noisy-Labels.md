@@ -42,9 +42,9 @@ If the training set is extremely large, this can be computationally prohibitive.
 
 ### Accuracy, Sensitivity/Recall, Specifity, and Precision
 - Accuracy is not always the best way to measure the ability of a model, and sometimes using it can be completely useless. Consider a scenario where you have 98 spam emails and 2 non-spam emails on a testing dataset. A model that gets 95% accuracy is not useful, as it performs worse than simply taking the majority label. Always be wary of accuracy percentages if they are not contextualized. 
-- To understand sensitivity (same as recall), specifitiy, and precision, we first consider the following diagram, from a blog post by [Yuval Greenfield](http://yuvalg.com/blog/2012/01/01/precision-recall-sensitivity-and-specificity/):
+- To understand sensitivity (same as recall), specifitiy, and precision, we first consider the following diagram, from a blog post by [Yuval Greenfield](https://yuvalg.com/blog/2012/01/01/precision-recall-sensitivity-and-specificity/):
 
-![Measurement methods](http://i.imgur.com/cJDJU.png)
+![Measurement methods](https://i.imgur.com/cJDJU.png)
 
 - Let's define some terms. Consider a binary classifications system that outputs a positive or negative label. Then a true positive is outcome is when the classifier correctly predicts a positive label. A false positive is when the classifier incorrectly predicts a positive label, and similar for the true and false negatives. 
 - Accuracy, intuitively, is just the number of instances that we classified correctly over all the instances (so the instances we classified correctly and incorrectly). This means that $$acc = \frac{TP + FN}{TP + FN + TN + FP}$$. 

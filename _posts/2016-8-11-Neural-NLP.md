@@ -2,7 +2,7 @@
 layout: post
 title: Applying Neural Networks to Natural Language Processing Tasks
 ---
-![Inputs into a neuron and its output.](http://deeplearning.stanford.edu/wiki/images/thumb/8/85/STL_Logistic_Classifier.png/380px-STL_Logistic_Classifier.png "Inputs into a neuron and its output.")
+![Inputs into a neuron and its output.](https://deeplearning.stanford.edu/wiki/images/thumb/8/85/STL_Logistic_Classifier.png/380px-STL_Logistic_Classifier.png "Inputs into a neuron and its output.")
 
 ### Bringing Deep Learning into the field of NLP
 
@@ -46,15 +46,15 @@ This unsupervised neural network is powerful, especially when considered in the 
 
 Current researchers are investigating the use of recursive neural networks to learn how sentences are broken down into tree structures. This recursive deep learning network can then successfully learn how to map similar sentences into the same vector space, even though they may be composed of words that mean entirely different things.
 
-If you want to learn about deep learning and neural networks for NLP in detail, I’d highly recommend Stanford’s course on it: [Deep Learning for Natural Language Processing](http://cs224d.stanford.edu/).
+If you want to learn about deep learning and neural networks for NLP in detail, I’d highly recommend Stanford’s course on it: [Deep Learning for Natural Language Processing](https://cs224d.stanford.edu/).
 
 ### Sources
 
-[Hidden Layer Neural Networks: Deep Learning, NLP, and Representations](http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/)
+[Hidden Layer Neural Networks: Deep Learning, NLP, and Representations](https://colah.github.io/posts/2014-07-NLP-RNNs-Representations/)
 
-[Machine Learning Tutorial: The Max Entropy Text Classifier](http://blog.datumbox.com/machine-learning-tutorial-the-max-entropy-text-classifier/)
+[Machine Learning Tutorial: The Max Entropy Text Classifier](https://blog.datumbox.com/machine-learning-tutorial-the-max-entropy-text-classifier/)
 
-[Stanford’s Deep Learning Tutorial](http://1.%20http//nlp.stanford.edu/courses/NAACL2013/NAACL2013-Socher-Manning-DeepLearning.pdf%20(http://nlp.stanford.edu/courses/NAACL2013/NAACL2013-Socher-Manning-DeepLearning.pdf))
+[Stanford’s Deep Learning Tutorial](https://1.%20http//nlp.stanford.edu/courses/NAACL2013/NAACL2013-Socher-Manning-DeepLearning.pdf%20(https://nlp.stanford.edu/courses/NAACL2013/NAACL2013-Socher-Manning-DeepLearning.pdf))
 
-[CS224d: Deep Learning for Natural Language Processing](http://cs224d.stanford.edu/index.html)
+[CS224d: Deep Learning for Natural Language Processing](https://cs224d.stanford.edu/index.html)
 

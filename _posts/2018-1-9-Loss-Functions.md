@@ -91,7 +91,7 @@ It turns out that it doesn't really matter which variant of cross-entropy you us
 
 #### Cross Entropy Loss: An information theory perspective
 
-As mentioned in the [CS 231n lectures](http://cs231n.github.io/linear-classify/), the cross-entropy loss can be interpreted via information theory. In information theory, the Kullback-Leibler (KL) divergence measures how "different" two probability distributions are. We can think of our classification problem as having 2 different probability distributions: first, the distribution for our actual labels, where all the probability mass is concentrated on the correct label, and there is no probability mass on the rest, and second, the distribution which we are learning, where the concentrations of probability mass are given by the outputs of the running our raw scores through a softmax function.
+As mentioned in the [CS 231n lectures](https://cs231n.github.io/linear-classify/), the cross-entropy loss can be interpreted via information theory. In information theory, the Kullback-Leibler (KL) divergence measures how "different" two probability distributions are. We can think of our classification problem as having 2 different probability distributions: first, the distribution for our actual labels, where all the probability mass is concentrated on the correct label, and there is no probability mass on the rest, and second, the distribution which we are learning, where the concentrations of probability mass are given by the outputs of the running our raw scores through a softmax function.
 
 In an ideal world, our learned distribution would match the actual distribution, with 100% probability being assigned to the correct label. This can't really happen since that would mean our raw scores would have to be $$\infty$$ and $$-\infty$$ for our correct and incorrect classes respectively, and, more practically, constraints we impose on our model (i.e. using logistic regression instead of a deep neural net) will limit our ability to correctly classify every example with high probability on the correct label.
 
@@ -119,7 +119,7 @@ $$\frac{dJ}{dW} = (y_i - \hat{y_i})\sigma'(Wx_i + b)x_i$$
 
 This derivative has the term $$\sigma'(Wx_i + b)$$ in it. This can be expressed as $$\sigma(Wx_i + b)(1 - \sigma(Wx_i + b))$$ (see here for a proof). Since we initialized our weights randomly with values close to 0, this expression will be very close to 0, which will make the partial derivative nearly vanish during the early stages of training. A plot of the sigmoid curve's derivative is shown below, indicating that the gradients are small whenever the outputs are close to $$0$$ or $$1$$: 
 
-![sigmoid](http://ronny.rest/media/blog/2017/2017_08_10_sigmoid/sigmoid_and_derivative_plot.jpg)
+![sigmoid](https://ronny.rest/media/blog/2017/2017_08_10_sigmoid/sigmoid_and_derivative_plot.jpg)
 
 This can lead to slower learning at the beginning stages of gradient descent, since the smaller derivatives change each weight by only a small amount, and gradient descent takes a while to get out of this loop and make larger updates towards a minima.
 
@@ -135,7 +135,7 @@ Simplifying, we obtain a nice expression for the gradient of the loss function w
 
 $$\sum_{i=1}^{N} x_i(\sigma(z) - y_i)$$
 
-This derivative does not have a $$\sigma'$$ term in it, and we can see that the magnitude of the derivative is entirely dependent on the magnitude of our error $$\sigma(z) - y_i$$ - how far off our prediction was from the ground truth. This is great, since that means early on in learning, the derivatives will be large, and later on in learning, the derivatives will get smaller and smaller, corresponding to smaller adjustments to the weight variables, which makes intuitive sense since if our error is small, then we'd want to avoid large adjustments that could cause us to jump out of the minima. Michael Nielsen in his [book](http://neuralnetworksanddeeplearning) has an in-depth discussion and illustration of this that is really helpful.
+This derivative does not have a $$\sigma'$$ term in it, and we can see that the magnitude of the derivative is entirely dependent on the magnitude of our error $$\sigma(z) - y_i$$ - how far off our prediction was from the ground truth. This is great, since that means early on in learning, the derivatives will be large, and later on in learning, the derivatives will get smaller and smaller, corresponding to smaller adjustments to the weight variables, which makes intuitive sense since if our error is small, then we'd want to avoid large adjustments that could cause us to jump out of the minima. Michael Nielsen in his [book](https://neuralnetworksanddeeplearning) has an in-depth discussion and illustration of this that is really helpful.
 
 #### Hinge Loss vs Cross-Entropy Loss
 
@@ -165,9 +165,9 @@ In this post, we've show that the MSE loss comes from a probabalistic interpreta
 
 #### Sources
 
-1. [Michael Nielsen's Neural Networks and Deep Learning, Chapter 3](http://neuralnetworksanddeeplearning.com/chap3.html)
+1. [Michael Nielsen's Neural Networks and Deep Learning, Chapter 3](https://neuralnetworksanddeeplearning.com/chap3.html)
 
-2. [Stanford CS 231n notes on cross entropy and hinge loss](http://cs231n.github.io/linear-classify/)
+2. [Stanford CS 231n notes on cross entropy and hinge loss](https://cs231n.github.io/linear-classify/)
 
 3. [OpenCV introduction to SVMs](https://docs.opencv.org/2.4.13.4/doc/tutorials/ml/introduction_to_svm/introduction_to_svm.html)
 
@@ -175,4 +175,4 @@ In this post, we've show that the MSE loss comes from a probabalistic interpreta
 
 5. [Machine Learning, Princeton University](https://www.cs.princeton.edu/courses/archive/fall16/cos402/lectures/402-lec5.pdf)
 
-6. [Ronny Restrepo, sigmoid functions](http://ronny.rest/blog/post_2017_08_10_sigmoid/)
+6. [Ronny Restrepo, sigmoid functions](https://ronny.rest/blog/post_2017_08_10_sigmoid/)

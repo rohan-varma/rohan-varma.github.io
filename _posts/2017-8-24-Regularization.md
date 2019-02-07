@@ -103,7 +103,7 @@ $$ Err(x) = bias(X)^2 + var(x) + \epsilon $$
 
 Given a constant error, this means that there will always be a tradeoff between bias and variance. Having too much bias or too much variance isn't good for a model, but for different reasons. A high bias, low variance model will likely end up being inaccurate across both the training and testing datasets, and its predictions will likely not deviate too much based on the data sample it is trained on. On the other hand, a low-bias, high-variance model will likely give good results on a training dataset, but fail to generalize as well on a testing dataset. 
 
-The Gauss-Markov theorem states that in a linear regression problem, the least squares estimator has the lowest variance out of all other unbiased estimators. However, if we consider biased estimators such as the estimator given by ridge regression, we can arrive at a lower variance, higher-bias solution. In particular, the expectation of the ridge estimator (derived [here](http://math.bu.edu/people/cgineste/classes/ma575/p/w14_1.pdf)) is given by: 
+The Gauss-Markov theorem states that in a linear regression problem, the least squares estimator has the lowest variance out of all other unbiased estimators. However, if we consider biased estimators such as the estimator given by ridge regression, we can arrive at a lower variance, higher-bias solution. In particular, the expectation of the ridge estimator (derived [here](https://math.bu.edu/people/cgineste/classes/ma575/p/w14_1.pdf)) is given by: 
 
 $$ \beta - \lambda (X^TX + \lambda I)^{-1} \beta $$
 
@@ -111,7 +111,7 @@ The bias of an estimator is defined as the difference between the parameter's ex
 
 
 
-As you can see, the bias is proportional to $$ \lambda $$ and $$ \lambda = 0$$ gives us the unbiased least squares estimator since $$ E[\hat{\beta}] = \beta $$. Therefore, assuming a constant total error for the least squares estimator and the ridge estimator, the variance for the ridge estimator is lower. A more complete discussion, including formal calculations for the bias and variance of the ridge estimator compared to the least squares estimator, is given [here](http://math.bu.edu/people/cgineste/classes/ma575/p/w14_1.pdf).
+As you can see, the bias is proportional to $$ \lambda $$ and $$ \lambda = 0$$ gives us the unbiased least squares estimator since $$ E[\hat{\beta}] = \beta $$. Therefore, assuming a constant total error for the least squares estimator and the ridge estimator, the variance for the ridge estimator is lower. A more complete discussion, including formal calculations for the bias and variance of the ridge estimator compared to the least squares estimator, is given [here](https://math.bu.edu/people/cgineste/classes/ma575/p/w14_1.pdf).
 
 
 
@@ -160,7 +160,7 @@ The only difference in this closed-form solution is the addition of the $$ \lamb
 
 ### Regularizers in neural networks
 
-While techniques such as L2 regularization can be used while training a neural network, employing techniques such as dropout, which randomly discards some proportion of the activations at a per-layer level during training, have been shown to be much more successful. There is also a different type of regularizer that takes into account the idea that a neural network should have sparse activations for any particular input. There are several theoretical reeasons for why sparsity is important, a topic covered very well by Glorot et al. in a [2011 paper](http://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf).
+While techniques such as L2 regularization can be used while training a neural network, employing techniques such as dropout, which randomly discards some proportion of the activations at a per-layer level during training, have been shown to be much more successful. There is also a different type of regularizer that takes into account the idea that a neural network should have sparse activations for any particular input. There are several theoretical reeasons for why sparsity is important, a topic covered very well by Glorot et al. in a [2011 paper](https://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf).
 
 Since sparsity is important in neural networks, we can introduce a constraint that can gaurantee us some degree of sparsity. Specifically, we can constrain the average activation of a particular neuron in a particular hidden layer. 
 
@@ -170,7 +170,7 @@ One way to do this is with the [KL divergence](https://en.wikipedia.org/wiki/Kul
 
 $$ J_{sparse} (W, b) = J(W, b) + \lambda \sum_{i = 1}^{M} KL(\rho_i || \hat{\rho_i}) $$
 
-where $$ J(W, b) $$ is a regular cost function used in neural networks, such as the cross-entropy loss. The hyperparameter $$ \lambda $$ indicates how important sparsity is to us - as $$ \lambda \rightarrow{} \infty $$, we disregard the actual loss function and only aim to learn a sparse representation, and as $$\lambda \rightarrow{} 0 $$ we disregard the importance of sparse activations and only minimize the original loss function. Additional details on this type of regularization with application to sparse autoencoders are given [here](http://ufldl.stanford.edu/wiki/index.php/Autoencoders_and_Sparsity).
+where $$ J(W, b) $$ is a regular cost function used in neural networks, such as the cross-entropy loss. The hyperparameter $$ \lambda $$ indicates how important sparsity is to us - as $$ \lambda \rightarrow{} \infty $$, we disregard the actual loss function and only aim to learn a sparse representation, and as $$\lambda \rightarrow{} 0 $$ we disregard the importance of sparse activations and only minimize the original loss function. Additional details on this type of regularization with application to sparse autoencoders are given [here](https://ufldl.stanford.edu/wiki/index.php/Autoencoders_and_Sparsity).
 
 ### Recap ###
 
@@ -189,9 +189,9 @@ Overall, regularization is a useful technique that is often employed to reduce t
 
 ### Sources ###
 
-1. [Boston University Linear Models Course by Cedric Ginestet](http://math.bu.edu/people/cgineste/classes/ma575/p/w14_1.pdf)
+1. [Boston University Linear Models Course by Cedric Ginestet](https://math.bu.edu/people/cgineste/classes/ma575/p/w14_1.pdf)
 
-2. [Autoencoders and Sparsity, Stanford UFDL](http://ufldl.stanford.edu/wiki/index.php/Autoencoders_and_Sparsity)
+2. [Autoencoders and Sparsity, Stanford UFDL](https://ufldl.stanford.edu/wiki/index.php/Autoencoders_and_Sparsity)
 
 3. [Explanation of MAP Estimation](https://math.stackexchange.com/questions/1582348/simple-example-of-maximum-a-posteriori/1582407)
 

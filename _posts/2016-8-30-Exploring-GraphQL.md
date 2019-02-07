@@ -19,7 +19,7 @@ The best way to learn about GraphQL is to get our hands dirty with it. In this p
 - *Strong-typing and introspection*: With GraphQL, it's really easy to make sure a query is syntactically correct. Better yet, you can query the GraphQL type system itself, meaning that GraphQL is self-documenting: no need to write pages and pages of documentation for your API endpoints. We'll see this in action with the schema we are about to create. 
 
 ### Getting Started
-Note: The full code for this tutorial is available as a [github repository](https://github.com/rohan-varma/pokemongo-graphQL). If you want to be able to create and execute queries to see them in action, I recommend you to take a moment and set it up. Alternatively, you could use [this link]( https://pokemongo-graphql-senopusxhk.now.sh/graphql) to view the code running live (hosted by [now.sh](http://now.sh), which by the way, is excellent for deploying your Node.js projects). 
+Note: The full code for this tutorial is available as a [github repository](https://github.com/rohan-varma/pokemongo-graphQL). If you want to be able to create and execute queries to see them in action, I recommend you to take a moment and set it up. Alternatively, you could use [this link]( https://pokemongo-graphql-senopusxhk.now.sh/graphql) to view the code running live (hosted by [now.sh](https://now.sh), which by the way, is excellent for deploying your Node.js projects). 
 
 First, let's create our types. Using GraphQL's type system, we can describe the types of objects that can be returned by our server. Our first type will be a `moveType`, and it will be responsible for resolving all of our queries for moves. We'll use the [JS implementation](https://github.com/graphql/graphql-js) of GraphQL to describe our types: 
 
@@ -42,7 +42,7 @@ That's it! A basic schema is now set up that describes the data available on the
 ### Comparison to the RESTful Paradigm
 
 The `pokemonType` on our server is defined to have an `id`, a `name`, and a `thumbnail`. If you were a developer who needed this data on your front-end, you could make this example `GET` request using the REST paradigm: 
-`GET http://website.com/api/v1/pokemon/1`. 
+`GET https://website.com/api/v1/pokemon/1`. 
 
 Alternatively, if you had implemented a GraphQL Scehma for your server data, you could make a GraphQL request, in the form of a query, to your backend. A query is just a string sent to the server, and the returned JSON mirrors the shape of the query, making it easy to predict the shape of the data returned. Here's an example query to get some pokemon data:
 
@@ -55,7 +55,7 @@ Alternatively, if you had implemented a GraphQL Scehma for your server data, you
   }
 } 
 ```
-Both requests would give you back the name of the pokemon, its id, and its thumbnail. In our case, the thumbnail is just a string that actually represents the thumbnail URL, but what if the thumbnail was an image that had to be created on the server, which is a typically expensive, CPU-bound process? If we don't actually need the thumbnail on our front-end for a certain view, we certainly shouldn't take time to ask our server for it. In our RESTful paradigm, we'd have to define another API endpoint to send a request to, something like: `GET http://website.com/api/v1/pokemonlightweight/1`. You can see how in a large application with a lot of (potentially expensive to ask for) data available on the server, we could end up creating a bunch of different API endpoints, which we would need to maintain, version, and write documentation for. 
+Both requests would give you back the name of the pokemon, its id, and its thumbnail. In our case, the thumbnail is just a string that actually represents the thumbnail URL, but what if the thumbnail was an image that had to be created on the server, which is a typically expensive, CPU-bound process? If we don't actually need the thumbnail on our front-end for a certain view, we certainly shouldn't take time to ask our server for it. In our RESTful paradigm, we'd have to define another API endpoint to send a request to, something like: `GET https://website.com/api/v1/pokemonlightweight/1`. You can see how in a large application with a lot of (potentially expensive to ask for) data available on the server, we could end up creating a bunch of different API endpoints, which we would need to maintain, version, and write documentation for. 
 
 Fortunately, the GraphQL solution is much simpler: simply change your query:
 
@@ -177,7 +177,7 @@ The introspection system also allows you to query for additional information suc
 And that's it! There's definitely a lot more to learn about GraphQL (such as posting new data via a [mutation](https://medium.com/@HurricaneJames/graphql-mutations-fb3ad5ae73c4#.5378parnj)), but hopefully this post has covered the basics. The [GraphQL specification](https://facebook.github.io/graphql/) is an excellent place to learn more, and so is the [reference JS implementation](https://github.com/graphql/graphql-js).  
 
 ### Sources: 
-- [GraphQL docs](http://graphql.org/docs/getting-started/)
+- [GraphQL docs](https://graphql.org/docs/getting-started/)
 - [JS implementation of GraphQL](https://github.com/graphql/graphql-js)
 - [GraphQL Spec](https://facebook.github.io/graphql/)
 - [Learning GraphQL for Mobile, by John Shelley](https://speakerdeck.com/jpshelley/learning-graphql-for-mobile)

@@ -4,7 +4,7 @@ published: False
 title: Working With React and Flux
 ---
 
-![React and Flux](http://no-kill-switch.ghost.io/content/images/2015/06/react.png)
+![React and Flux](https://no-kill-switch.ghost.io/content/images/2015/06/react.png)
 
 Recently, I've been learning a lot about React and Flux while developing a full-stack web application. 
 [React](https://facebook.github.io/react/) is a JavaScript library for building user interfaces, and revolves around the idea of writing your components 
@@ -48,12 +48,12 @@ Our React component will fire off actions (such as, in our example, getting memb
 
 <script src="https://gist.github.com/rohan-varma/719c4d36d1660710fc20e87e379d5be2.js"></script>
 
-And that's it! Hopefully, this was a good example to introduce how React and the Flux pattern work together to achieve unidirectional data flow, and how firing and handling actions update our component's store. [This full-stack tutorial](http://sahatyalkabov.com/create-a-character-voting-app-using-react-nodejs-mongodb-and-socketio/) is an excellent resource for learning more about React, Flux, and using Node to develop a full-stack app. 
+And that's it! Hopefully, this was a good example to introduce how React and the Flux pattern work together to achieve unidirectional data flow, and how firing and handling actions update our component's store. [This full-stack tutorial](https://sahatyalkabov.com/create-a-character-voting-app-using-react-nodejs-mongodb-and-socketio/) is an excellent resource for learning more about React, Flux, and using Node to develop a full-stack app. 
 
 ### Sources
 
 - [Cloning Yelp with React](https://www.fullstackreact.com/articles/react-tutorial-cloning-yelp/)
-- [Full-stack React/Node/Mongo tutorial](http://sahatyalkabov.com/create-a-character-voting-app-using-react-nodejs-mongodb-and-socketio/)
+- [Full-stack React/Node/Mongo tutorial](https://sahatyalkabov.com/create-a-character-voting-app-using-react-nodejs-mongodb-and-socketio/)
 - [Getting started with React](https://facebook.github.io/react/docs/getting-started.html)
 - [Getting to Know Flux](https://scotch.io/tutorials/getting-to-know-flux-the-react-js-architecture)
-- [Adventures With React and Flux](http://no-kill-switch.ghost.io/my-adventure-with-react-flux-setting-sails/)
+- [Adventures With React and Flux](https://no-kill-switch.ghost.io/my-adventure-with-react-flux-setting-sails/)

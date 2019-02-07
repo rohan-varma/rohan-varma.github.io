@@ -41,7 +41,7 @@ Locating a cell in an image of several hundred cells wasn't exactly trivial. We 
 
 Now, we sought to quantify this data - represent it in a way so that we can easily do some calculations and computations on it. This brings in the idea of a _feature_ - a single property of the object under analysis. For houses, this could be the number of bedrooms in the house or the lot size of the house. For images, features can include the RGB values for each pixel, the intensity and shade for each pixel, or the saturation of a pixel. They tend to be numerical or boolean qualities, but really can be anything. 
 
-Several features allow us to accurately represent an object - I could represent a house with the following vector of features - ```{numBedrooms, numBathrooms, lotSize, isNearSchool] = {4, 3, 3000, 1}```. Similarly, each detected cell can be represented by a vector of features we can extract from it - [we used Matlab's regionprops](http://www.mathworks.com/help/images/ref/regionprops.html) to extract several features of the cell, such as its area, eccentricity, Euler number, mean intensity, and weighted centroid. We ended up with a total of 28 features for each of the 665 cells. 
+Several features allow us to accurately represent an object - I could represent a house with the following vector of features - ```{numBedrooms, numBathrooms, lotSize, isNearSchool] = {4, 3, 3000, 1}```. Similarly, each detected cell can be represented by a vector of features we can extract from it - [we used Matlab's regionprops](https://www.mathworks.com/help/images/ref/regionprops.html) to extract several features of the cell, such as its area, eccentricity, Euler number, mean intensity, and weighted centroid. We ended up with a total of 28 features for each of the 665 cells. 
 
 ### Unsupervised Machine Learning Using K-means
 Since these data did not have any labels associated with them yet (we sent off the images to a pathologist who'd manually label the cells to provide a training dataset), I decided to see if I could find any patterns or similarities in the data. 
@@ -84,7 +84,7 @@ Using the Bootstrap idea, we can enhance such algorithms by training several dif
 ![Bagging visualization.](https://raw.githubusercontent.com/rohan-varma/rohan-blog/master/images/bagging.png
  "Bagging visualization.")
  
-Using Matlab's [TreeBagger](http://www.mathworks.com/help/stats/treebagger.html), we trained a bootstrap aggregating classifier to operate on our dataset of cells. Using a 90/10 training to test data ratio, we managed to achieve an **82.3%** accuracy in classifying sickle cells. 
+Using Matlab's [TreeBagger](https://www.mathworks.com/help/stats/treebagger.html), we trained a bootstrap aggregating classifier to operate on our dataset of cells. Using a 90/10 training to test data ratio, we managed to achieve an **82.3%** accuracy in classifying sickle cells. 
 
 ### A Small Tweak To Improve Accuracy
 
@@ -98,6 +98,6 @@ We tweaked our decision trees so that each tree only knows about a random subset
 
 ### Conclusions and Future Work
 
-Our final results are encouraging of further work into this field, but they aren't optimal - use in the medical field definitely requires diagnosis accuracy of over 99.9%, and an essential gaurantee of no type II errors, or false negatives (a case where a sickle cell diseased individual is told they don't have the disease). Future work involves additional adjustments to our preprocessing pipelines and machine learning algorithms. One exciting thing we're looking into is using Artifical Neural Networks to aid in our detection, a method that has previously been [researched in cancer detection](http://www.ncbi.nlm.nih.gov/pubmed/1748845).
+Our final results are encouraging of further work into this field, but they aren't optimal - use in the medical field definitely requires diagnosis accuracy of over 99.9%, and an essential gaurantee of no type II errors, or false negatives (a case where a sickle cell diseased individual is told they don't have the disease). Future work involves additional adjustments to our preprocessing pipelines and machine learning algorithms. One exciting thing we're looking into is using Artifical Neural Networks to aid in our detection, a method that has previously been [researched in cancer detection](https://www.ncbi.nlm.nih.gov/pubmed/1748845).
 
 And that's it! We presented our work at several research days and seminar, including UCLA's annual undegraduate research day and the 2016 UC Bioengineering Symposium. If you have any questions, feel free to contact me!

@@ -13,14 +13,14 @@ I will be joining [Facebook](https://code.facebook.com/posts/) as a software eng
 
 ### Internships
 
-Previously, I worked at [Facebook](https://code.facebook.com/posts/), [Affirm](http://affirm.com), [Blend](http://blend.com), and [Hudl](http://hudl.com) in software engineering/machine learning roles.
+Previously, I worked at [Facebook](https://code.facebook.com/posts/), [Affirm](https://affirm.com), [Blend](https://blend.com), and [Hudl](https://hudl.com) in software engineering/machine learning roles.
 
 ### Research
 
-From Fall 2015 to Winter 2018, I was an undergraduate machine learning researcher at [UCLA's Ozcan Research Group](http://innovate.ee.ucla.edu/), where I worked on deep learning models that were used to diagnose bloodborne and waterborne pathogen disease.
+From Fall 2015 to Winter 2018, I was an undergraduate machine learning researcher at [UCLA's Ozcan Research Group](https://innovate.ee.ucla.edu/), where I worked on deep learning models that were used to diagnose bloodborne and waterborne pathogen disease.
 
 ### Writing
-I write about things on this blog, [Quora](http://quora.com/Rohan-Varma-8), and [Medium](https://medium.com/@rvarm1). Below is a list of my favorite pieces I've written. 
+I write about things on this blog, [Quora](https://quora.com/Rohan-Varma-8), and [Medium](https://medium.com/@rvarm1). Below is a list of my favorite pieces I've written. 
 
 1. [Getting Started in Machine Learning](https://medium.com/techatucla/getting-started-in-machine-learning-c68bdd739c44)
 
@@ -39,16 +39,16 @@ I write about things on this blog, [Quora](http://quora.com/Rohan-Varma-8), and 
 ### Explanations/Tutorials
 I've found that one of the best ways to learn something is by being able to explain it, so I've tried to do that in the following posts.
 
-1. [Word2Vec and Language Modeling](http://rohanvarma.me/Word2Vec/) and [discussion on HN](https://news.ycombinator.com/item?id=15578788)
+1. [Word2Vec and Language Modeling](https://rohanvarma.me/Word2Vec/) and [discussion on HN](https://news.ycombinator.com/item?id=15578788)
 
-2. [Bias and Variance in Machine Learning](http://rohanvarma.me/Regularization/)
+2. [Bias and Variance in Machine Learning](https://rohanvarma.me/Regularization/)
 
-3. [Tensorflow workshop series](http://github.com/uclaacmai/tf-workshop-series/) to which all other AI officers contributed to.
+3. [Tensorflow workshop series](https://github.com/uclaacmai/tf-workshop-series/) to which all other AI officers contributed to.
 
-4. [Implementing a Neural Network in Python](http://rohanvarma.me/Neural-Net/)
+4. [Implementing a Neural Network in Python](https://rohanvarma.me/Neural-Net/)
 
 ### Misc
-I try to keep [this page](http://rohanvarma.me/ideas/) updated somewhat regularly with some ideas for projects/products that I've had.
+I try to keep [this page](https://rohanvarma.me/ideas/) updated somewhat regularly with some ideas for projects/products that I've had.
 
 ### Contact me
 

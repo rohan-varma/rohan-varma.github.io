@@ -29,7 +29,7 @@ The sigmoid function is commonly referred to as an "activation" function. When w
 
 Here are a few other common activation functions: 
 
-![tanh](http://www.dplot.com/functions/tanh.png)
+![tanh](https://www.dplot.com/functions/tanh.png)
 ![relu](https://i.stack.imgur.com/8CGlM.png)
 
 
@@ -236,7 +236,7 @@ With all of our variables created and computation graph defined, we can now laun
 
 The data we will feed in (by passing into our function a dictionary *feed_dict*) will come from the MNIST dataset. To randomly sample 100 training examples, we can use a wrapper provided by Tensorflow: ```mnnist.train.next_batch(100)```. 
 
-When we run the optimizer with the call ```optimizer.run(..)``` Tensorflow calculates a forward pass for us (essentially propagating our data through the graph we have described), and then uses the loss function we created to evaluate the loss, and then computes partial derivatives with respect to each set of weights and updates the weights according to the partial derivatives. This is called the backpropagation algorithm, and it involves significant application of the chain rule. CS 231N provides an [excellent explanation](http://cs231n.github.io/optimization-2/) of backpropagation. 
+When we run the optimizer with the call ```optimizer.run(..)``` Tensorflow calculates a forward pass for us (essentially propagating our data through the graph we have described), and then uses the loss function we created to evaluate the loss, and then computes partial derivatives with respect to each set of weights and updates the weights according to the partial derivatives. This is called the backpropagation algorithm, and it involves significant application of the chain rule. CS 231N provides an [excellent explanation](https://cs231n.github.io/optimization-2/) of backpropagation. 
 
 
 ```python
