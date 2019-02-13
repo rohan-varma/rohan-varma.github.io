@@ -25,6 +25,7 @@ Please send me a [pull request](https://github.com/rohan-varma/rohan-blog/pulls)
 
 #### Convolutional Networks
 - [Convolutional Networks, Filter Sizes](https://github.com/rohan-varma/machine-learning-courses/blob/master/cs231n/notes/ConvNets%20Notes.ipynb)
+- [Notes on ResNets](http://rohanvarma.me/resnet/)
 
 
 #### Probability and Linear Algebra
