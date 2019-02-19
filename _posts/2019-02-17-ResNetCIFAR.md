@@ -1,10 +1,12 @@
 ---
 layout: post
-title: ResNet Paper Notes
+title: ResNets
 mathjax: True
 ---
 
-These are some notes that I took while reading the paper [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385), the paper that introduced modern ResNets. A mock implementation of the network described for the CIFAR-10 portion of the paper is available [here](https://github.com/rohan-varma/resnet-implementation)
+  ![](https://raw.githubusercontent.com/rohan-varma/resnet-implementation/master/images/verydeep_network.png)
+
+These are some notes that I took while reading the paper [Deep Residual Learning for Image Recognition](https://arxiv.org/abs/1512.03385), the paper that introduced modern ResNets. A mock implementation of the network described for the CIFAR-10 portion of the paper is available [here](https://github.com/rohan-varma/resnet-implementation).
 
 ##### 1. Introduction
 
