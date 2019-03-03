@@ -48,7 +48,8 @@ I've found that one of the best ways to learn something is by being able to expl
 4. [Implementing a Neural Network in Python](https://rohanvarma.me/Neural-Net/)
 
 ### Misc
-I try to keep [this page](https://rohanvarma.me/ideas/) updated somewhat regularly with some ideas for projects/products that I've had.
+
+My reading list can be found [here](https://rohanvarma.me/reads/). I try to keep [this page](https://rohanvarma.me/ideas/) updated somewhat regularly with some ideas for projects/products that I've had.
 
 ### Contact me
 
