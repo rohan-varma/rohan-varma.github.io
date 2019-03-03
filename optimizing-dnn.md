@@ -17,10 +17,7 @@ The Hessian is real and symmetric, since in general we assume that the second de
 Real symmetric matrices have nice properties:
 
 - All eigenvalues are real and distinct eigenvalues correspond to distinct eigenvectors
-
 - The eigenvectors of distinct values are orthogonal, and therefore form a basis for $$ R^n $$ . 
-
-  ​
 
 Next, a *positive define* matrix is a symmetric matrix that has all positive eigenvalues. One way to determine if a function is *convex* is to check if its Hessian is positive definite.
 
@@ -84,9 +81,9 @@ Even though the Hessian is not positive definte at any given point, we can check
 
 Considering an SGD update $$ x = x_0 - \epsilon u$$ and noting that $$\nabla_x f(x_0) = 0$$, we have
 
-​					$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}(x_0 - \epsilon u - x_0)^TH(x_0 - \epsilon u - x_0)$$
+​					$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}(x_0 - \epsilon u - x_0)^T\textbf{H}(x_0 - \epsilon u - x_0)$$
 
-​					$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}\epsilon^2 u^TH u $$
+​					$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}\epsilon^2 u^T\textbf{H} u $$
 
 If the Hessian is positive definite at $$ x_0$$, then it tells us that any direction $$ u $$ in which we choose to travel will result an increased value of the objective function, so we are at a local minimum. We can similarly use the idea of negative definiteness to see if we are at a local maximum. 
 
@@ -98,13 +95,27 @@ Arguably, the goal of fitting deep neural networks may not be to reach the globa
 
 There are some cases where the regular optimization process - a small step in the direction of the gradient - could actually fail, and increase the value of our objective function - couteractive to our goal. This happens due to the *curvature* of the local region of our objective function, and can be investigated with the Hessian as well. 
 
+![](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/curvature.png)
 
+How much will a gradient descent update change the value of our objective? First, let's again look at the Taylor series expansion for an update $$ x \leftarrow x_0 - \epsilon \textbf{g} $$ where $$\textbf{g} = \nabla f(x_0) $$:
 
+​				$$ f(x_0 - \epsilon\textbf{g})\approx f(x_0) + (x_0 - \epsilon \textbf{g}-x_0)\textbf{g} + \frac{1}{2}(x_0 - \epsilon \textbf{g}-x_0)^T\textbf{H}(x-x_0)$$
 
+​				$$f(x_0 - \epsilon\textbf{g})\approx f(x_0) -\epsilon\textbf{g}^T\textbf{g} + \frac{1}{2}\epsilon^2\textbf{g}^T\textbf{H}\textbf{g}$$
+
+We can see that the decrease in the objective is related to 2nd order information, specifically the term $$ g^T H g$$. If this term is negative, then the decrease in our objective is greater than our (scaled) squared gradient norm, if it is positive, then the decrease is less, if it is zero, the decrease is completely given by first-order information.
+
+"Poor Conditioning" refers to the Hessian at the point $$x_0$$ being such that it results in an *increased* value of our objective function. This can happen if the term that indicates our decrease in our objective is actually greater than $$ 0$$: 
+
+$$ -\epsilon g^Tg + \frac{1}{2}\epsilon^2g^T Hg > 0 $$ which corresponds to $$ \epsilon g^T g < \frac{1}{2}\epsilon^2g^THg $$
+
+This can happen if the Hessian is very large, in which case we'd want to use a smaller learning rate than $$\epsilon$$ to offset some of the influence of the curvature. An intuitive justification for this is that due to the large magnitude of curvature, we're more "unsure" of our gradient updates, so we want to take a smaller step, and therefore have a smaller learning rate.
 
 ###### Saddle Points
 
-Getting stuck at a *saddle point* is a very real issue for optimizing deep neural networks, and arguably a much more important issue than getting stuck at a local minima (see http://www.offconvex.org/2016/03/22/saddlepoints/). One explanation of this is that it's much more likely to arrive at a saddle point than a local minimum or maximum: the probability of a given point in an $$ n$$ dimensional optimization space is just $$ \frac{1}{2^n}$$. 
+Getting stuck at a *saddle point* is a very real issue for optimizing deep neural networks, and arguably a more important issue than getting stuck at a local minima (see http://www.offconvex.org/2016/03/22/saddlepoints/). One explanation of this is that it's much more likely to arrive at a saddle point than a local minimum or maximum: the probability of a given point in an $$ n$$ dimensional optimization space being a local minimum or maximum is just $$ \frac{1}{2^n}$$. 
+
+A saddle point is defined as a point with $$ 0 $$ gradient, but the Hessian is neither positive definite or negative definite.
 
 
 
