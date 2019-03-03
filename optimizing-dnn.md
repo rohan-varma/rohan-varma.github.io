@@ -117,5 +117,12 @@ Getting stuck at a *saddle point* is a very real issue for optimizing deep neura
 
 A saddle point is defined as a point with $$ 0 $$ gradient, but the Hessian is neither positive definite or negative definite.
 
+![](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/minmaxsaddle.png)
 
 
+
+Around a saddle point, the expansion of our objective is similar to the expansion at a local minimum:
+
+$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}\epsilon^2 u^T\textbf{H} u  $$
+
+Here, $$ \textbf{H}$$ is not positive definite, so we may be able to pick certain directions $$ u $$ that increase or decrease the value of our objective. Concretely, if we pick $$ u $$ such that $$ u^T \textbf{H}u << 0 $$, then $$ u $$ is a direction that would decrease the value of our objective, and we can update our parameters with $$ u$$. 
