@@ -119,7 +119,7 @@ This can happen if the Hessian is very large, in which case we'd want to use a s
 
 ###### Saddle Points
 
-Getting stuck at a *saddle point* is a very real issue for optimizing deep neural networks, and arguably a more important issue than getting stuck at a local minima (see http://www.offconvex.org/2016/03/22/saddlepoints/). One explanation of this is that it's much more likely to arrive at a saddle point than a local minimum or maximum: the probability of a given point in an $$ n$$ dimensional optimization space being a local minimum or maximum is just $$ \frac{1}{2^n}$$. 
+Getting stuck at a *saddle point* is a very real issue for optimizing deep neural networks, and arguably a more important issue than getting stuck at a local minima (see [http://www.offconvex.org/2016/03/22/saddlepoints/](http://www.offconvex.org/2016/03/22/saddlepoints/)). One explanation of this is that it's much more likely to arrive at a saddle point than a local minimum or maximum: the probability of a given point in an $$ n$$ dimensional optimization space being a local minimum or maximum is just $$ \frac{1}{2^n}$$. 
 
 A saddle point is defined as a point with $$ 0 $$ gradient, but the Hessian is neither positive definite or negative definite. It is possible that learning would stop if we are relying only on first-order information (i.e. since $$ \nabla_x f(x) = 0$$, the weights will not be updated) but in practice, using techniques such as momentum reduce the chance of this.
 
