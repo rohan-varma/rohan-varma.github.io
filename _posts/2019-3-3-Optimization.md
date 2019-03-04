@@ -2,7 +2,6 @@
 layout: post
 title: ResNets
 mathjax: True
-published: False
 ---
 
 #### Hessians: A tool for debugging neural network optimization
