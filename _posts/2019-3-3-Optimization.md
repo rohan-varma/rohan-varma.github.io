@@ -18,7 +18,7 @@ Say we want to optimize $$ f(x) $$ where $$ x $$ are our parameters that we want
 
 The Hessian is real and symmetric, since in general we assume that the second derivatives exist and  $$ \frac{dy}{dx_1 x_2} = \frac{dy}{dx_2 x_1}$$for the functions that we are considering (Schwarz's theorem provides the conditions that need to be true for this to hold). For example, the Hessian for a function $$ y = f(x_1, x_2)$$ could be expressed as
 
-​									$$\begin{bmatrix} \frac{dy}{dx_1x_1} & \frac{dy}{dx_1x_2} \\ \frac{dy}{dx_2x_1} &  \frac{dy}{dx_2x_2}\end{bmatrix} $$ 
+									$$\begin{bmatrix} \frac{dy}{dx_1x_1} & \frac{dy}{dx_1x_2} \\ \frac{dy}{dx_2x_1} &  \frac{dy}{dx_2x_2}\end{bmatrix} $$ 
 
 Real symmetric matrices have nice properties:
 
@@ -29,31 +29,31 @@ Next, a *positive define* matrix is a symmetric matrix that has all positive eig
 
 To show this, it is enough to show that $$ z^T H z > 0 $$ for any real vector $$ z $$. To see why all positive eigenvalues imply this, first let's consider the case where $$ z $$ is an eigenvector of $$ H $$. Since $$ Hz = \lambda z $$ we have 
 
-​						$$ z^T H z = z^T\lambda z = \lambda z^Tz = \lambda \vert \vert z\vert \vert^2 > 0 $$	 since $$ \lambda > 0$$. 
+						$$ z^T H z = z^T\lambda z = \lambda z^Tz = \lambda \vert \vert z\vert \vert^2 > 0 $$	 since $$ \lambda > 0$$. 
 
 To prove this for an arbitrary vector $$ z $$, we first note that we can diagonalize $$ H $$ as follows:
 
-​								$$ z^T H z = z^T Q \Lambda Q^{-1}z $$
+								$$ z^T H z = z^T Q \Lambda Q^{-1}z $$
 
 Where $$ Q $$ is a matrix whose columns are (distinct) eigenvectors of $$ H$$ and $$\Lambda$$ is a diagonal matrix with the corresponding eigenvalues on its diagonal.
 
 As mentioned, the eigenvectors are orthogonal. Since $$ Q $$ is a matrix whose columns are the eigenvectors, $$ Q $$ is an orthogonal matrix, so we have $$ Q^{-1} = Q^T $$, giving us:
 
-​								 $$ z^T Q \Lambda Q^Tz > 0$$
+								 $$ z^T Q \Lambda Q^Tz > 0$$
 
 Let's define $$ s = Q^T z $$, so we now have $$ s^T  \Lambda s > 0 $$. Taking
 
 
 
-​								 $$ s = \begin{bmatrix} s_1 \\ … \\ s_n \end{bmatrix}$$ 
+								 $$ s = \begin{bmatrix} s_1 \\ … \\ s_n \end{bmatrix}$$ 
 
 and
 
-​						 $$ \Lambda = \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} $$
+						 $$ \Lambda = \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} $$
 
 We now have
 
-​			 $$\begin{bmatrix} s_1 & … & s_n \end{bmatrix} \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} \begin{bmatrix} s_1 \\ … \\ s_n \end{bmatrix} = \begin{bmatrix} s_1 & … & s_n \end{bmatrix} \begin{bmatrix} \lambda_1 s_1 \\ … \\ \lambda_ns_n \end{bmatrix} = \sum_{i=1}^{N}\lambda_is_i^2 > 0 $$.
+			 $$\begin{bmatrix} s_1 & … & s_n \end{bmatrix} \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} \begin{bmatrix} s_1 \\ … \\ s_n \end{bmatrix} = \begin{bmatrix} s_1 & … & s_n \end{bmatrix} \begin{bmatrix} \lambda_1 s_1 \\ … \\ \lambda_ns_n \end{bmatrix} = \sum_{i=1}^{N}\lambda_is_i^2 > 0 $$.
 
 
 
@@ -61,7 +61,7 @@ Which is true since all the eigenvalues are positive.
 
 As an example of using this analysis to prove the convexity of a machine learning problem, we can take the loss function of the (l2-regularized) SVM:
 
-​					$$ L(w) = \lambda \sum_n w_n^2 + \sum_n \max (0, 1 - y_n(w^Tx_n))$$
+					$$ L(w) = \lambda \sum_n w_n^2 + \sum_n \max (0, 1 - y_n(w^Tx_n))$$
 
 The derivatives for each $$ w_n$$ are $$\frac{dL}{dw_n} = \lambda w_n  + \sum \textbf{1} (y_n w^T x_n < 1)(-y_nx_n)  $$
 
@@ -69,7 +69,7 @@ The second derivatives can be characterized as $$ \frac{dL}{dw_n w_k}, k != n$$ 
 
 For the first case, since our expression $$ \frac{dL}{dw_n}$$ is constant with respect to $$w_k$$ the derivative is simply $$ 0$$. For the second case, the derivative is simply $$\lambda$$. Therefore, our Hessian is the following diagonal matrix:
 
-​							$$ \begin{bmatrix}  \lambda & 0 &… & 0 \\ 0 & \lambda & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda \end{bmatrix}$$
+							$$ \begin{bmatrix}  \lambda & 0 &… & 0 \\ 0 & \lambda & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda \end{bmatrix}$$
 
 Since this is a diagonal matrix, the eigenvalues are simply the entries on the diagonal. Since the regularization constant $$ \lambda > 0$$, the Hessian is positive definite, therefore the above formulation of the hinge loss is a convex problem. We could have alternatively shown that $$ z^T H z > 0$$ as well, since $$ H z$$ simply scales $$ z $$ by a positive scalar.
 
@@ -83,13 +83,13 @@ First, it may be worth it to know if we are at a local minimum at any point duri
 
 Even though the Hessian may not be positive definite at any given point, we can check if we're at a local minimum by examining the Hessian. This is basically the second derivative test in single-variable calculus. Consider the Taylor Series expansion of our objective $$ f$$ around $$ x_0 $$:
 
-​					$$ f(x)\approx f(x_0) + (x-x_0)\nabla_xf(x_0) + \frac{1}{2}(x-x_0)^T\textbf{H}(x-x_0)$$
+					$$ f(x)\approx f(x_0) + (x-x_0)\nabla_xf(x_0) + \frac{1}{2}(x-x_0)^T\textbf{H}(x-x_0)$$
 
 If we're at a critical point, it is a potential local minimum and we have $$ \nabla_x f(x) = 0 $$. Considering an SGD update $$ x = x_0 - \epsilon u$$, we have
 
-​					$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}(x_0 - \epsilon u - x_0)^T\textbf{H}(x_0 - \epsilon u - x_0)$$
+					$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}(x_0 - \epsilon u - x_0)^T\textbf{H}(x_0 - \epsilon u - x_0)$$
 
-​					$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}\epsilon^2 u^T\textbf{H} u $$
+					$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}\epsilon^2 u^T\textbf{H} u $$
 
 If the Hessian is positive definite at $$ x_0$$, then it tells us that any direction $$ u $$ in which we choose to travel will result an increased value of the objective function, so we are at a local minimum. We can similarly use the idea of negative definiteness to see if we are at a local maximum. 
 
@@ -105,15 +105,15 @@ There are some cases where the regular optimization process - a small step in th
 
 How much will a gradient descent update change the value of our objective? First, let's again look at the Taylor series expansion for an update $$ x \leftarrow x_0 - \epsilon \textbf{g} $$ where $$\textbf{g} = \nabla f(x_0) $$:
 
-​				$$ f(x_0 - \epsilon\textbf{g})\approx f(x_0) + (x_0 - \epsilon \textbf{g}-x_0)\textbf{g} + \frac{1}{2}(x_0 - \epsilon \textbf{g}-x_0)^T\textbf{H}(x-x_0)$$
+				$$ f(x_0 - \epsilon\textbf{g})\approx f(x_0) + (x_0 - \epsilon \textbf{g}-x_0)\textbf{g} + \frac{1}{2}(x_0 - \epsilon \textbf{g}-x_0)^T\textbf{H}(x-x_0)$$
 
-​				$$f(x_0 - \epsilon\textbf{g})\approx f(x_0) -\epsilon\textbf{g}^T\textbf{g} + \frac{1}{2}\epsilon^2\textbf{g}^T\textbf{H}\textbf{g}$$
+				$$f(x_0 - \epsilon\textbf{g})\approx f(x_0) -\epsilon\textbf{g}^T\textbf{g} + \frac{1}{2}\epsilon^2\textbf{g}^T\textbf{H}\textbf{g}$$
 
 We can see that the decrease in the objective is related to 2nd order information, specifically the term $$ g^T H g$$. If this term is negative, then the decrease in our objective is greater than our (scaled) squared gradient norm, if it is positive, then the decrease is less, if it is zero, the decrease is completely given by first-order information.
 
 "Poor Conditioning" refers to the Hessian at the point $$x_0$$ being such that it results in an *increased* value of our objective function. This can happen if the term that indicates our decrease in our objective is actually greater than $$ 0$$: 
 
-​			$$ -\epsilon g^Tg + \frac{1}{2}\epsilon^2g^T Hg > 0 $$ which corresponds to $$ \epsilon g^T g < \frac{1}{2}\epsilon^2g^THg $$
+			$$ -\epsilon g^Tg + \frac{1}{2}\epsilon^2g^T Hg > 0 $$ which corresponds to $$ \epsilon g^T g < \frac{1}{2}\epsilon^2g^THg $$
 
 This can happen if the Hessian is very large, in which case we'd want to use a smaller learning rate than $$\epsilon$$ to offset some of the influence of the curvature. An intuitive justification for this is that due to the large magnitude of curvature, we're more "unsure" of our gradient updates, so we want to take a smaller step, and therefore have a smaller learning rate.
 
@@ -129,7 +129,7 @@ A saddle point is defined as a point with $$ 0 $$ gradient, but the Hessian is n
 
 Around a saddle point, the expansion of our objective is similar to the expansion at a local minimum:
 
-​						$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}\epsilon^2 u^T\textbf{H} u  $$
+						$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}\epsilon^2 u^T\textbf{H} u  $$
 
 Here, $$ \textbf{H}$$ is not positive definite, so we may be able to pick certain directions $$ u $$ that increase or decrease the value of our objective. Concretely, if we pick $$ u $$ such that $$ u^T \textbf{H}u < 0 $$, then $$ u $$ is a direction that would decrease the value of our objective, and we can update our parameters with $$ u$$. Ideally we'd like to find a $$ u$$ such that $$ u^T\textbf{H}u$$ is significantly less than $$ 0$$, so that we have a steeper direction of descent to travel in.
 
@@ -139,9 +139,9 @@ However, it is often infeasible to compute the Hessian while training deep learn
 
 Get et al. in their paper also describe a variant of stochastic gradient descent which they call "noisy stochastic gradient descent". The only variant is that some random noise is added to the gradient:
 
-​								$$ \textbf{g} = \nabla_\theta \frac{1}{m}\sum_{i=1}^{m} L(f(x^i; \theta), y^i) $$
+								$$ \textbf{g} = \nabla_\theta \frac{1}{m}\sum_{i=1}^{m} L(f(x^i; \theta), y^i) $$
 
-​								$$ \theta_{t+1} \leftarrow{} \theta_{t} - \epsilon (\textbf{g} + \nu) $$
+								$$ \theta_{t+1} \leftarrow{} \theta_{t} - \epsilon (\textbf{g} + \nu) $$
 
 where $$ \nu$$ is random noise sampled from the unit sphere. This ensures that there is noise in every direction, allowing this variant of SGD to explore the region around the saddle point. The authors show that this noise can help escape from saddle points for strict-saddle functions.
 
