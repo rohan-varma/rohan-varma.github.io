@@ -25,15 +25,15 @@ Next, a *positive define* matrix is a symmetric matrix that has all positive eig
 
 To show this, it is enough to show that $$ z^T H z > 0 $$ for any real vector $$ z $$. To see why all positive eigenvalues imply this, first let's consider the case where $$ z $$ is an eigenvector of $$ H $$. Since $$ Hz = \lambda z $$ we have 
 
-​						$$ z^T H z = z^T\lambda z = \lambda z^Tz = \lambda ||z||^2 > 0 $$	 since $$ \lambda > 0$$. 
+​						$$ z^T H z = z^T\lambda z = \lambda z^Tz = \lambda \vert \vert z\vert \vert^2 > 0 $$	 since $$ \lambda > 0$$. 
 
 To prove this for an arbitrary vector $$ z $$, we first note that we can diagonalize $$ H $$ as follows:
 
 ​								$$ z^T H z = z^T Q \Lambda Q^{-1}z $$
 
-Where $$ Q $$ is a matrix whose columns are (distinct) eigenvectors of $$ H$$ and $\Lambda$ is a diagonal matrix with the corresponding eigenvalues on its diagonal.
+Where $$ Q $$ is a matrix whose columns are (distinct) eigenvectors of $$ H$$ and $$\Lambda$$ is a diagonal matrix with the corresponding eigenvalues on its diagonal.
 
-As mentioned, the eigenvectors are orthogonal. Since $$ Q ​$$ is a matrix whose columns are the eigenvectors, $$ Q ​$$ is an orthogonal matrix, so we have $$ Q^{-1} = Q^T ​$$, giving us:
+As mentioned, the eigenvectors are orthogonal. Since $$ Q $$ is a matrix whose columns are the eigenvectors, $$ Q $$ is an orthogonal matrix, so we have $$ Q^{-1} = Q^T $$, giving us:
 
 ​								 $$ z^T Q \Lambda Q^Tz > 0$$
 
@@ -109,7 +109,7 @@ We can see that the decrease in the objective is related to 2nd order informatio
 
 "Poor Conditioning" refers to the Hessian at the point $$x_0$$ being such that it results in an *increased* value of our objective function. This can happen if the term that indicates our decrease in our objective is actually greater than $$ 0$$: 
 
-$$ -\epsilon g^Tg + \frac{1}{2}\epsilon^2g^T Hg > 0 $$ which corresponds to $$ \epsilon g^T g < \frac{1}{2}\epsilon^2g^THg $$
+​			$$ -\epsilon g^Tg + \frac{1}{2}\epsilon^2g^T Hg > 0 $$ which corresponds to $$ \epsilon g^T g < \frac{1}{2}\epsilon^2g^THg $$
 
 This can happen if the Hessian is very large, in which case we'd want to use a smaller learning rate than $$\epsilon$$ to offset some of the influence of the curvature. An intuitive justification for this is that due to the large magnitude of curvature, we're more "unsure" of our gradient updates, so we want to take a smaller step, and therefore have a smaller learning rate.
 
@@ -117,7 +117,7 @@ This can happen if the Hessian is very large, in which case we'd want to use a s
 
 Getting stuck at a *saddle point* is a very real issue for optimizing deep neural networks, and arguably a more important issue than getting stuck at a local minima (see http://www.offconvex.org/2016/03/22/saddlepoints/). One explanation of this is that it's much more likely to arrive at a saddle point than a local minimum or maximum: the probability of a given point in an $$ n$$ dimensional optimization space being a local minimum or maximum is just $$ \frac{1}{2^n}$$. 
 
-A saddle point is defined as a point with $$ 0 $$ gradient, but the Hessian is neither positive definite or negative definite. It is possible that learning would stop if we are relying only on first-order information (i.e. since $$ \nabla_x f(x) = $$, the weights will not be updated) but in practice, using techniques such as momentum reduce the chance of this.
+A saddle point is defined as a point with $$ 0 $$ gradient, but the Hessian is neither positive definite or negative definite. It is possible that learning would stop if we are relying only on first-order information (i.e. since $$ \nabla_x f(x) = 0$$, the weights will not be updated) but in practice, using techniques such as momentum reduce the chance of this.
 
 ![](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/saddle.png)
 
@@ -125,7 +125,7 @@ A saddle point is defined as a point with $$ 0 $$ gradient, but the Hessian is n
 
 Around a saddle point, the expansion of our objective is similar to the expansion at a local minimum:
 
-$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}\epsilon^2 u^T\textbf{H} u  $$
+​						$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}\epsilon^2 u^T\textbf{H} u  $$
 
 Here, $$ \textbf{H}$$ is not positive definite, so we may be able to pick certain directions $$ u $$ that increase or decrease the value of our objective. Concretely, if we pick $$ u $$ such that $$ u^T \textbf{H}u < 0 $$, then $$ u $$ is a direction that would decrease the value of our objective, and we can update our parameters with $$ u$$. Ideally we'd like to find a $$ u$$ such that $$ u^T\textbf{H}u$$ is significantly less than $$ 0$$, so that we have a steeper direction of descent to travel in.
 
@@ -135,9 +135,9 @@ However, it is often infeasible to compute the Hessian while training deep learn
 
 Get et al. in their paper also describe a variant of stochastic gradient descent which they call "noisy stochastic gradient descent". The only variant is that some random noise is added to the gradient:
 
-$$ \textbf{g} = \nabla_\theta \frac{1}{m}\sum_{i=1}^{m} L(f(x^i; \theta), y^i) $$
+​								$$ \textbf{g} = \nabla_\theta \frac{1}{m}\sum_{i=1}^{m} L(f(x^i; \theta), y^i) $$
 
-$$ \theta_{t+1} \leftarrow{} \theta_{t} - \epsilon (\textbf{g} + \nu) $$
+​								$$ \theta_{t+1} \leftarrow{} \theta_{t} - \epsilon (\textbf{g} + \nu) $$
 
 where $$ \nu$$ is random noise sampled from the unit sphere. This ensures that there is noise in every direction, allowing this variant of SGD to explore the region around the saddle point. The authors show that this noise can help escape from saddle points for strict-saddle functions.
 
