@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hessians: A tool for debugging neural network optimization
+title: Hessians - A tool for debugging neural network optimization
 mathjax: True
 ---
 
