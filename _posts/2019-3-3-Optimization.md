@@ -1,10 +1,8 @@
 ---
 layout: post
-title: ResNets
+title: Hessians: A tool for debugging neural network optimization
 mathjax: True
 ---
-
-#### Hessians: A tool for debugging neural network optimization
 
 Optimizing deep neural networks has long followed a general tried-and-true template. Generally, we randomly initialize our weights, which can be thought of as randomly picking a place on the "hill" which is the optimization landscape. There are some tricks we can do to achieve better initialization schemes, such as the He or Xavier initialization.
 
