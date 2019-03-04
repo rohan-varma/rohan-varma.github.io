@@ -145,9 +145,14 @@ Get et al. in their paper also describe a variant of stochastic gradient descent
 
 where $$ \nu$$ is random noise sampled from the unit sphere. This ensures that there is noise in every direction, allowing this variant of SGD to explore the region around the saddle point. The authors show that this noise can help escape from saddle points for strict-saddle functions.
 
-The authors mention in the corresponding blog post that it is useful to think of a saddle point as *unstable*, so slight perturbations can be effective in order to kick your weights out of the saddle point. To me this indicates that any perturbation in addition to the regular SGD update could be beneficial to continue optimization at a saddle point, so techniques such as momentum would be helpful as well.
+The authors mention in the [corresponding blog post](http://www.offconvex.org/2016/03/22/saddlepoints/) that it is useful to think of a saddle point as *unstable*, so slight perturbations can be effective in order to kick your weights out of the saddle point. To me this indicates that any perturbation in addition to the regular SGD update could be beneficial to continue optimization at a saddle point, so techniques such as momentum would be helpful as well.
 
 ###### Takeaways
 
 The Hessian can give us useful second order information when optimizing machine learning algorithms, though it is computationally tough to compute in practice. By analyzing the Hessian, we may be able to get information regarding the convex nature of our problem, and it can also help us determine local minima or "debug" gradient descent when it actually fails to reduce our cost function or gets stuck at a saddle point.
+
+###### Sources
+1. [Escaping from Saddle Points](http://www.offconvex.org/2016/03/22/saddlepoints/)
+2. [Paper: Escaping from Saddle Points - Online SGD for Tensor Decomposition](https://arxiv.org/abs/1503.02101)
+3. [Deep Learning Book Ch. 8](http://www.deeplearningbook.org/)
 
