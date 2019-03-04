@@ -1,8 +1,10 @@
-#### Analyzing the Hessian to Aid Optimization of Deep Networks
+#### Hessians: A tool for debugging neural network optimization
 
 Optimizing deep neural networks has long followed a general tried-and-true template. Generally, we randomly initialize our weights, which can be thought of as randomly picking a place on the "hill" which is the optimization landscape. There are some tricks we can do to achieve better initialization schemes, such as the He or Xavier initialization.
 
-Then, we follow the gradient and update our parameters until we've met some stopping criterion. This is known as gradient descent. More commonly, stochastic gradient descent is used to add noise to the optimization process and speed up training time. Additionally, vanilla SGD is less common now, with practitioners instead opting for methods that add in momentum or adaptive learning rate techniques.
+Then, we follow the gradient and update our parameters until we've met some stopping criterion. This is known as gradient descent. More commonly, stochastic gradient descent is used to add noise (via approximating the gradient instead of computing the exact gradient) to the optimization process and speed up training time. Additionally, vanilla SGD is less common now, with practitioners instead opting for methods that add in momentum or adaptive learning rate techniques.
+
+![](https://raw.githubusercontent.com/ucla-labx/deeplearningbook-notes/master/images/along_the_ravine.png)
 
 It's natural to question theoretical - and practical - aspects of this common technique. What guarantees does it provide, and what are some conditions in which it could fail? Here, I'll attempt to dissect some of these questions so we can better understand what to watch out for when optimizing deep networks.
 
@@ -31,7 +33,7 @@ To prove this for an arbitrary vector $$ z $$, we first note that we can diagona
 
 Where $$ Q $$ is a matrix whose columns are (distinct) eigenvectors of $$ H$$ and $\Lambda$ is a diagonal matrix with the corresponding eigenvalues on its diagonal.
 
-As mentioned, the eigenvectors are orthogonal. Since $$ Q $$ is a matrix whose columns are the eigenvectors, $$ Q $$ is an orthogonal matrix, so we have $$ Q^{-1} = Q^T $$, giving us:
+As mentioned, the eigenvectors are orthogonal. Since $$ Q ​$$ is a matrix whose columns are the eigenvectors, $$ Q ​$$ is an orthogonal matrix, so we have $$ Q^{-1} = Q^T ​$$, giving us:
 
 ​								 $$ z^T Q \Lambda Q^Tz > 0$$
 
@@ -75,11 +77,11 @@ The optimization problem for neural networks are generally highly nonconvex, mak
 
 First, it may be worth it to know if we are at a local minimum at any point during our optimization process. In some cases, if this occurs early in our training process or at a high value for our objective function, then we could consider restarting our training/initialization process or randomly update our objective to "kick" our parameters out of the bad local minima.
 
-Even though the Hessian is not positive definte at any given point, we can check if we're at a local minimum by examining the Hessian. This is basically the second derivative test in single-variable calculus. If at a point $$ x_) $$ (which, in this context, is a particular setting of our weight parameters) has $$ \nabla f(x_0) = 0$$ and the Hessian $$ H $$ is positive definite at $$ x_0$$, then we can take the Taylor Series expansion at this point:
+Even though the Hessian may not be positive definite at any given point, we can check if we're at a local minimum by examining the Hessian. This is basically the second derivative test in single-variable calculus. Consider the Taylor Series expansion of our objective $$ f$$ around $$ x_0 $$:
 
 ​					$$ f(x)\approx f(x_0) + (x-x_0)\nabla_xf(x_0) + \frac{1}{2}(x-x_0)^T\textbf{H}(x-x_0)$$
 
-Considering an SGD update $$ x = x_0 - \epsilon u$$ and noting that $$\nabla_x f(x_0) = 0$$, we have
+If we're at a critical point, it is a potential local minimum and we have $$ \nabla_x f(x) = 0 $$. Considering an SGD update $$ x = x_0 - \epsilon u$$, we have
 
 ​					$$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}(x_0 - \epsilon u - x_0)^T\textbf{H}(x_0 - \epsilon u - x_0)$$
 
@@ -115,9 +117,9 @@ This can happen if the Hessian is very large, in which case we'd want to use a s
 
 Getting stuck at a *saddle point* is a very real issue for optimizing deep neural networks, and arguably a more important issue than getting stuck at a local minima (see http://www.offconvex.org/2016/03/22/saddlepoints/). One explanation of this is that it's much more likely to arrive at a saddle point than a local minimum or maximum: the probability of a given point in an $$ n$$ dimensional optimization space being a local minimum or maximum is just $$ \frac{1}{2^n}$$. 
 
-A saddle point is defined as a point with $$ 0 $$ gradient, but the Hessian is neither positive definite or negative definite.
+A saddle point is defined as a point with $$ 0 $$ gradient, but the Hessian is neither positive definite or negative definite. It is possible that learning would stop if we are relying only on first-order information (i.e. since $$ \nabla_x f(x) = $$, the weights will not be updated) but in practice, using techniques such as momentum reduce the chance of this.
 
-![](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/minmaxsaddle.png)
+![](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/saddle.png)
 
 
 
@@ -125,4 +127,31 @@ Around a saddle point, the expansion of our objective is similar to the expansio
 
 $$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}\epsilon^2 u^T\textbf{H} u  $$
 
-Here, $$ \textbf{H}$$ is not positive definite, so we may be able to pick certain directions $$ u $$ that increase or decrease the value of our objective. Concretely, if we pick $$ u $$ such that $$ u^T \textbf{H}u << 0 $$, then $$ u $$ is a direction that would decrease the value of our objective, and we can update our parameters with $$ u$$. 
+Here, $$ \textbf{H}$$ is not positive definite, so we may be able to pick certain directions $$ u $$ that increase or decrease the value of our objective. Concretely, if we pick $$ u $$ such that $$ u^T \textbf{H}u < 0 $$, then $$ u $$ is a direction that would decrease the value of our objective, and we can update our parameters with $$ u$$. Ideally we'd like to find a $$ u$$ such that $$ u^T\textbf{H}u$$ is significantly less than $$ 0$$, so that we have a steeper direction of descent to travel in.
+
+How do we know what functions have saddle points that are "well-behaved" like this? Ge et al. in their [paper](https://arxiv.org/abs/1503.02101) introduced the notion of "strict saddle" functions. One of the properties of these "strict saddle" functions is that at all saddle points $$ x$$, the Hessian has a (significant) negative eigenvalue, which means that we can pick the eigenvector corresponding to this eigenvalue as our direction to travel in if we are at a saddle point.
+
+However, it is often infeasible to compute the Hessian while training deep learning models, since it is computationally expensive. How can we escape saddle points using only first-order information? 
+
+Get et al. in their paper also describe a variant of stochastic gradient descent which they call "noisy stochastic gradient descent". The only variant is that some random noise is added to the gradient:
+
+$$ \textbf{g} = \nabla_\theta \frac{1}{m}\sum_{i=1}^{m} L(f(x^i; \theta), y^i) $$
+
+$$ \theta_{t+1} \leftarrow{} \theta_{t} - \epsilon (\textbf{g} + \nu) $$
+
+where $$ \nu$$ is random noise sampled from the unit sphere. This ensures that there is noise in every direction, allowing this variant of SGD to explore the region around the saddle point. The authors show that this noise can help escape from saddle points for strict-saddle functions.
+
+The authors mention in the corresponding blog post that it is useful to think of a saddle point as *unstable*, so slight perturbations can be effective in order to kick your weights out of the saddle point. To me this indicates that any perturbation in addition to the regular SGD update could be beneficial to continue optimization at a saddle point, so techniques such as momentum would be helpful as well.
+
+###### Takeaways
+
+The Hessian can give us useful second order information when optimizing machine learning algorithms, though it is computationally tough to compute in practice. By analyzing the Hessian, we may be able to get information regarding the convex nature of our problem, and it can also help us determine local minima or "debug" gradient descent when it actually fails to reduce our cost function or gets stuck at a saddle point.
+
+###### 
+
+
+
+
+
+
+
