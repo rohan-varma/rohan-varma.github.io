@@ -35,7 +35,7 @@ To prove this for an arbitrary vector $$ z $$, we first note that we can diagona
 
 ​								$$ z^T H z = z^T Q \Lambda Q^{-1}z $$
 
-Where $$ Q $$ is a matrix whose columns are (distinct) eigenvectors of $$ H$$ and $\Lambda$ is a diagonal matrix with the corresponding eigenvalues on its diagonal.
+Where $$ Q $$ is a matrix whose columns are (distinct) eigenvectors of $$ H$$ and $$\Lambda$$ is a diagonal matrix with the corresponding eigenvalues on its diagonal.
 
 As mentioned, the eigenvectors are orthogonal. Since $$ Q ​$$ is a matrix whose columns are the eigenvectors, $$ Q ​$$ is an orthogonal matrix, so we have $$ Q^{-1} = Q^T ​$$, giving us:
 
