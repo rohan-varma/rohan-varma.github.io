@@ -29,7 +29,7 @@ Next, a *positive define* matrix is a symmetric matrix that has all positive eig
 
 To show this, it is enough to show that $$ z^T H z > 0 $$ for any real vector $$ z $$. To see why all positive eigenvalues imply this, first let's consider the case where $$ z $$ is an eigenvector of $$ H $$. Since $$ Hz = \lambda z $$ we have 
 
-​						$$ z^T H z = z^T\lambda z = \lambda z^Tz = \lambda ||z||^2 > 0 $$	 since $$ \lambda > 0$$. 
+​						$$ z^T H z = z^T\lambda z = \lambda z^Tz = \lambda \vert \vert z \vert \vert^2 > 0 $$	 since $$ \lambda > 0$$. 
 
 To prove this for an arbitrary vector $$ z $$, we first note that we can diagonalize $$ H $$ as follows:
 
@@ -53,7 +53,7 @@ and
 
 We now have
 
-​			 $$\begin{bmatrix} s_1 & … & s_n \end{bmatrix} \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} \begin{bmatrix} s_1 \\ … \\ s_n \end{bmatrix} = \begin{bmatrix} s_1 & … & s_n \end{bmatrix} \begin{bmatrix} \lambda_1 s_1 \\ … \\ \lambda_ns_n \end{bmatrix} = \sum_{i=1}^{N}\lambda_is_i^2 > 0 $$.
+​			 $$\begin{bmatrix} s_1 & … & s_n \end{bmatrix} \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} \begin{bmatrix} s_1 \\ … \\ s_n \end{bmatrix} = \begin{bmatrix} s_1 & … & s_n \end{bmatrix} \begin{bmatrix} \lambda_1 s_1 \\ … \\ \lambda_ns_n \end{bmatrix} = \sum_{i=1}^{N}\lambda_is_i^2 > 0 $$
 
 
 
