@@ -103,7 +103,7 @@ $$ Err(x) = bias(X)^2 + var(x) + \epsilon $$
 
 Given a constant error, this means that there will always be a tradeoff between bias and variance. Having too much bias or too much variance isn't good for a model, but for different reasons. A high bias, low variance model will likely end up being inaccurate across both the training and testing datasets, and its predictions will likely not deviate too much based on the data sample it is trained on. On the other hand, a low-bias, high-variance model will likely give good results on a training dataset, but fail to generalize as well on a testing dataset. 
 
-The Gauss-Markov theorem states that in a linear regression problem, the least squares estimator has the lowest variance out of all other unbiased estimators. However, if we consider biased estimators such as the estimator given by ridge regression, we can arrive at a lower variance, higher-bias solution. In particular, the expectation of the ridge estimator (derived [here](https://math.bu.edu/people/cgineste/classes/ma575/p/w14_1.pdf)) is given by: 
+The Gauss-Markov theorem states that in a linear regression problem, the least squares estimator has the lowest variance out of all other unbiased estimators. However, if we consider biased estimators such as the estimator given by ridge regression, we can arrive at a lower variance, higher-bias solution. In particular, the expectation of the ridge estimator (derived [here](http://math.bu.edu/people/cgineste/classes/ma575/p/w14_1.pdf)) is given by: 
 
 $$ \beta - \lambda (X^TX + \lambda I)^{-1} \beta $$
 
