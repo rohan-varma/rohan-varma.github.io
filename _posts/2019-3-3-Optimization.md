@@ -147,6 +147,36 @@ where $$ \nu$$ is random noise sampled from the unit sphere. This ensures that t
 
 The authors mention in the [corresponding blog post](http://www.offconvex.org/2016/03/22/saddlepoints/) that it is useful to think of a saddle point as *unstable*, so slight perturbations can be effective in order to kick your weights out of the saddle point. To me this indicates that any perturbation in addition to the regular SGD update could be beneficial to continue optimization at a saddle point, so techniques such as momentum would be helpful as well.
 
+###### Computing the Hessian
+
+​	Most of these methods discussed involve the need to compute the Hessian, which is often unrealistic in practice due to the aformented reasons. However, we can use *finite difference methods* in order to approximate the Hessian, which may be enough to do our job. To understand this, first we can consider the limit definition of the derivative in the single-variable case:
+
+$$\frac{d}{dx} f(x) = \lim_{h \rightarrow{} 0} \frac{f(x + h) - f(x)}{h}$$
+
+This means an approximation for $$ \frac{d}{dx}f(x) $$ can be given by
+
+$$ \frac{f(x + h) - f(x)}{h}$$ 
+
+where our approximation improves with a smaller $$ h$$ but we run into numerical stability issues if we take $$ h$$ to be too small. It turns out that a slightly better approximation would be to use the centered version of the above (see the explanation on [CS 231n](http://cs231n.github.io/neural-networks-3/#gradcheck) for details):
+
+$$ \frac{d}{dx}f(x) \approx  \frac{f(x + h) - f(x-h)}{2h}$$
+
+For vector-valued functions, we can generalize this idea to several dimensions:
+
+$$ \frac{d}{dx_i}f(x) \approx \frac{f(x + h s_i) - f(x - h s_i)}{2h} $$ 
+
+where $$ s_i$$ is a vector that has $$ 1 $$ as its $$i$$th entry, and is zero everywhere else. We're basically taking the unit vector pointing in that direction, scaling it so that it is small, and adding that to our setting of parameters given by the vector $$ x $$. 
+
+It turns out that this identity can be further generalized, to approximate the gradient-vector product (i.e. the product of the gradient times a given vector). We simply remove the constraint that $$ s_i$$ is the unit vector pointing in a particular direction, and instead let it be any vector $$ u$$. This lets us approximate the gradient vector product:
+
+$$ \nabla_x f(x)^T u \approx  \frac{f(x + h u) - f(x - h u)}{2h} $$
+
+It's quite simple to extend this to computing the Hessian-vector product: given the gradient, the gradient of the gradient is the Hessian. This means that we can replace the gradient on the left hand side of the above equation with the Hessian, and the function on the right hand side with the gradient:
+
+$$ H u \approx  \frac{\nabla_xf(x + h u) - \nabla_xf(x - h u)}{2h} $$
+
+which gives us the Hessian-vector product.
+
 ###### Takeaways
 
 The Hessian can give us useful second order information when optimizing machine learning algorithms, though it is computationally tough to compute in practice. By analyzing the Hessian, we may be able to get information regarding the convex nature of our problem, and it can also help us determine local minima or "debug" gradient descent when it actually fails to reduce our cost function or gets stuck at a saddle point.
