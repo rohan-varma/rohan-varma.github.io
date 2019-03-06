@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 
-Hi, I'm Rohan, a computer science student at UCLA. gents Scholars Society at UCLA. 
+Hi, I'm Rohan, a computer science student at UCLA. . 
 
 ### Internships
 
