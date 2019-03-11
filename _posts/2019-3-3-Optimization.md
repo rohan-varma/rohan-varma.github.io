@@ -181,6 +181,12 @@ which gives us the Hessian-vector product.
 
 The Hessian can give us useful second order information when optimizing machine learning algorithms, though it is computationally tough to compute in practice. By analyzing the Hessian, we may be able to get information regarding the convex nature of our problem, and it can also help us determine local minima or "debug" gradient descent when it actually fails to reduce our cost function or gets stuck at a saddle point.
 
+
+
+###### Learn More
+
+If you're interested in learning more about theoretical aspects about machine learning, I find that an ML textbook is really useful. My favorite one so far has been Pattern Recognition and Machine Learning, which is [available on Amazon](https://amzn.to/2NUP3yi).
+
 ###### Sources
 1. [Escaping from Saddle Points](http://www.offconvex.org/2016/03/22/saddlepoints/)
 2. [Paper: Escaping from Saddle Points - Online SGD for Tensor Decomposition](https://arxiv.org/abs/1503.02101)
