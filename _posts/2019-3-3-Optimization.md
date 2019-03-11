@@ -191,4 +191,5 @@ If you're interested in learning more about theoretical aspects about machine le
 1. [Escaping from Saddle Points](http://www.offconvex.org/2016/03/22/saddlepoints/)
 2. [Paper: Escaping from Saddle Points - Online SGD for Tensor Decomposition](https://arxiv.org/abs/1503.02101)
 3. [Deep Learning Book Ch. 8](http://www.deeplearningbook.org/)
+4. [Explanation of approximating gradient-vector products](https://timvieira.github.io/blog/post/2014/02/10/gradient-vector-product/) 
 
