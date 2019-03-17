@@ -33,4 +33,5 @@ Please send me a [pull request](https://github.com/rohan-varma/rohan-blog/pulls)
 
 #### Misc
 - [Xavier initialization of weights](https://github.com/rohan-varma/machine-learning-courses/blob/master/cs231n/notes/Explanation%20of%20Xavier%20Initialization.ipynb)
+- [Downsides of sigmoid function, and why inputs should be centered](https://rohanvarma.me/inputnormalization/)
 
