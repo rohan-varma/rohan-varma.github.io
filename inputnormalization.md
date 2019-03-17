@@ -1,3 +1,9 @@
+---
+layout: post
+title: Downsides of the sigmiod activation and why you should center your inputs
+mathjax: True
+---
+
 #### Downsides of the sigmoid activation function, and why you may want to center your inputs
 
 This document seeks to provide some notes on why zero-centering inputs can be a good idea in machine learning, and some limitations of using the sigmoid function in your model. It is not necessarily a complete enumeration of all of the reasons, though.
