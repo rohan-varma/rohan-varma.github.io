@@ -63,7 +63,7 @@ As an example of using this analysis to prove the convexity of a machine learnin
 
 ​$$ L(w) = \lambda \sum_n w_n^2 + \sum_n \max (0, 1 - y_n(w^Tx_n))$$
 
-The derivatives for each $$ w_n$$ are $$\frac{dL}{dw_n} = \lambda w_n  + \sum \textbf{1} (y_n w^T x_n < 1)(-y_nx_n)  $$, where $$ \textbf{1} $$ denotes the indicator function that returns the second argument if its first argument is true.
+The derivatives for each $$ w_n$$ are $$\frac{dL}{dw_n} = \lambda w_n  + \sum \textbf{1} (y_n w^T x_n < 1)(-y_nx_n)  $$, where $$ \textbf{1} $$ denotes the indicator function that returns the second argument if it's first argument is true.
 
 The second derivatives can be characterized as $$ \frac{dL}{dw_n w_k}, k != n$$ and  $$ \frac{dL}{dw_n^2}$$. The latter derivatives will appear as the diagonal entries of the Hessian.
 
@@ -190,5 +190,6 @@ The Hessian can give us useful second order information when optimizing machine 
 
 ##### Notes
 [4/7/19] - Added further explanation for the claim that "The eigenvectors of distinct values are orthogonal, and therefore form a basis for $$ R^n $$"
+
 [4/7/19] = Added a note about the indicator function notation that I used when explaining the L2-regularized SVM.
 
