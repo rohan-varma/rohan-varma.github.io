@@ -23,7 +23,7 @@ $$\begin{bmatrix} \frac{dy}{dx_1x_1} & \frac{dy}{dx_1x_2} \\ \frac{dy}{dx_2x_1} 
 Real symmetric matrices have nice properties:
 
 - All eigenvalues are real and distinct eigenvalues correspond to distinct eigenvectors
-- The eigenvectors of distinct values are orthogonal, and therefore form a basis for $$ R^n $$ . 
+- The eigenvectors of distinct values are orthogonal, and therefore form a basis for $$ R^n$$, where $$ n $$ is the dimension of the row/column space of the matrix.
 
 Next, a *positive definite* matrix is a symmetric matrix that has all positive eigenvalues. One way to determine if a function is *convex* is to check if its Hessian is positive definite.
 
@@ -63,7 +63,7 @@ As an example of using this analysis to prove the convexity of a machine learnin
 
 ​$$ L(w) = \lambda \sum_n w_n^2 + \sum_n \max (0, 1 - y_n(w^Tx_n))$$
 
-The derivatives for each $$ w_n$$ are $$\frac{dL}{dw_n} = \lambda w_n  + \sum \textbf{1} (y_n w^T x_n < 1)(-y_nx_n)  $$
+The derivatives for each $$ w_n$$ are $$\frac{dL}{dw_n} = \lambda w_n  + \sum \textbf{1} (y_n w^T x_n < 1)(-y_nx_n)  $$, where $$ \textbf{1} $$ denotes the indicator function that returns the second argument if its first argument is true.
 
 The second derivatives can be characterized as $$ \frac{dL}{dw_n w_k}, k != n$$ and  $$ \frac{dL}{dw_n^2}$$. The latter derivatives will appear as the diagonal entries of the Hessian.
 
@@ -182,14 +182,13 @@ which gives us the Hessian-vector product.
 The Hessian can give us useful second order information when optimizing machine learning algorithms, though it is computationally tough to compute in practice. By analyzing the Hessian, we may be able to get information regarding the convex nature of our problem, and it can also help us determine local minima or "debug" gradient descent when it actually fails to reduce our cost function or gets stuck at a saddle point.
 
 
-
-###### Learn More
-
-If you're interested in learning more about theoretical aspects about machine learning, I find that an ML textbook is really useful. My favorite one so far has been Pattern Recognition and Machine Learning, which is [available on Amazon](https://amzn.to/2NUP3yi).
-
 ###### Sources
 1. [Escaping from Saddle Points](http://www.offconvex.org/2016/03/22/saddlepoints/)
 2. [Paper: Escaping from Saddle Points - Online SGD for Tensor Decomposition](https://arxiv.org/abs/1503.02101)
 3. [Deep Learning Book Ch. 8](http://www.deeplearningbook.org/)
 4. [Explanation of approximating gradient-vector products](https://timvieira.github.io/blog/post/2014/02/10/gradient-vector-product/) 
+
+##### Notes
+[4/7/19] - Added further explanation for the claim that "The eigenvectors of distinct values are orthogonal, and therefore form a basis for $$ R^n $$"
+[4/7/19] = Added a note about the indicator function notation that I used when explaining the L2-regularized SVM.
 
