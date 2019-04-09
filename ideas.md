@@ -23,6 +23,7 @@ These are some ideas for products, services, or general life improvement that I'
    - How to build trust into the process? Should it be similar to leasing an apartment? 
    - Corollary idea: use Facebook API to notify users in real-time via email or message when a new sublet is posted that matches their parameters
 6. Better software (i.e. enterprise) for usage by doctors, to improve the patient experience and to let the doctor have more time with their patient, and focus on their job, the software should be an out of the way thing.
+   - Video conferencing with patients as well
 7. Better software for learning languages
    - Duolingo is great, but what about a more social experience
    - App where 2 users can compete to see who can translate more sentences correctly over a timeframe
@@ -31,9 +32,10 @@ These are some ideas for products, services, or general life improvement that I'
    - A student who wants to succeed in the project will generally have to not only understand the spec, but also search through all the piazza posts to get clarification about ambiguous parts
    - What if the spec was a living document, and discussion was done directly by highlighting parts of the spec and having notes on it pop up on the side? Really similar idea to hypothes.is
 9. One-click vacation booking
-   - Lots of effort to book a vacation: plane tickets, hotel/airbnb, things to do, tourism, restaurant reservations
-     Create a one-click book experience, that books flights + hotels + stuff to do, etc
-   - Ski trip solution: book a ski trip, and get hotel/airbnb + lift tickets
+   - Enter in your destination, some preferences, etc and retrieve a list of possible vacation arrangements
+   - Including plane tickets, airbnbs, reservations for food, things to do, etc
+   - Click one of these, enter info, and it is able to book everything
+   - Might be useful for recurring trips that people take
 10. Social media feedback extractor
     - App/API that summarizes how your company/product is being perceived on social media right now
       Start by scraping reddit/twitter, and use NLP to extract sentiment
@@ -51,5 +53,5 @@ These are some ideas for products, services, or general life improvement that I'
     - Vanguard is great though
     - Robinhood is great, but a common criticism is that it encourages uninformed investing/stock market speculation
     - What if there was an app similar to robinhood, but a fund for retirement or something like that? Investing in indexes/bonds etc, without fees
-    - Probably similar to robo advisors
+    - Probably similar to robo advisors, Betterment, Wealthfront come to mind
 
