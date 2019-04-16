@@ -29,23 +29,23 @@ Next, a *positive definite* matrix is a symmetric matrix that has all positive e
 
 To show this, it is enough to show that $$ z^T H z > 0 $$ for any real vector $$ z $$. To see why all positive eigenvalues imply this, first let's consider the case where $$ z $$ is an eigenvector of $$ H $$. Since $$ Hz = \lambda z $$ we have 
 
-​$$ z^T H z = z^T\lambda z = \lambda z^Tz = \lambda \vert \vert z\vert \vert^2 > 0 $$	 since $$ \lambda > 0$$. 
+​$$z^T H z = z^T\lambda z = \lambda z^Tz = \lambda \vert \vert z\vert \vert^2 > 0$$	 since $$\lambda >0$$. 
 
 To prove this for an arbitrary vector $$ z $$, we first note that we can diagonalize $$ H $$ as follows:
 
-​$$ z^T H z = z^T Q \Lambda Q^{-1}z $$
+​$$z^T H z = z^T Q \Lambda Q^{-1}z$$
 
-Where $$ Q $$ is a matrix whose columns are (distinct) eigenvectors of $$ H$$ and $$\Lambda$$ is a diagonal matrix with the corresponding eigenvalues on its diagonal. We know that this diagonalization is possible since $$ H $$ is real and symmetric.
+Where $$Q$$ is a matrix whose columns are (distinct) eigenvectors of $$ H$$ and $$\Lambda$$ is a diagonal matrix with the corresponding eigenvalues on its diagonal. We know that this diagonalization is possible since $$ H $$ is real and symmetric.
 
 As mentioned, the eigenvectors are orthogonal. Since $$ Q $$ is a matrix whose columns are the eigenvectors, $$ Q $$ is an orthogonal matrix, so we have $$ Q^{-1} = Q^T $$, giving us:
 
-​$$ z^T Q \Lambda Q^Tz > 0$$
+​$$z^T Q \Lambda Q^Tz >0$$
 
 Let's define $$ s = Q^T z $$, so we now have $$ s^T  \Lambda s > 0 $$. Taking
 
 
 
-​$$ s = \begin{bmatrix} s_1 \\ … \\ s_n \end{bmatrix}$$ 
+​$$s = \begin{bmatrix} s_1 \\ … \\ s_n \end{bmatrix}$$ 
 
 and
 
