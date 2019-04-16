@@ -18,7 +18,7 @@ Say we want to optimize $$ f(x) $$ where $$ x $$ are our parameters that we want
 
 The Hessian is real and symmetric, since in general we assume that the second derivatives exist and  $$ \frac{dy}{dx_1 x_2} = \frac{dy}{dx_2 x_1}$$for the functions that we are considering (Schwarz's theorem provides the conditions that need to be true for this to hold). For example, the Hessian for a function $$ y = f(x_1, x_2)$$ could be expressed as
 
-$$\begin{bmatrix} \frac{dy}{dx_1x_1} & \frac{dy}{dx_1x_2} \\ \frac{dy}{dx_2x_1} &  \frac{dy}{dx_2x_2}\end{bmatrix} $$ 
+$$\begin{bmatrix} \frac{dy}{dx_1x_1} & \frac{dy}{dx_1x_2} \\ \frac{dy}{dx_2x_1} &  \frac{dy}{dx_2x_2}\end{bmatrix}$$ 
 
 Real symmetric matrices have nice properties:
 
@@ -29,32 +29,31 @@ Next, a *positive definite* matrix is a symmetric matrix that has all positive e
 
 To show this, it is enough to show that $$ z^T H z > 0 $$ for any real vector $$ z $$. To see why all positive eigenvalues imply this, first let's consider the case where $$ z $$ is an eigenvector of $$ H $$. Since $$ Hz = \lambda z $$ we have 
 
-​$$z^T H z = z^T\lambda z = \lambda z^Tz = \lambda \vert \vert z\vert \vert^2 > 0$$	 since $$\lambda >0$$. 
+$$z^T H z = z^T\lambda z = \lambda z^Tz = \lambda \vert \vert z\vert \vert^2 > 0$$	 since $$\lambda >0$$. 
 
 To prove this for an arbitrary vector $$ z $$, we first note that we can diagonalize $$ H $$ as follows:
 
-​$$z^T H z = z^T Q \Lambda Q^{-1}z$$
+$$z^T H z = z^T Q \Lambda Q^{-1}z$$
 
 Where $$Q$$ is a matrix whose columns are (distinct) eigenvectors of $$ H$$ and $$\Lambda$$ is a diagonal matrix with the corresponding eigenvalues on its diagonal. We know that this diagonalization is possible since $$ H $$ is real and symmetric.
 
 As mentioned, the eigenvectors are orthogonal. Since $$ Q $$ is a matrix whose columns are the eigenvectors, $$ Q $$ is an orthogonal matrix, so we have $$ Q^{-1} = Q^T $$, giving us:
 
-​$$z^T Q \Lambda Q^Tz >0$$
+$$z^T Q \Lambda Q^Tz >0$$
 
 Let's define $$ s = Q^T z $$, so we now have $$ s^T  \Lambda s > 0 $$. Taking
 
 
 
-​$$s = \begin{bmatrix} s_1 \\ … \\ s_n \end{bmatrix}$$ 
+$$s = \begin{bmatrix} s_1 \\ … \\ s_n \end{bmatrix}$$ 
 
 and
 
-​$$ \Lambda = \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} $$
+$$ \Lambda = \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} $$
 
 We now have
 
-​			 $$\begin{bmatrix} s_1 & … & s_n \end{bmatrix} \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} \begin{bmatrix} s_1 \\ … \\ s_n \end{bmatrix} = \begin{bmatrix} s_1 & … & s_n \end{bmatrix} \begin{bmatrix} \lambda_1 s_1 \\ … \\ \lambda_ns_n \end{bmatrix} = \sum_{i=1}^{N}\lambda_is_i^2 > 0 $$.
-
+$$\begin{bmatrix} s_1 & … & s_n \end{bmatrix} \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} \begin{bmatrix} s_1 \\ … \\ s_n \end{bmatrix} = \begin{bmatrix} s_1 & … & s_n \end{bmatrix} \begin{bmatrix} \lambda_1 s_1 \\ … \\ \lambda_ns_n \end{bmatrix} = \sum_{i=1}^{N}\lambda_is_i^2 > 0$$.
 
 
 Which is true since all the eigenvalues are positive.
