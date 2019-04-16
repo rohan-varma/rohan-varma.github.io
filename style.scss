@@ -18,9 +18,11 @@ html {
 }
 
 body {
-	background: $white;
+//	background: $white; i changed this
+	background: #EFEFEF;
   //font: 18px/1.4 $helvetica; i changed ths
 font-family: 'Vollkorn', serif; // added this
+	line-height: 1.4; // i added this
   color: $darkGray;
 }
 
