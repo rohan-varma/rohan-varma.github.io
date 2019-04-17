@@ -81,7 +81,7 @@ The second term in the inner sum essentially inverts our labels and score assign
 
 This again makes sense - penalizing the incorrect classes in this way will encourage the values $$1 - s_j$$ (where each $$s_j$$ is a probability assigned to an incorrect class) to be large, which will in turn encourage $$s_j$$ to be low. This alternative version seems to tie in more closely to the binary cross entropy that we obtained from the maximum likelihood estimate, but the first version appears to be more commonly used both in practice and in teaching.
 
-It turns out that it doesn't really matter which variant of cross-entropy you use for multiple-class classification, as they both decrease at similar rates and are just offset, with the second variant discussed having a higher loss for a particular setting of scores. To show this, I [wrote some code](https://github.com/rohan-varma/machine-learning-courses/blob/master/cs231n/loss.py) to plot these 2 loss functions against each other, for probabilities for the correct class ranging from 0.01 to 0.98, and obtained the following plot: 
+It turns out that it doesn't really matter which variant of cross-entropy you use for multiple-class classification, as they both decrease at similar rates and are just offset, with the second variant discussed having a higher loss for a particular setting of scores. To show this, I [wrote some code](https://github.com/rohan-varma/machine-learning-notes/blob/master/loss-experiment/loss.py) to plot these 2 loss functions against each other, for probabilities for the correct class ranging from 0.01 to 0.98, and obtained the following plot: 
 
 
 
@@ -99,7 +99,7 @@ Interpreting the cross-entropy loss as minimizing the KL divergence between 2 di
 
 #### Differences in learning speed for classification
 
-It turns out that if we're given a typical classification problem, we can show that (at least theoretically) the cross-entropy loss leads to quicker learning through gradient descent than the MSE loss. First, let's recall the gradient descent update rule:
+It turns out that if we're given a typical classification problem and a model $$h_\theta(x) = \sigma(Wx_i + b)$$, we can show that (at least theoretically) the cross-entropy loss leads to quicker learning through gradient descent than the MSE loss. This is primarily due to the use of the sigmoid function. First, let's recall the gradient descent update rule:
 
 ```
 For i = 1 ... N:
@@ -107,7 +107,7 @@ For i = 1 ... N:
     Let w_i = w_i - learning_rate * dJ/dw_i
 ```
 
-Essentially, the gradient descent algorithm computes partial derivatives for all the parameters in our network, and updates the parameters by decrementing the parameters by their respective partial derivatives, times a constant known as the learning rate, taking a step towards a local minimum. 
+(Note that the gradient terms $$\frac{dJ}{dw_i}$$ should all be computed before applying the updates). Essentially, the gradient descent algorithm computes partial derivatives for all the parameters in our network, and updates the parameters by decrementing the parameters by their respective partial derivatives, times a constant known as the learning rate, taking a step towards a local minimum. 
 
 This means that the "speed" of learning is dictated by two things: the learning rate and the size of the partial derivative. The learning rate is a hyperparameter that we must tune, so we'll focus on the size of the partial derivatives for now. Consider the following binary classification scenario: we have an input feature vector $$x_i$$, a label $$y_i$$, and a prediction $$\hat{y_i} = h_\theta(x_i)$$. 
 
