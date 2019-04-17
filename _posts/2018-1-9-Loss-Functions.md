@@ -117,9 +117,9 @@ First, given our prediction $$\hat{y_i} = \sigma(Wx_i + b)$$ and our loss $$J = 
 
 $$\frac{dJ}{dW} = (y_i - \hat{y_i})\sigma'(Wx_i + b)x_i$$
 
-This derivative has the term $$\sigma'(Wx_i + b)$$ in it. This can be expressed as $$\sigma(Wx_i + b)(1 - \sigma(Wx_i + b))$$ (see here for a proof). Since we initialized our weights randomly with values close to 0, this expression will be very close to 0, which will make the partial derivative nearly vanish during the early stages of training. A plot of the sigmoid curve's derivative is shown below, indicating that the gradients are small whenever the outputs are close to $$0$$ or $$1$$: 
+This derivative has the term $$\sigma'(Wx_i + b)$$ in it. This can be expressed as $$\sigma(Wx_i + b)(1 - \sigma(Wx_i + b))$$ (see here for a proof). Since we initialized our weights randomly with values close to 0, this expression will be very close to 0, which will make the partial derivative nearly vanish during the early stages of training. A plot of the sigmoid curve's derivative is shown below [6], indicating that the gradients are small whenever the outputs are close to $$0$$ or $$1$$: 
 
-![sigmoid](https://ronny.rest/media/blog/2017/2017_08_10_sigmoid/sigmoid_and_derivative_plot.jpg)
+![sigmoid](https://raw.githubusercontent.com/rohan-varma/rohan-blog/gh-pages/images/sigmoid_derivative.jpg)
 
 This can lead to slower learning at the beginning stages of gradient descent, since the smaller derivatives change each weight by only a small amount, and gradient descent takes a while to get out of this loop and make larger updates towards a minima.
 
@@ -176,3 +176,6 @@ In this post, we've show that the MSE loss comes from a probabalistic interpreta
 5. [Machine Learning, Princeton University](https://www.cs.princeton.edu/courses/archive/fall16/cos402/lectures/402-lec5.pdf)
 
 6. [Ronny Restrepo, sigmoid functions](https://ronny.rest/blog/post_2017_08_10_sigmoid/)
+
+#### Notes
+[4/16/19] - Fixed broken links and clarified the particular model for which the learning speed of MSE loss is slower than cross-entropy
