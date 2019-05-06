@@ -1,6 +1,7 @@
 ---
-layout: post
-title: Fields, Vector Spaces, and Subspaces
+layout: page
+title: Linear Algebra Notes
+permalink: /subspace/
 mathjax: True
 ---
 
