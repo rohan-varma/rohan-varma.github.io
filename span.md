@@ -1,6 +1,6 @@
-#### Linear Combination, Span, and Linear Independence
+#### Linear
 
-##### Linear Combinations
+##### Combinations
 
 A linear combination of the vectors $$ {v_1, … v_n} \in V $$is a vector $$ v \in V $$ of the form $$a_1v_1 + … a_nv_n $$ for $$a_i \in \mathbb{F}$$. Linear combinations of a bunch of vectors is just scaling each vector, and then adding them together.
 
