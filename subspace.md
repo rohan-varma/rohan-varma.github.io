@@ -1,10 +1,3 @@
----
-layout: page
-mathjax: true
-permalink: /subspace/
-title: "Linear Algebra Notes"
----
-
 #### Linear Algebra Notes 
 
 ##### Fields, Vector Spaces, and Subspaces
