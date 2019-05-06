@@ -1,6 +1,6 @@
-#### Linear Algebra Notes 
+#### Linear
 
-##### Fields, Vector Spaces, and Subspaces
+##### Fields
 
 A field $$ \mathbb{F} $$ is a set with 2 operations: $$ + : \mathbb{F} \times{} \mathbb{F} \rightarrow{} \mathbb{F} $$  and $$ * : \mathbb{F} \times{} \mathbb{F} \rightarrow{} \mathbb{F}$$ with the following axioms (assume that all $$a, b, c \in \mathbb{F}$$:
 
