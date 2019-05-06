@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Linear Algebra Notes
+mathjax: true
 permalink: /subspace/
-mathjax: True
+title: "Linear Algebra Notes"
 ---
 
 #### Linear Algebra Notes 
