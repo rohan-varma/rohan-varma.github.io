@@ -90,7 +90,7 @@ $$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}(x_0 - \epsilon u - x_0)^T\textb
 
 $$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}\epsilon^2 u^T\textbf{H} u $$
 
-If the Hessian is positive definite at $$ x_0$$, then it tells us that any direction $$ u $$ in which we choose to travel will result an increased value of the objective function, so we are at a local minimum. We can similarly use the idea of negative definiteness to see if we are at a local maximum. 
+If the Hessian is positive definite at $$ x_0$$, then it tells us that any direction $$ u $$ in which we choose to travel will result an increased value of the objective function (since the term $$ \frac{1}{2}\epsilon^2 u^T\textbf{H} u > 0$$), so we are at a local minimum. We can similarly use the idea of negative definiteness to see if we are at a local maximum. 
 
 **Are local minima really that big of a problem?**
 
@@ -104,7 +104,7 @@ There are some cases where the regular optimization process - a small step in th
 
 How much will a gradient descent update change the value of our objective? First, let's again look at the Taylor series expansion for an update $$ x \leftarrow x_0 - \epsilon \textbf{g} $$ where $$\textbf{g} = \nabla f(x_0) $$:
 
-$$ f(x_0 - \epsilon\textbf{g})\approx f(x_0) + (x_0 - \epsilon \textbf{g}-x_0)\textbf{g} + \frac{1}{2}(x_0 - \epsilon \textbf{g}-x_0)^T\textbf{H}(x-x_0)$$
+$$ f(x_0 - \epsilon\textbf{g})\approx f(x_0) + (x_0 - \epsilon \textbf{g}-x_0)\textbf{g} + \frac{1}{2}(x_0 - \epsilon \textbf{g}-x_0)^T\textbf{H}(x_0 - \epsilon \textbf{g}-x_0)$$
 
 $$f(x_0 - \epsilon\textbf{g})\approx f(x_0) -\epsilon\textbf{g}^T\textbf{g} + \frac{1}{2}\epsilon^2\textbf{g}^T\textbf{H}\textbf{g}$$
 
@@ -130,7 +130,7 @@ Around a saddle point, the expansion of our objective is similar to the expansio
 
 $$f(x_0-\epsilon u) \approx f(x_0) + \frac{1}{2}\epsilon^2 u^T\textbf{H} u  $$
 
-Here, $$ \textbf{H}$$ is not positive definite, so we may be able to pick certain directions $$ u $$ that increase or decrease the value of our objective. Concretely, if we pick $$ u $$ such that $$ u^T \textbf{H}u < 0 $$, then $$ u $$ is a direction that would decrease the value of our objective, and we can update our parameters with $$ u$$. Ideally we'd like to find a $$ u$$ such that $$ u^T\textbf{H}u$$ is significantly less than $$ 0$$, so that we have a steeper direction of descent to travel in.
+Here, $$ \textbf{H}$$ is not positive definite, so we may be able to pick certain directions $$ u $$ that increase or decrease the value of our objective. Concretely, if we pick $$ u $$ such that $$ u^T \textbf{H}u < 0 $$, then $$ u $$ is a direction that would decrease the value of our objective (since the term $$ \frac{1}{2}\epsilon^2 u^T\textbf{H} u < 0$$ decreases the value of our objective)  , and we can update our parameters with $$ u$$. Ideally we'd like to find a $$ u$$ such that $$ u^T\textbf{H}u$$ is significantly less than $$ 0$$, so that we have a steeper direction of descent to travel in.
 
 How do we know what functions have saddle points that are "well-behaved" like this? Ge et al. in their [paper](https://arxiv.org/abs/1503.02101) introduced the notion of "strict saddle" functions. One of the properties of these "strict saddle" functions is that at all saddle points $$ x$$, the Hessian has a (significant) negative eigenvalue, which means that we can pick the eigenvector corresponding to this eigenvalue as our direction to travel in if we are at a saddle point.
 
@@ -190,5 +190,7 @@ The Hessian can give us useful second order information when optimizing machine 
 ##### Notes
 [4/7/19] - Added further explanation for the claim that "The eigenvectors of distinct values are orthogonal, and therefore form a basis for $$ R^n $$"
 
-[4/7/19] = Added a note about the indicator function notation that I used when explaining the L2-regularized SVM.
+[4/7/19] - Added a note about the indicator function notation that I used when explaining the L2-regularized SVM.
+
+[5/7/19] - Fixed an incorrect equation and added some clarifications.
 
