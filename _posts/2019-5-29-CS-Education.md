@@ -4,7 +4,7 @@ title: A Note on Computer Science Education
 mathjax: True
 ---
 
-Note: I wrote this essay a couple months ago, but didn't quite get around to publishing it now. It's my current (as of May 2019) view on university-level computer science education.
+Note: I wrote this essay a couple months ago, but didn't quite get around to publishing it until now. It's my current (as of May 2019) view on university-level computer science education, mostly specific to UCLA.
 
 Since I’ve been at UCLA, and especially recently, a debate has always been going on about UCLA’s CS curriculum. The debate is about theory vs practice: is UCLA’s CS curriculum too theoretical, and does it fail to teach students practical skills and prepare them for industry success? From my personal observations and limited sample size, it seems that a popular opinion is *yes*: UCLA’s curriculum should be changed to include more practical classes, where students learn skills that they will apply in industry roles, and to this end, there have been proposals to teach classes ranging from web application design to Android and iOS programming.
 
