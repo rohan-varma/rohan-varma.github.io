@@ -6,9 +6,9 @@ mathjax: True
 
 Note: I wrote this essay a couple months ago, but didn't quite get around to publishing it now. It's my current (as of May 2019) view on university-level computer science education.
 
-Since I’ve been at UCLA, and especially recently, a debate has always been going on about UCLA’s CS curriculum. The debate is about theory vs practice: is UCLA’s CS curriculum too theoretical, and does it fail to teach students practical skills and prepare them for industry success? From my personal observations, it’s clear that the majority opinion is on the side of yes: UCLA’s curriculum should be changed to include more practical classes, where students learn skills that they will apply in industry roles, and to this end, there have been proposals to teach classes ranging from web application design to Android and iOS programming.
+Since I’ve been at UCLA, and especially recently, a debate has always been going on about UCLA’s CS curriculum. The debate is about theory vs practice: is UCLA’s CS curriculum too theoretical, and does it fail to teach students practical skills and prepare them for industry success? From my personal observations and limited sample size, it seems that a popular opinion is *yes*: UCLA’s curriculum should be changed to include more practical classes, where students learn skills that they will apply in industry roles, and to this end, there have been proposals to teach classes ranging from web application design to Android and iOS programming.
 
-I’m going to present what may be an unpopular opinion: UCLA’s curriculum, as of this writing, is not too theoretical, and actually provides a good balance of both theory-based and practical knowledge.
+I’m going to present what may be an unpopular opinion: UCLA’s curriculum, as of this writing, is not too theoretical, and while several improvements could be made, it actually provides a good balance of both theory-based and practical knowledge.
 
 First, I would posit that UCLA’s curriculum already has a healthy balance of both theory and practice. Lower-division classes and many upper division ones, such as CS 111, 131, and several electives, are already quite programming intensive. 
 
@@ -26,4 +26,4 @@ And one of the main selling points of React (arguably) is its fast diff algorith
 
 Computer science and software engineering is a field where one has to continuously learn and adapt to changing trends. A good goal of university education seems like it should be to prepare students for this endeavor.
 
-If university education succeeds at this, it’ll succeed at developing individuals who are not only trained to succeed in today’s workforce, but serve as leaders, solve brand-new problems, and advance the state of the art.
+If university education succeeds at this, it’ll succeed at developing individuals who are not only trained to succeed in today’s workforce, but serve as leaders, solve new problems, and advance the state of the art.
