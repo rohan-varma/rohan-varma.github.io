@@ -62,11 +62,11 @@ As an example of using this analysis to prove the convexity of a machine learnin
 
 $$ L(w) = \lambda \sum_n w_n^2 + \sum_n \max (0, 1 - y_n(w^Tx_n))$$
 
-The derivatives for each $$ w_n$$ are $$\frac{dL}{dw_n} = \lambda w_n  + \sum \textbf{1} (y_n w^T x_n < 1)(-y_nx_n)  $$, where $$ \textbf{1} $$ denotes the indicator function that returns the second argument if its first argument is true.
+The derivatives for each $$ w_m$$ are $$\frac{dL}{dw_m} = \lambda w_m  + \sum \textbf{1} (y_n w^T x_n < 1)(-y_nx_{nm})  $$, where $$ \textbf{1} $$ denotes the indicator function that returns the second argument if its first argument is true, and $$ x_{nm} $$ denotes the $$ m $$th feature of the $$ n $$th feature vector.
 
-The second derivatives can be characterized as $$ \frac{dL}{dw_n w_k}, k != n$$ and  $$ \frac{dL}{dw_n^2}$$. The latter derivatives will appear as the diagonal entries of the Hessian.
+The second derivatives can be characterized as $$ \frac{dL}{dw_m w_k}, k != m$$ and  $$ \frac{dL}{dw_m^2}$$. The latter derivatives will appear as the diagonal entries of the Hessian.
 
-For the first case, since our expression $$ \frac{dL}{dw_n}$$ is constant with respect to $$w_k$$ the derivative is simply $$ 0$$. For the second case, the derivative is simply $$\lambda$$. Therefore, our Hessian is the following diagonal matrix:
+For the first case, since our expression $$ \frac{dL}{dw_m}$$ is constant with respect to $$w_k$$ the derivative is simply $$ 0$$. For the second case, the derivative is simply $$\lambda$$. Therefore, our Hessian is the following diagonal matrix:
 
 $$ \begin{bmatrix}  \lambda & 0 &… & 0 \\ 0 & \lambda & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda \end{bmatrix}$$
 
@@ -193,4 +193,6 @@ The Hessian can give us useful second order information when optimizing machine 
 [4/7/19] - Added a note about the indicator function notation that I used when explaining the L2-regularized SVM.
 
 [5/7/19] - Fixed an incorrect equation and added some clarifications.
+
+[5/30/19] - Fixed the gradient in the SVM example.
 
