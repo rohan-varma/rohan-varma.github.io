@@ -75,7 +75,7 @@ To regularize a model, we take our loss function and add a regularizer to it. Re
 
 $$ \hat{\beta} = argmin_{\beta} \sum_{i = 1}^{N} (y_i - x_i \beta)^2 + \lambda \sum_{i = 1}^{j} \beta_j^2$$
 
-What's interesting about regularization is that it can be more deeply understood if we reconsider our original probabalistic model. In our original model, we conditioned our outputs on a linear function of the parameter which we wish to learn $$ \beta $$. It turns out we often want to also consider $$ \beta $$ itself as a random variable, and impose a probability distribution on it. This is known as the **prior** probability distribution, because we assign $$ \beta $$ some probability without having observed the associated $$ (x, y) $$ pairs. Imposing a prior would be especially useful if we had some information about the parameter before observing any of the training data (possibly from domain knowledge), but it turns out that imposing a Gaussian prior even in the absence of actual prior knowledge leads to interesting properties. In particular, we can condition $$ \beta $$ as on a Gaussian with 0 mean and constant variance [1]: 
+What's interesting about regularization is that it can be more deeply understood if we reconsider our original probabalistic model. In our original model, we conditioned our outputs on a linear function of the parameter which we wish to learn $$ \beta $$. Instead of considering $$\beta$$ as a fixed quantity that we want a point estimate of, we can consider $$\beta$$ itself as a random variable drawn from a certain probability distribution. This is known as the **prior** probability distribution, because we assign $$ \beta $$ some probability without having observed the associated $$ (x, y) $$ pairs. Imposing a prior would be especially useful if we had some information about the parameter before observing any of the training data (possibly from domain knowledge), but it turns out that imposing a Gaussian prior even in the absence of actual prior knowledge leads to interesting properties (see the [Deep Learning Book chapter on regularization](http://www.deeplearningbook.org/) for more details about this). In particular, we can condition $$ \beta $$ as on a Gaussian with 0 mean and constant variance [1]: 
 
 $$ \beta \tilde{} N(0, \lambda^{-1}) $$
 
@@ -196,8 +196,13 @@ Overall, regularization is a useful technique that is often employed to reduce t
 3. [Explanation of MAP Estimation](https://math.stackexchange.com/questions/1582348/simple-example-of-maximum-a-posteriori/1582407)
 
 
+#### Notes
+
 [1] Imposing different prior distributions on the parameter leads to different types of regularization. A normal distribution with zero mean and constant variance leads to $$ L2 $$ regularization, while a Laplacean prior would lead to $$ L1 $$ regularization.
 
 [2] Technically, we've only shown that the $$ \hat{\beta} $$ we've found is a local optimum. We actually want to verify that this is indeed a global minimum, which can be done by showing that the function we are minimizing is convex.
 
 [3] For completeness, it is worth mentioning that there are other solutions if the inverse of the matrix $$ X^T X $$ does not exist. One common workaround is to use the [Moore-Penrose Psuedoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_pseudoinverse) which can be computed using the singular value decompisition of the matrix being psuedo-inverted. This is commonly used in implementations of PCA algorithms. 
+
+[7/15/19] - Added a note abou the underlying parameters of a model coming from a prior probability distribution.
+
