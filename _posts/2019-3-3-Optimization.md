@@ -24,6 +24,7 @@ Real symmetric matrices have nice properties:
 
 - All eigenvalues are real and distinct eigenvalues correspond to distinct eigenvectors
 - The eigenvectors of distinct values are orthogonal, and therefore form a basis for $$ R^n$$, where $$ n $$ is the dimension of the row/column space of the matrix.
+- Thus, the matrix is diagonalizable, i.e. $$ Q^{-1} H Q = D $$, where $$ D $$ is a diagonal matrix with the eigenvalues on the diagonal, and $$ Q $$'s column vectors form an orthonormal basis for $$ R^n $$. This is a result of the [Spectral Theorem](http://www.math.lsa.umich.edu/~speyer/417/SpectralTheorem.pdf).
 
 Next, a *positive definite* matrix is a symmetric matrix that has all positive eigenvalues. One way to determine if a function is *convex* is to check if its Hessian is positive definite.
 
@@ -195,4 +196,6 @@ The Hessian can give us useful second order information when optimizing machine 
 [5/7/19] - Fixed an incorrect equation and added some clarifications.
 
 [5/30/19] - Fixed the gradient in the SVM example.
+
+[6/7/19] - Added a note about the Spectral Theorem.
 

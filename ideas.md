@@ -21,7 +21,8 @@ These are some ideas for products, services, or general life improvement that I'
    - Limited options, have to manually search for it, don’t really know your subletter or who you’re subletting to
    - No checks whatsoever done on individual’s ability to pay, primarily done through trust
    - How to build trust into the process? Should it be similar to leasing an apartment? 
-   - Corollary idea: use Facebook API to notify users in real-time via email or message when a new sublet is posted that matches their parameters
+   - Issues with scams, stolen identities, people pretending to be someone they're not
+   - related idea: use Facebook API to notify users in real-time via email or message when a new sublet is posted that matches their parameters
 6. Better software (i.e. enterprise) for usage by doctors, to improve the patient experience and to let the doctor have more time with their patient, and focus on their job, the software should be an out of the way thing.
    - Video conferencing with patients as well
 7. Better software for learning languages
