@@ -2,11 +2,12 @@
 
 In this blog post, I'll talk about *diagonalizability*, what it is, and why it may be useful to diagonalize matrices (when they can be) to efficiently compute operations on matrices. I won't go into *when* a matrix is diagonalizable. 
 
-If $$ A $$ is similar to a diagonal matrix $$ D $$, then $$ A = QDQ^{-1} $$ for some invertible matrix $$ Q $$ and some diagonal matrix $$ D = \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} $$, and $$ A $$ is *diagonalizable*. Only square matrices $$ A \in \mathbb{M_{nxn}}$$ are (possibly) diagonalizable, and the matrix $$ Q $$ has columns given by (distinct, linearly independent) eigenvectors of the linear transformation given by $$ A $$, and $$ D $$ is a diagonal matrix (all nonzero entries are on the diagonal), whose diagonal entries contain eigenvalues corresponding to the eigenvectors in $$ A $$. 
+If $$ A $$ is similar to a diagonal matrix $$ D $$, then $$ A = QDQ^{-1} $$ for some invertible matrix $$ Q $$ and some diagonal matrix $$ D = \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} $$, and $$ A $$ is *diagonalizable*. Only square matrices $$ A \in \mathbb{M_{nxn}}$$ are (possibly) diagonalizable, and the matrix $$ Q $$ has columns given by (distinct, linearly independent) eigenvectors of the linear transformation given by $$ A $$, and $$ D $$ is a diagonal matrix (all nonzero entries are on the diagonal), whose diagonal entries contain eigenvalues corresponding to the eigenvectors of the linear transformation given by $$ A $$. 
 
 #### Linear Transformation definition of diagonalizability
 
-- Basis in which the given linear transformation is diagonal
+A linear transformation $$ T $$ is diagonalizable if there exists a basis $$ B $$ in which the matrix of the given linear transformation with respect to $$ B $$ is diagonal. 
+
 - given an example here
 
 
@@ -57,15 +58,27 @@ But $$ f(D) = \sum_{i=0}^{\infty} \frac{f^i(0)D^i}{i!} $$, so $$ f(QDQ^{-1}) = Q
 
 Next, all that's left to show is that $$ f(D) = \begin{bmatrix}  f(\lambda_1) & 0 &… & 0 \\ 0 & f(\lambda_2) & … & 0 \\ … & … & … & … \\ 0 & 0 & … & f(\lambda_n) \end{bmatrix} $$. We use a similar approach with the Taylor series expansion around $$ 0 $$:
 
+
+
+$$ f(D) = f(0)I_{n} + f'(0)D + \frac{1}{2}f''(0)D^2 + \frac{1}{3!}f'''(0)D^3 + … $$
+
+$$ = f(0) \begin{bmatrix}  1 & 0 &… & 0 \\ 0 & 1 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & 1 \end{bmatrix}  + f'(0)\begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} +   \frac{1}{2}f''(0)\begin{bmatrix}  \lambda_1^2 & 0 &… & 0 \\ 0 & \lambda_2^2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n^2 \end{bmatrix} +  ... $$
+
+
+
 This is just a bunch of matrix scaling and summation, so let's move some things inside the matrices:
+
+$$ \begin{bmatrix}  f(0) & 0 &… & 0 \\ 0 & f(0) & … & 0 \\ … & … & … & … \\ 0 & 0 & … & f(0) \end{bmatrix}  + \begin{bmatrix} f'(0) \lambda_1 & 0 &… & 0 \\ 0 & f'(0)\lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & f'(0)\lambda_n \end{bmatrix} +   \begin{bmatrix}  \frac{1}{2}f''(0)\lambda_1^2 & 0 &… & 0 \\ 0 & \frac{1}{2}f''(0)\lambda_2^2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \frac{1}{2}f''(0)\lambda_n^2 \end{bmatrix} +  … $$
 
 
 
 Now, adding up the matrices, we get:
 
+$$ \begin{bmatrix} \sum_{i=0}^{\infty} \frac{f^i(0)\lambda_1^i}{i!}& 0 &… & 0 \\ 0 & \sum_{i=0}^{\infty}\frac{f^i(0)\lambda_2^i}{i!} & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \sum_{i=0}^{\infty}\frac{f^i(0)\lambda_n^i}{i!} \end{bmatrix}$$
 
 
-But this is just
+
+But each nonzero term is the Taylor series expansion for the corresponding $$\lambda_i$$, so this is just
 
 $$ f(D) = \begin{bmatrix}  f(\lambda_1) & 0 &… & 0 \\ 0 & f(\lambda_2) & … & 0 \\ … & … & … & … \\ 0 & 0 & … & f(\lambda_n) \end{bmatrix} $$, so the proof is complete.
 
