@@ -1,14 +1,14 @@
-[Stripe](https://stripe.com) just introduced a new service called [chargeback protection](https://stripe.com), and I found myself fascinated by the logistics of such a feature. I thought it was the result of a deep understanding and application of engineering, economics, finance, and mathematics, so I decided to explore it a bit more. In this blog post, I'll  walk through the costs of a hypothetical business adding chargeback protection. I'll also mention pain points they can get rid of and risks they incur with adding this service.
+[Stripe](https://stripe.com) recently introduced a new service called [chargeback protection](https://stripe.com), and I found myself fascinated by the logistics of such a feature. I thought it was the result of a deep understanding and application of engineering, economics, finance, and mathematics, so I decided to explore it a bit more. In this blog post, I'll  walk through the costs of a hypothetical business adding chargeback protection. I'll also mention pain points they can get rid of and risks they incur with adding this service.
 
 #### The precursor: What costs are associated with Stripe?
 
-Internet businesses use Stripe to process payments from their customers, abstracting away the work required to deal with accepting various payment methods, credit card processing, dealing with banks, authorization/pre-authorization, settlements, and refunds. Essentially, you pay Stripe a per-transaction fee, write a couple lines of code to integrate with them, and they will handle all that for you.
+Internet businesses use Stripe to process payments from their customers, abstracting away the work required to deal with accepting various payment methods, credit card processing, dealing with banks, authorization, settlements, and refunds. Essentially, you pay Stripe a per-transaction fee, write a couple lines of code to integrate with them, and they will handle all that for you.
 
 The standard Stripe fee is $$ 2.9 \%$$ of the amount charged to the consumer, plus a flat fee of $$ $.30$$ per transaction .Say that a company does $$$D$$ in volume per year, coming from a total of $$C$$ card charges. Then, for one transaction, they'll pay $$ 0.30 + .029(D/C) $$, since $$ D/C $$ is the average dollar amount per transaction. Thus, for $$ C $$ transactions, they'll pay $$ 0.30C + .029(D)$$ in fees to Stripe. The ratio of fees paid to volume sold per year would then be $$ \frac{.30(C) + .029(D)}{D}$$ 
 
-Putting some concrete numbers here, let's say tha a company sells 1 million in goods in one year, with a total of 100,000 successful credit card charges. Then, they'll pay $$ .30(100,000) + .029(1,000,000) \approx{} $59,000 $$ to Stripe, which is a ratio $$ \frac{.30(100,000) + .029(1,000,000)}{1,000,000} \approx  5.9\%$$ of their total revenues.
+Putting some concrete numbers here, let's say tha a company sells 1 million in goods in one year, with a total of 100,000 successful credit card charges. Then, they'll pay $$ .30(100,000) + .029(1,000,000) \approx{} $59,000 $$ to Stripe, which is a ratio $$ \frac{.30(100,000) + .029(1,000,000)}{1,000,000} \approx  5.9\%$$ of their total revenues. (As an aside, we can see why many smaller businesses have a policy of accepting credit cards only for purchases greater than a certain dollar value, since Stripe's charging model)
 
-The crux of this post has to do with chargeback protection: a recently-released feature that can be opted in to, for an additional per-transaction fee.
+The crux of this post has to do with chargeback protection: a recently-released feature that can be opted in to, for an additional per-transaction fee. 
 
 ##### But what are chargebacks, and why might businesses want to be protected from them?
 
@@ -86,7 +86,7 @@ When considering the use of 3D Secure, you might find the right balance is to us
 
 "
 
-Abandonment rate could increase when a non-risky buyer is flagged by Stripe Radar's rules engine as risky, when in fact they have a low risk. This would mean that a non-risky user would have to complete an extra authentication step, increasin both the complexity and amount of information needed to complete the checkout.
+Abandonment rate could increase when a non-risky buyer is flagged by Stripe Radar's rules engine as risky. This would mean that a non-risky user would have to complete an extra authentication step, increasing both the complexity and amount of information needed to complete the checkout.
 
 We're therefore interested in Stripe Radar's *false positive rate*- i.e. the probability that they flag a user as risky, given that they are not in fact risky. We're also intersted in the probability that such a user abandons their cart - let's call this probability $$ a $$. We'll further assume that $$ a $$ and $$ p $$ are independent, meaning that a user's risk profile doesn't influence their odds of abandonment. We'll also assume that $$ p $$ is the same for all users, namely that all users have the same likelihood of abandoning their cart. For each transaction, there is now an $$ ap $$ probability that we will not actually successfully sell the item. 
 
@@ -98,11 +98,7 @@ Let's subtract this off our total revenues:
 
 
 
-
-
 It's also not immediately clear from [Stripe's description](https://stripe.com/radar/chargeback-protection) if chargeback protection must be enabled for *all* transactions, or if developers can programmatically choose wich transactions to enable protection for. If the latter was actually the case, the business could potentially try to reduce the number of transactions that are chargeback protected - for example, removing chargeback protection from repeat customers (as these are less likely to be fradulent), adding chargeback protection for international transactions (as these may be likelier to be fradulent), and adding chargeback protection for especially large transactions (to hedge against the possiblity of losing a large amount of money).
-
-
 
 ##### Summary
 
