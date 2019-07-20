@@ -1,20 +1,8 @@
 #### Efficient Matrix Operations through Diagonalizability
 
-In this blog post, I'll talk about *diagonalizability*, what it is, and why it may be useful to diagonalize matrices (when they can be) to efficiently compute operations on matrices. I won't go into *when* a matrix is diagonalizable. 
+In this blog post, I'll talk about *diagonalizability*, what it is, and why it may be useful to diagonalize matrices (when they can be) to efficiently compute operations on matrices. I won't go into detail *when* a matrix is diagonalizable, but it will be briefly mentioned in an example. 
 
-If $$ A $$ is similar to a diagonal matrix $$ D $$, then $$ A = QDQ^{-1} $$ for some invertible matrix $$ Q $$ and some diagonal matrix $$ D = \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} $$, and $$ A $$ is *diagonalizable*. Only square matrices $$ A \in \mathbb{M_{nxn}}$$ are (possibly) diagonalizable, and the matrix $$ Q $$ has columns given by (distinct, linearly independent) eigenvectors of the linear transformation given by $$ A $$, and $$ D $$ is a diagonal matrix (all nonzero entries are on the diagonal), whose diagonal entries contain eigenvalues corresponding to the eigenvectors of the linear transformation given by $$ A $$. 
-
-#### Linear Transformation definition of diagonalizability
-
-A linear transformation $$ T $$ is diagonalizable if there exists a basis $$ B $$ in which the matrix of the given linear transformation with respect to $$ B $$ is diagonal. 
-
-- given an example here
-
-
-
-##### Example 
-
-Consider the linear transformation that rotates vectors in $$\mathbb{R}^2$$ by $$\frac{\pi}{4}$$ radians.
+If $$ A $$ is similar to a diagonal matrix $$ D $$, then $$ A = QDQ^{-1} $$ for some invertible matrix $$ Q $$ and some diagonal matrix $$ D = \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} $$, and $$ A $$ is *diagonalizable*. Only square matrices $$ A \in \mathbb{M_{nxn}}$$ are (possibly) diagonalizable. The matrix $$ Q $$ has columns given by (distinct, linearly independent) eigenvectors of the linear transformation given by $$ A $$, and $$ D $$ is a diagonal matrix whose diagonal entries contain eigenvalues corresponding to the eigenvectors of the linear transformation given by $$ A $$. 
 
 Being able to diagonalize matrices this way is useful, since it allows for easy and fast computation of functions of $$ A $$. 
 
@@ -58,8 +46,6 @@ But $$ f(D) = \sum_{i=0}^{\infty} \frac{f^i(0)D^i}{i!} $$, so $$ f(QDQ^{-1}) = Q
 
 Next, all that's left to show is that $$ f(D) = \begin{bmatrix}  f(\lambda_1) & 0 &… & 0 \\ 0 & f(\lambda_2) & … & 0 \\ … & … & … & … \\ 0 & 0 & … & f(\lambda_n) \end{bmatrix} $$. We use a similar approach with the Taylor series expansion around $$ 0 $$:
 
-
-
 $$ f(D) = f(0)I_{n} + f'(0)D + \frac{1}{2}f''(0)D^2 + \frac{1}{3!}f'''(0)D^3 + … $$
 
 $$ = f(0) \begin{bmatrix}  1 & 0 &… & 0 \\ 0 & 1 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & 1 \end{bmatrix}  + f'(0)\begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n \end{bmatrix} +   \frac{1}{2}f''(0)\begin{bmatrix}  \lambda_1^2 & 0 &… & 0 \\ 0 & \lambda_2^2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n^2 \end{bmatrix} +  ... $$
@@ -84,7 +70,7 @@ $$ f(D) = \begin{bmatrix}  f(\lambda_1) & 0 &… & 0 \\ 0 & f(\lambda_2) & … &
 
 
 
-This is useful since it allows us to compute functions over matrices much more easily, as we saw above with exponentiation. Consider for example $$ f(A) = \exp(A) $$.A valid notion of exponentiating matrices can be given by defining $$ \exp(A) $$ similar to $$ \exp(x), x \in \mathbb{R} $$:
+This is useful since it allows us to compute functions over matrices much more easily, as we saw above with exponentiation. Consider for example $$ f(A) = \exp(A) $$. A valid notion of exponentiating matrices can be given by defining $$ \exp(A) $$ similar to $$ \exp(x), x \in \mathbb{R} $$:
 
 $$ \exp(A) = A^0 + A^1 + \frac{A^2}{2} + \frac{A^3}{3!} + … = \sum_{i=0}^{\infty} \frac{A^i}{i!}$$
 
@@ -96,7 +82,53 @@ $$ \exp(A) = \exp(QDQ^{-1}) = Q\exp(D)Q^{-1} = Q \begin{bmatrix}  \exp(\lambda_1
 
 
 
-An application: predicting the growth of a portfolio through solving linear differential equations
+**An application: predicting the growth of a portfolio through solving linear differential equations**
+
+Consider a simple portfolio given by dollars invested into two investments (say IBM stock and a money market fund). Then, this portfolio lives in a two-dimensional vector space $$P = \begin{bmatrix}  Stock  \\ Money Market \end{bmatrix}$$.
+
+Assume further that we expect IBM stock to have a long-term growth rate of 3% (indeed an egregnious assumption for any individual stock), and to issue a 2% dividend every year. We also will assume that the money market fund will provide a consistent 2% return on investment. Let's say that we initially have $100 invested in IBM stock, and 500 invested in the money market fund.
+
+With these assumptions, the growth of our portfolio every year can be given by a linear transformation $$ T $$ who's matrix is given by $$ A = [T(v_1), T(v_2)] $$ where $$ v_1 = (1,0), v_2 = (0,1)$$ are the standard basis vectors.
+
+We have $$ T(v_1) = [1.03, 0.02]^T $$ since one dollar of stock returns 1.03 in the stock and 0.02 as a dividend, and $$ T(v_2)= [0, 1.02]^T $$ since one dollar in the money market fund does not return anything in the stock, and returns 1.02 in the fund.
+
+Thus, the matrix of the linear transformation is given by $$ A = \begin{bmatrix} 1.03 & 0 \\ 0.02 & 1.02 \end{bmatrix}$$, and we can model the growth of our portfolio as a first-order linear differential equation:
+
+$$ x'(t) = Ax(t) $$
+
+If $$ A $$ were diagonalizable, we'd have a simple, exact solution, so we attempt to diagonalize $$ A $$. Since $$ A $$ is upper triangular, we have that the eigenvalues for $$ A $$ are its diagonal entries $$\lambda_1 = 1.0, \lambda_2 = 1.02$$. Since $$ A$$'s eigenvalues both have algebraic multiplicity one, they must have geometric multiplicity one, and thus $$ A $$ is diagonalizable.
+
+We compute $$ ker(A - 1.03I_2) $$ and $$ ker(A - 1.02I_2)$$ to see that the eigenspace corresponding to $$\lambda_1 $$ and $$\lambda_2$$ are  $$E_{\lambda_1} = Span(0.5,1)$$ and $$E_{\lambda_2} = Span(0,1)$$, respectively.
+
+Thus, we have $$ A = QDQ^{-1}$$ with $$ Q = \begin{bmatrix} 0.5 & 0 \\ 1 & 1 \end{bmatrix}, D =  \begin{bmatrix} 1.0 3& 0 \\ 0 & 1.0 2\end{bmatrix}$$, and $$x'(t) = QDQ^{-1}x(t)$$.
+
+To simplify things, we can multiply both sides by $$Q^{-1}$$ to get $$(Q^{-1}x(t))' = DQ^{-1}x(t)$$. Now, we let $$ y(t) = Q^{-1}x(t)$$ so that $$ y'(t) = Dy(t)$$. Expanding this, we have 
+
+$$ \begin{bmatrix} y_1'(t) \\ y_2'(t) \end{bmatrix} = \begin{bmatrix} 1.03 & 0 \\ 0 & 1.02 \end{bmatrix}\begin{bmatrix} y_1(t) \\ y_2(t) \end{bmatrix}$$ , and we get the uncoupled differential equations
+
+$$ y_1'(t) = 1.03y_1(t)$$, $$ y_2'(t) = 1.0y2_2(t)$$ which we solve separately to get $$ y_1(t) = C_1e^{1.03t}, y_2(t) = C_2e^{1.02t}$$, for some constants $$C_1, C_2$$. Now, since $$ x(t) = Qy(t)$$, we recover $$x(t)$$ by applying $$ Q$$:
+
+$$ x(t) = \begin{bmatrix} 0.5 & 0 \\ 1 & 1 \end{bmatrix} \begin{bmatrix} C_1e^{1.03t} \\ C_2e^{1.02t} \end{bmatrix}$$. Multiplying, we have that 
+
+$$x_1(t) = \frac{1}{2}C_1e^{1.03t}$$ and $$ x_2(t) = C_1e^{1.03t} + C_2e^{1.02t}$$. Taking into account our initial conditions, we have that $$x_1(0) = \frac{1}{2}C_1 = 100$$ and $$ x_2(0) = C_1 + C_2 = 500$$ , so we have that $$C_1 = 200, C_2 = 300$$. Thus, our final solution is $$x_1(t) = 100e^{1.03t}$$ and $$ x_2(t) = 200e^{1.03t} + 300e^{1.02t}$$, in which we can plug in a value for $$ t $$ to estimate the value of our portfolio at that time.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
