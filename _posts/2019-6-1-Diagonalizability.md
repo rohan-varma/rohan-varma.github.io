@@ -1,4 +1,8 @@
-#### Efficient Matrix Operations through Diagonalizability
+---
+layout: post
+title: Efficient Matrix Operations through Diagonalizability
+mathjax: True
+---
 
 In this blog post, I'll talk about *diagonalizability*, what it is, and why it may be useful to diagonalize matrices (when they can be) to efficiently compute operations on matrices. I won't go into detail *when* a matrix is diagonalizable, but it will be briefly mentioned in an example. 
 
