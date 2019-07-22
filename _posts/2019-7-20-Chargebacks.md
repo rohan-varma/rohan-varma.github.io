@@ -94,3 +94,11 @@ It's also not immediately clear from [Stripe's description](https://stripe.com/r
 ##### Summary
 
 Currently, [most merchants prefer to deal with chargebacks and resolve disputes in-house](https://chargebacks911.com/chargebacks/#cbCostsMerchants). Stripe's chargeback protection service could potentially shift the paradigm, so that merchants begin to spend less time on resolving disputes with credit card companies, and instead focus on building a better business for their customers.
+
+
+
+##### Sources
+
+1. [Stripe docs on 3D Secure](https://stripe.com/docs/payments/3d-secure#three-ds-radar)
+2. [The cost of a chargeback](https://chargebacks911.com/chargebacks/#cbCostsMerchants)
+
