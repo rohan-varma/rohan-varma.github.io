@@ -24,11 +24,11 @@ In general, for a matrix product $$ C = AB $$ we have $$C_{ij} = \sum_{k=1}^{m} 
 
 Thus, we have $$ D^2 = \begin{bmatrix}  \lambda_1 & 0 &… & 0 \\ 0 & \lambda_2^2 & … & 0 \\ … & … & … & … \\ 0 & 0 & … & \lambda_n^2 \end{bmatrix} $$ and an inductive argument gives our above result for $$ D^k$$.
 
-This drastically reduces the complexity of computing $$ A^k $$: instead of $$ k $$ matrix multiplications, taking $$ O(kn^{2.3}) $$ with a good algorithm, we have an $$O(n) $$ pass to exponentiate across the diagonal, followed by two matrix multiplications, for a complexity of $$ O(n^{2.3}) $$ - and the latter complexity does not grow linearly with $$k$$. 
+This drastically reduces the complexity of computing $$ A^k $$: instead of $$ \log(k) $$ matrix multiplications, taking $$ O(\log(k)n^{2.3}) $$ with a good algorithm, we have an $$O(n) $$ pass to exponentiate across the diagonal, followed by two matrix multiplications (the first matrix multiplication with the diagonal matrix is also more efficient, as the rows of $$ Q^{-1}$$ are just scaled), for a complexity of $$ O(n^{2.3}) $$ - and the latter complexity does not grow with $$k$$. 
 
 We can actually make a similar argument for computing any function $$ f $$ with a matrix argument: $$ f(A) = Qf(D)Q^{-1} =Q \begin{bmatrix}  f(\lambda_1) & 0 &… & 0 \\ 0 & f(\lambda_2) & … & 0 \\ … & … & … & … \\ 0 & 0 & … & f(\lambda_n) \end{bmatrix}Q^{-1}$$, when $$ A $$ is diagonalizable.
 
-To show why this is the case, let's consider the taylor series expansion of $$ f(x) $$, where $$ x \in \mathbb{R}$$, around $$ 0 $$:
+To show why this is the case, let's consider the taylor series expansion of $$ f(x) $$, where $$ x \in \mathbb{R}$$, around $$ 0 $$ (we are assuming here that $$ f $$ is infinitely differentiable around $$ 0 $$):
 
 $$ f(x) = f(0) + f'(0)(x) + \frac{1}{2}f''(0)x^2 + \frac{1}{3!}f'''(0)x^3 + … = \sum_{i=0}^{\infty}\frac{f^{(n)}(0)x^n}{n!}$$
 

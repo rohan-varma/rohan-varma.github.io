@@ -53,7 +53,7 @@ Since $$ V = Span(S)$$ this is the same as showing that $$ Span(S) \in Span(B) $
 
 To show that $$ S \in Span(B) $$, we can take any $$ v_i \in S$$. There are two cases: $$ v_i \in B $$ or not. If $$ v_i \in B $$, then clearly $$ v_i \in Span(B) $$, otherwise, $$ v_i \notin B $$. By construction, this means that $$ B \cup v_i $$ is linearly dependent, and by the previous theorem, this is only possible if $$ v_i \in Span(B) $$, so either way, $$v_i \in Span(B) $$.
 
-Since $$ S \in Span(B) $$ we have $$ Span(S) = V \in Span(B) $$ 
+Since $$ S \in Span(B) $$ we have $$ Span(S) = V \in Span(B) $$ . Thus we have $$ V = Span(B) $$ and $$ B $$ is a basis.
 
 **Theorem**: Let $$ B = {v_1, … v_n} \in V $$. $$ B $$ is a basis for $$ V $$ iff each $$ v \in V $$ can be written as a *unique* linear combination of elements in $$ B$$.
 
