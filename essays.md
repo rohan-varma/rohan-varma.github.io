@@ -8,13 +8,13 @@ This page contains a reverse-chronological set of links to mostly non-technical 
 
 **2019**
 
-[Do One Thing](https://google.com)
+[Do One Thing](https://rohanvarma.me/essays/one_thing)
 
-[modern addiction](https://google.com)
+[modern addiction](https://rohanvarma.me/essays/addiction)
 
 **2018**
 
-[Procrastinating While Writing](https://google.com)
+[Procrastinating While Writing](https://rohanvarma.me/procrastination/)
 
 [My Internship at Affirm: Crafting a Reliable Metrics and Alerting Framework](https://tech.affirm.com/my-internship-at-affirm-crafting-a-reliable-metrics-and-alerting-framework-35c85eabaddf?source=your_stories_page---------------------------)
 
