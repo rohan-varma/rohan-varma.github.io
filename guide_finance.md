@@ -161,7 +161,7 @@ When a loan might be helpful<https://www.quora.com/When-a-billionaire-goes-to-bu
 
 
 
-##### Invest early, and invest often
+##### Invest early, and invest often - you will not build or grow wealth unless you invest.
 
 
 

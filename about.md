@@ -5,11 +5,11 @@ permalink: /about/
 ---
 
 
-Hi! I'm Rohan, a computer science student at UCLA. My main interests are software engineering, machine learning, math, running, playing chess, reading, and writing. I'm originally from San Jose, California.
+Hi! I'm Rohan. I recently graduated with a BS in Computer Science from UCLA, and work as a software engineer at Facebook. My main interests are software engineering, machine learning, math, running, playing chess, reading, and writing. I'm originally from San Jose, California.
 
 ### Work
 
-I will be joining [Facebook](https://code.facebook.com/posts/) as a software engineer after graduation.
+I currently work at [Facebook](https://code.facebook.com/posts/) as a software engineer.
 
 ### Internships
 
