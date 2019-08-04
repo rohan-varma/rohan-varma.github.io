@@ -1,3 +1,9 @@
+---
+layout: page
+title: Essasys
+permalink: /essays/
+---
+
 This page contains a reverse-chronological set of links to mostly non-technical essays that I've written over the years.
 
 **2019**
