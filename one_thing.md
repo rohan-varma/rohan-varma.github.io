@@ -14,7 +14,7 @@ Even still, if you’re focusing on one thing at a given moment, having multiple
 
 This is a lot like having stressful or distracting things in your peripheral vision, like undone laundry. It occupies mental space and takes away from the present moment. This results in a fragmented mind — even though you’re doing one thing, your mind is already thinking of the next thing to do. This is caused by even a [glance at your inbox or quick check of your unread messages](https://thinkers50.com/blog/work-and-life/deep-vs-shallow-work-cal-newport/).
 
-It’s similar to how operating systems are constantly [context switching](https://en.wikipedia.org/wiki/Context_switch)between running programs. Except this context switch is a lot more significant to humans. It’s commonly recognized that for software developers, [a single interruption can be incredibly costly](http://www.paulgraham.com/makersschedule.html) — and I’m certain that this is true for students, writers, creatives, and many others.
+It’s similar to how operating systems are constantly [context switching](https://en.wikipedia.org/wiki/Context_switch) between running programs. Except this context switch is a lot more significant to humans. It’s commonly recognized that for software developers, [a single interruption can be incredibly costly](http://www.paulgraham.com/makersschedule.html) — and I’m certain that this is true for students, writers, creatives, and many others.
 
 Just like it’s important to have a clean, distraction-free space to work, it’s also important to ensure your software is setup to allow deep work when deep work needs to be done.
 
