@@ -18,17 +18,14 @@ This page contains a reverse-chronological set of links to mostly non-technical 
 
 [My Internship at Affirm: Crafting a Reliable Metrics and Alerting Framework](https://tech.affirm.com/my-internship-at-affirm-crafting-a-reliable-metrics-and-alerting-framework-35c85eabaddf?source=your_stories_page---------------------------)
 
-[What are the odds? Comparing joint and conditional probabilities](https://google.com)
+[Developing Skills Outside of Technical Ability](https://rohanvarma.me/essays/skills)
 
-[Developing Skills Outside of Technical Ability](https://google.com)
-
-[2017++ - Reflecting on an interesting year](https://google.com)
 
 **2017**
 
-[Welcome to AI at UCLA](https://google.com)
+[Welcome to AI at UCLA](https://medium.com/techatucla/welcome-to-ai-at-ucla-f10927043301)
 
-[Getting Started in Machine Learning](https://google.com)
+[Getting Started in Machine Learning](https://medium.com/techatucla/getting-started-in-machine-learning-c68bdd739c44)
 
 
 
