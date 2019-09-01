@@ -2,6 +2,7 @@
 layout: post
 title: Analyzing Stripe's Chargeback Protection Service
 mathjax: True
+draft: True
 ---
 [Stripe](https://stripe.com) recently introduced a new service called [chargeback protection](https://stripe.com), and I found myself fascinated by the logistics of such a feature. I thought it was the result of a deep understanding and application of engineering, economics, finance, and mathematics, so I decided to explore it a bit more. In this blog post, I'll  walk through the costs of a hypothetical business adding chargeback protection. I'll also mention possible pain points and risks they incur with adding this service.
 
