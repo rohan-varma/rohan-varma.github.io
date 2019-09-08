@@ -224,3 +224,7 @@ Generally speaking, company-sponsored 401k plans don't have great investment opt
 
 
 Thanks for reading this! If you actually got here and read through the whole thing, I hope that you got something useful out of it! If you did, I would love to hear about how via email, or this google form if you'd like to remain anonymous. 
+
+
+Checklist for every couple of months:
+- You're likely paying more than you need to for some bills: cable,
