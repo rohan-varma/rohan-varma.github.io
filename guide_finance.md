@@ -21,16 +21,18 @@ it's not useful to watch the stock market day-to-day
 ![](https://imgs.xkcd.com/comics/investing.png)
 
 
+Roth stuff: Say that you're maxing out your after-tax contributions by contributing $27,000 per year, or $1038 per paycheck. Let's assume that this money is invested immediately and rolled over to Roth the next day. Even with an average of a 1% gain between the day the money hits your account and when it is rolled over (incredibly unlikely, or else we'd all be very rich), you'd be paying taxes on 1038 * 0.01 * 26 = $269 more of income. that means you're paying taxes on $598 right now (which you wouldn't pay if you weren't doing this), for the right to invest $27,000 this year, keep it invested for 30+ years, and not have the gains (or principal, of course) taxed at all. That's huge.
+
 
 I've received a lot of questions about managing one's personal finances over the last couple months, as many of my friends start new jobs or internships. I've been interested in personal finance for a while now, so I decided to write this basic guide up in the hopes that it will answer many common questions and be useful for years to come. 
 
 
 
-Why should you listen to financial advice from me? Honestly, I have no idea. Perhaps you shouldn't. I'm not rich in any definition of the word, don't make a significant amount of money, and I haven't, nor do I expect to, ever hit it big in the stock market. I have however, taken the time to read multiple books on investing, do a lot of research, and spend a lot of time thinking for myself, and these are a summary of what that work has yielded.
+Why should you listen to financial advice from me? Honestly, I have no idea. Perhaps you shouldn't. I'm not rich in any definition of the word, don't make a significant amount of money, and I haven't, nor do I expect to, ever hit it big in the stock market.
 
 ##### Who this Guide is For
 
-This guide is primarily aimed at individuals in their 20s-30s who have stable employment, not much debt, and are earning income of about 70k-500k a year. This guide aims to help individuals in such positions save for common goals (weddings, retirement, house down payments, or large purchases), grow their investments through low-cost, low-effort approaches, and increase their total income.
+This guide is primarily aimed at individuals in their 20s-30s who have stable employment, not much debt, and are earning income of about 70k-500k a year. This guide aims to help individuals in such positions save for common goals (weddings, retirement, house down payments, or large purchases), grow their investments through low-cost, low-effort approaches, increase their total income, and plan for (potentially early) retirement.
 
 
 
@@ -38,7 +40,7 @@ This guide is primarily aimed at individuals in their 20s-30s who have stable em
 
 First, before saving for retirement, starting an emergency fund, or investing in the stock market, I **always recommend paying off your high interest debt in full**.
 
-Many personal finance gurus on the internet actually recommend contributing so that you get the free money from your employer. Here's my take on this. That free money is in a 401k account, and you won't be able to touch it until you're at least 59.5 (unless you want to pay hefty fees). You need to pay off your high interest debt *right now*. Having high-interest debt is one of the highest sources of stress for a modern American.
+Many personal finance gurus on the internet actually recommend contributing so that you get the free money from your employer. Here's my take on this. That free money is in a 401k account, and you won't be able to touch it until you're at least 59.5 (unless you want to pay hefty fees). You need to pay off your high interest debt *right now*. Having high-interest debt is one of the highest sources of stress for a modern American. Your high interest debt is compounding much faster than your investments in your 401k will, so by definition, the best time to pay off the high interest debt is right now.
 
 ##### Contribute the minimum amount to your 401k to get your employer match
 
@@ -49,6 +51,7 @@ Many personal finance gurus on the internet actually recommend contributing so t
 ##### Start an emergency fund
 
 - 3 months to 6 months, survival, even in the case of a disaster
+- Assume a giant earthquake hits (I'm from California) and you don't have anywhere to live, any food to eat, and you're also unemployed. Are you able to use your emergency fund to get yourself (and your loved ones) back on your feet? This is my metric for a good emergency fund.
 - Unexpected medical expenses
 
 
@@ -67,6 +70,12 @@ Many personal finance gurus on the internet actually recommend contributing so t
 
 
 **Consider maxing out your HSA**
+
+** If you have an FSA, put the minimum rollover into it **
+
+** Consider a Backdoor Roth IRA, if you make too much to contribute to a regular Roth IRA ** 
+
+** Consider setting up the mega-backdoor Roth IRA, especially for higher earners ** 
 
 
 ##### Open a standard taxable investing account, such as with Vanguard
@@ -97,7 +106,7 @@ This is one of the times where going with the default can have an outsized negat
 
 This means that over 40 years, you've missed out on $184,830.04 of *free, risk-free* money. If you didn't stop in the middle of this section and open up a high-yield savings, do it now, I'll wait. Simply internalizing this bit  of advice and spending < 30 minutes opening up an account online can net you an additional *free* 200k over a lifetime, at zero extra risk.
 
-
+** These numbers are based off of interest rates as they were in June 2019. They will change, please don't come after me with a pitchfork.
 
 [1] Computed as a difference between total value of one account. Value is pretax. Of course, savings rates are variable and tend to fluctuate over the years. It's still likely that high-yield online savings accounts will continue to offer at least tens of times more interest (in APY) than traditional brick and mortar banks. 
 
@@ -202,12 +211,13 @@ hi
 ##### Review your tax situation
 
 - Large refunds are shit
+- Ideally, you'd break even at tax time, or owe very little, or in the best case, owe just enough to avoid extra penalties.
 
 
 
 ##### Consider setting up additional income streams
 
-- ​
+- 
 
 
 
@@ -227,4 +237,7 @@ Thanks for reading this! If you actually got here and read through the whole thi
 
 
 Checklist for every couple of months:
-- You're likely paying more than you need to for some bills: cable,
+- You're likely paying more than you need to for some bills: cable, internet, etc. Make sure that you're not.
+- Negotiate insurance rates, or look for other insurance providers who can improve your rates
+- Ensure that you are using the best credit card for your needs
+- Call to increase your credit limit, thereby improving your credit score by decreasing your credit utilization
