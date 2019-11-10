@@ -21,6 +21,10 @@ it's not useful to watch the stock market day-to-day
 ![](https://imgs.xkcd.com/comics/investing.png)
 
 
+##### notes
+- just trying to not be bad will likely net you more gains over the long term than actively trying to be good. Mistakes are made when actions are taken and trades are conducted, so doing nothing can often be the best move.
+
+
 Roth stuff: Say that you're maxing out your after-tax contributions by contributing $27,000 per year, or $1038 per paycheck. Let's assume that this money is invested immediately and rolled over to Roth the next day. Even with an average of a 1% gain between the day the money hits your account and when it is rolled over (incredibly unlikely, or else we'd all be very rich), you'd be paying taxes on 1038 * 0.01 * 26 = $269 more of income. that means you're paying taxes on $598 right now (which you wouldn't pay if you weren't doing this), for the right to invest $27,000 this year, keep it invested for 30+ years, and not have the gains (or principal, of course) taxed at all. That's huge.
 
 
