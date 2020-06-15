@@ -302,3 +302,8 @@ Why credit cards are important
 Portfolio allocation - using the efficient frontier to determine an asset allocation such as allocation to US stocks and international stocks (VTSAX, VXUS) https://www.madfientist.com/my-portfolio/
 
 Tax efficient fund placement - why is it important to efficiently place certain funds in taxable, tax-advantaged, tax-free accounts and the difference that this can make - https://www.bogleheads.org/wiki/Tax-efficient_fund_placement
+
+Allocating for tax-efficiency in pretax and Roth 401k
+Suppose you have 80/20 stocks/bonds allocation, try to put the 20% of bonds in the pretax 401k first, and if anything is left over, then put that in the roth (or vice versa if you have too many stocks to hold in the roth)
+Pretax - prefer to hold your bonds here, since they are taxed upon withdrawl, but the gains will most likely be less than stocks
+Roth - prefer to hold all of your stocks here, since the gains will not be taxed at all upon withdrawl
