@@ -17,4 +17,4 @@ This section is still in progress!
 
 ### Contact me
 
-[rvarm1@ucla.edu](mailto:rvarm1@ucla.edu)
+[rvarm1@gmail.com](mailto:rvarm1@gmail.com)

@@ -157,7 +157,7 @@ This is one of the times where going with the default can have an outsized negat
 
 This means that over 40 years, you've missed out on $184,830.04 of *free, risk-free* money. If you didn't stop in the middle of this section and open up a high-yield savings, do it now, I'll wait. Simply internalizing this bit  of advice and spending < 30 minutes opening up an account online can net you an additional *free* 200k over a lifetime, at zero extra risk.
 
-** These numbers are based off of interest rates as they were in June 2019. They will change, please don't come after me with a pitchfork.
+** These numbers are based off of interest rates as they were in June 2019. They will change, please don't come after me with a pitchfork. With rock-bottom interest rates, you're often just better off spending your money.
 
 [1] Computed as a difference between total value of one account. Value is pretax. Of course, savings rates are variable and tend to fluctuate over the years. It's still likely that high-yield online savings accounts will continue to offer at least tens of times more interest (in APY) than traditional brick and mortar banks. 
 
@@ -292,3 +292,18 @@ Checklist for every couple of months:
 - Negotiate insurance rates, or look for other insurance providers who can improve your rates
 - Ensure that you are using the best credit card for your needs
 - Call to increase your credit limit, thereby improving your credit score by decreasing your credit utilization
+
+
+
+
+### Credit
+Why credit cards are important
+
+Portfolio allocation - using the efficient frontier to determine an asset allocation such as allocation to US stocks and international stocks (VTSAX, VXUS) https://www.madfientist.com/my-portfolio/
+
+Tax efficient fund placement - why is it important to efficiently place certain funds in taxable, tax-advantaged, tax-free accounts and the difference that this can make - https://www.bogleheads.org/wiki/Tax-efficient_fund_placement
+
+Allocating for tax-efficiency in pretax and Roth 401k
+Suppose you have 80/20 stocks/bonds allocation, try to put the 20% of bonds in the pretax 401k first, and if anything is left over, then put that in the roth (or vice versa if you have too many stocks to hold in the roth)
+Pretax - prefer to hold your bonds here, since they are taxed upon withdrawl, but the gains will most likely be less than stocks
+Roth - prefer to hold all of your stocks here, since the gains will not be taxed at all upon withdrawl
