@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 
-Hi! I'm Rohan. I recently graduated with a BS in Computer Science from UCLA, and work as a software engineer. My main interests are software engineering, machine learning, math, running, playing chess, reading, and writing. I'm originally from San Jose, California.
+Hi! I'm Rohan. I recently graduated with a BS in Computer Science from UCLA, and work as a software engineer. I'm originally from San Jose, California.
 
 ### Work
 
