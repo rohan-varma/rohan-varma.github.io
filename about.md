@@ -11,7 +11,7 @@ Hi! I'm Rohan. I recently graduated with a BS in Computer Science from UCLA, and
 
 I currently work at [Facebook AI](http://ai.facebook.com/) on enabling large-scale distributed training within the [PyTorch](https://pytorch.org/) framework. I've recently been working on helping build out [model parallelism](https://pytorch.org/tutorials/intermediate/rpc_param_server_tutorial.html) support within PyTorch, as well as investigating the scalability of [data parallel training](https://arxiv.org/abs/2006.15704). 
 
-## Writings
+### Writings
 
 This is a reverse-chronological set of links to some essays that I've written over the years!
 
@@ -23,11 +23,9 @@ This is a reverse-chronological set of links to some essays that I've written ov
 
 [Do One Thing](https://rohanvarma.me/essays/one_thing)
 
-[modern addiction](https://rohanvarma.me/essays/addiction)
+[Modern Addiction](https://rohanvarma.me/essays/addiction)
 
 **2018**
-
-[Procrastinating While Writing](https://rohanvarma.me/procrastination/)
 
 [My Internship at Affirm: Crafting a Reliable Metrics and Alerting Framework](https://tech.affirm.com/my-internship-at-affirm-crafting-a-reliable-metrics-and-alerting-framework-35c85eabaddf?source=your_stories_page---------------------------)
 
