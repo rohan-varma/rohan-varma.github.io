@@ -11,7 +11,7 @@ Hi! I'm Rohan. I recently graduated with a BS in Computer Science from UCLA, and
 
 I currently work at [Facebook AI](http://ai.facebook.com/) on enabling large-scale distributed training within the [PyTorch](https://pytorch.org/) framework. I've recently been working on helping build out [model parallelism](https://pytorch.org/tutorials/intermediate/rpc_param_server_tutorial.html) support within PyTorch, as well as investigating the scalability of [data parallel training](https://arxiv.org/abs/2006.15704). 
 
-Previously, I've worked building mortgage lending products at [Blend](https://blend.com), risk models at [Affirm](https://affirm.com) and messaging applications for sports teams at [Hudl](https://hudl.com). 
+Previously, I've worked building mortgage lending products at [Blend](https://blend.com), risk models at [Affirm](https://affirm.com), and messaging applications for sports teams at [Hudl](https://hudl.com). 
 
 ### Writings
 
