@@ -16,11 +16,11 @@ When I rollover my IRA to a Roth IRA, I am of course taxed on the capital gains 
 
 In this hypothetical scenario, let's assume that I withdraw at a rate of 100,000 a year in retirement and live in CA. With nearly zero effort, I have saved mt future self 29,000 in taxes according to [this calculator](https://smartasset.com/taxes/income-taxes#7wp4OFABhp) by paying at most a couple of cents today. 
 
-Since I can make this move every year, it makes sense to extrapolate the total savings a Backdoor Roth can save over the years. Taking my mean time horizon until retirement as $$\frac{n(n+1)}{2n}$$ with $$ n = 45$$, my mean time horizon is $$ 23 $$ which means I save 14,200 per year in expectation or a total of 639,000 in taxes (I didn't do the math but my gut tells me this estimate is lower than the true value $$ 3000 \sum_{i=1}^{45}(1.07^i))$$. 
+Since I can make this move every year, it makes sense to extrapolate the total savings a Backdoor Roth can save over the years. Taking my mean time horizon until retirement as $$\frac{n(n+1)}{2n}$$ with $$ n = 45$$, my mean time horizon is $$ 23 $$ which means I save 14,200 per year in expectation or a total of 639,000 in taxes (I didn't do the math but my gut tells me this estimate is lower than the true value $$ 3000 \sum_{i=1}^{45}(1.07^i)) - 45*3000$$. 
 
 **One last thing...**
 
-The limit that you can rollover to a Roth IRA is actually 6000, not 3000. Therefore using the same exact strategy, one can save a whopping **1.7 million** in taxes over the given time horizon. Due to inflation and catch-up contributions increasing this limit, this value is a **lower bound** in taxes saved. 
+The limit that you can rollover to a Roth IRA is actually 6000, not 3000. Therefore using the same exact strategy, one can save a whopping **1.56 million** in taxes over the given time horizon. Due to inflation and catch-up contributions increasing this limit, this value is a **lower bound** in taxes saved. 
 
 **Caveat**
 
