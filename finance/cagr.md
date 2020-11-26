@@ -36,7 +36,7 @@ Year 5: $$ \ $1610.51 $$
 
 To compute the CAGR, we simply compute the product of all returns and subtract 1, giving us $$ 1.61^{\frac{1}{5}}-1 = 10 \%$$ . The CAGR of this investment is 10%, which means that if you put this $$ \$1000 $$ into a bank account at 10% interest, $$ \$1610.51 $$ is the amount you'd have after the end of 5 years. This investment is *exactly as if* the investment grew at a consistent 10% per year. One of the benefits of CAGR is being able to compute this standard value to compare how much investments have grown.
 
-However, using the average annual return, you'd get $$ 12.2 \% $$, since the first 4 years have a return of $$ 0 $$ and the last year has a return of 61%. Note that if this were applied to the original 1000 and you assumed a 12.2% rate of growth, you'd actually end up with $$ \$ 1778.13 $$, which is more than what you actually ended up with. **This is one way how stating average annual returns can easily mislead investors**. *CAGR* *is what happens in real life*, while average annual return always equals or overstates the CAGR (*). (N.B. This example is taken from [Source 2](https://thecollegeinvestor.com/919/average-annual-return-vs-compound-annual-return/).)
+However, using the average annual return, you'd get $$ 12.2 \% $$, since the first 4 years have a return of $$ 0 $$ and the last year has a return of 61%. Note that if this were applied to the original 1000 and you assumed a 12.2% rate of growth, you'd actually end up with $$ \$ 1778.13 $$, which is more than what you actually ended up with. **This is one way how stating average annual returns can easily mislead investors**. *CAGR* *is what happens in real life*, while average annual return always equals or overstates the CAGR (see proof below). (N.B. This example is taken from [Source 2](https://thecollegeinvestor.com/919/average-annual-return-vs-compound-annual-return/).)
 
 Another way how average annual return can mislead investors is because different funds that have performed vastly differently can have the same average annual return. For example, the above example has an average annual return of 12.2%. But an investment that grows 12.2% each year has an average annual return (and CAGR) equal to 12.2% as well, but this investment is worth more at the end of 5 years. Therefore, **it is impossible to distinguish investments based on average annual return**.
 
@@ -54,7 +54,7 @@ CAGR versus average annual return boils down to the mathematical difference betw
 
 The arithmetic mean is simply the mean we are all used to: $$ \frac{1}{n}\sum_{i=1}^{n}x_i $$ while the geometric mean is the $$ n $$ th root of the product of all $$ n $$ values: $$ (\Pi_{i=1}^{n}x_i)^{\frac{1}{n}}$$ .
 
-(*) We can now easily provide a proof for our claim above that the average annual return of an investment will always be *overstated*, i.e. greater than or equal to the CAGR. We must show that 
+We can now easily provide a proof for our claim above that the average annual return of an investment will always be overstated, i.e. greater than or equal to the CAGR. We must show that 
 
 $$ (\Pi_{i=1}^{n} x_i)^{\frac{1}{n}} \leq  \frac{1}{n}\sum_{i=1}^{n}x_i $$
 
@@ -80,8 +80,8 @@ Due to the above reasoning, my recommendation is to never consider mutual funds 
 
 #### Sources
 
-1. https://investinganswers.com/articles/cagr-vs-average-annual-return-why-your-advisor-quoting-wrong-number
-2. https://thecollegeinvestor.com/919/average-annual-return-vs-compound-annual-return/
-3. https://investinganswers.com/dictionary/c/compound-annual-growth-rate-cagr
-4. https://www.investopedia.com/ask/answers/06/geometricmean.asp#:~:text=The%20geometric%20mean%20differs%20from,returns%20than%20the%20arithmetic%20mean.
-5. https://en.wikipedia.org/wiki/Geometric_mean#Applications
+1. [investinganswers.com](https://investinganswers.com/articles/cagr-vs-average-annual-return-why-your-advisor-quoting-wrong-number)
+2. [thecollegeinvestor.com](https://thecollegeinvestor.com/919/average-annual-return-vs-compound-annual-return/)
+3. [investinganswers.com](https://investinganswers.com/dictionary/c/compound-annual-growth-rate-cagr)
+4. [investopedia](https://www.investopedia.com/ask/answers/06/geometricmean.asp#:~:text=The%20geometric%20mean%20differs%20from,returns%20than%20the%20arithmetic%20mean.)
+
