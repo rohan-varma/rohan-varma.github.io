@@ -13,9 +13,9 @@ I currently work at [Facebook AI](http://ai.facebook.com/) on enabling large-sca
 
 Previously, I've worked on building mortgage lending products at [Blend](https://blend.com), risk models at [Affirm](https://affirm.com), and messaging applications for sports teams at [Hudl](https://hudl.com). 
 
-### Writings
+### Writing
 
-This is a reverse-chronological set of links to some essays that I've written over the years!
+This blog is mostly a place for me to collect random notes and tips that I've found interesting and useful over the years. Below is a reverse-chronological set of links to some essays that I've written over the years!
 
 **2020**
 
