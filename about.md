@@ -44,4 +44,4 @@ This section is still in progress!
 
 ### Contact me
 
-[rvarm1@gmail.com](mailto:rvarm1@gmail.com)
+rvarm1 @ gmail  dot  com
