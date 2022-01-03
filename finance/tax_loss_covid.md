@@ -4,7 +4,7 @@ title: How to Tax-Loss Harvest during the COVID-19 Market Downturn
 mathjax: True
 ---
 
-This blog post is a deviation from the technical content that I usually post, since I thought it may be useful to share my experience with my first time venturing into tax-loss harvesting, especially given the market conditions in response to COVID-19. This post is not meant to be a comprehensive guide for when to tax loss harvest, but more of a series of steps that would need to take when deciding to go through with it, and a rough estimation of the actual benefits. Now for the obligatory disclaimer: this post isn't intended to provide investment or tax advice!
+I wrote this since I thought it may be useful to share my experience with my first time venturing into tax-loss harvesting, especially given the market conditions in response to COVID-19. This post is not meant to be a comprehensive guide for when to tax loss harvest, but more of a series of steps that would need to take when deciding to go through with it, and a rough estimation of the actual benefits. Now for the obligatory disclaimer: this post isn't intended to provide investment or tax advice!
 
 ##### What is Tax-Loss Harvesting?
 
