@@ -42,7 +42,7 @@ Another way how average annual return can mislead investors is because different
 
 Hopefully I've convinced you that using average annual returns to analyze fund performance is inaccurate when considering what happens in real world scenarios where compounding plays a role. The average annual return *completely ignores compounding* and is this misleading. 
 
-This is why folks like [Dave Ramsey](https://www.youtube.com/watch?v=0JHuHxwhKmc&feature=youtu.be) who insist that all you need to know is the average annual return are misguided at best and snake-oil salesmen at worst (I would wager the latter, as he also recommends actively managed mutual funds to everyday investors, but alas). Many folks (such as Ramsey) are rightfully advocates of extreme simplicity when it comes to investing, and rightfully so, but things should not be made out to be simpler than they actually are. 
+This is why folks like [Dave Ramsey](https://www.youtube.com/watch?v=0JHuHxwhKmc&feature=youtu.be) who insist that all you need to know is the average annual return are misguided in my opinion. Many folks (such as Ramsey) are rightfully advocates of extreme simplicity when it comes to investing, but advocating for using the average annual return instead of CAGR is an incorrect oversimplification.
 
 ### Mathematical Justification
 
