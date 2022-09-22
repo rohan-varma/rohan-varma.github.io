@@ -5,11 +5,11 @@ permalink: /about/
 ---
 
 
-Hi! I'm Rohan. I graduated with a BS in Computer Science from UCLA, and work as a software engineer. I'm originally from San Jose, California.
+Hi! I'm Rohan. I'm a research engineer in New York City currently at [Meta AI](https://ai.facebook.com/people/rohan-varma). Previously, I graduated with a BS in Computer Science from UCLA. I grew up in San Jose, California.
 
 ### Work
 
-I currently work at [Facebook AI](http://ai.facebook.com/) on enabling large-scale distributed training within the [PyTorch](https://pytorch.org/) framework. You can find more about my research interests [at this link](https://ai.facebook.com/people/rohan-varma) 
+I currently work at [Meta AI](http://ai.facebook.com/) on enabling large-scale distributed training within the [PyTorch](https://pytorch.org/) framework. You can find more about my research interests [at this link](https://ai.facebook.com/people/rohan-varma) 
 
 Previously, I've worked on building mortgage lending products at [Blend](https://blend.com), risk models at [Affirm](https://affirm.com), and messaging applications for sports teams at [Hudl](https://hudl.com). 
 
