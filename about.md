@@ -5,17 +5,25 @@ permalink: /about/
 ---
 
 
-Hi! I'm Rohan. I'm a research engineer in New York City currently at [Meta AI](https://ai.facebook.com/people/rohan-varma). Previously, I graduated with a BS in Computer Science from UCLA. I grew up in San Jose, California.
+Hi! I'm Rohan. I'm an engineer currently at [Meta AI](https://ai.facebook.com/people/rohan-varma). Previously, I graduated with a BS in Computer Science from UCLA. I grew up in San Jose, California.
 
 ### Work
 
-I currently work at [Meta AI](http://ai.facebook.com/) on enabling large-scale distributed training within the [PyTorch](https://pytorch.org/) framework. You can find more about my research interests [at this link](https://ai.facebook.com/people/rohan-varma) 
+I currently work at [Meta AI](http://ai.facebook.com/) on enabling large-scale distributed training within the [PyTorch](https://pytorch.org/) framework. You can find more about my research interests [at this link](https://ai.facebook.com/people/rohan-varma) and some publications [at this link](https://scholar.google.com/citations?hl=en&user=j3Sn1aUAAAAJ)
 
 Previously, I've worked on building mortgage lending products at [Blend](https://blend.com), risk models at [Affirm](https://affirm.com), and messaging applications for sports teams at [Hudl](https://hudl.com). 
 
 ### Writing
 
-This blog is mostly a place for me to collect random notes and tips that I've found interesting and useful over the years. Below is a reverse-chronological set of links to some essays that I've written over the years!
+This blog is mostly a place for me to collect random notes and tips that I've found interesting and useful over the years. Below is a reverse-chronological set of links to some things that I've written or helped write over the years!
+
+**2023**
+[Mitigating stragglers in large-scale jobs with PyTorch DDP](https://pytorch.org/blog/straggler-mitigation/)
+
+**2022**
+
+[A tutorial on using PyTorch FSDP for large-scale deep learning training](https://pytorch.org/tutorials/intermediate/FSDP_adavnced_tutorial.html)
+[Scaling foundation multimodal models using PyTorch FSDP](https://pytorch.org/blog/scaling-multimodal-foundation-models-in-torchmultimodal-with-pytorch-distributed/)
 
 **2020**
 
