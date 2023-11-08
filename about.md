@@ -18,11 +18,13 @@ Previously, I've worked on building mortgage lending products at [Blend](https:/
 This blog is mostly a place for me to collect random notes and tips that I've found interesting and useful over the years. Below is a reverse-chronological set of links to some things that I've written or helped write over the years!
 
 **2023**
+
 [Mitigating stragglers in large-scale jobs with PyTorch DDP](https://pytorch.org/blog/straggler-mitigation/)
 
 **2022**
 
 [A tutorial on using PyTorch FSDP for large-scale deep learning training](https://pytorch.org/tutorials/intermediate/FSDP_adavnced_tutorial.html)
+
 [Scaling foundation multimodal models using PyTorch FSDP](https://pytorch.org/blog/scaling-multimodal-foundation-models-in-torchmultimodal-with-pytorch-distributed/)
 
 **2020**
