@@ -27,6 +27,10 @@ This blog is mostly a place for me to collect random notes and tips that I've fo
 
 [Scaling foundation multimodal models using PyTorch FSDP](https://pytorch.org/blog/scaling-multimodal-foundation-models-in-torchmultimodal-with-pytorch-distributed/)
 
+[PyTorch Data Parallel on GCP](https://medium.com/pytorch/pytorch-data-parallel-best-practices-on-google-cloud-6c8da2be180d)
+
+[Scaling to 1 trillion parameters with PyTorch FSDP](https://medium.com/pytorch/training-a-1-trillion-parameter-model-with-pytorch-fully-sharded-data-parallel-on-aws-3ac13aa96cff)
+
 **2020**
 
 [How to use PyTorch's RPC Framework](https://pytorch.org/tutorials/intermediate/rpc_param_server_tutorial.html)
