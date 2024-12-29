@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Training very deep networks with Batchnorm
+title: (2017) Training very deep networks with Batchnorm
 mathjax: True
 ---
 
