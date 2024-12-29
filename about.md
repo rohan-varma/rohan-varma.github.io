@@ -52,6 +52,11 @@ This blog is mostly a place for me to collect random notes and tips that I've fo
 
 [Getting Started in Machine Learning](https://medium.com/techatucla/getting-started-in-machine-learning-c68bdd739c44)
 
+
+## Finance
+
+I have a couple of writings around personal finance [here](https://rohanvarma.io/finance/) that I don't actively maintain anymore.
+
 ### Misc
 
 This section is still in progress!
