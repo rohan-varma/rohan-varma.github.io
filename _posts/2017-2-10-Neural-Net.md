@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Implementing a Neural Network in Python
+title: (2017) Implementing a Neural Network in Python
 mathjax: True
 ---
 
