@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Efficient Matrix Operations through Diagonalizability
+title: (2019) Efficient Matrix Operations through Diagonalizability
 mathjax: True
 ---
 
