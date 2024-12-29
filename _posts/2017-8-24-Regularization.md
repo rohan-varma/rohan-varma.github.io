@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Interpreting Regularization as a Bayesian Prior
+title: (2017) Interpreting Regularization as a Bayesian Prior
 mathjax: True
 ---
 
