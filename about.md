@@ -5,11 +5,11 @@ permalink: /about/
 ---
 
 
-Hi! I'm Rohan. I'm an engineer currently at [Meta AI](https://ai.facebook.com/people/rohan-varma). Previously, I graduated with a BS in Computer Science from UCLA. I grew up in San Jose, California.
+Hi! I'm Rohan. I'm an engineer currently at [Meta AI](https://ai.facebook.com/people/rohan-varma) working on large-scale training. Previously, I graduated with a BS in Computer Science from UCLA. I grew up in San Jose, California.
 
 ### Work
 
-I currently work at [Meta AI](http://ai.facebook.com/) on enabling large-scale distributed training within the [PyTorch](https://pytorch.org/) framework. You can find more about my research interests [at this link](https://ai.facebook.com/people/rohan-varma) and some publications [at this link](https://scholar.google.com/citations?hl=en&user=j3Sn1aUAAAAJ)
+I currently work at [Meta AI](http://ai.facebook.com/) on all things related to large scale training. Much of my work is open-source as part of the [PyTorch](https://pytorch.org/) framework. You can find more about my research interests [at this link](https://ai.facebook.com/people/rohan-varma) and some publications [at this link](https://scholar.google.com/citations?hl=en&user=j3Sn1aUAAAAJ)
 
 Previously, I've worked on building mortgage lending products at [Blend](https://blend.com), risk models at [Affirm](https://affirm.com), and messaging applications for sports teams at [Hudl](https://hudl.com). 
 
@@ -17,8 +17,14 @@ Previously, I've worked on building mortgage lending products at [Blend](https:/
 
 This blog is mostly a place for me to collect random notes and tips that I've found interesting and useful over the years. Below is a reverse-chronological set of links to some things that I've written or helped write over the years!
 
+**2024**
+
+[TorchTune library release](https://pytorch.org/blog/torchtune-fine-tune-llms/)
+
 **2023**
 
+[PyTorch FSDP paper at VLDB 2023](https://www.vldb.org/pvldb/vol16/p3848-huang.pdf)
+[PyTorch RPC paper at MLSys 2023](https://proceedings.mlsys.org/paper_files/paper/2023/file/47d096470b10eba0c1805697c4445101-Paper-mlsys2023.pdf)
 [Mitigating stragglers in large-scale jobs with PyTorch DDP](https://pytorch.org/blog/straggler-mitigation/)
 
 **2022**
@@ -34,12 +40,6 @@ This blog is mostly a place for me to collect random notes and tips that I've fo
 **2020**
 
 [How to use PyTorch's RPC Framework](https://pytorch.org/tutorials/intermediate/rpc_param_server_tutorial.html)
-
-**2019**
-
-[Do One Thing](https://rohanvarma.me/essays/one_thing)
-
-[Modern Addiction](https://rohanvarma.me/essays/addiction)
 
 **2018**
 
