@@ -11,6 +11,8 @@ Hi! I'm Rohan. I'm an engineer currently at [Meta AI](https://ai.facebook.com/pe
 
 I currently work at [Meta AI](http://ai.facebook.com/) on all things related to large scale training. Much of my work is open-source as part of the [PyTorch](https://pytorch.org/) framework. You can find more about my research interests [at this link](https://ai.facebook.com/people/rohan-varma) and some publications [at this link](https://scholar.google.com/citations?hl=en&user=j3Sn1aUAAAAJ)
 
+I worked nearly full-time on the [PyTorch Distributed](https://pytorch.org/docs/stable/distributed.html) framework from 2019-2023, and continue to serve as a [maintainer](https://pytorch.org/docs/stable/community/persons_of_interest.html) for the framework.
+
 Previously, I've worked on building mortgage lending products at [Blend](https://blend.com), risk models at [Affirm](https://affirm.com), and messaging applications for sports teams at [Hudl](https://hudl.com). 
 
 ### Writing
